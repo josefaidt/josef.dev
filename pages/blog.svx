@@ -1,0 +1,32 @@
+---
+title: Blog
+---
+
+<!-- prettier-ignore -->
+<script>
+  import { url } from '@sveltech/routify'
+  import { routes } from '../.routify/routes'
+  import data from './blog/_data.json'
+  let posts = routes.filter(route => /^\/blog\/[A-z0-9\/\-]*$/gi.test(route.shortPath)).map(route => {
+    const [,frontmatter] = data.find(([path]) => route.absolutePath === path)
+    return Object.assign(route, { frontmatter })
+  })
+  $: console.log('posts', posts, data)
+</script>
+
+# {title}
+
+Welcome to the blog
+
+## Posts
+
+{#each posts as post}
+
+  <article>
+    <div>
+      <a href="{$url(post.path)}">{post.frontmatter.title}</a>
+      <p>{new Date(post.frontmatter.date).toDateString()}</p>
+    </div>
+  </article>
+{/each}
+

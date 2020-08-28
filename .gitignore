@@ -1,0 +1,18 @@
+.DS_Store
+node_modules
+*.log
+
+# personal preferences
+.vscode/settings.json
+
+# bundle output
+public/**
+!public/index.html
+!public/favicon.png
+!public/global.css
+
+# vercel
+.vercel
+
+# routify
+.routify
