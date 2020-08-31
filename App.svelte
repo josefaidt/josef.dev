@@ -1,11 +1,27 @@
 <script>
-  export let title
   import { Router } from '@sveltech/routify'
+  import info from './app.config'
   import { routes } from './.routify/routes'
+  import ThemeProvider from './components/ThemeProvider'
 </script>
 
 <svelte:head>
-  <title>{title}</title>
+  <title>{info.title}</title>
+  <meta name="description" content="{info.description.slice(0, 244)}" />
+  <meta name="keywords" content="{[].concat(info.keywords).join(',')}" />
+
+  <meta property="og:url" content="{info.url}" />
+  <meta property="og:title" content="{info.title}" />
+  <meta property="og:description" content="{info.description.slice(0, 244)}" />
+  <meta property="og:image" content="/favicon.png" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:creator" content="{`@${info.author}`}" />
+  <meta name="twitter:title" content="{info.title}" />
+  <meta name="twitter:description" content="{info.description.slice(0, 244)}" />
+  <meta name="twitter:image" content="/favicon.png" />
 </svelte:head>
 
-<Router routes="{routes}" />
+<ThemeProvider>
+  <Router {routes} />
+</ThemeProvider>

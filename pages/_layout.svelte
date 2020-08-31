@@ -2,12 +2,18 @@
   // PRIMARY LAYOUT
   import Nav from '../components/Nav.svelte'
   import info from '../app.config'
+
+  import { getContext } from 'svelte'
+  const { toggle, current } = getContext('theme')
 </script>
 
 <div class="container">
   <header>
-    <h1>{info.name}</h1>
-    <Nav />
+    <h1>{info.title}</h1>
+    <div>
+      <Nav />
+      <button on:click="{toggle}">{$current}</button>
+    </div>
   </header>
   <main>
     <slot />

@@ -11,7 +11,6 @@ title: Blog
     const [,frontmatter] = data.find(([path]) => route.absolutePath === path)
     return Object.assign(route, { frontmatter })
   })
-  $: console.log('posts', posts, data)
 </script>
 
 # {title}

@@ -1,8 +1,6 @@
 ---
 title: Home
-date: 2020-08-26
+date: 2020-08-28
 ---
 
-# {title}
-
-Last edited {new Date(date).toLocaleDateString()}
+# Hello

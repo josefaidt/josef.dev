@@ -12,6 +12,6 @@
 </script>
 
 <svelte:head>
-  <title>{`${info.name} | ${title}`}</title>
+  <title>{`${info.title} | ${title}`}</title>
 </svelte:head>
 <slot />

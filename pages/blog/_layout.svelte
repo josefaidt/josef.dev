@@ -9,7 +9,7 @@
 
 <style>
   article {
-    background-color: whitesmoke;
+    background-color: powderblue;
     color: black;
   }
 </style>

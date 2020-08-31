@@ -10,6 +10,7 @@ public/**
 !public/index.html
 !public/favicon.png
 !public/global.css
+!public/theme.css
 
 # vercel
 .vercel

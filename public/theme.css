@@ -1,0 +1,24 @@
+:root {
+  --ja-primary: #d46a6a;
+  --ja-secondary: #518a8d;
+  --ja-accent: #c6797e;
+  --ja-text: #5a535b;
+  --ja-grey: #8b868c;
+  --ja-bg: white;
+  --ja-bg-contrast: whitesmoke;
+}
+
+html {
+  background-color: var(--ja-bg);
+  color: var(--ja-text);
+}
+
+html.theme--light {
+  --ja-bg: white;
+  --ja-text: #5a535b;
+}
+
+html.theme--dark {
+  --ja-bg: darkgrey;
+  --ja-text: white;
+}
