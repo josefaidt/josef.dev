@@ -1,32 +1,15 @@
-const { readdirSync, promises: fs } = require('fs')
+const { readdirSync, readFileSync, promises: fs } = require('fs')
 const path = require('path')
 const fm = require('front-matter')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const { mdsvex } = require('mdsvex')
 const appConfig = require('./app.config')
+const { buildSchema } = require('graphql')
+const { graphqlHTTP } = require('express-graphql')
+const recursiveReadDir = require('./support/recursiveReadDir')
 
 const mode = process.env.NODE_ENV || 'development'
 const prod = mode === 'production'
-
-async function recursiveReadDir(directory, { only = ['svx'], fullPath = true } = { only: ['svx'], fullPath: true }) {
-  const result = []
-  const crawl = async filePath => {
-    const files = await fs.readdir(filePath, { withFileTypes: true })
-    for (const file of files) {
-      const _path = path.join(filePath, file.name)
-      if (file.isDirectory()) await crawl(_path)
-      else if (only.some(o => path.extname(file.name).replace(/^\./, '') === o)) {
-        if (fullPath) {
-          result.push(_path)
-        } else {
-          result.push(_path.replace(directory, '').replace(path.extname(_path), ''))
-        }
-      }
-    }
-  }
-  await crawl(directory)
-  return result
-}
 
 class BlogBootstrapPlugin {
   constructor(options) {
@@ -111,6 +94,16 @@ module.exports = {
   ],
   devtool: prod ? false : 'source-map',
   devServer: {
+    before: function (app, server, compiler) {
+      app.use(
+        '/___graphql',
+        graphqlHTTP({
+          schema: buildSchema(readFileSync(path.join(__dirname, 'support/graphql/schema.graphql'), 'utf8')),
+          rootValue: require('./support/graphql/resolvers'),
+          graphiql: true,
+        })
+      )
+    },
     port: 3000,
     historyApiFallback: {
       index: 'index.html',

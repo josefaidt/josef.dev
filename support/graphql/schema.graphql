@@ -1,0 +1,26 @@
+interface Node {
+  name: String!
+  ext: String!
+  absolutePath: String!
+}
+
+type Frontmatter {
+  title: String
+  date: String
+  description: String
+  tags: [String]
+  published: Boolean
+}
+
+type Post implements Node {
+  name: String!
+  ext: String!
+  absolutePath: String!
+  slug: String
+  frontmatter: Frontmatter!
+}
+
+type Query {
+  allPosts(directory: String): [Post]!
+  hello: String!
+}
