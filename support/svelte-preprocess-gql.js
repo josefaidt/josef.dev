@@ -21,16 +21,26 @@ module.exports = function preprocessGraphQL() {
 
       if (!start) return { code: content }
 
-      const query = content.slice(start, end)
+      const code = content.slice(start, end)
+      const evaluated = eval(code)
 
       let data
       try {
-        data = await request(`http://localhost:${PORT}/___graphql`, query.slice(1, -1))
+        let query = ``
+        let vars = {}
+        if (Array.isArray(evaluated)) {
+          ;[query, vars] = evaluated
+        } else query = evaluated
+
+        console.log('QUERY, VARS', query, vars)
+        data = await request(`http://localhost:${PORT}/___graphql`, query, vars)
       } catch (error) {
         throw new Error(`There was an error requesting data\n${error}`)
       }
 
-      return { code: content.replace(query, JSON.stringify(data)) }
+      console.log('CONTENT', content.replace(code, JSON.stringify(data)))
+
+      return { code: content.replace(code, JSON.stringify(data)) }
     },
   }
 }
