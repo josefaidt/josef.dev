@@ -4,10 +4,6 @@
 
   let navItems = [
     {
-      name: 'Home',
-      path: '/index',
-    },
-    {
       name: 'About',
       path: '/about',
     },
@@ -33,25 +29,33 @@
   }
 
   a {
+    font-weight: bold;
     display: inline-block;
     padding: 0.9rem;
-    border-radius: 0.2rem;
+    /* border-radius: 0.2rem; */
     height: min-content;
     text-decoration: none;
-    transition: all 100ms ease;
+    /* transition: all 100ms ease; */
     color: var(--theme-text);
-    border: 1px solid transparent;
+    border: 2px solid transparent;
+    border-radius: 0.2rem;
     filter: initial;
   }
   a.active {
-    filter: invert(0.5);
+    /* filter: invert(0.5); */
+    border-bottom: 2px solid var(--theme-primary);
   }
 
-  a:hover,
-  a.active:hover {
+  a:hover {
     filter: initial;
-    background-color: var(--theme-accent);
-    color: var(--ja-white);
-    transition: all 200ms ease;
+    /* background-color: var(--theme-accent); */
+    border: 2px solid var(--theme-accent);
+    color: var(--theme-text);
+    /* transition: all 200ms ease; */
+  }
+
+  a.active:hover {
+    /* filter: invert(0.5); */
+    border-bottom: 2px solid var(--theme-primary);
   }
 </style>
