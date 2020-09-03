@@ -5,20 +5,23 @@
   export const query = `
     query {
       allPosts {
+        slug
         frontmatter {
           title
+          date
+          published
+          tags
         }
       }
     }
   `
-  $: console.log('QUERY', query)
 
-  let posts = routes
-    .filter(route => /^\/blog\/[A-z0-9\/\-]*$/gi.test(route.shortPath))
-    .map(route => {
-      const [, frontmatter] = data.find(([path]) => route.absolutePath === path)
-      return Object.assign(route, { frontmatter })
-    })
+  // let posts = routes
+  //   .filter(route => /^\/blog\/[A-z0-9\/\-]*$/gi.test(route.shortPath))
+  //   .map(route => {
+  //     const [, frontmatter] = data.find(([path]) => route.absolutePath === path)
+  //     return Object.assign(route, { frontmatter })
+  //   })
 </script>
 
 <section>
@@ -26,15 +29,15 @@
   <p>welcome to the blog</p>
   <h2>Posts</h2>
   <pre>
-    <code>{JSON.stringify(query, null, 2)}</code>
+    <!-- <code>{JSON.stringify(query, null, 2)}</code> -->
   </pre>
   <!-- prettier-ignore -->
-  {#each posts as post}
-  <article>
-    <div>
-      <a href="{$url(post.slug)}">{post.frontmatter.title}</a>
-      <p>{new Date(post.frontmatter.date).toDateString()}</p>
-    </div>
-  </article>
-{/each}
+  {#each query.allPosts as post}
+    <article>
+      <div>
+        <a href="{$url(post.slug)}">{post.frontmatter.title}</a>
+        <p>{new Date(post.frontmatter.date).toDateString()}</p>
+      </div>
+    </article>
+  {/each}
 </section>
