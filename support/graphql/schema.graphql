@@ -22,5 +22,4 @@ type Post implements Node {
 
 type Query {
   allPosts(directory: String): [Post]!
-  hello: String!
 }
