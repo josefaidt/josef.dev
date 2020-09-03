@@ -37,7 +37,7 @@ class BlogBootstrapPlugin {
 }
 
 const plugins = [
-  new BlogBootstrapPlugin(),
+  // new BlogBootstrapPlugin(),
   new MiniCssExtractPlugin({
     filename: '[name].css',
   }),
