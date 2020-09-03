@@ -10,8 +10,7 @@
     "dev:routify": "routify"
   },
   "dependencies": {
-    "@roxi/routify": "^2.0.0",
-    "@sveltech/ssr": "^0.0.12"
+    "@roxi/routify": "^2.0.0"
   },
   "devDependencies": {
     "acorn": "^8.0.1",

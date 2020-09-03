@@ -1,21 +1,5 @@
 <script>
-  import { url, page, metatags } from '@roxi/routify'
-  // const query = [`
-  //   query POST($slug: String!) {
-  //     findPost(input: {
-  //       slug: $slug
-  //     }) {
-  //       frontmatter {
-  //         title
-  //         date
-  //         tags
-  //         published
-  //       }
-  //     }
-  //   }
-  // `, {
-  //   slug: $page.path.replace(/\/index$/, '')
-  // }]
+  import { url } from '@roxi/routify'
 </script>
 
 <article>

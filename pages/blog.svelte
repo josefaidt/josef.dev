@@ -2,7 +2,7 @@
   import { url } from '@roxi/routify'
   import { routes } from '../.routify/routes'
   import data from './blog/_data.json'
-  export const query = `
+  const query = `
     query {
       allPosts {
         slug
@@ -15,22 +15,12 @@
       }
     }
   `
-
-  // let posts = routes
-  //   .filter(route => /^\/blog\/[A-z0-9\/\-]*$/gi.test(route.shortPath))
-  //   .map(route => {
-  //     const [, frontmatter] = data.find(([path]) => route.absolutePath === path)
-  //     return Object.assign(route, { frontmatter })
-  //   })
 </script>
 
 <section>
-  <h1>Blog</h1>
+  <h1>Snakes and Sparklers</h1>
   <p>welcome to the blog</p>
   <h2>Posts</h2>
-  <pre>
-    <!-- <code>{JSON.stringify(query, null, 2)}</code> -->
-  </pre>
   <!-- prettier-ignore -->
   {#each query.allPosts as post}
     <article>
