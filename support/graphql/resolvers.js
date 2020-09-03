@@ -16,10 +16,12 @@ module.exports = {
     const posts = await recursiveReadDir(postPath)
     for (let post of posts) {
       // This will give you a valid svelte component
-      const { attributes: frontmatter } = fm(await fs.readFile(post, 'utf8'))
+      let { attributes: frontmatter } = fm(await fs.readFile(post, 'utf8'))
       let slug = post.replace(postPath, '/blog')
       if (slug.endsWith('/index.svx')) slug = slug.replace(/\/index\.svx$/g, '')
       else if (slug.endsWith('.svx')) slug = slug.replace('.svx', '')
+
+      if (frontmatter.date) frontmatter.date = new Date(`${frontmatter.date}`).toDateString()
       // push prepped node data
       result.push({
         name: path.basename(post).replace(path.extname(post), ''),
