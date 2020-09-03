@@ -1,5 +1,5 @@
 <script>
-  import { Router } from '@sveltech/routify'
+  import { Router } from '@roxi/routify'
   import info from './app.config'
   import { routes } from './.routify/routes'
   import ThemeProvider from './components/ThemeProvider'
@@ -23,5 +23,5 @@
 </svelte:head>
 
 <ThemeProvider>
-  <Router {routes} />
+  <Router routes="{routes}" />
 </ThemeProvider>

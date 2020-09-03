@@ -31,7 +31,7 @@ module.exports = {
         frontmatter,
       })
     }
-    console.log('RESULT', result)
+    // console.log('RESULT', result)
     return result
   },
 }

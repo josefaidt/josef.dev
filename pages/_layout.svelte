@@ -1,7 +1,8 @@
 <script>
   // PRIMARY LAYOUT
-  import Nav from '../components/Nav.svelte'
-  import info from '../app.config'
+  import Nav from '../components/Nav'
+  import Logo from '../components/Logo'
+  import Button from '../components/Button'
 
   import { getContext } from 'svelte'
   const { toggle, current } = getContext('theme')
@@ -9,10 +10,10 @@
 
 <div class="container">
   <header>
-    <h1>{info.title}</h1>
+    <Logo />
     <div>
       <Nav />
-      <button on:click="{toggle}">{$current}</button>
+      <Button on:click="{toggle}">{$current}</Button>
     </div>
   </header>
   <main>
@@ -34,10 +35,24 @@
     grid-area: header;
   }
 
+  header > * + div {
+    display: grid;
+    grid-auto-flow: column;
+    grid-gap: 1rem;
+  }
+
   main {
     /* background-color: tomato; */
     /* color: black; */
     grid-area: main;
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 33rem) {
+    main {
+      width: 100%;
+    }
   }
 
   footer {

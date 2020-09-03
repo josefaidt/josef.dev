@@ -4,6 +4,6 @@
 
 <style>
   h1 {
-    color: blue;
+    color: var(--theme-text);
   }
 </style>

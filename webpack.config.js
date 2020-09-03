@@ -6,6 +6,7 @@ const { mdsvex } = require('mdsvex')
 const appConfig = require('./app.config')
 const { buildSchema } = require('graphql')
 const { graphqlHTTP } = require('express-graphql')
+const { request } = require('graphql-request')
 const recursiveReadDir = require('./support/recursiveReadDir')
 
 const mode = process.env.NODE_ENV || 'development'
@@ -35,6 +36,37 @@ class BlogBootstrapPlugin {
   }
 }
 
+class GraphQLLayerPlugin {
+  constructor(options) {
+    //
+    this.app = require('express')()
+    this.server
+  }
+  apply(compiler) {
+    compiler.hooks.beforeRun.tap('GraphQLLayerPlugin', async compiler => {
+      this.app.use(
+        '/___graphql',
+        graphqlHTTP({
+          schema: buildSchema(readFileSync(path.join(__dirname, 'support/graphql/schema.graphql'), 'utf8')),
+          rootValue: require('./support/graphql/resolvers'),
+          graphiql: true,
+        })
+      )
+      this.server = this.app.listen(3000)
+    })
+    compiler.hooks.done.tap('GraphQLLayerPlugin', async compiler => {
+      this.server.close()
+    })
+  }
+}
+
+const plugins = [
+  new BlogBootstrapPlugin(),
+  new MiniCssExtractPlugin({
+    filename: '[name].css',
+  }),
+]
+
 module.exports = {
   entry: {
     bundle: ['./main.js'],
@@ -47,7 +79,7 @@ module.exports = {
     mainFields: ['svelte', 'browser', 'module', 'main'],
   },
   output: {
-    path: __dirname + '/public',
+    path: path.join(__dirname, 'public'),
     filename: '[name].js',
     chunkFilename: '[name].[id].js',
     publicPath: appConfig.basePath || '/',
@@ -63,12 +95,45 @@ module.exports = {
             dev: !prod,
             hydratable: false,
             hotReload: true,
-            preprocess: mdsvex({
-              layout: {
-                _: './pages/_mdx.svelte',
+            preprocess: [
+              {
+                script: async ({ content }) => {
+                  const acorn = require('acorn')
+                  const walk = require('acorn-walk')
+                  const tree = acorn.parse(content, { sourceType: 'module', ecmaVersion: '2020' })
+                  let start, end
+
+                  walk.simple(tree, {
+                    VariableDeclaration(node) {
+                      const [declaration] = node.declarations
+                      if (declaration.id.name === 'query') {
+                        start = declaration.init.start
+                        end = declaration.init.end
+                      }
+                    },
+                  })
+
+                  if (!start) return { code: content }
+
+                  const query = content.slice(start, end)
+
+                  let data
+                  try {
+                    data = await request('http://localhost:3000/___graphql', query.slice(1, -1))
+                  } catch (error) {
+                    throw new Error(`There was an error requesting data\n${error}`)
+                  }
+
+                  return { code: content.replace(query, JSON.stringify(data)) }
+                },
               },
-              remarkPlugins: [require('remark-autolink-headings')],
-            }),
+              mdsvex({
+                layout: {
+                  _: './pages/_mdx.svelte',
+                },
+                remarkPlugins: [require('remark-autolink-headings')],
+              }),
+            ],
           },
         },
       },
@@ -86,12 +151,7 @@ module.exports = {
     ],
   },
   mode,
-  plugins: [
-    new BlogBootstrapPlugin(),
-    new MiniCssExtractPlugin({
-      filename: '[name].css',
-    }),
-  ],
+  plugins: prod ? plugins.concat(new GraphQLLayerPlugin()) : plugins,
   devtool: prod ? false : 'source-map',
   devServer: {
     before: function (app, server, compiler) {

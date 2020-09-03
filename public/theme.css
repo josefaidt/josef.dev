@@ -1,24 +1,43 @@
 :root {
+  /* colors tokens */
+  --ja-black: #17182b;
+  --ja-black-lighter: #c5c7cb;
+  --ja-white: white;
+  --ja-white-dark: whitesmoke;
+  --ja-primary-light: #b26d71;
   --ja-primary: #d46a6a;
   --ja-secondary: #518a8d;
   --ja-accent: #c6797e;
-  --ja-text: #5a535b;
   --ja-grey: #8b868c;
-  --ja-bg: white;
-  --ja-bg-contrast: whitesmoke;
+  --ja-grey-dark: #5a535b;
+
+  /* consumables */
+  --theme-bg: var(--ja-white);
+  --theme-bg-contrast: var(--ja-white-dark);
+  --theme-bg-text: var(--ja-grey-dark);
+  --theme-primary: ;
+  --theme-primary-light: ;
+  --theme-accent: ;
 }
 
-html {
-  background-color: var(--ja-bg);
-  color: var(--ja-text);
+html,
+body {
+  background-color: var(--theme-bg);
+  color: var(--theme-text);
 }
 
 html.theme--light {
-  --ja-bg: white;
-  --ja-text: #5a535b;
+  --theme-bg: var(--ja-white);
+  --theme-text: var(--ja-grey-dark);
+  --theme-primary: var(--ja-primary);
+  --theme-primary-light: var(--ja-primary-light);
+  --theme-accent: var(--ja-accent);
 }
 
 html.theme--dark {
-  --ja-bg: darkgrey;
-  --ja-text: white;
+  --theme-bg: var(--ja-black);
+  --theme-text: var(--ja-black-lighter);
+  --theme-primary: var(--ja-primary-light);
+  --theme-primary-light: var(--ja-accent);
+  --theme-accent: var(--ja-secondary);
 }

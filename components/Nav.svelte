@@ -1,5 +1,7 @@
 <script>
-  import { url, isActive } from '@sveltech/routify'
+  import { url, isActive } from '@roxi/routify'
+  import Button from './Button'
+
   let navItems = [
     {
       name: 'Home',
@@ -30,7 +32,26 @@
     grid-gap: 1rem;
   }
 
-  nav a.active {
-    color: black;
+  a {
+    display: inline-block;
+    padding: 0.9rem;
+    border-radius: 0.2rem;
+    height: min-content;
+    text-decoration: none;
+    transition: all 100ms ease;
+    color: var(--theme-text);
+    border: 1px solid transparent;
+    filter: initial;
+  }
+  a.active {
+    filter: invert(0.5);
+  }
+
+  a:hover,
+  a.active:hover {
+    filter: initial;
+    background-color: var(--theme-accent);
+    color: var(--ja-white);
+    transition: all 200ms ease;
   }
 </style>
