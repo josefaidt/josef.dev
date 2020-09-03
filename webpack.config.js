@@ -69,7 +69,7 @@ module.exports = {
           options: {
             emitCss: true,
             dev: !prod,
-            hydratable: false,
+            hydratable: true,
             hotReload: true,
             preprocess: [
               require('./support/svelte-preprocess-gql')(),
