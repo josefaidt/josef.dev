@@ -5,7 +5,7 @@
   let navItems = [
     {
       name: 'Home',
-      path: '/',
+      path: '/index',
     },
     {
       name: 'About',
