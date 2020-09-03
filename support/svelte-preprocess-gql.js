@@ -1,12 +1,11 @@
 const acorn = require('acorn')
 const walk = require('acorn-walk')
 const { request } = require('graphql-request')
+const { PORT } = require('./webpack/config')
 
-module.exports = async function preprocessGraphQL() {
+module.exports = function preprocessGraphQL() {
   return {
     async script({ content }) {
-      const acorn = require('acorn')
-      const walk = require('acorn-walk')
       const tree = acorn.parse(content, { sourceType: 'module', ecmaVersion: '2020' })
       let start, end
 
@@ -26,7 +25,7 @@ module.exports = async function preprocessGraphQL() {
 
       let data
       try {
-        data = await request('http://localhost:3000/___graphql', query.slice(1, -1))
+        data = await request(`http://localhost:${PORT}/___graphql`, query.slice(1, -1))
       } catch (error) {
         throw new Error(`There was an error requesting data\n${error}`)
       }
