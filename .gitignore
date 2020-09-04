@@ -6,11 +6,7 @@ node_modules
 .vscode/settings.json
 
 # bundle output
-public/**
-!public/index.html
-!public/favicon.png
-!public/global.css
-!public/theme.css
+public/build
 
 # vercel
 .vercel

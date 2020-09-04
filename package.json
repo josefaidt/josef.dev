@@ -17,6 +17,7 @@
     "acorn-walk": "^8.0.0",
     "css-loader": "^2.1.1",
     "express-graphql": "^0.11.0",
+    "file-loader": "^6.1.0",
     "front-matter": "^4.0.2",
     "graphql": "^15.3.0",
     "graphql-request": "^3.0.0",
@@ -34,6 +35,8 @@
     "svelte": "^3.0.0",
     "svelte-loader": "2.13.3",
     "svelte-preprocess": "^4.2.1",
+    "svg-inline-loader": "^0.8.2",
+    "url-loader": "^4.1.0",
     "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0",
@@ -60,11 +63,6 @@
     "plugins": [
       "./node_modules/prettier-plugin-svelte"
     ]
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
   },
   "lint-staged": {
     "*.{js,md,svelte,svx,json,html,css}": [

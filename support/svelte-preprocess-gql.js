@@ -32,13 +32,10 @@ module.exports = function preprocessGraphQL() {
           ;[query, vars] = evaluated
         } else query = evaluated
 
-        console.log('QUERY, VARS', query, vars)
         data = await request(`http://localhost:${PORT}/___graphql`, query, vars)
       } catch (error) {
         throw new Error(`There was an error requesting data\n${error}`)
       }
-
-      console.log('CONTENT', content.replace(code, JSON.stringify(data)))
 
       return { code: content.replace(code, JSON.stringify(data)) }
     },

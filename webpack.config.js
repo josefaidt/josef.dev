@@ -54,10 +54,10 @@ module.exports = {
     mainFields: ['svelte', 'browser', 'module', 'main'],
   },
   output: {
-    path: path.join(__dirname, 'public'),
+    path: path.join(__dirname, 'public/build'),
     filename: '[name].js',
     chunkFilename: '[name].[id].js',
-    publicPath: appConfig.basePath || '/',
+    publicPath: '/build',
   },
   module: {
     rules: [
@@ -93,6 +93,22 @@ module.exports = {
           'css-loader',
         ],
       },
+      {
+        test: /\.(png|jpe?g|gif)$/i,
+        use: [
+          {
+            loader: 'file-loader',
+          },
+        ],
+      },
+      {
+        test: /\.svg$/,
+        loader: 'svg-inline-loader',
+        options: {
+          removeTags: true,
+          removeSVGTagAttrs: true,
+        },
+      },
     ],
   },
   mode,
@@ -102,6 +118,7 @@ module.exports = {
     before: function (app, server, compiler) {
       app.use('/___graphql', require('./support/graphql/handler'))
     },
+    contentBase: path.join(__dirname, 'public'),
     port: PORT,
     historyApiFallback: {
       index: 'index.html',

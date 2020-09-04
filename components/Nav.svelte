@@ -31,7 +31,7 @@
   a {
     font-weight: bold;
     display: inline-block;
-    padding: 0.9rem;
+    padding: 0.6rem 0.9rem;
     /* border-radius: 0.2rem; */
     height: min-content;
     text-decoration: none;

@@ -1,7 +1,5 @@
 <script>
   import { url } from '@roxi/routify'
-  import { routes } from '../.routify/routes'
-  import data from './blog/_data.json'
   const query = `
     query {
       allPosts {
