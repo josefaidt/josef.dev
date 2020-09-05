@@ -1,5 +1,5 @@
 {
-  "name": "svelte-mdx-routify-demo",
+  "name": "josef.dev",
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
@@ -10,7 +10,8 @@
     "dev:routify": "routify"
   },
   "dependencies": {
-    "@roxi/routify": "^2.0.0"
+    "@roxi/routify": "^2.0.0",
+    "uuid": "^8.3.0"
   },
   "devDependencies": {
     "acorn": "^8.0.1",
