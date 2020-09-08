@@ -15,6 +15,10 @@
     text-decoration: none;
   }
 
+  a:focus {
+    outline-offset: 5px;
+  }
+
   h1 {
     font-size: 2.5rem;
     font-weight: 700;

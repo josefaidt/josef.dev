@@ -27,6 +27,7 @@
     grid-area: footer;
     margin: 0 auto;
     display: flex;
+    align-items: center;
     justify-content: space-between;
     width: 45rem;
   }
@@ -42,19 +43,22 @@
   }
 
   footer div {
-    height: 1rem;
-    fill: var(--theme-text);
+    height: 100%;
     display: grid;
     grid-auto-flow: column;
     grid-gap: 1.7rem;
   }
 
-  footer a:hover {
-    /* enable SVG fill on hover */
-    fill: var(--theme-primary);
+  footer div a {
+    display: flex;
   }
 
   :global(footer svg) {
     width: 20px;
+    fill: var(--theme-text);
+  }
+
+  :global(footer svg:hover) {
+    fill: var(--theme-primary);
   }
 </style>

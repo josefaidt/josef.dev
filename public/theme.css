@@ -1,6 +1,9 @@
 :root {
   /* colors tokens */
+  --ja-black-darker: #0e0e1a;
+  --ja-black-dark: #151627;
   --ja-black: #17182b;
+  --ja-black-light: #5d5d6b;
   --ja-black-lighter: #c5c7cb;
   --ja-white: white;
   --ja-white-dark: whitesmoke;
@@ -10,14 +13,17 @@
   --ja-accent: #c6797e;
   --ja-grey: #8b868c;
   --ja-grey-dark: #5a535b;
+  --ja-shadow-light: rgba(0, 0, 0, 0.2);
+  --ja-shadow-dark: rgba(0, 0, 0, 0.2);
 
   /* consumables */
   --theme-bg: var(--ja-white);
   --theme-bg-contrast: var(--ja-white-dark);
   --theme-bg-text: var(--ja-grey-dark);
-  --theme-primary: ;
-  --theme-primary-light: ;
-  --theme-accent: ;
+  --theme-primary: black;
+  --theme-primary-light: black;
+  --theme-accent: black;
+  --theme-shadow: var(--ja-shadow-light);
 }
 
 html,
@@ -32,12 +38,19 @@ html.theme--light {
   --theme-primary: var(--ja-primary);
   --theme-primary-light: var(--ja-primary-light);
   --theme-accent: var(--ja-accent);
+  --theme-shadow: var(--ja-shadow-light);
 }
 
 html.theme--dark {
-  --theme-bg: var(--ja-black);
+  --theme-bg: var(--ja-black-darker);
   --theme-text: var(--ja-black-lighter);
   --theme-primary: var(--ja-primary-light);
   --theme-primary-light: var(--ja-accent);
   --theme-accent: var(--ja-secondary);
+  --theme-shadow: var(--ja-black-light);
+}
+
+:focus {
+  outline: 2px solid var(--theme-primary);
+  outline-offset: 2px;
 }
