@@ -46,7 +46,7 @@
     fill: var(--theme-text);
     display: grid;
     grid-auto-flow: column;
-    grid-gap: 1.5rem;
+    grid-gap: 1.7rem;
   }
 
   footer a:hover {
@@ -55,6 +55,6 @@
   }
 
   :global(footer svg) {
-    width: 24px;
+    width: 20px;
   }
 </style>
