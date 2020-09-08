@@ -29,13 +29,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 45rem;
-  }
-
-  @media (max-width: 33rem) {
-    footer {
-      width: 100%;
-    }
+    width: 80%;
   }
 
   footer p {
@@ -60,5 +54,12 @@
 
   :global(footer svg:hover) {
     fill: var(--theme-primary);
+  }
+
+  @media (max-width: 33rem) {
+    footer {
+      width: 100%;
+      padding-bottom: calc(var(--nav-offset, 3rem) + 0.5rem);
+    }
   }
 </style>

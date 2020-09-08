@@ -30,7 +30,7 @@
 
 <style>
   div,
-  div > nav {
+  nav {
     display: grid;
     grid-auto-flow: column;
     grid-template-columns: min-content;
@@ -65,5 +65,38 @@
   a.active:hover {
     /* filter: invert(0.5); */
     border-bottom: 2px solid var(--theme-primary);
+  }
+
+  :global(html) {
+    --nav-offset: 2.75rem;
+  }
+
+  @media (max-width: 33rem) {
+    nav {
+      position: fixed;
+      bottom: 0;
+      right: 0;
+      width: 100%;
+      grid-template-columns: 1fr 1fr;
+      text-align: center;
+
+      height: var(--nav-offset);
+      background-color: var(--theme-bg-contrast);
+      /* box-shadow: 0px 0px 40px -10px var(--theme-shadow); */
+    }
+
+    a {
+      border-bottom: 0 solid transparent;
+      border-top: 2px solid var(--theme-bg-contrast);
+    }
+
+    a.active {
+      border-bottom: 0 solid transparent;
+      border-top: 2px solid var(--theme-primary);
+    }
+
+    a:focus {
+      outline: none;
+    }
   }
 </style>
