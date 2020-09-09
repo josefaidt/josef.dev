@@ -16,7 +16,7 @@
   }
 
   a:focus {
-    outline-offset: 5px;
+    outline-offset: 7px;
   }
 
   h1 {
