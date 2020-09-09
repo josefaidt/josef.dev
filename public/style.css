@@ -12,3 +12,9 @@ blockquote {
 * {
   transition: all 250ms ease;
 }
+
+pre {
+  border-radius: 3px;
+  overflow: auto;
+  overflow-wrap: normal;
+}
