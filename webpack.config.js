@@ -76,7 +76,13 @@ module.exports = {
                 layout: {
                   _: './pages/_mdx.svelte',
                 },
-                remarkPlugins: [require('remark-autolink-headings')],
+                smartypants: true,
+                remarkPlugins: [
+                  require('remark-slug'),
+                  require('remark-autolink-headings'),
+                  require('remark-images'),
+                  // require('remark-prism'),
+                ],
               }),
             ],
           },

@@ -31,6 +31,8 @@
     "prettier-plugin-svelte": "^1.1.1",
     "reading-time": "^1.2.0",
     "remark-autolink-headings": "^6.0.1",
+    "remark-images": "^2.0.0",
+    "remark-slug": "^6.0.0",
     "sirv": "^1.0.6",
     "style-loader": "^0.23.1",
     "svelte": "^3.0.0",
