@@ -53,6 +53,7 @@
     /* color: black; */
     grid-area: main;
     width: 80%;
+    max-width: inherit;
     margin: 0 auto;
   }
 
