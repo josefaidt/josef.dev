@@ -12,6 +12,7 @@
   --ja-secondary: #518a8d;
   --ja-accent: #c6797e;
   --ja-grey: #8b868c;
+  --ja-grey-light: dimgrey;
   --ja-grey-dark: #5a535b;
   --ja-shadow-light: rgba(0, 0, 0, 0.2);
   --ja-shadow-dark: rgba(0, 0, 0, 0.2);
@@ -34,6 +35,7 @@ body {
 
 html.theme--light {
   --theme-bg: var(--ja-white);
+  --theme-bg-contrast: var(--ja-white-dark);
   --theme-text: var(--ja-grey-dark);
   --theme-primary: var(--ja-primary);
   --theme-primary-light: var(--ja-primary-light);
@@ -43,6 +45,7 @@ html.theme--light {
 
 html.theme--dark {
   --theme-bg: var(--ja-black-darker);
+  --theme-bg-contrast: var(--ja-black);
   --theme-text: var(--ja-black-lighter);
   --theme-primary: var(--ja-primary-light);
   --theme-primary-light: var(--ja-accent);

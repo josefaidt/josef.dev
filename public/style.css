@@ -1,3 +1,14 @@
 body {
   line-height: 2rem;
 }
+
+blockquote {
+  font-style: italic;
+  font-weight: 400;
+  /* filter: brightness(95%); */
+  /* color: var(--ja-grey-light); */
+}
+
+* {
+  transition: all 250ms ease;
+}

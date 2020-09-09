@@ -18,14 +18,16 @@
 
 <section>
   <h1>Snakes and Sparklers</h1>
-  <p>welcome to the blog</p>
+  <p>Compilation of my thoughts and opinions on all things tech, web development, and oxford commas.</p>
+  <blockquote>"Snakes and Sparklers are the only ones I like." -Kicking Wing, Joe Dirt (2001)</blockquote>
+
   <h2>Posts</h2>
   <!-- prettier-ignore -->
   {#each query.allPosts as post}
   <a href="{$url(post.slug)}" aria-labelledby={post._id}>
     <article>
         <!-- need unique ID's, generate with uuid -->
-        <h2 id={post._id}>{post.frontmatter.title}</h2>
+        <h3 id={post._id}>{post.frontmatter.title}</h3>
         <p>{new Date(post.frontmatter.date).toLocaleDateString()}</p>
       
     </article>
@@ -41,8 +43,8 @@
   }
 
   article {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    border: 1px solid rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 8px 0 var(--theme-shadow);
+    border: 1px solid var(--theme-shadow);
     border-radius: 5px;
     margin: 1rem 0;
     transition: transform 0.3s ease;
@@ -50,7 +52,12 @@
   }
 
   article:hover {
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 16px 0 var(--theme-shadow);
     transform: translateY(-5px);
+  }
+
+  article h3 {
+    font-size: 1.5rem;
+    margin-top: 0.25rem;
   }
 </style>

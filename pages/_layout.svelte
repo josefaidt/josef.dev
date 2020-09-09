@@ -2,8 +2,8 @@
   // PRIMARY LAYOUT
   import Nav from '../components/Nav'
   import Logo from '../components/Logo'
-  import Button from '../components/Button'
   import Footer from '../components/Footer'
+  import { page } from '@roxi/routify'
 
   import { getContext } from 'svelte'
   const { toggle, current } = getContext('theme')
@@ -14,7 +14,6 @@
     <Logo />
     <div>
       <Nav />
-      <Button on:click="{toggle}">{$current}</Button>
     </div>
   </header>
   <main>
@@ -29,23 +28,31 @@
   }
 
   header {
+    margin: 1rem 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
     grid-area: header;
   }
 
+  @media (max-width: 33rem) {
+    header {
+      margin: 0.5rem 0;
+    }
+  }
+
   header > * + div {
     display: grid;
     grid-auto-flow: column;
     grid-gap: 2rem;
+    align-items: center;
   }
 
   main {
     /* background-color: tomato; */
     /* color: black; */
     grid-area: main;
-    width: 45rem;
+    width: 80%;
     margin: 0 auto;
   }
 
@@ -57,6 +64,7 @@
 
   .container {
     margin: 0 auto;
+    width: 100%;
     height: 100%;
     display: grid;
     grid-auto-flow: row;
@@ -68,7 +76,7 @@
       'footer';
   }
 
-  @media (min-width: 66rem) {
+  @media (min-width: 33rem) {
     .container {
       max-width: 60rem;
     }
