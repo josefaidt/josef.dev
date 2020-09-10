@@ -22,6 +22,6 @@
   <meta name="twitter:image" content="/favicon.png" />
 </svelte:head>
 
-<ThemeProvider>
-  <Router routes="{routes}" />
-</ThemeProvider>
+<!-- <ThemeProvider> -->
+<Router routes="{routes}" />
+<!-- </ThemeProvider> -->

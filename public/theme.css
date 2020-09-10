@@ -18,13 +18,13 @@
   --ja-shadow-dark: rgba(0, 0, 0, 0.2);
 
   /* consumables */
-  --theme-bg: var(--ja-white);
+  /* --theme-bg: var(--ja-white);
   --theme-bg-contrast: var(--ja-white-dark);
-  --theme-bg-text: var(--ja-grey-dark);
-  --theme-primary: black;
-  --theme-primary-light: black;
-  --theme-accent: black;
-  --theme-shadow: var(--ja-shadow-light);
+  --theme-text: var(--ja-grey-dark);
+  --theme-primary: var(--ja-primary);
+  --theme-primary-light: var(--ja-primary-light);
+  --theme-accent: var(--ja-accent);
+  --theme-shadow: var(--ja-shadow-light); */
 }
 
 html,
@@ -43,6 +43,18 @@ html.theme--light {
   --theme-shadow: var(--ja-shadow-light);
 }
 
+@media (prefers-color-scheme: light) {
+  html {
+    --theme-bg: var(--ja-white);
+    --theme-bg-contrast: var(--ja-white-dark);
+    --theme-text: var(--ja-grey-dark);
+    --theme-primary: var(--ja-primary);
+    --theme-primary-light: var(--ja-primary-light);
+    --theme-accent: var(--ja-accent);
+    --theme-shadow: var(--ja-shadow-light);
+  }
+}
+
 html.theme--dark {
   --theme-bg: var(--ja-black-darker);
   --theme-bg-contrast: var(--ja-black);
@@ -51,6 +63,18 @@ html.theme--dark {
   --theme-primary-light: var(--ja-accent);
   --theme-accent: var(--ja-secondary);
   --theme-shadow: var(--ja-black-light);
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    --theme-bg: var(--ja-black-darker);
+    --theme-bg-contrast: var(--ja-black);
+    --theme-text: var(--ja-black-lighter);
+    --theme-primary: var(--ja-primary-light);
+    --theme-primary-light: var(--ja-accent);
+    --theme-accent: var(--ja-secondary);
+    --theme-shadow: var(--ja-black-light);
+  }
 }
 
 :focus {

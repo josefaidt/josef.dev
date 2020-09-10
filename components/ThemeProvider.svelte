@@ -19,14 +19,14 @@
     else currentTheme.set(themes[currentIndex + 1])
   }
 
-  afterUpdate(function() {
+  afterUpdate(function () {
     // store.update(existing => ({ ...existing, current: currentTheme }))
     setContext('theme', { current: currentTheme, toggle: toggleTheme })
     return window.localStorage.setItem(STORAGE_KEY, $currentTheme)
   })
   $: document.documentElement.className = `theme--${$currentTheme}`
 
-  onMount(function() {
+  onMount(function () {
     let existing = window.localStorage.getItem(STORAGE_KEY)
     if (existing && themes.includes(existing)) currentTheme.set(existing)
     else window.localStorage.setItem(STORAGE_KEY, $currentTheme)
@@ -35,9 +35,9 @@
 
 <slot />
 
-<!-- <style>
+<!--<style>
   :global(html) {
     background-color: var(--theme-background);
     color: var(--theme-text);
   }
-</style> -->
+</style>-->

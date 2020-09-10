@@ -2,14 +2,33 @@
   import { getContext } from 'svelte'
   // import LightModeIcon from './icons/sun.svg'
   // import DarkModeIcon from './icons/moon.svg'
-  const { current, toggle } = getContext('theme')
+  // const { current, toggle } = getContext('theme')
+  function _prefersColorScheme() {
+    if (window.matchMedia('(prefers-color-scheme:dark)').matches) {
+      return 'dark'
+    } else {
+      return 'light'
+    }
+  }
+
+  function _initFromLocalStorage() {
+    let stored = window.localStorage.getItem('__svelte-theme')
+    if (stored && ['light', 'dark'].includes(stored)) return stored
+    else return null
+  }
+
+  $: current = _initFromLocalStorage() || _prefersColorScheme()
+  $: document.documentElement.className = `theme--${current}`
+  $: window.localStorage.setItem('__svelte-theme', current)
+
+  function toggle() {
+    if (current === 'dark') current = 'light'
+    else if (current === 'light') current = 'dark'
+  }
 </script>
 
 <button on:click="{toggle}">
-  {#if $current === 'light'}
-    <!-- {@html LightModeIcon} -->
-    light
-  {:else if $current === 'dark'}
+  {#if current === 'dark'}
     <!-- {@html DarkModeIcon} -->
     dark
   {:else}

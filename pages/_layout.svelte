@@ -4,9 +4,6 @@
   import Logo from '../components/Logo'
   import Footer from '../components/Footer'
   import { page } from '@roxi/routify'
-
-  import { getContext } from 'svelte'
-  const { toggle, current } = getContext('theme')
 </script>
 
 <div class="container">
