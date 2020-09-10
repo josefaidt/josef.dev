@@ -11,6 +11,8 @@ blockquote {
 
 * {
   transition: all 250ms ease;
+  -webkit-transition: -webkit-filter 250ms ease;
+  -moz-transition: all 250ms ease;
 }
 
 pre {

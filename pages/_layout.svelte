@@ -59,13 +59,14 @@
 
   @media (max-width: 33rem) {
     main {
-      width: 100%;
+      width: 95vw;
     }
   }
 
   .container {
     margin: 0 auto;
     width: 100%;
+    max-width: 100vw;
     height: 100%;
     display: grid;
     grid-auto-flow: row;
