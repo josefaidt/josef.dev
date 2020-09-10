@@ -32,4 +32,10 @@
     transition: all 300ms;
     text-shadow: 0.05rem 0.05rem var(--theme-primary);
   }
+
+  @media (max-width: 33rem) {
+    a {
+      outline: none;
+    }
+  }
 </style>
