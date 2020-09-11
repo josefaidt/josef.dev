@@ -52,8 +52,14 @@ pre {
   background-color: var(--theme-bg-contrast);
   color: var(--rouge);
   font-size: 90%;
-  padding: 0.3rem 0.8rem;
-  line-height: 1.42rem;
+  padding: 0.5rem 1rem;
+  line-height: 1.42;
+}
+
+code {
+  background-color: var(--theme-bg-contrast);
+  padding: 0.3rem;
+  border-radius: 0.3rem;
 }
 
 @media (min-width: 66rem) {
