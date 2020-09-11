@@ -19,6 +19,9 @@
     <a href="https://github.com/josefaidt" target="_blank" rel="noreferrer noorigin">
       {@html GitHubIcon}
     </a>
+    <!-- twitch -->
+    <!-- twitter -->
+    <!-- linkedin -->
   </div>
 </footer>
 
@@ -30,6 +33,7 @@
     align-items: center;
     justify-content: space-between;
     width: 80%;
+    font-size: 80%;
   }
 
   footer p {
