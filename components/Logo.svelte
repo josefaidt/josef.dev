@@ -26,6 +26,7 @@
     color: var(--theme-text);
     text-shadow: 0.1rem 0.1rem var(--theme-primary);
     transition: all 300ms;
+    line-height: 1;
   }
 
   h1:hover {

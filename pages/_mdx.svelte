@@ -8,7 +8,7 @@
   export let title
   export let date
 
-  $: console.log('LAYOUT FRONTMATTER', title, date)
+  // $: console.log('LAYOUT FRONTMATTER', title, date)
 </script>
 
 <svelte:head>

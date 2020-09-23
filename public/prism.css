@@ -52,7 +52,7 @@ pre {
   background-color: var(--theme-bg-contrast);
   color: var(--rouge);
   font-size: 90%;
-  padding: 0.5rem 1rem;
+  padding: 2rem 1rem;
   line-height: 1.42;
 }
 
