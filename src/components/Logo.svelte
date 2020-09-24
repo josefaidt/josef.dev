@@ -1,5 +1,4 @@
 <script>
-  import info from '../app.config'
   import { url } from '@roxi/routify'
 </script>
 

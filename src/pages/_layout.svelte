@@ -1,8 +1,8 @@
 <script>
   // PRIMARY LAYOUT
-  import Nav from '../components/Nav'
-  import Logo from '../components/Logo'
-  import Footer from '../components/Footer'
+  import Nav from '../components/Nav.svelte'
+  import Logo from '../components/Logo.svelte'
+  import Footer from '../components/Footer.svelte'
   import { page } from '@roxi/routify'
 </script>
 

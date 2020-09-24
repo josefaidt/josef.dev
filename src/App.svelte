@@ -1,12 +1,11 @@
 <script>
   import { Router } from '@roxi/routify'
-  import info from './app.config'
-  import { routes } from './.routify/routes'
-  import ThemeProvider from './components/ThemeProvider'
+  // import info from '../app.config'
+  import { routes } from '../.routify/routes'
 </script>
 
 <svelte:head>
-  <title>{info.title}</title>
+  <!-- <title>{info.title}</title>
   <meta name="description" content="{info.description.slice(0, 244)}" />
   <meta name="keywords" content="{[].concat(info.keywords).join(',')}" />
 
@@ -19,7 +18,7 @@
   <meta name="twitter:creator" content="{`@${info.author}`}" />
   <meta name="twitter:title" content="{info.title}" />
   <meta name="twitter:description" content="{info.description.slice(0, 244)}" />
-  <meta name="twitter:image" content="/favicon.png" />
+  <meta name="twitter:image" content="/favicon.png" /> -->
 </svelte:head>
 
 <!-- <ThemeProvider> -->

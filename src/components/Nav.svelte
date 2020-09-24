@@ -1,7 +1,7 @@
 <script>
   import { url, isActive } from '@roxi/routify'
-  import Button from './Button'
-  import ThemeToggle from './ThemeToggle'
+  import Button from './Button.svelte'
+  import ThemeToggle from './ThemeToggle.svelte'
 
   let navItems = [
     // {
