@@ -25,7 +25,7 @@ type Post implements Node {
 input InputData {
   sortBy: String = "date"
   order: String = "desc"
-  directory: String = "pages/posts"
+  directory: String = "src/pages/posts"
 }
 
 type Query {

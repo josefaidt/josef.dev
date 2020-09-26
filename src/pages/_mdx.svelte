@@ -4,7 +4,7 @@
 </script>
 
 <script>
-  import info from '../app.config'
+  // import info from '../../app.config'
   export let title
   export let date
 
@@ -12,6 +12,6 @@
 </script>
 
 <svelte:head>
-  <title>{`${info.title} | ${title}`}</title>
+  <!-- <title>{`${info.title} | ${title}`}</title> -->
 </svelte:head>
 <slot />

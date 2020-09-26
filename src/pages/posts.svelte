@@ -29,7 +29,6 @@
         <!-- need unique ID's, generate with uuid -->
         <h3 id={post._id}>{post.frontmatter.title}</h3>
         <p>{new Date(post.frontmatter.date).toLocaleDateString()}</p>
-      
     </article>
     </a>
   {/each}

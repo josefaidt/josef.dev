@@ -12,7 +12,8 @@ module.exports = {
       postPath = path.resolve(args.data.directory)
     } else {
       const base = process.cwd()
-      postPath = path.join(base, 'pages/posts')
+      // TODO: pluggable pages/posts based on routify config
+      postPath = path.join(base, 'src/pages/posts')
     }
     const posts = await recursiveReadDir(postPath)
     for (let post of posts) {
