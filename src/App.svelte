@@ -1,5 +1,5 @@
 <script>
-  import { Router } from '@roxi/routify'
+  import { Router } from '@roxi/routify/runtime'
   // import info from '../app.config'
   import { routes } from '../.routify/routes'
 </script>

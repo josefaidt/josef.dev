@@ -3,13 +3,12 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "serve": "sirv public --single",
+    "serve": "sirv build --single",
     "build": "run-s build:routify build:svite",
     "build:routify": "routify run -b",
-    "build:svite": "svite build",
-    "dev": "run-p dev:graphql dev:svite dev:routify",
+    "build:svite": "svite build --outDir build",
+    "dev": "run-p dev:routify dev:svite",
     "dev:svite": "svite dev",
-    "dev:graphql": "node support/graphql/server",
     "dev:routify": "routify run"
   },
   "dependencies": {
@@ -19,11 +18,12 @@
   "devDependencies": {
     "acorn": "^8.0.1",
     "acorn-walk": "^8.0.0",
-    "express-graphql": "^0.11.0",
     "front-matter": "^4.0.2",
     "graphql": "^15.3.0",
     "graphql-request": "^3.0.0",
     "husky": "^4.2.5",
+    "koa-graphql": "^0.8.0",
+    "koa-mount": "^4.0.0",
     "lint-staged": "^10.2.13",
     "mdsvex": "^0.8.7",
     "npm-run-all": "^4.1.5",
@@ -33,6 +33,7 @@
     "remark-autolink-headings": "^6.0.1",
     "remark-images": "^2.0.0",
     "remark-slug": "^6.0.0",
+    "rollup-plugin-svelte-svg": "^0.2.3",
     "sirv": "^1.0.6",
     "svelte": "^3.0.0",
     "svelte-hmr": "^0.11.0",
