@@ -4,14 +4,21 @@
 </script>
 
 <script>
-  // import info from '../../app.config'
   export let title
   export let date
 
   // $: console.log('LAYOUT FRONTMATTER', title, date)
+
+  const query = `
+    query SITE_METADATA_BLOG {
+      meta {
+        title
+      }
+    }
+  `
 </script>
 
 <svelte:head>
-  <!-- <title>{`${info.title} | ${title}`}</title> -->
+  <title>{`${query.meta.title} | ${title}`}</title>
 </svelte:head>
 <slot />

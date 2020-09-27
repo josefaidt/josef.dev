@@ -4,5 +4,4 @@ module.exports = {
   description: 'Welcome to my personal site',
   keywords: ['josef', 'aidt', 'personal', 'portfolio', 'svelte'],
   author: 'josefaidt',
-  basePath: null,
 }

@@ -10,6 +10,7 @@ type Frontmatter {
   date: String
   description: String
   tags: [String]
+  keywords: [String]
   published: Boolean
 }
 
@@ -22,6 +23,14 @@ type Post implements Node {
   frontmatter: Frontmatter!
 }
 
+type SiteMetadata {
+  title: String!
+  author: String!
+  url: String!
+  description: String
+  keywords: [String]
+}
+
 input InputData {
   sortBy: String = "date"
   order: String = "desc"
@@ -30,4 +39,5 @@ input InputData {
 
 type Query {
   allPosts(data: InputData!): [Post]!
+  meta: SiteMetadata!
 }
