@@ -1,23 +1,27 @@
 <script>
-  import GitHubIcon from './icons/github.svg'
-  import SpotifyIcon from './icons/spotify.svg'
+  import GitHubIcon from './icons/github.svg.svelte'
+  import SpotifyIcon from './icons/spotify.svg.svelte'
 </script>
 
 <footer>
-  <p>
-    &copy; {new Date().getFullYear()}, Build with
-    <a href="https://svelte.dev">Svelte</a>
-  </p>
+  <p>&copy; {new Date().getFullYear()}, Build with <a href="https://svelte.dev">Svelte</a></p>
   <div>
     <a
       href="https://open.spotify.com/user/1215285465?si=oxVZ8WelTQyZBdr97Tz4fQ"
       target="_blank"
       rel="noreferrer noorigin"
+      aria-label="Spotify"
     >
-      {@html SpotifyIcon}
+      <SpotifyIcon />
     </a>
-    <a href="https://github.com/josefaidt" target="_blank" rel="noreferrer noorigin">
-      {@html GitHubIcon}
+    <a
+      href="https://github.com/josefaidt"
+      target="_blank"
+      rel="noreferrer noorigin"
+      data-icon="github"
+      aria-label="Github"
+    >
+      <GitHubIcon />
     </a>
     <!-- twitch -->
     <!-- twitter -->
