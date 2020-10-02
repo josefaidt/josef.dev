@@ -30,7 +30,7 @@
   --rouge-comment: var(--rouge-comment-light);
 }
 
-html.theme--light {
+html[theme='light'] {
   --rouge: var(--rouge-light);
   --rouge-green: var(--rouge-green-light);
   --rouge-orange: var(--rouge-orange-light);
@@ -39,7 +39,7 @@ html.theme--light {
   --rouge-comment: var(--rouge-comment-light);
 }
 
-html.theme--dark {
+html[theme='dark'] {
   --rouge: var(--rouge-dark);
   --rouge-green: var(--rouge-green-dark);
   --rouge-orange: var(--rouge-orange-dark);

@@ -33,7 +33,7 @@ body {
   color: var(--theme-text);
 }
 
-html.theme--light {
+html[theme='light'] {
   --theme-bg: var(--ja-white);
   --theme-bg-contrast: var(--ja-white-dark);
   --theme-text: var(--ja-grey-dark);
@@ -43,7 +43,7 @@ html.theme--light {
   --theme-shadow: var(--ja-shadow-light);
 }
 
-@media (prefers-color-scheme: light) {
+/* @media (prefers-color-scheme: light) {
   html {
     --theme-bg: var(--ja-white);
     --theme-bg-contrast: var(--ja-white-dark);
@@ -53,9 +53,9 @@ html.theme--light {
     --theme-accent: var(--ja-accent);
     --theme-shadow: var(--ja-shadow-light);
   }
-}
+} */
 
-html.theme--dark {
+html[theme='dark'] {
   --theme-bg: var(--ja-black-darker);
   --theme-bg-contrast: var(--ja-black);
   --theme-text: var(--ja-black-lighter);
@@ -65,7 +65,7 @@ html.theme--dark {
   --theme-shadow: var(--ja-black-light);
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   html {
     --theme-bg: var(--ja-black-darker);
     --theme-bg-contrast: var(--ja-black);
@@ -75,7 +75,7 @@ html.theme--dark {
     --theme-accent: var(--ja-secondary);
     --theme-shadow: var(--ja-black-light);
   }
-}
+} */
 
 :focus {
   outline: 2px solid var(--theme-primary);
