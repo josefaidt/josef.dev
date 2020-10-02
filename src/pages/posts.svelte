@@ -28,7 +28,7 @@
     <article>
         <!-- need unique ID's, generate with uuid -->
         <h3 id={post._id}>{post.frontmatter.title}</h3>
-        <p>{new Date(post.frontmatter.date).toLocaleDateString()}</p>
+        <!-- <p>{new Date(post.frontmatter.date).toLocaleDateString()}</p> -->
     </article>
     </a>
   {/each}
@@ -46,13 +46,17 @@
     border: 1px solid var(--theme-shadow);
     border-radius: 5px;
     margin: 1rem 0;
-    transition: transform 0.3s ease;
+    transition: all 0.3s ease;
     padding: 1rem;
   }
 
   article:hover {
     box-shadow: 0 8px 16px 0 var(--theme-shadow);
-    transform: translateY(-5px);
+    /* transform: translateY(-5px); */
+  }
+
+  :global(html[theme='dark']) article {
+    box-shadow: initial;
   }
 
   article h3 {
