@@ -4,14 +4,18 @@
   import ThemeToggle from './ThemeToggle.svelte'
 
   let navItems = [
+    {
+      name: 'Home',
+      path: '/',
+    },
     // {
     //   name: 'About',
     //   path: '/about',
     // },
-    {
-      name: 'Uses',
-      path: '/uses',
-    },
+    // {
+    //   name: 'Uses',
+    //   path: '/uses',
+    // },
     {
       name: 'Posts',
       path: '/posts',
@@ -21,9 +25,7 @@
 
 <div>
   <nav>
-    {#each navItems as item}
-      <a href="{$url(item.path)}" class:active="{$isActive(item.path)}">{item.name}</a>
-    {/each}
+    {#each navItems as item}<a href="{$url(item.path)}" class:active="{$isActive(item.path)}">{item.name}</a>{/each}
   </nav>
   <ThemeToggle />
 </div>
