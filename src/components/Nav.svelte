@@ -17,8 +17,8 @@
     //   path: '/uses',
     // },
     {
-      name: 'Posts',
-      path: '/posts',
+      name: 'Blog',
+      path: '/blog',
     },
   ]
 </script>
@@ -45,7 +45,7 @@
     /* border-radius: 0.2rem; */
     height: min-content;
     text-decoration: none;
-    /* transition: all 100ms ease; */
+    transition: all 100ms ease;
     color: var(--theme-text);
     border: 2px solid transparent;
     border-radius: 0.2rem;
@@ -61,7 +61,7 @@
     /* background-color: var(--theme-accent); */
     border: 2px solid var(--theme-accent);
     color: var(--theme-text);
-    /* transition: all 200ms ease; */
+    transition: all 100ms ease;
   }
 
   a.active:hover {

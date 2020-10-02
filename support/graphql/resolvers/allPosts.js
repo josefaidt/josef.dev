@@ -12,13 +12,13 @@ module.exports = async function queryAllPostsasync(args, ctx, info) {
   } else {
     const base = process.cwd()
     // TODO: pluggable pages/posts based on routify config
-    postPath = path.join(base, 'src/pages/posts')
+    postPath = path.join(base, 'src/pages/blog')
   }
   const posts = await recursiveReadDir(postPath)
   for (let post of posts) {
     // This will give you a valid svelte component
     let { attributes: frontmatter } = fm(await fs.readFile(post, 'utf8'))
-    let slug = post.replace(postPath, '/posts')
+    let slug = post.replace(postPath, '/blog')
     if (slug.endsWith('/index.svx')) slug = slug.replace(/\/index\.svx$/g, '')
     else if (slug.endsWith('.svx')) slug = slug.replace('.svx', '')
 
