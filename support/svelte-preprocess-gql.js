@@ -1,7 +1,8 @@
 const acorn = require('acorn')
 const walk = require('acorn-walk')
 const { request } = require('graphql-request')
-const { PORT } = require('./webpack/config')
+
+const PORT = process.env.PORT || 3000
 
 module.exports = function preprocessGraphQL() {
   return {

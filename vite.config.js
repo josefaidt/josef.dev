@@ -5,7 +5,6 @@ import Koa from 'koa'
 import mount from 'koa-mount'
 import graphqlHTTP from 'koa-graphql'
 import svite from 'svite'
-// import svg from 'rollup-plugin-svelte-svg'
 const sviteConfig = {
   // hot: true, // boolean or options object for svelte-hmr
   // useTransformCache: false, // boolean
@@ -34,7 +33,7 @@ if (process.env.NODE_ENV === 'production') {
   // run GraphQL Layer on build
   const app = new Koa()
   app.use(mount(route, handler))
-  app.listen(3000)
+  app.listen(process.env.PORT || 3000)
 }
 
 export default {
