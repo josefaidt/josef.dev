@@ -34,7 +34,7 @@ type SiteMetadata {
 input InputData {
   sortBy: String = "date"
   order: String = "desc"
-  directory: String = "src/pages/posts"
+  directory: String = "src/pages/blog"
 }
 
 type Query {
