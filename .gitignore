@@ -8,6 +8,7 @@ node_modules
 # bundle output
 public/build
 build
+dist
 
 # vercel
 .vercel
