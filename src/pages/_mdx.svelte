@@ -1,6 +1,8 @@
 <script context="module">
   import H1 from '../components/h1.svelte'
+  import Img from '../components/img.svelte'
   export { H1 as h1 }
+  // export { Img as img }
 </script>
 
 <script>
