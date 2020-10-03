@@ -44,7 +44,7 @@ type Query {
 
 After taking the tour of FaunaDB, head on over to create a new database - `demo` - and import the new GraphQL schema to our Fauna database.
 
-![GraphQL Dashboard for FaunaDB](./screenshots/fauna-graphql-dashboard.png)
+![GraphQL Dashboard for FaunaDB](screenshots/fauna-graphql-dashboard.png)
 
 Once Fauna is done importing the schema use the playground to poke around at what has been generated for us to consume like `createUser`. All of our CRUD operations have been generated for us, and all we have to do is perform operations via GraphQL queries and mutations.
 
@@ -52,7 +52,7 @@ When the playground loads you'll notice it's pointing to `https://graphql.fauna.
 
 Head on over to the "Security" tab.
 
-![Fauna Security tab](./screenshots/fauna-security.png)
+![Fauna Security tab](screenshots/fauna-security.png)
 
 Give it a name like "serverless-demo" or something that makes sense to you, then hold on to that key. Create a new file, `.env`:
 

@@ -24,3 +24,8 @@ pre {
   overflow: auto;
   overflow-wrap: normal;
 }
+
+img {
+  width: 100%;
+  border-radius: 3px;
+}

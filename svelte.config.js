@@ -1,3 +1,4 @@
+const path = require('path')
 const { mdsvex } = require('mdsvex')
 
 module.exports = {
@@ -10,11 +11,16 @@ module.exports = {
         _: './src/pages/_mdx.svelte',
       },
       smartypants: true,
-      remarkPlugins: [
-        require('remark-slug'),
-        require('remark-autolink-headings'),
-        require('remark-images'),
-        // require('remark-prism'),
+      remarkPlugins: [require('remark-slug'), require('remark-autolink-headings')],
+      rehypePlugins: [
+        [
+          require('rehype-local-image-to-cloudinary'),
+          {
+            baseDir: path.join(__dirname, 'static'),
+            uploadFolder: 'josef.dev',
+            transformations: 'q_auto,f_auto',
+          },
+        ],
       ],
     }),
   ],

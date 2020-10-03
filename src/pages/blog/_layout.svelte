@@ -3,7 +3,7 @@
 </script>
 
 <article>
-  <a href="{$url('/posts')}">Go back</a>
+  <a href="{$url('/blog')}">Go back</a>
   <slot />
 </article>
 
