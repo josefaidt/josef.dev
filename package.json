@@ -4,10 +4,11 @@
   "license": "MIT",
   "scripts": {
     "serve": "sirv build --single",
-    "build": "run-s build:routify build:svite build:spank",
+    "build": "run-s build:routify build:svite",
     "build:routify": "routify run -b",
     "build:svite": "svite build",
     "build:spank": "spank",
+    "ndev": "vercel dev",
     "dev": "run-p dev:routify dev:svite",
     "dev:svite": "svite dev",
     "dev:routify": "routify run"
@@ -40,7 +41,8 @@
     "svelte": "^3.0.0",
     "svelte-hmr": "^0.11.0",
     "svelte-preprocess": "^4.2.1",
-    "svite": "^0.7.0"
+    "svite": "^0.7.0",
+    "vercel": "^20.1.1"
   },
   "routify": {
     "pages": "./src/pages",
