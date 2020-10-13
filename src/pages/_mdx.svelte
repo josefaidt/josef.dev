@@ -6,21 +6,8 @@
 </script>
 
 <script>
-  export let title
-  export let date
-
-  // $: console.log('LAYOUT FRONTMATTER', title, date)
-
-  const query = `
-    query SITE_METADATA_BLOG {
-      meta {
-        title
-      }
-    }
-  `
+  import SEO from '../components/SEO.svelte'
 </script>
 
-<svelte:head>
-  <title>{`${query.meta.title} | ${title}`}</title>
-</svelte:head>
+<SEO {...$$restProps} />
 <slot />

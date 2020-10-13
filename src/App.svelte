@@ -1,6 +1,7 @@
 <script>
   import { Router } from '@roxi/routify/runtime'
   import { routes } from '../.routify/routes'
+  import SEO from './components/SEO.svelte'
   const query = `
     query SITE_METADATA {
       meta {
@@ -12,9 +13,11 @@
       }
     }
   `
+
+  const seoProps = { ...query.meta }
 </script>
 
-<svelte:head>
+<!-- <svelte:head>
   <title>{query.meta.title}</title>
   <meta name="description" content="{query.meta.description.slice(0, 244)}" />
   <meta name="keywords" content="{[].concat(query.meta.keywords).join(',')}" />
@@ -29,7 +32,7 @@
   <meta name="twitter:title" content="{query.meta.title}" />
   <meta name="twitter:description" content="{query.meta.description.slice(0, 244)}" />
   <meta name="twitter:image" content="/favicon.png" />
-</svelte:head>
+</svelte:head> -->
 
 <!-- <ThemeProvider> -->
 <Router routes="{routes}" />

@@ -1,5 +1,6 @@
 <script>
   import { url } from '@roxi/routify'
+  import SEO from '../components/SEO.svelte'
   const query = `
     query ALL_POSTS {
       allPosts(data:{}) {
@@ -14,8 +15,15 @@
       }
     }
   `
+
+  const seoProps = {
+    title: 'Blog',
+    description:
+      'Snakes and Sparklers -- Compilation of my thoughts and opinions on all things tech, web development, and oxford commas.',
+  }
 </script>
 
+<SEO {...seoProps} />
 <section>
   <h1>Snakes and Sparklers</h1>
   <p>Compilation of my thoughts and opinions on all things tech, web development, and oxford commas.</p>
