@@ -5,4 +5,10 @@
 
 <!-- <ThemeProvider> -->
 <Router routes="{routes}" />
+
 <!-- </ThemeProvider> -->
+<style>
+  :global(#app) {
+    height: inherit;
+  }
+</style>
