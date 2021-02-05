@@ -8,4 +8,5 @@ module.exports = {
     // hydrate the <div id="svelte"> element in src/app.html
     target: '#svelte',
   },
+  preprocess: [require('svelte-preprocess')(), require('./support/svelte-preprocess-gql')()],
 }

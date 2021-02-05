@@ -4,7 +4,7 @@ const fm = require('front-matter')
 const { v4: uuid } = require('uuid')
 const recursiveReadDir = require('../../recursiveReadDir')
 
-module.exports = async function queryAllPostsasync(args, ctx, info) {
+module.exports = async function queryAllPosts(parent, args, ctx, info) {
   let result = []
   let postPath
   if (args.data.directory) {
@@ -41,7 +41,7 @@ module.exports = async function queryAllPostsasync(args, ctx, info) {
       throw new Error('Invalid sort order supplied, must be one of "ASC" or "DESC"')
     }
 
-    const pre = prop => {
+    const pre = (prop) => {
       if (sortBy.toLowerCase() === 'date') {
         return new Date(prop)
       }
