@@ -1,5 +1,4 @@
 <script>
-  import { url } from '@roxi/routify'
   import SEO from '../components/SEO.svelte'
   const query = `
     query ALL_POSTS {
@@ -32,7 +31,7 @@
   <h2>Posts</h2>
   <!-- prettier-ignore -->
   {#each query.allPosts as post}
-  <a href="{$url(post.slug)}" aria-labelledby={post._id}>
+  <a href="{post.slug}" aria-labelledby={post._id}>
     <article>
         <!-- need unique ID's, generate with uuid -->
         <h3 id={post._id}>{post.frontmatter.title}</h3>

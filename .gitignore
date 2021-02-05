@@ -2,19 +2,8 @@
 node_modules
 *.log
 
-# personal preferences
-.vscode/settings.json
-
-# bundle output
-public/build
-build
-dist
-
-# vercel
-.vercel
-
-# routify
-.routify
-
-# ENV
 .env
+
+/.svelte
+/build
+.vercel

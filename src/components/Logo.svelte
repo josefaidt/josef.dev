@@ -1,9 +1,9 @@
 <script>
-  import { url } from '@roxi/routify'
+  // import { url } from '@roxi/routify'
 </script>
 
 <div>
-  <a href="{$url('/')}">
+  <a href="/">
     <h1>josef</h1>
   </a>
 </div>

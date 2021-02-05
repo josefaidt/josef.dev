@@ -3,7 +3,6 @@
   import Nav from '../components/Nav.svelte'
   import Logo from '../components/Logo.svelte'
   import Footer from '../components/Footer.svelte'
-  import { page } from '@roxi/routify'
 </script>
 
 <div class="container">

@@ -1,5 +1,5 @@
 <script>
-  import { url, isActive } from '@roxi/routify'
+  // import { url, isActive } from '@roxi/routify'
   import Button from './Button.svelte'
   import ThemeToggle from './ThemeToggle.svelte'
 
@@ -25,7 +25,7 @@
 
 <div>
   <nav>
-    {#each navItems as item}<a href="{$url(item.path)}" class:active="{$isActive(item.path)}">{item.name}</a>{/each}
+    <!-- {#each navItems as item}<a href="{$url(item.path)}" class:active="{$isActive(item.path)}">{item.name}</a>{/each} -->
   </nav>
   <ThemeToggle />
 </div>
