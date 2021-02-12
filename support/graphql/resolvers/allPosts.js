@@ -1,47 +1,15 @@
-const { promises: fs } = require('fs')
-const path = require('path')
-const fm = require('front-matter')
-const { v4: uuid } = require('uuid')
-const recursiveReadDir = require('../../recursiveReadDir')
+const { find } = require('../../db')
 
 module.exports = async function queryAllPosts(parent, args, ctx, info) {
-  let result = []
-  let postPath
-  if (args.data.directory) {
-    postPath = path.resolve(args.data.directory)
-  } else {
-    const base = process.cwd()
-    // TODO: pluggable pages/posts based on routify config
-    postPath = path.join(base, 'src/pages/blog')
-  }
-  const posts = await recursiveReadDir(postPath)
-  for (let post of posts) {
-    // This will give you a valid svelte component
-    let { attributes: frontmatter } = fm(await fs.readFile(post, 'utf8'))
-    let slug = post.replace(postPath, '/blog')
-    if (slug.endsWith('/index.svx')) slug = slug.replace(/\/index\.svx$/g, '')
-    else if (slug.endsWith('.svx')) slug = slug.replace('.svx', '')
-
-    if (frontmatter.date) frontmatter.date = new Date(`${frontmatter.date}`).toString()
-    // push prepped node data
-    result.push({
-      _id: uuid(),
-      name: path.basename(post).replace(path.extname(post), ''),
-      ext: path.extname(post).replace(/^\./g, ''),
-      absolutePath: post,
-      slug,
-      frontmatter,
-    })
-  }
-
   // prep result based on supplied sort
+  const result = await find({ zone: 'blog' })
   if (args.data.sortBy && args.data.order) {
     let { sortBy, order } = args.data
     if (!['asc', 'desc'].includes(order.toLowerCase())) {
       throw new Error('Invalid sort order supplied, must be one of "ASC" or "DESC"')
     }
 
-    const pre = (prop) => {
+    const pre = prop => {
       if (sortBy.toLowerCase() === 'date') {
         return new Date(prop)
       }

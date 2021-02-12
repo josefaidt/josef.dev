@@ -1,4 +1,6 @@
 const path = require('path')
+const svelteRollupPlugin = require('rollup-plugin-svelte')
+const { mdsvex } = require('mdsvex')
 const pkg = require(path.join(process.cwd(), 'package.json'))
 const port = process.env.PORT || 3000
 const handler = require('./support/graphql/handler')
@@ -18,6 +20,7 @@ const handler = require('./support/graphql/handler')
 
 // Consult https://www.snowpack.dev to learn about these options
 module.exports = {
+  // extends: '@sveltejs/snowpack-config',
   port,
   packageOptions: {
     // always include Svelte in your project
@@ -25,6 +28,10 @@ module.exports = {
     // ignore `import fs from 'fs'` etc
     external: [...require('module').builtinModules, ...Object.keys(pkg.dependencies || {})],
   },
+  // resolve: {
+  //   input: ['.svelte', '.svx'],
+  //   output: ['.js', '.css'],
+  // },
   plugins: [
     [
       '@snowpack/plugin-svelte',
@@ -33,8 +40,21 @@ module.exports = {
           hydratable: true,
         },
         configFilePath: 'svelte.config.cjs',
+        // input: ['.svelte', '.svx'],
+        // preprocess: require('./svelte.config.cjs').preprocess,
       },
     ],
+    // [
+    //   '@snowpack/plugin-build-script',
+    //   {
+    //     cmd: 'postcss',
+    //     input: ['.css', '.pcss'],
+    //     output: ['.css'],
+    //   },
+    // ],
+
+    // ['./support/snowpack-plugin-mdsvex', {}],
+    ['./support/snowpack-plugin-gql', {}],
   ],
   devOptions: {
     open: 'none',
@@ -51,5 +71,5 @@ module.exports = {
     $app: './.svelte/assets/runtime/app',
     $components: './src/components',
   },
-  routes: [{ src: '/___graphql', dest: handler }],
+  // routes: [{ src: '/___graphql', dest: handler }],
 }

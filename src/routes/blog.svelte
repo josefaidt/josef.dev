@@ -13,6 +13,7 @@
       }
     }
   `
+  $: console.log(query)
 
   const seoProps = {
     title: 'Blog',

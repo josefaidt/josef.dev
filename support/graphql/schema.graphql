@@ -39,5 +39,6 @@ input InputData {
 
 type Query {
   allPosts(data: InputData!): [Post]!
+  post(slug: String!): Post
   meta: SiteMetadata!
 }

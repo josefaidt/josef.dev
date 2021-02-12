@@ -2,8 +2,6 @@ const acorn = require('acorn')
 const walk = require('acorn-walk')
 const { request } = require('graphql-request')
 
-const PORT = process.env.PORT || 3000
-
 module.exports = function preprocessGraphQL() {
   return {
     async script({ content }) {
@@ -23,6 +21,7 @@ module.exports = function preprocessGraphQL() {
       if (!start) return { code: content }
 
       const code = content.slice(start, end)
+      console.log({ code })
       const evaluated = eval(code)
 
       let data
@@ -33,7 +32,9 @@ module.exports = function preprocessGraphQL() {
           ;[query, vars] = evaluated
         } else query = evaluated
 
-        data = await request(`http://localhost:${PORT}/___graphql`, query, vars)
+        console.log({ query, vars })
+
+        data = await request(`http://localhost:3000/___graphql`, query, vars)
       } catch (error) {
         throw new Error(`There was an error requesting data\n${error}`)
       }
