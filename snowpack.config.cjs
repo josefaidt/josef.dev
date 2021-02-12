@@ -1,9 +1,6 @@
 const path = require('path')
-const svelteRollupPlugin = require('rollup-plugin-svelte')
-const { mdsvex } = require('mdsvex')
 const pkg = require(path.join(process.cwd(), 'package.json'))
 const port = process.env.PORT || 3000
-const handler = require('./support/graphql/handler')
 
 // Consult https://www.snowpack.dev to learn about these options
 // module.exports = {

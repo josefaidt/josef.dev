@@ -1,6 +1,30 @@
 const path = require('path')
 const { mdsvex } = require('mdsvex')
 
+const isProd = process.env.NODE_ENV === 'production'
+// const isPortTaken = function (port) {
+//   const net = require('net')
+//   const tester = net
+//     .createServer()
+//     .once('error', err => {
+//       if (err.code !== 'EADDRINUSE') return true
+//     })
+//     .once('listening', () => {
+//       tester.once('close', () => false).close()
+//     })
+//     .listen(port)
+// }
+
+// if (isProd) {
+//   const app = require('express')()
+//   app.use('/___graphql', require('./support/graphql/handler'))
+//   try {
+//     !isPortTaken && app.listen(3030)
+//   } catch (error) {
+//     //
+//   }
+// }
+
 module.exports = {
   // extensions: ['.svelte', '.svx'],
   kit: {

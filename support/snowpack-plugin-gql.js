@@ -13,7 +13,7 @@ const route = {
 
 module.exports = function SnowpackPluginGraphQL(snowpackConfig, pluginOptions) {
   const defaultOptions = {
-    content: path.resolve('content'),
+    content: path.resolve('src/content'),
   }
 
   return {
@@ -37,5 +37,9 @@ module.exports = function SnowpackPluginGraphQL(snowpackConfig, pluginOptions) {
 
       console.info('\nGraphQL Layer Initialized!')
     },
+
+    // async run() {
+
+    // },
   }
 }

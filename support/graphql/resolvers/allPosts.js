@@ -24,6 +24,6 @@ module.exports = async function queryAllPosts(parent, args, ctx, info) {
       result.sort((a, b) => (pre(a.frontmatter[sortBy]) > pre(b.frontmatter[sortBy]) ? -1 : 1))
     }
   }
-  // console.log('RESULT', result)
+
   return result
 }
