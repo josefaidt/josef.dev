@@ -21,7 +21,6 @@ module.exports = function preprocessGraphQL() {
       if (!start) return { code: content }
 
       const code = content.slice(start, end)
-      console.log({ code })
       const evaluated = eval(code)
 
       let data

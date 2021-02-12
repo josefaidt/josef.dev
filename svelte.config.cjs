@@ -13,7 +13,7 @@ module.exports = {
     target: '#svelte',
   },
   preprocess: [
-    require('svelte-preprocess')(),
+    // require('svelte-preprocess')(),
     require('./support/svelte-preprocess-gql')(),
     mdsvex({
       extensions: ['.md', '.svx'],
