@@ -28,10 +28,6 @@ module.exports = {
     // ignore `import fs from 'fs'` etc
     external: [...require('module').builtinModules, ...Object.keys(pkg.dependencies || {})],
   },
-  // resolve: {
-  //   input: ['.svelte', '.svx'],
-  //   output: ['.js', '.css'],
-  // },
   plugins: [
     [
       '@snowpack/plugin-svelte',
@@ -71,5 +67,4 @@ module.exports = {
     $app: './.svelte/assets/runtime/app',
     $components: './src/components',
   },
-  // routes: [{ src: '/___graphql', dest: handler }],
 }
