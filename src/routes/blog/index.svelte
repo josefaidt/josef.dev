@@ -1,5 +1,5 @@
-<script>
-  const query = `
+<script context="module">
+  export const query = `
     query ALL_POSTS {
       allPosts(data:{}) {
         _id
@@ -13,7 +13,9 @@
       }
     }
   `
+</script>
 
+<script>
   const seoProps = {
     title: 'Blog',
     description:
@@ -29,13 +31,13 @@
   <h2>Posts</h2>
   <!-- prettier-ignore -->
   {#each query.allPosts as post}
-  <a href="{post.slug}" aria-labelledby={post._id}>
+  <a sapper:prefetch href="{post.slug}" aria-labelledby={post._id}>
     <article>
         <!-- need unique ID's, generate with uuid -->
         <h3 id={post._id}>{post.frontmatter.title}</h3>
         <!-- <p>{new Date(post.frontmatter.date).toLocaleDateString()}</p> -->
     </article>
-    </a>
+  </a>
   {/each}
 </section>
 

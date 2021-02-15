@@ -1,10 +1,9 @@
 <!-- src/routes/blog/[name].svelte -->
 <script context="module">
-  export async function load({ page, fetch }) {
-    const { name } = page.params
+  export async function load({ page: _page, fetch }) {
     const articleQuery = `
-    query POST($slug: String!) {
-      post(slug: $slug) {
+    query PAGE($slug: String!) {
+      page(slug: $slug) {
         _id
         slug
         frontmatter {
@@ -19,23 +18,23 @@
     const res = await fetch(`http://localhost:3000/___graphql`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ query: articleQuery, variables: { slug: page.path } }),
+      body: JSON.stringify({ query: articleQuery, variables: { slug: _page.params.page.path } }),
     })
     const { data, errors } = await res.json()
-    console.log({ data })
-    return { props: { post: data && data.post ? data.post : undefined } }
+    console.log('data', data)
+    return { props: { page: data && data.page ? data.page : undefined } }
   }
 </script>
 
 <script>
-  export let post
+  export let page
 </script>
 
 <svelte:head>
-  <title>{post.frontmatter.title}</title>
+  <title>{page.frontmatter.title}</title>
 </svelte:head>
 
-<h1>{post.frontmatter.title}</h1>
+<h1>{page.frontmatter.title}</h1>
 
 <!-- <div class="content">
   {@html article.html}

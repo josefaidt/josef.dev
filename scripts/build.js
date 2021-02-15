@@ -1,16 +1,9 @@
 const { spawn } = require('child_process')
+const server = require('./server')
 
 const rm = spawn('rm', ['-rf', 'build'])
-const build = spawn('yarn', ['svelte-kit', 'build'])
-const app = require('exp../support/graphql/handlerphql', require('../support/graphql/handler'))
-const server = app.listen(3000)
-
-build.stdout.on('data', data => {
-  console.log(`${data}`)
-})
-
-build.stderr.on('data', data => {
-  console.log(`${data}`)
+const build = spawn('yarn', ['svelte-kit', 'build'], {
+  stdio: 'inherit',
 })
 
 build.on('error', error => {

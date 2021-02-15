@@ -23,6 +23,15 @@ type Post implements Node {
   frontmatter: Frontmatter!
 }
 
+type Page implements Node {
+  _id: ID!
+  name: String!
+  ext: String!
+  absolutePath: String!
+  slug: String
+  frontmatter: Frontmatter!
+}
+
 type SiteMetadata {
   title: String!
   author: String!
@@ -40,5 +49,6 @@ input InputData {
 type Query {
   allPosts(data: InputData!): [Post]!
   post(slug: String!): Post
+  page(slug: String!): Page
   meta: SiteMetadata!
 }

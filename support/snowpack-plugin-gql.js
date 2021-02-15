@@ -13,7 +13,7 @@ const route = {
 
 module.exports = function SnowpackPluginGraphQL(snowpackConfig, pluginOptions) {
   const defaultOptions = {
-    content: path.resolve('src/content'),
+    content: path.resolve('content'),
   }
 
   return {
@@ -29,10 +29,9 @@ module.exports = function SnowpackPluginGraphQL(snowpackConfig, pluginOptions) {
         ...(pluginOptions || {}),
       }
 
-      const posts = await recursiveReadDir(options.content)
-      for (let post of posts) {
-        const data = await generatePostData(options.content, post)
-        await insert(data)
+      const pages = await recursiveReadDir(options.content)
+      for (let page of pages) {
+        await insert(await generatePostData(options.content, page))
       }
 
       console.info('\nGraphQL Layer Initialized!')
