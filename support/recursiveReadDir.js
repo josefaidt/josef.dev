@@ -3,7 +3,7 @@ const path = require('path')
 
 module.exports = async function recursiveReadDir(
   directory,
-  { only = ['svx'], fullPath = true } = { only: ['svx'], fullPath: true }
+  { only = ['md', 'svx'], fullPath = true } = { only: ['md', 'svx'], fullPath: true }
 ) {
   const result = []
   const crawl = async filePath => {

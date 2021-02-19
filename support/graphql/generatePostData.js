@@ -3,12 +3,15 @@ const path = require('path')
 const fm = require('front-matter')
 const recursiveReadDir = require('../recursiveReadDir')
 
+const indexRegex = /index\.(svx|md)$/
 module.exports = async function generateMetadata(basePath, postPath) {
   // This will give you a valid svelte component
   let { attributes: frontmatter } = fm(await fs.readFile(postPath, 'utf8'))
   let slug = postPath.replace(basePath, '')
-  if (slug.endsWith('/index.svx')) slug = slug.replace(/\/index\.svx$/g, '')
-  else if (slug.endsWith('.svx')) slug = slug.replace('.svx', '')
+
+  if (indexRegex.test(slug)) slug = slug.replace(indexRegex, '')
+
+  slug = slug.replace(path.extname(postPath), '')
 
   // add formatted JS date
   if (frontmatter.date) frontmatter.date = new Date(`${frontmatter.date}`).toString()

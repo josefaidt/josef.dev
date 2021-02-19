@@ -16,6 +16,7 @@
 </script>
 
 <script>
+  $: console.log({ query })
   const seoProps = {
     title: 'Blog',
     description:

@@ -29,12 +29,12 @@ module.exports = function preprocessGraphQL() {
         const evaluated = eval(code)
 
         let data
-        try {
-          let mod = await import(filename)
-          console.log('MOD LOADED', mod)
-        } catch (error) {
-          console.error('Unable to import file', filename)
-        }
+        // try {
+        //   let mod = await import(filename)
+        //   console.log('MOD LOADED', mod)
+        // } catch (error) {
+        //   console.error('Unable to import file', filename)
+        // }
 
         try {
           let query = ``

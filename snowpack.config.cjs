@@ -62,6 +62,9 @@ module.exports = {
   },
   alias: {
     $app: './.svelte/assets/runtime/app',
-    $components: './src/components',
+    $components: path.join(__dirname, 'src/components'),
+    $icons: path.join(__dirname, 'src/components/icons'),
+    $styles: path.join(__dirname, 'src/styles'),
+    $layouts: './src/layouts',
   },
 }

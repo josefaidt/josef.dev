@@ -1,7 +1,0 @@
----
-title: Hello
----
-
-# {title}
-
-this is the homepage

@@ -1,7 +1,7 @@
 <script>
   import { onMount } from 'svelte'
-  import LightModeIcon from './icons/light.svg.svelte'
-  import DarkModeIcon from './icons/asleep.svg.svelte'
+  import LightModeIcon from '$icons/light.svg.svelte'
+  import DarkModeIcon from '$icons/asleep.svg.svelte'
   // const { current, toggle } = getContext('theme')
   function _prefersColorScheme() {
     if (window?.matchMedia('(prefers-color-scheme:dark)')?.matches) {

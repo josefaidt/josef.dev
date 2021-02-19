@@ -1,7 +1,6 @@
 <!-- src/routes/blog/[name].svelte -->
 <script context="module">
   export async function load({ page, fetch }) {
-    const { name } = page.params
     const articleQuery = `
     query POST($slug: String!) {
       post(slug: $slug) {
