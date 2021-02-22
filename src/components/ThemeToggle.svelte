@@ -2,9 +2,9 @@
   import { onMount } from 'svelte'
   import LightModeIcon from '$icons/light.svg.svelte'
   import DarkModeIcon from '$icons/asleep.svg.svelte'
-  // const { current, toggle } = getContext('theme')
+  import { browser as isBrowser } from '$app/env'
   function _prefersColorScheme() {
-    if (window?.matchMedia('(prefers-color-scheme:dark)')?.matches) {
+    if (isBrowser && window.matchMedia('(prefers-color-scheme:dark)').matches) {
       return 'dark'
     } else {
       return 'light'
@@ -12,19 +12,19 @@
   }
 
   function _initFromLocalStorage() {
-    let stored = window.localStorage.getItem('__svelte-theme')
+    let stored = isBrowser && window.localStorage.getItem('__svelte-theme')
     if (stored && ['light', 'dark'].includes(stored)) return stored
     else return null
   }
 
-  let current = null
+  let current = 'light'
   onMount(() => {
     current = _initFromLocalStorage() || _prefersColorScheme()
   })
 
   $: current = _initFromLocalStorage() || _prefersColorScheme()
-  $: document.documentElement.setAttribute('theme', current)
-  $: window.localStorage.setItem('__svelte-theme', current)
+  $: isBrowser && document.documentElement.setAttribute('theme', current)
+  $: isBrowser && window.localStorage.setItem('__svelte-theme', current)
 
   function toggle() {
     if (current === 'dark') current = 'light'

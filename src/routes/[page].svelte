@@ -14,6 +14,7 @@
       }
     }
     `
+    console.log('PAGE PATH', page.path)
     const res = await fetch(`http://localhost:3000/___graphql`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },

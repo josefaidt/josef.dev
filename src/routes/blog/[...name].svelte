@@ -12,6 +12,7 @@
           published
           tags
         }
+        html
       }
     }
     `
@@ -21,13 +22,14 @@
       body: JSON.stringify({ query: articleQuery, variables: { slug: page.path } }),
     })
     const { data, errors } = await res.json()
-    console.log({ data })
+    console.log({ data, errors })
     return { props: { post: data && data.post ? data.post : undefined } }
   }
 </script>
 
 <script>
   export let post
+  $: console.log({ post })
 </script>
 
 <svelte:head>
@@ -36,6 +38,6 @@
 
 <h1>{post.frontmatter.title}</h1>
 
-<!-- <div class="content">
-  {@html article.html}
-</div> -->
+<div class="content">
+  {@html post.html}
+</div>

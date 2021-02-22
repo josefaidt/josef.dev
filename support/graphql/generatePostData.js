@@ -1,16 +1,22 @@
 const { promises: fs } = require('fs')
 const path = require('path')
 const fm = require('front-matter')
+const unified = require('unified')
+const markdown = require('remark-parse')
+const remark2rehype = require('remark-rehype')
+const format = require('rehype-format')
+const toHtml = require('rehype-stringify')
 const recursiveReadDir = require('../recursiveReadDir')
 
 const indexRegex = /index\.(svx|md)$/
 module.exports = async function generateMetadata(basePath, postPath) {
   // This will give you a valid svelte component
-  let { attributes: frontmatter } = fm(await fs.readFile(postPath, 'utf8'))
+  const { attributes: frontmatter, body: content } = fm(await fs.readFile(postPath, 'utf8'))
   let slug = postPath.replace(basePath, '')
 
+  // if /index, remove that nonsense
   if (indexRegex.test(slug)) slug = slug.replace(indexRegex, '')
-
+  // remove extension
   slug = slug.replace(path.extname(postPath), '')
 
   // add formatted JS date
@@ -19,12 +25,16 @@ module.exports = async function generateMetadata(basePath, postPath) {
   // content zone (i.e. /content/blog -> "blog")
   const zone = (await fs.lstat(path.dirname(postPath))).isDirectory() ? path.basename(path.dirname(postPath)) : null
 
+  const processor = unified().use(markdown).use(remark2rehype).use(format).use(toHtml)
+  const html = processor.processSync(content).toString()
+
   return {
+    absolutePath: postPath,
+    ext: path.extname(postPath).replace(/^\./g, ''),
+    frontmatter,
+    html,
     name: path.basename(postPath).replace(path.extname(postPath), ''),
     slug,
-    frontmatter,
     zone,
-    ext: path.extname(postPath).replace(/^\./g, ''),
-    absolutePath: postPath,
   }
 }

@@ -19,8 +19,42 @@
 </div>
 
 <style>
+  @import '../styles/global.css';
+  @import '../styles/theme.css';
+  @import '../styles/style.css';
+  @import '../styles/prism.css';
+
+  :global(*) {
+    color: var(--theme-text);
+    background-color: var(--theme-background-color);
+    transition-property: color, background-color;
+    transition-duration: 200ms;
+    transition-timing-function: ease;
+  }
+
   :global(a) {
     color: var(--theme-accent);
+  }
+
+  .container {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 100vw;
+    height: 100%;
+    display: grid;
+    grid-auto-flow: row;
+    grid-template-rows: min-content 1fr min-content;
+    grid-gap: 4rem;
+    grid-template-areas:
+      'header'
+      'main'
+      'footer';
+  }
+
+  @media (min-width: 33rem) {
+    .container {
+      max-width: 60rem;
+    }
   }
 
   header {
@@ -56,27 +90,6 @@
   @media (max-width: 33rem) {
     main {
       width: 95vw;
-    }
-  }
-
-  .container {
-    margin: 0 auto;
-    width: 100%;
-    max-width: 100vw;
-    height: 100%;
-    display: grid;
-    grid-auto-flow: row;
-    grid-template-rows: min-content 1fr min-content;
-    grid-gap: 4rem;
-    grid-template-areas:
-      'header'
-      'main'
-      'footer';
-  }
-
-  @media (min-width: 33rem) {
-    .container {
-      max-width: 60rem;
     }
   }
 </style>

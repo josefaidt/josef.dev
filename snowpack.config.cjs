@@ -59,12 +59,12 @@ module.exports = {
   mount: {
     '.svelte/assets': `/${process.env.SVELTE_KIT_APP_DIR}/assets`,
     'src/components': '/_components',
+    'src/styles': '/styles',
   },
   alias: {
     $app: './.svelte/assets/runtime/app',
     $components: path.join(__dirname, 'src/components'),
     $icons: path.join(__dirname, 'src/components/icons'),
-    $styles: path.join(__dirname, 'src/styles'),
     $layouts: './src/layouts',
   },
 }

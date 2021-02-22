@@ -18,6 +18,7 @@ type Post implements Node {
   _id: ID!
   name: String!
   ext: String!
+  html: String!
   absolutePath: String!
   slug: String
   frontmatter: Frontmatter!
@@ -27,6 +28,7 @@ type Page implements Node {
   _id: ID!
   name: String!
   ext: String!
+  html: String!
   absolutePath: String!
   slug: String
   frontmatter: Frontmatter!

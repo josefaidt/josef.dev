@@ -11,7 +11,11 @@ module.exports = {
     target: '#svelte',
   },
   preprocess: [
-    // require('svelte-preprocess')(),
+    require('svelte-preprocess')({
+      postcss: {
+        plugins: [require('autoprefixer')()],
+      },
+    }),
     require('./support/svelte-preprocess-gql')(),
     // mdsvex({
     //   extensions: ['.md', '.svx'],
