@@ -1,4 +1,5 @@
 <script>
+  import { page } from '$app/stores'
   import Button from '$components/Button.svelte'
   import ThemeToggle from '$components/ThemeToggle.svelte'
 
@@ -24,7 +25,9 @@
 
 <div>
   <nav>
-    {#each navItems as item}<a href="{item.path}">{item.name}</a>{/each}
+    {#each navItems as item}
+      <a href="{item.path}" class:active="{$page.path === item.path}">{item.name}</a>
+    {/each}
   </nav>
   <ThemeToggle />
 </div>
