@@ -21,7 +21,7 @@ module.exports = {
   port,
   packageOptions: {
     // always include Svelte in your project
-    knownEntrypoints: ['svelte'],
+    knownEntrypoints: ['svelte', 'md'],
     // ignore `import fs from 'fs'` etc
     external: [...require('module').builtinModules, ...Object.keys(pkg.dependencies || {})],
   },
@@ -60,6 +60,7 @@ module.exports = {
     '.svelte/assets': `/${process.env.SVELTE_KIT_APP_DIR}/assets`,
     'src/components': '/_components',
     'src/styles': '/styles',
+    content: '/_content',
   },
   alias: {
     $app: './.svelte/assets/runtime/app',

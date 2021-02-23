@@ -1,5 +1,5 @@
 const path = require('path')
-const { insert } = require('./db')
+const { insert, update } = require('./db')
 const handler = require('./graphql/handler')
 const generatePostData = require('./graphql/generatePostData')
 const recursiveReadDir = require('./recursiveReadDir')
@@ -15,6 +15,7 @@ module.exports = function SnowpackPluginGraphQL(snowpackConfig, pluginOptions) {
   const defaultOptions = {
     content: path.resolve('content'),
   }
+  let options = {}
 
   return {
     name: 'snowpack-plugin-gql',
@@ -24,7 +25,7 @@ module.exports = function SnowpackPluginGraphQL(snowpackConfig, pluginOptions) {
         snowpackConfig.routes.push(route)
       }
 
-      const options = {
+      options = {
         ...defaultOptions,
         ...(pluginOptions || {}),
       }
@@ -37,8 +38,18 @@ module.exports = function SnowpackPluginGraphQL(snowpackConfig, pluginOptions) {
       console.info('\nGraphQL Layer Initialized!')
     },
 
-    // async run() {
-
-    // },
+    async onChange({ filePath }) {
+      // update file record with new data on change, this helps `load()` get new content in dev
+      try {
+        await update(
+          { absolutePath: filePath },
+          {
+            $set: { ...(await generatePostData(options.content, filePath)) },
+          }
+        )
+      } catch (error) {
+        throw new Error('Unable to update record in database', error)
+      }
+    },
   }
 }

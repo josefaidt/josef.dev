@@ -1,3 +1,7 @@
+<script context="module">
+  const STORAGE_KEY = '__josefdev_theme'
+</script>
+
 <script>
   import { onMount } from 'svelte'
   import LightModeIcon from '$icons/light.svg.svelte'
@@ -12,19 +16,19 @@
   }
 
   function _initFromLocalStorage() {
-    let stored = isBrowser && window.localStorage.getItem('__svelte-theme')
+    let stored = isBrowser && window.localStorage.getItem(STORAGE_KEY)
     if (stored && ['light', 'dark'].includes(stored)) return stored
     else return null
   }
 
-  let current = 'light'
+  let current = null
   onMount(() => {
     current = _initFromLocalStorage() || _prefersColorScheme()
   })
 
   $: current = _initFromLocalStorage() || _prefersColorScheme()
   $: isBrowser && document.documentElement.setAttribute('theme', current)
-  $: isBrowser && window.localStorage.setItem('__svelte-theme', current)
+  $: isBrowser && window.localStorage.setItem(STORAGE_KEY, current)
 
   function toggle() {
     if (current === 'dark') current = 'light'

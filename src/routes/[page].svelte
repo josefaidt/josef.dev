@@ -11,6 +11,7 @@
           published
           tags
         }
+        html
       }
     }
     `
@@ -27,7 +28,7 @@
 
 <script>
   export let page
-  $: console.log({ page })
+  // $: console.log({ page })
 </script>
 
 <svelte:head>
@@ -36,6 +37,6 @@
 
 <h1>{page.frontmatter.title}</h1>
 
-<!-- <div class="content">
-  {@html article.html}
-</div> -->
+<div class="content">
+  {@html page.html}
+</div>
