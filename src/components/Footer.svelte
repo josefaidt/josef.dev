@@ -8,10 +8,20 @@
 <footer>
   <p>&copy; {new Date().getFullYear()}, Build with <a href="https://svelte.dev">Svelte</a></p>
   <div>
-    <a href="https://twitter.com/josefaidt" aria-label="Twitter" target="_blank" rel="noreferrer noorigin">
+    <a
+      href="https://twitter.com/josefaidt"
+      aria-label="Twitter"
+      target="_blank"
+      rel="noreferrer noorigin"
+    >
       <TwitterIcon />
     </a>
-    <a href="https://linkedin.com/in/josefaidt" aria-label="LinkedIn" target="_blank" rel="noreferrer noorigin">
+    <a
+      href="https://linkedin.com/in/josefaidt"
+      aria-label="LinkedIn"
+      target="_blank"
+      rel="noreferrer noorigin"
+    >
       <LinkedInIcon />
     </a>
     <a

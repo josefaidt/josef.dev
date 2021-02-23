@@ -25,8 +25,12 @@
 
 <section>
   <h1>Snakes and Sparklers</h1>
-  <p>Compilation of my thoughts and opinions on all things tech, web development, and oxford commas.</p>
-  <blockquote>"Snakes and Sparklers are the only ones I like." -Kicking Wing, Joe Dirt (2001)</blockquote>
+  <p>
+    Compilation of my thoughts and opinions on all things tech, web development, and oxford commas.
+  </p>
+  <blockquote>
+    "Snakes and Sparklers are the only ones I like." -Kicking Wing, Joe Dirt (2001)
+  </blockquote>
 
   <h2>Posts</h2>
   <!-- prettier-ignore -->

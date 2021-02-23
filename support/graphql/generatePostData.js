@@ -23,7 +23,9 @@ module.exports = async function generateMetadata(basePath, postPath) {
   if (frontmatter.date) frontmatter.date = new Date(`${frontmatter.date}`).toString()
 
   // content zone (i.e. /content/blog -> "blog")
-  const zone = (await fs.lstat(path.dirname(postPath))).isDirectory() ? path.basename(path.dirname(postPath)) : null
+  const zone = (await fs.lstat(path.dirname(postPath))).isDirectory()
+    ? path.basename(path.dirname(postPath))
+    : null
 
   const processor = unified().use(markdown).use(remark2rehype).use(format).use(toHtml)
   const html = processor.processSync(content).toString()

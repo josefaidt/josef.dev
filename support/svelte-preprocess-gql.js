@@ -13,7 +13,10 @@ module.exports = function preprocessGraphQL() {
         walk.simple(tree, {
           ExportNamedDeclaration(node) {
             const { declaration: nodeDeclaration } = node
-            if (nodeDeclaration.type === 'VariableDeclaration' && nodeDeclaration.kind === 'const') {
+            if (
+              nodeDeclaration.type === 'VariableDeclaration' &&
+              nodeDeclaration.kind === 'const'
+            ) {
               const [declaration] = nodeDeclaration.declarations
               if (declaration.id.name === 'query') {
                 start = declaration.init.start
