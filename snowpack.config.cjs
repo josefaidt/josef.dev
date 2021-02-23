@@ -21,7 +21,7 @@ module.exports = {
   port,
   packageOptions: {
     // always include Svelte in your project
-    knownEntrypoints: ['svelte', 'md'],
+    knownEntrypoints: ['svelte'],
     // ignore `import fs from 'fs'` etc
     external: [...require('module').builtinModules, ...Object.keys(pkg.dependencies || {})],
   },

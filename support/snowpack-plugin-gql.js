@@ -3,6 +3,7 @@ const { insert, update } = require('./db')
 const handler = require('./graphql/handler')
 const generatePostData = require('./graphql/generatePostData')
 const recursiveReadDir = require('./recursiveReadDir')
+const { $ } = require('@sveltejs/kit/dist/index.js')
 
 const route = {
   src: '^/___graphql$',
@@ -35,7 +36,7 @@ module.exports = function SnowpackPluginGraphQL(snowpackConfig, pluginOptions) {
         await insert(await generatePostData(options.content, page))
       }
 
-      console.info('\nGraphQL Layer Initialized!')
+      console.info($.bold().cyan(`> GraphQL Layer Initialized!`))
     },
 
     async onChange({ filePath }) {
