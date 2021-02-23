@@ -1,12 +1,7 @@
 const { promises: fs } = require('fs')
 const path = require('path')
 const fm = require('front-matter')
-const unified = require('unified')
-const markdown = require('remark-parse')
-const remark2rehype = require('remark-rehype')
-const format = require('rehype-format')
-const toHtml = require('rehype-stringify')
-const recursiveReadDir = require('../recursiveReadDir')
+const markdown = require('../markdown')
 
 const indexRegex = /index\.(svx|md)$/
 module.exports = async function generatePostData(basePath, postPath) {
@@ -27,8 +22,7 @@ module.exports = async function generatePostData(basePath, postPath) {
     ? path.basename(path.dirname(postPath))
     : null
 
-  const processor = unified().use(markdown).use(remark2rehype).use(format).use(toHtml)
-  const html = processor.processSync(content).toString()
+  const html = await markdown(content)
 
   return {
     absolutePath: postPath,
