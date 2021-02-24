@@ -10,6 +10,10 @@ build.on('error', error => {
   console.log(`${error.message}`)
 })
 
+build.on('exit', code => {
+  console.log('EXITED', code)
+})
+
 build.on('close', code => {
   console.log(`child process exited with code ${code}`)
   server.close()
