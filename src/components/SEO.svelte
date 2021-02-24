@@ -1,5 +1,5 @@
-<script>
-  const query = `
+<script context="module">
+  export const query = `
     query SITE_METADATA_BLOG {
       meta {
         title
@@ -10,6 +10,10 @@
       }
     }
   `
+</script>
+
+<script>
+  import { page } from '$app/stores'
 
   export let title = query.meta.title
   export let date
@@ -20,11 +24,11 @@
 </script>
 
 <svelte:head>
-  <title>{`${query.meta.title} | ${title}`}</title>
+  <title>{`${title} | ${query.meta.title}`}</title>
   <meta name="description" content="{description.slice(0, 244)}" />
   <meta name="keywords" content="{[].concat(keywords || tags).join(',')}" />
 
-  <meta property="og:url" content="{window?.location?.href || query.meta.url}" />
+  <meta property="og:url" content="{$page.path || query.meta.url}" />
   <meta property="og:title" content="{title}" />
   <meta property="og:description" content="{description.slice(0, 244)}" />
   <meta property="og:image" content="/favicon.png" />

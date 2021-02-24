@@ -1,6 +1,7 @@
 <script>
   // PRIMARY LAYOUT
   import Nav from '$components/Nav.svelte'
+  import ThemeToggle from '$components/ThemeToggle.svelte'
   import Logo from '$components/Logo.svelte'
   import Footer from '$components/Footer.svelte'
 </script>
@@ -10,6 +11,7 @@
     <Logo />
     <div>
       <Nav />
+      <ThemeToggle />
     </div>
   </header>
   <main>
@@ -38,8 +40,8 @@
 
   .container {
     margin: 0 auto;
-    width: 100%;
-    max-width: 100vw;
+    /* width: 100%;
+    max-width: 100vw; */
     height: 100%;
     display: grid;
     grid-auto-flow: row;
@@ -71,7 +73,7 @@
     }
   }
 
-  header > * + div {
+  header > div {
     display: grid;
     grid-auto-flow: column;
     grid-gap: 2rem;
@@ -87,9 +89,9 @@
     margin: 0 auto;
   }
 
-  @media (max-width: 33rem) {
+  /* @media (max-width: 33rem) {
     main {
       width: 95vw;
     }
-  }
+  } */
 </style>

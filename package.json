@@ -9,6 +9,7 @@
     "start": "svelte-kit start"
   },
   "devDependencies": {
+    "@rollup/plugin-replace": "^2.4.1",
     "@rollup/pluginutils": "^4.1.0",
     "@sveltejs/adapter-static": "next",
     "@sveltejs/kit": "next",
@@ -23,6 +24,7 @@
     "graphql-request": "^3.4.0",
     "graphql-tools": "^7.0.2",
     "http-proxy": "^1.18.1",
+    "isomorphic-unfetch": "^3.1.0",
     "mdsvex": "^0.8.9",
     "nedb": "^1.8.0",
     "postcss": "^8.2.6",

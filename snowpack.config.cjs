@@ -1,6 +1,6 @@
 const path = require('path')
 const pkg = require(path.join(process.cwd(), 'package.json'))
-const port = process.env.PORT || 3000
+const port = process.env.PORT ? process.env.PORT : (process.env.PORT = 3000) && 3000
 
 // Consult https://www.snowpack.dev to learn about these options
 // module.exports = {
@@ -18,7 +18,6 @@ const port = process.env.PORT || 3000
 // Consult https://www.snowpack.dev to learn about these options
 module.exports = {
   // extends: '@sveltejs/snowpack-config',
-  port,
   packageOptions: {
     // always include Svelte in your project
     knownEntrypoints: ['svelte'],
@@ -50,6 +49,7 @@ module.exports = {
     ['./support/snowpack-plugin-gql', {}],
   ],
   devOptions: {
+    port,
     open: 'none',
     output: 'stream',
   },
@@ -60,11 +60,13 @@ module.exports = {
     '.svelte/assets': `/${process.env.SVELTE_KIT_APP_DIR}/assets`,
     'src/components': '/_components',
     'src/styles': '/styles',
+    'src/hooks': '/_hooks',
     content: '/_content',
   },
   alias: {
     $app: './.svelte/assets/runtime/app',
     $components: path.join(__dirname, 'src/components'),
+    $hooks: path.join(__dirname, 'src/hooks'),
     $icons: path.join(__dirname, 'src/components/icons'),
     $layouts: './src/layouts',
   },

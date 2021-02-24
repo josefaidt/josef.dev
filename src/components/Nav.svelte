@@ -23,17 +23,13 @@
   ]
 </script>
 
-<div>
-  <nav>
-    {#each navItems as item}
-      <a href="{item.path}" class:active="{$page.path === item.path}">{item.name}</a>
-    {/each}
-  </nav>
-  <ThemeToggle />
-</div>
+<nav>
+  {#each navItems as item}
+    <a href="{item.path}" class:active="{$page.path === item.path}">{item.name}</a>
+  {/each}
+</nav>
 
 <style>
-  div,
   nav {
     display: grid;
     grid-auto-flow: column;

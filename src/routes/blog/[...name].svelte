@@ -1,5 +1,6 @@
 <!-- src/routes/blog/[name].svelte -->
 <script context="module">
+  import useGraphQL from '$hooks/useGraphQL'
   export async function load({ page, fetch }) {
     const articleQuery = `
     query POST($slug: String!) {
@@ -16,25 +17,23 @@
       }
     }
     `
-    const res = await fetch(`http://localhost:3000/___graphql`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ query: articleQuery, variables: { slug: page.path } }),
-    })
-    const { data, errors } = await res.json()
-    console.log({ data, errors })
+    const { data } = await useGraphQL(fetch, articleQuery, { slug: page.path })
     return { props: { post: data && data.post ? data.post : undefined } }
   }
 </script>
 
 <script>
+  import SEO from '$components/SEO.svelte'
+
   export let post
-  $: console.log({ post })
+  // $: console.log({ post })
+
+  const seoProps = {
+    ...post.frontmatter,
+  }
 </script>
 
-<svelte:head>
-  <title>{post.frontmatter.title}</title>
-</svelte:head>
+<SEO {...seoProps} />
 
 <h1>{post.frontmatter.title}</h1>
 

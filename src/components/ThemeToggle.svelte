@@ -21,7 +21,7 @@
     else return null
   }
 
-  let current = null
+  let current = 'dark'
   onMount(() => {
     current = _initFromLocalStorage() || _prefersColorScheme()
   })

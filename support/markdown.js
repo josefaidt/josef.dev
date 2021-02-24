@@ -1,3 +1,4 @@
+const path = require('path')
 const unified = require('unified')
 const visit = require('unist-util-visit')
 
@@ -25,6 +26,14 @@ const plugins = [
   retext,
   require('remark-rehype'),
   require('rehype-format'),
+  [
+    require('rehype-local-image-to-cloudinary'),
+    {
+      baseDir: path.join(process.cwd(), 'static'),
+      uploadFolder: 'josef.dev',
+      transformations: 'q_auto,f_auto',
+    },
+  ],
   require('rehype-stringify'),
 ]
 
