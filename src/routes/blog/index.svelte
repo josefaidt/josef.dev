@@ -1,5 +1,21 @@
 <script context="module">
-  export const query = `
+  // export const query = `
+  //   query ALL_POSTS {
+  //     allPosts(data:{}) {
+  //       _id
+  //       slug
+  //       frontmatter {
+  //         title
+  //         date
+  //         published
+  //         tags
+  //       }
+  //     }
+  //   }
+  // `
+  import useGraphQL from '$hooks/useGraphQL'
+  export async function load({ page, fetch }) {
+    const query = `
     query ALL_POSTS {
       allPosts(data:{}) {
         _id
@@ -13,11 +29,14 @@
       }
     }
   `
+    const { data } = await useGraphQL(fetch, query)
+    return { props: { posts: data && data.allPosts ? data.allPosts : undefined } }
+  }
 </script>
 
 <script>
   import SEO from '$components/SEO.svelte'
-  $: posts = query.allPosts || []
+  export let posts
   const seoProps = {
     title: 'Snakes and Sparklers',
     description:
@@ -34,15 +53,12 @@
   </blockquote>
 
   <h2>Posts</h2>
-  <!-- prettier-ignore -->
   {#each posts as post}
-  <a sapper:prefetch href="{post.slug}" aria-labelledby={post._id}>
-    <article>
-        <!-- need unique ID's, generate with uuid -->
-        <h3 id={post._id}>{post.frontmatter.title}</h3>
-        <!-- <p>{new Date(post.frontmatter.date).toLocaleDateString()}</p> -->
-    </article>
-  </a>
+    <a sapper:prefetch href="{post.slug}" aria-labelledby="{post._id}">
+      <article>
+        <h3 id="{post._id}">{post.frontmatter.title}</h3>
+      </article>
+    </a>
   {/each}
 </section>
 

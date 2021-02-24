@@ -1,5 +1,3 @@
-const path = require('path')
-
 module.exports = {
   kit: {
     // By default, `npm run build` will create a standard Node app.
@@ -17,23 +15,5 @@ module.exports = {
       },
     }),
     require('./support/svelte-preprocess-gql')(),
-    // mdsvex({
-    //   extensions: ['.md', '.svx'],
-    //   // layout: {
-    //   //   _: './src/pages/_mdx.svelte',
-    //   // },
-    //   smartypants: true,
-    //   remarkPlugins: [require('remark-slug'), require('remark-autolink-headings')],
-    //   rehypePlugins: [
-    //     [
-    //       require('rehype-local-image-to-cloudinary'),
-    //       {
-    //         baseDir: path.join(__dirname, 'static'),
-    //         uploadFolder: 'josef.dev',
-    //         transformations: 'q_auto,f_auto',
-    //       },
-    //     ],
-    //   ],
-    // }),
   ],
 }

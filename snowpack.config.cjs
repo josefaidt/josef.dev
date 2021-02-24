@@ -1,21 +1,7 @@
 const path = require('path')
-const pkg = require(path.join(process.cwd(), 'package.json'))
+const pkg = require(path.join(__dirname, 'package.json'))
 const port = process.env.PORT ? process.env.PORT : (process.env.PORT = 3000) && 3000
 
-// Consult https://www.snowpack.dev to learn about these options
-// module.exports = {
-//   port,
-//   extends: '@sveltejs/snowpack-config',
-//   mount: {
-//     'src/components': '/_components',
-//   },
-//   alias: {
-//     $components: './src/components',
-//   },
-//   routes: [{ src: '/___graphql', dest: handler }],
-// }
-
-// Consult https://www.snowpack.dev to learn about these options
 module.exports = {
   // extends: '@sveltejs/snowpack-config',
   packageOptions: {
@@ -31,21 +17,17 @@ module.exports = {
         compilerOptions: {
           hydratable: true,
         },
-        configFilePath: 'svelte.config.cjs',
-        // input: ['.svelte', '.svx'],
-        // preprocess: require('./svelte.config.cjs').preprocess,
+        configFilePath: path.join(__dirname, 'svelte.config.cjs'),
+        // preprocess: [
+        //   require('svelte-preprocess')({
+        //     postcss: {
+        //       plugins: [require('autoprefixer')()],
+        //     },
+        //   }),
+        //   require('./support/svelte-preprocess-gql')(),
+        // ],
       },
     ],
-    // [
-    //   '@snowpack/plugin-build-script',
-    //   {
-    //     cmd: 'postcss',
-    //     input: ['.css', '.pcss'],
-    //     output: ['.css'],
-    //   },
-    // ],
-
-    // ['./support/snowpack-plugin-mdsvex', {}],
     ['./support/snowpack-plugin-gql', {}],
   ],
   devOptions: {

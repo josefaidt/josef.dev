@@ -1,4 +1,3 @@
-const svelte = require('svelte')
 const acorn = require('acorn')
 const walk = require('acorn-walk')
 const { request } = require('graphql-request')

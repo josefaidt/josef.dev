@@ -3,7 +3,8 @@ const { insert, update } = require('./db')
 const handler = require('./graphql/handler')
 const generatePostData = require('./graphql/generatePostData')
 const recursiveReadDir = require('./recursiveReadDir')
-const { $ } = require('@sveltejs/kit/dist/index.js')
+// const { $ } = require('@sveltejs/kit/dist/index.js')
+const { init } = require('svelte/internal')
 
 const route = {
   src: '^/___graphql$',
@@ -31,12 +32,16 @@ module.exports = function SnowpackPluginGraphQL(snowpackConfig, pluginOptions) {
         ...(pluginOptions || {}),
       }
 
-      const pages = await recursiveReadDir(options.content)
-      for (let page of pages) {
-        await insert(await generatePostData(options.content, page))
-      }
+      // const pages = await recursiveReadDir(options.content)
+      // for (let page of pages) {
+      //   await insert(await generatePostData(options.content, page))
+      // }
+      // // console.info($.bold().cyan(`> GraphQL Layer Initialized!`))
+      // console.info(`> GraphQL Layer Initialized!`)
 
-      console.info($.bold().cyan(`> GraphQL Layer Initialized!`))
+      init(options.content).then(() => {
+        console.info($.bold().cyan(`> GraphQL Layer Initialized!`))
+      })
     },
 
     async onChange({ filePath }) {
