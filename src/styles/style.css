@@ -1,6 +1,6 @@
 body {
   /* line-height: 2rem; */
-  font-size: 16px;
+  font-size: 18px;
   font-kerning: normal;
   line-height: 2;
   font-feature-settings: 'kern', 'liga', 'clig', 'calt';
@@ -11,12 +11,6 @@ blockquote {
   font-weight: 400;
   /* filter: brightness(95%); */
   /* color: var(--ja-grey-light); */
-}
-
-* {
-  transition: all 250ms ease;
-  -webkit-transition: -webkit-filter 250ms ease;
-  -moz-transition: all 250ms ease;
 }
 
 pre {

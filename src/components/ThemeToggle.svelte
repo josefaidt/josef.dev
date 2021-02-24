@@ -69,9 +69,4 @@
   button:hover {
     border-color: var(--theme-primary);
   }
-
-  /* nav grid offset */
-  button {
-    margin-left: 0.5rem;
-  }
 </style>

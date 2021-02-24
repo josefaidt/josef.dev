@@ -81,3 +81,7 @@ html[theme='dark'] {
   outline: 2px solid var(--theme-primary);
   outline-offset: 2px;
 }
+
+body:focus {
+  outline: initial;
+}
