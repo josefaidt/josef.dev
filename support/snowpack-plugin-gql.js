@@ -32,16 +32,16 @@ module.exports = function SnowpackPluginGraphQL(snowpackConfig, pluginOptions) {
         ...(pluginOptions || {}),
       }
 
-      // const pages = await recursiveReadDir(options.content)
-      // for (let page of pages) {
-      //   await insert(await generatePostData(options.content, page))
-      // }
-      // // console.info($.bold().cyan(`> GraphQL Layer Initialized!`))
-      // console.info(`> GraphQL Layer Initialized!`)
+      const pages = await recursiveReadDir(options.content)
+      for (let page of pages) {
+        await insert(await generatePostData(options.content, page))
+      }
+      // console.info($.bold().cyan(`> GraphQL Layer Initialized!`))
+      console.info(`> GraphQL Layer Initialized!`)
 
-      init(options.content).then(() => {
-        console.info($.bold().cyan(`> GraphQL Layer Initialized!`))
-      })
+      // init(options.content).then(() => {
+      //   console.info($.bold().cyan(`> GraphQL Layer Initialized!`))
+      // })
     },
 
     async onChange({ filePath }) {
