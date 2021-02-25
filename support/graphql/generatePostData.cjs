@@ -1,7 +1,7 @@
 const { promises: fs } = require('fs')
 const path = require('path')
 const fm = require('front-matter')
-const markdown = require('../markdown')
+const markdown = require('../markdown.cjs')
 
 const indexRegex = /index\.(svx|md)$/
 module.exports = async function generatePostData(basePath, postPath) {

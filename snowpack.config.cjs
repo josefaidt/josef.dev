@@ -28,7 +28,7 @@ module.exports = {
         // ],
       },
     ],
-    ['./support/snowpack-plugin-gql', {}],
+    ['./support/snowpack-plugin-gql.cjs', {}],
   ],
   devOptions: {
     port,

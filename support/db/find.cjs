@@ -1,4 +1,4 @@
-const store = require('./store')
+const store = require('./store.cjs')
 
 module.exports = function find(criteria) {
   return new Promise((resolve, reject) => {

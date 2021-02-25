@@ -5,7 +5,7 @@ const { makeExecutableSchema } = require('graphql-tools')
 
 const schema = makeExecutableSchema({
   typeDefs: readFileSync(path.join(__dirname, './schema.graphql'), 'utf-8'),
-  resolvers: { Query: { ...require('./resolvers') } },
+  resolvers: { Query: { ...require('./resolvers/index.cjs') } },
 })
 const handler = graphqlHTTP({
   schema,

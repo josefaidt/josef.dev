@@ -1,4 +1,4 @@
-const store = require('./store')
+const store = require('./store.cjs')
 
 module.exports = async function update(...args) {
   return new Promise((resolve, reject) => {

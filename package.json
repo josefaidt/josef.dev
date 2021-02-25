@@ -2,6 +2,7 @@
   "name": "josef.dev",
   "version": "0.0.1",
   "license": "MIT",
+  "type": "module",
   "scripts": {
     "dev": "svelte-kit dev",
     "build": "node scripts/build",

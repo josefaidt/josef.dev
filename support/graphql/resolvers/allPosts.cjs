@@ -1,4 +1,4 @@
-const { find } = require('../../db')
+const { find } = require('../../db/index.cjs')
 
 module.exports = async function queryAllPosts(parent, args, ctx, info) {
   // prep result based on supplied sort
