@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   title: 'josef',
   url: 'https://josef.dev',
   description: 'Welcome to my personal site',

@@ -1,15 +1,15 @@
-const store = require('./store')
-const insert = require('./insert')
-const init = require('./init')
-const find = require('./find')
-const findOne = require('./findOne')
-const update = require('./update')
+export { default as store } from './store'
+export { default as insert } from './insert'
+export { default as init } from './init'
+export { default as find } from './find'
+export { default as findOne } from './findOne'
+export { default as update } from './update'
 
-module.exports = {
-  db: store,
-  init,
-  insert,
-  find,
-  findOne,
-  update,
-}
+// export default {
+//   db: store,
+//   init,
+//   insert,
+//   find,
+//   findOne,
+//   update,
+// }

@@ -1,6 +1,7 @@
-const path = require('path')
+import path from 'path'
+import app from '../../../app.config'
 
-module.exports = function queryMeta(parent, args, ctx, info) {
-  const appConfig = require(path.resolve('app.config.js'))
+export default function queryMeta(parent, args, ctx, info) {
+  const appConfig = app
   return appConfig || {}
 }

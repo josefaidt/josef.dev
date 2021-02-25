@@ -1,7 +1,7 @@
-const { promises: fs } = require('fs')
-const path = require('path')
+import { promises as fs } from 'fs'
+import path from 'path'
 
-module.exports = async function recursiveReadDir(
+export default async function recursiveReadDir(
   directory,
   { only = ['md', 'svx'], fullPath = true } = { only: ['md', 'svx'], fullPath: true }
 ) {

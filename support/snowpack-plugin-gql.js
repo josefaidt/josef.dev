@@ -1,10 +1,9 @@
-const path = require('path')
-const { insert, update } = require('./db')
-const handler = require('./graphql/handler')
-const generatePostData = require('./graphql/generatePostData')
-const recursiveReadDir = require('./recursiveReadDir')
-// const { $ } = require('@sveltejs/kit/dist/index.js')
-const { init } = require('svelte/internal')
+import path from 'path'
+import { insert, update } from './db'
+import handler from './graphql/handler'
+import generatePostData from './graphql/generatePostData'
+import recursiveReadDir from './recursiveReadDir'
+// import { $ } from '@sveltejs/kit/dist/index.js'
 
 const route = {
   src: '^/___graphql$',
@@ -13,7 +12,7 @@ const route = {
   _srcRegex: /^\/___graphql$/,
 }
 
-module.exports = function SnowpackPluginGraphQL(snowpackConfig, pluginOptions) {
+export default function SnowpackPluginGraphQL(snowpackConfig, pluginOptions) {
   const defaultOptions = {
     content: path.resolve('content'),
   }

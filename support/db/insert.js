@@ -1,6 +1,6 @@
-const store = require('./store')
+import store from './store'
 
-module.exports = function insert(doc) {
+export default function insert(doc) {
   return new Promise((resolve, reject) => {
     store.insert(doc, (error, newDoc) => {
       if (error) reject(error)

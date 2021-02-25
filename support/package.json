@@ -1,0 +1,31 @@
+{
+  "name": "@josefaidt/support",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "webpack build"
+  },
+  "exports": {
+    "./snowpack-plugin-gql": {
+      "import": "./snowpack-plugin-gql.js",
+      "require": "./cjs/snowpack-plugin-gql.cjs"
+    },
+    "./svelte-preprocess-gql": {
+      "import": "./svelte-preprocess-gql.js",
+      "require": "./cjs/svelte-preprocess-gql.cjs"
+    }
+  },
+  "devDependencies": {
+    "@babel/core": "^7.13.1",
+    "@babel/preset-env": "^7.13.5",
+    "webpack": "^5.24.2",
+    "webpack-cli": "^4.5.0"
+  },
+  "babel": {
+    "presets": [
+      [
+        "@babel/preset-env"
+      ]
+    ]
+  }
+}

@@ -1,11 +1,12 @@
-const { readFileSync } = require('fs')
-const path = require('path')
-const { graphqlHTTP } = require('express-graphql')
-const { makeExecutableSchema } = require('graphql-tools')
+import { readFileSync } from 'fs'
+import path from 'path'
+import { graphqlHTTP } from 'express-graphql'
+import { makeExecutableSchema } from 'graphql-tools'
+import resolvers from './resolvers'
 
 const schema = makeExecutableSchema({
   typeDefs: readFileSync(path.join(__dirname, './schema.graphql'), 'utf-8'),
-  resolvers: { Query: { ...require('./resolvers') } },
+  resolvers: { Query: resolvers },
 })
 const handler = graphqlHTTP({
   schema,
@@ -13,4 +14,4 @@ const handler = graphqlHTTP({
   pretty: true,
 })
 
-module.exports = handler
+export default handler

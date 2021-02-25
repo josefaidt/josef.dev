@@ -1,8 +1,8 @@
-const acorn = require('acorn')
-const walk = require('acorn-walk')
-const { request } = require('graphql-request')
+import * as acorn from 'acorn'
+import * as walk from 'acorn-walk'
+import { request } from 'graphql-request'
 
-module.exports = function preprocessGraphQL() {
+export default function preprocessGraphQL() {
   return {
     async script({ content, attributes, filename }) {
       if (attributes.context && attributes.context === 'module') {

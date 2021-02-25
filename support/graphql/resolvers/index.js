@@ -1,9 +1,9 @@
-const meta = require('./meta')
-const allPosts = require('./allPosts')
-const post = require('./post')
-const page = require('./page')
+import meta from './meta'
+import allPosts from './allPosts'
+import post from './post'
+import page from './page'
 
-module.exports = {
+export default {
   meta,
   post,
   page,

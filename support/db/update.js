@@ -1,6 +1,6 @@
-const store = require('./store')
+import store from './store'
 
-module.exports = async function update(...args) {
+export default async function update(...args) {
   return new Promise((resolve, reject) => {
     store.update(...args, (err, numReplaced) => {
       if (err) reject(err)

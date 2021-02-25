@@ -14,6 +14,6 @@ module.exports = {
         plugins: [require('autoprefixer')()],
       },
     }),
-    require('./support/svelte-preprocess-gql')(),
+    require('@josefaidt/support/svelte-preprocess-gql')(),
   ],
 }
