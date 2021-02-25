@@ -1,9 +1,13 @@
+import fs from 'fs'
 import webpack from 'webpack'
 import { builtinModules } from 'module'
+
+const pkg = JSON.parse(fs.readFileSync(new URL('package.json', import.meta.url).pathname, 'utf-8'))
 
 export default {
   mode: 'production',
   target: 'node',
+  externals: Object.keys(pkg.devDependencies),
   resolve: {
     fallback: Object.fromEntries(builtinModules.map(mod => [mod, false])),
   },
