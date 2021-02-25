@@ -38,16 +38,16 @@ module.exports = function preprocessGraphQL() {
         //   console.error('Unable to import file', filename)
         // }
 
-        try {
-          let query = ``
-          let vars = {}
-          if (Array.isArray(evaluated)) {
-            ;[query, vars] = evaluated
-          } else query = evaluated
+        let query = ``
+        let vars = {}
+        if (Array.isArray(evaluated)) {
+          ;[query, vars] = evaluated
+        } else query = evaluated
 
+        try {
           data = await request(`http://localhost:${3000}/___graphql`, query, vars)
         } catch (error) {
-          throw new Error(`There was an error requesting data\n${error}`)
+          throw new Error(`There was an error requesting data`, error.message)
         }
 
         return { code: content.replace(code, JSON.stringify(data)) }
