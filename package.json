@@ -6,7 +6,6 @@
   "scripts": {
     "dev": "svelte-kit dev",
     "build": "node scripts/build.cjs",
-    "postbuild": "svelte-kit adapt",
     "start": "svelte-kit start"
   },
   "devDependencies": {
