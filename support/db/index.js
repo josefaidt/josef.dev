@@ -1,9 +1,9 @@
-export { default as store } from './store'
-export { default as insert } from './insert'
-export { default as init } from './init'
-export { default as find } from './find'
-export { default as findOne } from './findOne'
-export { default as update } from './update'
+export { default as store } from './store.js'
+export { default as insert } from './insert.js'
+export { default as init } from './init.js'
+export { default as find } from './find.js'
+export { default as findOne } from './findOne.js'
+export { default as update } from './update.js'
 
 // export default {
 //   db: store,

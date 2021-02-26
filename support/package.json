@@ -13,6 +13,14 @@
     "./svelte-preprocess-gql": {
       "import": "./svelte-preprocess-gql.js",
       "require": "./cjs/svelte-preprocess-gql.cjs"
+    },
+    "./db": {
+      "import": "./db/index.js",
+      "require": "./cjs/db/index.js"
+    },
+    "./graphql": {
+      "import": "./graphql/index.js",
+      "require": "./cjs/graphql/index.js"
     }
   },
   "devDependencies": {
@@ -20,11 +28,13 @@
     "@babel/preset-env": "^7.13.5",
     "acorn": "^8.0.5",
     "acorn-walk": "^8.0.2",
+    "copy-webpack-plugin": "^7.0.0",
     "express": "^4.17.1",
     "express-graphql": "^0.12.0",
     "front-matter": "^4.0.2",
     "graphql": "^15.5.0",
     "graphql-request": "^3.4.0",
+    "graphql-tag": "^2.11.0",
     "graphql-tools": "^7.0.4",
     "nedb": "^1.8.0",
     "rehype-document": "^5.1.0",

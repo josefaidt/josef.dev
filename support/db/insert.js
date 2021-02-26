@@ -1,4 +1,4 @@
-import store from './store'
+import store from './store.js'
 
 export default function insert(doc) {
   return new Promise((resolve, reject) => {

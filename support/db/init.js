@@ -1,8 +1,8 @@
-import insert from './insert'
-import update from './update'
-import findOne from './findOne'
-import recursiveReadDir from '../recursiveReadDir'
-import generatePostData from '../graphql/generatePostData'
+import insert from './insert.js'
+import update from './update.js'
+import findOne from './findOne.js'
+import recursiveReadDir from '../recursiveReadDir.js'
+import generatePostData from '../graphql/generatePostData.js'
 
 export default async function init(contentPath) {
   const pages = await recursiveReadDir(contentPath)

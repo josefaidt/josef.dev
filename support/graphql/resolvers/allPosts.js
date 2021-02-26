@@ -1,4 +1,4 @@
-import { find } from '../../db'
+import { find } from '../../db/index.js'
 
 export default async function queryAllPosts(parent, args, ctx, info) {
   // prep result based on supplied sort

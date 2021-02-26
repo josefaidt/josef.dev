@@ -1,4 +1,4 @@
-import store from './store'
+import store from './store.js'
 
 export default async function update(...args) {
   return new Promise((resolve, reject) => {

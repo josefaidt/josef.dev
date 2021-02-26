@@ -18,17 +18,9 @@ module.exports = {
           hydratable: true,
         },
         configFilePath: path.join(__dirname, 'svelte.config.cjs'),
-        // preprocess: [
-        //   require('svelte-preprocess')({
-        //     postcss: {
-        //       plugins: [require('autoprefixer')()],
-        //     },
-        //   }),
-        //   require('./support/svelte-preprocess-gql')(),
-        // ],
       },
     ],
-    ['./support/snowpack-plugin-gql', {}],
+    ['@josefaidt/support/snowpack-plugin-gql', {}],
   ],
   devOptions: {
     port,

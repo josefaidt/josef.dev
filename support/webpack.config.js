@@ -1,6 +1,7 @@
 import fs from 'fs'
-import webpack from 'webpack'
 import { builtinModules } from 'module'
+import webpack from 'webpack'
+import CopyPlugin from 'copy-webpack-plugin'
 
 const pkg = JSON.parse(fs.readFileSync(new URL('package.json', import.meta.url).pathname, 'utf-8'))
 
@@ -14,6 +15,8 @@ export default {
   entry: {
     'snowpack-plugin-gql': './snowpack-plugin-gql.js',
     'svelte-preprocess-gql': './svelte-preprocess-gql.js',
+    db: './db/index.js',
+    graphql: './graphql/index.js',
   },
   output: {
     filename: '[name].cjs',
@@ -29,6 +32,16 @@ export default {
         },
         exclude: /node_modules/,
       },
+      {
+        test: /\.(graphql|gql)$/,
+        exclude: /node_modules/,
+        loader: 'graphql-tag/loader',
+      },
     ],
   },
+  plugins: [
+    new CopyPlugin({
+      patterns: [{ from: 'graphql/schema.graphql', to: 'schema.graphql' }],
+    }),
+  ],
 }

@@ -1,4 +1,4 @@
-import store from './store'
+import store from './store.js'
 
 export default function find(criteria) {
   return new Promise((resolve, reject) => {

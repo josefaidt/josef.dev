@@ -1,3 +1,5 @@
+const { default: preprocessGraphQL } = require('@josefaidt/support/svelte-preprocess-gql')
+
 module.exports = {
   kit: {
     // By default, `npm run build` will create a standard Node app.
@@ -14,6 +16,6 @@ module.exports = {
         plugins: [require('autoprefixer')()],
       },
     }),
-    require('@josefaidt/support/svelte-preprocess-gql')(),
+    preprocessGraphQL(),
   ],
 }

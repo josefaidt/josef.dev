@@ -1,4 +1,4 @@
-import { findOne } from '../../db'
+import { findOne } from '../../db.js'
 
 export default async function queryPost(parent, args, ctx, info) {
   const { slug } = args || {}

@@ -1,7 +1,9 @@
-const path = require('path')
-const { spawn } = require('child_process')
-const { init } = require('../support/db')
-// const { $ } = require('@sveltejs/kit/dist/index.js')
+import path from 'path'
+import { spawn } from 'child_process'
+import { init } from '@josefaidt/support/db'
+import { handler } from '@josefaidt/support/graphql'
+import express from 'express'
+// const { $ } from '@sveltejs/kit/dist/index.js'
 
 function log(text) {
   // return console.info($.bold().cyan(text))
@@ -16,8 +18,8 @@ async function main() {
   await init(contentPath)
   log('GraphQL Layer Initialized!')
 
-  const app = require('express')()
-  app.use('/___graphql', require('../support/graphql/handler'))
+  const app = express()
+  app.use('/___graphql', handler)
   const server = app.listen(3000, () => log('GraphQL Layer listening'))
 
   const rm = spawn('rm', ['-rf', 'build'])
