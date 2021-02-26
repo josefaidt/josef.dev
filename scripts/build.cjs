@@ -1,7 +1,7 @@
 const path = require('path')
 const { spawn } = require('child_process')
-const { init } = require('../support/db')
-const { handler } = require('../support/graphql')
+const { init } = require('../support/db/index.cjs')
+const handler = require('../support/graphql/handler.cjs')
 const express = require('express')
 // const { $ } = require('@sveltejs/kit/dist/index.js')
 
