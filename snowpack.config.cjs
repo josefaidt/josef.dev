@@ -20,7 +20,7 @@ module.exports = {
         configFilePath: path.join(__dirname, 'svelte.config.cjs'),
       },
     ],
-    ['@josefaidt/support/snowpack-plugin-gql', {}],
+    ['./support/snowpack-plugin-gql.cjs', {}],
   ],
   devOptions: {
     port,

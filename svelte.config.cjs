@@ -1,4 +1,4 @@
-const { default: preprocessGraphQL } = require('@josefaidt/support/svelte-preprocess-gql')
+// const { default: preprocessGraphQL } = require('@josefaidt/support/svelte-preprocess-gql')
 
 module.exports = {
   kit: {
@@ -16,6 +16,6 @@ module.exports = {
         plugins: [require('autoprefixer')()],
       },
     }),
-    preprocessGraphQL(),
+    require('./support/svelte-preprocess-gql.cjs')(),
   ],
 }
