@@ -1,6 +1,6 @@
-const store = require('./store.cjs')
+import store from './store.js'
 
-module.exports = function find(criteria) {
+export default function findOne(criteria) {
   return new Promise((resolve, reject) => {
     store.findOne(criteria, (error, doc) => {
       if (error) reject(error)

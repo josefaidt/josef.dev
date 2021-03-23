@@ -1,6 +1,6 @@
-const { findOne } = require('../../db/index.cjs')
+import { findOne } from '../../db/index.js'
 
-module.exports = async function queryPage(parent, args, ctx, info) {
+export default async function queryPost(parent, args, ctx, info) {
   const { slug } = args || {}
   if (!slug) throw new Error('Invalid slug supplied')
   return await findOne({ slug })
