@@ -1,10 +1,10 @@
-import insert from './insert.js'
-import update from './update.js'
-import findOne from './findOne.js'
-import recursiveReadDir from '../recursiveReadDir.js'
-import generatePostData from '../graphql/generatePostData.js'
+const insert = require('./insert')
+const update = require('./update')
+const findOne = require('./findOne')
+const recursiveReadDir = require('../recursiveReadDir')
+const generatePostData = require('../graphql/generatePostData')
 
-export default async function init(contentPath) {
+module.exports = async function init(contentPath) {
   const pages = await recursiveReadDir(contentPath)
   for (let page of pages) {
     // const existing = await findOne({ absolutePath: page })

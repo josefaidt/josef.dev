@@ -1,8 +1,8 @@
 const path = require('path')
 const { spawn } = require('child_process')
 const express = require('express')
-const { init } = require('../support/db/index.cjs')
-const handler = require('../support/graphql/handler.cjs')
+// const { init } = require('../support/db')
+// const handler = require('../support/graphql/handler')
 
 function log(text) {
   return console.info(text)

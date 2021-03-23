@@ -1,5 +1,7 @@
 # Notes
 
-- need type module
-- rewrite support to modules
-  - should I then build this with exports import and require?
+dont copy images over to build, lean on cloudinary
+add prism
+fix prerender issue with blog page
+fix weird 301 for a single blog post?
+fix lack of `uses` page

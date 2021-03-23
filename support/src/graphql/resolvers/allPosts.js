@@ -1,6 +1,6 @@
-import { find } from '../../db/index.js'
+const { find } = require('../../db')
 
-export default async function queryAllPosts(parent, args, ctx, info) {
+module.exports = async function queryAllPosts(parent, args, ctx, info) {
   // prep result based on supplied sort
   const result = await find({ zone: 'blog' })
   if (args.data.sortBy && args.data.order) {

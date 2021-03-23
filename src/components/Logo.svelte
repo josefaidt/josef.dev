@@ -14,6 +14,11 @@
     text-decoration: none;
   }
 
+  a,
+  a:hover {
+    text-decoration: none;
+  }
+
   a:focus {
     outline-offset: 7px;
   }

@@ -1,24 +1,37 @@
 <!-- src/routes/blog/[name].svelte -->
 <script context="module">
-  import useGraphQL from '$hooks/useGraphQL'
+  import { browser as isBrowser } from '$app/env'
+  // import useGraphQL from '$hooks/useGraphQL'
+  // let post
+  // if (!isBrowser) {
+  //   ;(async () => {
+  //     // const useGraphQL = await import('$hooks/useGraphQL')
+  //     const articleQuery = `
+  //     query POST($slug: String!) {
+  //       post(slug: $slug) {
+  //         _id
+  //         slug
+  //         frontmatter {
+  //           title
+  //           date
+  //           published
+  //           tags
+  //         }
+  //         html
+  //       }
+  //     }
+  //     `
+  //     const res = await useGraphQL(articleQuery, { slug: page.path })
+  //     post = res?.data?.post
+  //   })()
+  // }
+
   export async function load({ page, fetch }) {
-    const articleQuery = `
-    query POST($slug: String!) {
-      post(slug: $slug) {
-        _id
-        slug
-        frontmatter {
-          title
-          date
-          published
-          tags
-        }
-        html
-      }
-    }
-    `
-    const { data } = await useGraphQL(fetch, articleQuery, { slug: page.path })
-    return { props: { post: data && data.post ? data.post : undefined } }
+    const res = await fetch(`${page.path}.json`)
+    const { post, errors } = await res.json()
+    // console.log(data)
+    // const { post } = await useGraphQL(fetch, articleQuery, { slug: page.path })
+    return { props: { post } }
   }
 </script>
 

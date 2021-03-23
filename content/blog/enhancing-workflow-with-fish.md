@@ -56,7 +56,7 @@ function eslint
 end
 ```
 
-Here we are extending the existing, global `eslint` command by specifying a configuration file that can now be used throughout your projects without setting up a project-level ESLint dotfile. For additional learning regarding global ESLint and VSCode, check out my other [blog post](/blog/2019/01/global-eslint/).
+Here we are extending the existing, global `eslint` command by specifying a configuration file that can now be used throughout your projects without setting up a project-level ESLint dotfile. For additional learning regarding global ESLint and VSCode, check out my other [blog post](https://josefaidt.dev/blog/2019/01/global-eslint/).
 
 ### An _Intense_ Example
 

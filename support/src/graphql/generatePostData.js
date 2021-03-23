@@ -1,10 +1,10 @@
-import { promises as fs } from 'fs'
-import path from 'path'
-import fm from 'front-matter'
-// import markdown from '../markdown'
+const { promises: fs } = require('fs')
+const path = require('path')
+const fm = require('front-matter')
+const markdown = require('../markdown')
 
 const indexRegex = /index\.(svx|md)$/
-export default async function generatePostData(basePath, postPath) {
+module.exports = async function generatePostData(basePath, postPath) {
   // This will give you a valid svelte component
   const { attributes: frontmatter, body: content } = fm(await fs.readFile(postPath, 'utf8'))
   let slug = postPath.replace(basePath, '')
@@ -22,8 +22,7 @@ export default async function generatePostData(basePath, postPath) {
     ? path.basename(path.dirname(postPath))
     : null
 
-  // const html = await markdown(content)
-  let html = ''
+  const html = await markdown(content)
 
   return {
     absolutePath: postPath,

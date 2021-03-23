@@ -60,6 +60,7 @@
     border: 2px solid var(--theme-accent);
     color: var(--theme-text);
     transition: all 100ms ease;
+    text-decoration: none;
   }
 
   a.active:hover {

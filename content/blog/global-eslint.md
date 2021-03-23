@@ -70,8 +70,7 @@ If you'd like to dive further into ESLint, I recommend checking out <a href="htt
   </a>
 - <a href="https://gist.github.com/josefaidt/ed9dcc84164243c5f03b9340161acd26" target="_blank">
     Fish shell ESLint utilities
-  </a> \\_(What is
-  <a href="https://fishshell.org" target="_blank">
+  </a>
+- <a href="https://fishshell.org" target="_blank">
     Fish
   </a>
-  ?)\\_

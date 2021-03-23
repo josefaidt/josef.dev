@@ -4,6 +4,12 @@
   import ThemeToggle from '$components/ThemeToggle.svelte'
   import Logo from '$components/Logo.svelte'
   import Footer from '$components/Footer.svelte'
+
+  // import '$styles/normalize.css'
+  // import '$styles/global.css'
+  // import '$styles/theme.css'
+  // import '$styles/style.css'
+  // import '$styles/prism.css'
 </script>
 
 <div class="container">
@@ -21,12 +27,6 @@
 </div>
 
 <style>
-  @import '../styles/normalize.css';
-  @import '../styles/global.css';
-  @import '../styles/theme.css';
-  @import '../styles/style.css';
-  @import '../styles/prism.css';
-
   :global(*) {
     color: var(--theme-text);
     background-color: var(--theme-background-color);
