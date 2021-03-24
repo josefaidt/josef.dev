@@ -1,5 +1,6 @@
 const path = require('path')
+const { findOne } = require('../../db')
 
-module.exports = function queryMeta(parent, args, ctx, info) {
-  return ctx.appConfig
+module.exports = async function queryMeta(parent, args, ctx, info) {
+  return await findOne({ _id: '__app' })
 }

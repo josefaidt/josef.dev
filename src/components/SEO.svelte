@@ -15,11 +15,11 @@
 <script>
   import { page } from '$app/stores'
 
-  export let title = query.meta.title
+  export let title = query.meta?.title
   export let date
-  export let description = query.meta.description
+  export let description = query.meta?.description || ''
   export let tags = []
-  export let keywords = [].concat(query.meta.keywords)
+  export let keywords = [].concat(query.meta?.keywords || [])
   export let published = false
 </script>
 

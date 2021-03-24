@@ -20,7 +20,7 @@ async function main() {
       minify: false,
       platform: 'node',
       format: 'cjs',
-      target: 'node14',
+      target: 'node10',
       watch: subcommand === 'watch',
     })
   } catch (error) {

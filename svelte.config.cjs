@@ -1,10 +1,8 @@
-const static = require('@sveltejs/adapter-static')
-const pkg = require('./package.json')
-const { readFileSync } = require('fs')
 const { resolve } = require('path')
+const static = require('@sveltejs/adapter-static')
+const { GraphQLLayerPlugin, preprocessGraphQL } = require('support')
 const app = require('./app.config.cjs')
-const { createRequire } = require('module')
-const { GraphQLLayerPlugin } = require('support')
+const pkg = require('./package.json')
 
 /** @type {import('@sveltejs/kit').Config} */
 module.exports = {
@@ -18,8 +16,7 @@ module.exports = {
     target: '#svelte',
 
     vite: {
-      port: 9000,
-      plugins: [GraphQLLayerPlugin()],
+      plugins: [GraphQLLayerPlugin({ app })],
       ssr: {
         noExternal: Object.keys(pkg.dependencies || {}),
       },
@@ -33,4 +30,12 @@ module.exports = {
       },
     },
   },
+  preprocess: [
+    require('svelte-preprocess')({
+      postcss: {
+        plugins: [require('autoprefixer')()],
+      },
+    }),
+    preprocessGraphQL(),
+  ],
 }
