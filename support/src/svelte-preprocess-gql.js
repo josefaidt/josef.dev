@@ -47,7 +47,7 @@ module.exports = function preprocessGraphQL() {
 
           data = await request(`http://localhost:${3000}/___graphql`, query, vars)
         } catch (error) {
-          throw new Error(`There was an error requesting data\n${error}`)
+          // throw new Error(`There was an error requesting data\n${error}`)
           console.log(
             'There was an error requesting data, is the GraphQL Layer running?',
             error.message

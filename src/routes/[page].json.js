@@ -6,9 +6,9 @@ import fetch from 'node-fetch'
  * @returns {import('@sveltejs/kit').Response}
  */
 export async function get(req, { api }) {
-  const articleQuery = `
-    query POST($slug: String!) {
-      post(slug: $slug) {
+  const pageQuery = `
+    query PAGE($slug: String!) {
+      page(slug: $slug) {
         _id
         slug
         frontmatter {
@@ -21,23 +21,23 @@ export async function get(req, { api }) {
       }
     }
     `
-  const { slug } = req.params
+  const { page: slug } = req.params
 
   const res = await fetch(api, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      query: articleQuery,
-      variables: { slug: `/blog/${slug}` },
+      query: pageQuery,
+      variables: { slug: `/${slug}` },
     }),
   })
   const { data, errors } = await res.json()
-  const { post } = data || {}
+  const { page } = data || {}
 
-  if (post) {
+  if (page) {
     return {
       body: {
-        post,
+        page,
       },
     }
   }
