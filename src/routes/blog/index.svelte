@@ -13,32 +13,11 @@
       }
     }
   `
-  // import useGraphQL from '$hooks/useGraphQL'
-  // export async function load({ page, fetch }) {
-  //   const query = `
-  //   query ALL_POSTS {
-  //     allPosts(data:{}) {
-  //       _id
-  //       slug
-  //       frontmatter {
-  //         title
-  //         date
-  //         published
-  //         tags
-  //       }
-  //     }
-  //   }
-  // `
-  //   const { data } = await useGraphQL(fetch, query)
-  //   return { props: { posts: data && data.allPosts ? data.allPosts : undefined } }
-  // }
 </script>
 
 <script>
   import SEO from '$components/SEO.svelte'
-  export let query
-  $: console.log({ query })
-  let posts
+  $: posts = query?.allPosts
   const seoProps = {
     title: 'Snakes and Sparklers',
     description:
