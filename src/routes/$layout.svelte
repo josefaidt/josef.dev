@@ -5,11 +5,11 @@
   import Logo from '$components/Logo.svelte'
   import Footer from '$components/Footer.svelte'
 
-  // import '$styles/normalize.css'
-  // import '$styles/global.css'
-  // import '$styles/theme.css'
-  // import '$styles/style.css'
-  // import '$styles/prism.css'
+  import '$styles/normalize.css'
+  import '$styles/global.css'
+  import '$styles/theme.css'
+  import '$styles/style.css'
+  import '$styles/prism.css'
 </script>
 
 <div class="container">
