@@ -14,6 +14,8 @@
     "deepmerge": "^4.2.2",
     "express": "^4.17.1",
     "express-graphql": "^0.12.0",
+    "graphql": "^15.5.0",
+    "graphql-tools": "^7.0.4",
     "nedb": "^1.8.0",
     "rehype-document": "^5.1.0",
     "rehype-format": "^3.1.0",
@@ -30,7 +32,6 @@
     "retext-english": "^3.0.4",
     "retext-profanities": "^6.1.0",
     "retext-smartypants": "^4.0.0",
-    "support": "./",
     "unified": "^9.2.1",
     "unist-util-visit": "^2.0.3"
   },

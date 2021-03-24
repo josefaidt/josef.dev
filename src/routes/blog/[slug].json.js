@@ -1,5 +1,10 @@
 // import fetch from 'isomorphic-unfetch'
-import { browser as isBrowser } from '$app/env'
+// import { browser as isBrowser } from '$app/env'
+/**
+ * @param {import('@sveltejs/kit').Request} request
+ * @param {any} context
+ * @returns {import('@sveltejs/kit').Response}
+ */
 export async function get(req, context) {
   const articleQuery = `
     query POST($slug: String!) {
@@ -21,19 +26,20 @@ export async function get(req, context) {
   console.log('REQ', req)
   const { slug } = req.params
 
-  const fetch = isBrowser ? window.fetch : await import('node-fetch')
-  console.log('fetch is', fetch, isBrowser)
+  // const fetch = isBrowser ? window.fetch : await import('node-fetch')
+  // console.log('fetch is', fetch, isBrowser)
 
-  const res = await fetch(`http://localhost:3000/___graphql`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      query: articleQuery,
-      variables: { slug: req.path.replace(/\.json$/, '') },
-    }),
-  })
-  const { data, errors } = await res.json()
-  const { post } = data || {}
+  // const res = await fetch(`http://localhost:3000/___graphql`, {
+  //   method: 'POST',
+  //   headers: { 'Content-Type': 'application/json' },
+  //   body: JSON.stringify({
+  //     query: articleQuery,
+  //     variables: { slug: req.path.replace(/\.json$/, '') },
+  //   }),
+  // })
+  // const { data, errors } = await res.json()
+  // const { post } = data || {}
+  const { post } = { slug }
 
   if (post) {
     return {
@@ -44,7 +50,7 @@ export async function get(req, context) {
   } else {
     return {
       body: {
-        errors,
+        post: 'oh no',
       },
     }
   }

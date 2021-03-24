@@ -1,15 +1,13 @@
-const { readFileSync } = require('fs')
-const { join, resolve } = require('path')
-const { buildSchema, graphql } = require('graphql')
-const { graphqlHTTP } = require('express-graphql')
+const { resolve } = require('path')
 const merge = require('deepmerge')
-const resolvers = require('./graphql/resolvers')
+const handler = require('./graphql/handler')
 const generatePostData = require('./graphql/generatePostData')
 const recursiveReadDir = require('./recursiveReadDir')
 const { insert } = require('./db')
 
 const defaultOptions = {
   content: resolve('content'),
+  api: '/___graphql',
   app: {
     title: 'Svelte App',
     url: '',
@@ -25,24 +23,26 @@ async function init({ content, app }) {
     await insert(await generatePostData(content, page))
   }
   await insert(Object.assign(app, { _id: '__app' }))
-  console.log('> GraphQL Layer Initialized')
+}
+
+function log(message) {
+  console.log('\x1b[1m\x1b[36m%s\x1b[0m', `${message}`)
 }
 
 module.exports = function GraphQLLayerPlugin(pluginOptions) {
   const options = merge(defaultOptions, pluginOptions)
-  init(options)
-  const [route, handler] = [
-    '/___graphql',
-    graphqlHTTP({
-      schema: buildSchema(readFileSync(join(__dirname, 'graphql/schema.graphql'), 'utf8')),
-      rootValue: resolvers,
-      graphiql: true,
-    }),
-  ]
+  const route = options.api
+  const initMessage = '> GraphQL Layer Initialization'
   return {
     name: 'graphql-layer-plugin',
-    configureServer(server) {
-      return () => server.middlewares.use(route, handler)
+    configureServer: async server => {
+      log('> Initializing GraphQL layer...')
+      console.time(initMessage)
+      await init(options)
+      console.timeEnd(initMessage)
+      log('> GraphQL layer initialized!')
+      server.middlewares.use(route, handler)
+      // return () => server.middlewares.use(route, handler)
     },
   }
 }

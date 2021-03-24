@@ -1,6 +1,6 @@
 <!-- src/routes/blog/[name].svelte -->
 <script context="module">
-  import { browser as isBrowser } from '$app/env'
+  // import { browser as isBrowser } from '$app/env'
   // import useGraphQL from '$hooks/useGraphQL'
   // let post
   // if (!isBrowser) {
@@ -26,23 +26,23 @@
   //   })()
   // }
 
-  export async function load({ page, fetch }) {
-    const res = await fetch(`${page.path}.json`)
-    const { post, errors } = await res.json()
-    // console.log(data)
-    // const { post } = await useGraphQL(fetch, articleQuery, { slug: page.path })
-    return { props: { post } }
-  }
+  // export async function load({ page, fetch }) {
+  //   const res = await fetch(`${page.path}.json`)
+  //   const { post, errors } = await res.json()
+  //   // console.log(data)
+  //   // const { post } = await useGraphQL(fetch, articleQuery, { slug: page.path })
+  //   return { props: { post } }
+  // }
 </script>
 
 <script>
   import SEO from '$components/SEO.svelte'
 
   export let post
-  // $: console.log({ post })
+  $: console.log({ post })
 
   const seoProps = {
-    ...post.frontmatter,
+    // ...post.frontmatter,
   }
 </script>
 

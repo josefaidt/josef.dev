@@ -1,21 +1,5 @@
 <script context="module">
-  // export const query = `
-  //   query ALL_POSTS {
-  //     allPosts(data:{}) {
-  //       _id
-  //       slug
-  //       frontmatter {
-  //         title
-  //         date
-  //         published
-  //         tags
-  //       }
-  //     }
-  //   }
-  // `
-  import useGraphQL from '$hooks/useGraphQL'
-  export async function load({ page, fetch }) {
-    const query = `
+  export const query = `
     query ALL_POSTS {
       allPosts(data:{}) {
         _id
@@ -29,14 +13,32 @@
       }
     }
   `
-    const { data } = await useGraphQL(fetch, query)
-    return { props: { posts: data && data.allPosts ? data.allPosts : undefined } }
-  }
+  // import useGraphQL from '$hooks/useGraphQL'
+  // export async function load({ page, fetch }) {
+  //   const query = `
+  //   query ALL_POSTS {
+  //     allPosts(data:{}) {
+  //       _id
+  //       slug
+  //       frontmatter {
+  //         title
+  //         date
+  //         published
+  //         tags
+  //       }
+  //     }
+  //   }
+  // `
+  //   const { data } = await useGraphQL(fetch, query)
+  //   return { props: { posts: data && data.allPosts ? data.allPosts : undefined } }
+  // }
 </script>
 
 <script>
   import SEO from '$components/SEO.svelte'
-  export let posts
+  export let query
+  $: console.log({ query })
+  let posts
   const seoProps = {
     title: 'Snakes and Sparklers',
     description:
