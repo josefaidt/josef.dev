@@ -26,3 +26,32 @@ export const ja = {
     dark: 'rgba(0, 0, 0, 0.2)',
   },
 }
+
+export const themes = {
+  light: {
+    bg: {
+      _: ja.white._,
+      contrast: ja.white.dark,
+    },
+    text: ja.grey.dark,
+    primary: {
+      _: ja.primary._,
+      light: ja.primary._,
+    },
+    accent: ja.accent,
+    shadow: ja.shadow.light,
+  },
+  dark: {
+    bg: {
+      _: ja.black.darker,
+      contrast: ja.black._,
+    },
+    text: ja.black.lighter,
+    primary: {
+      _: ja.primary.light,
+      light: ja.accent,
+    },
+    accent: ja.secondary,
+    shadow: ja.black.light,
+  },
+}

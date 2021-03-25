@@ -21,7 +21,7 @@ module.exports = function GraphQLLayerPlugin(pluginOptions) {
   return {
     name: 'graphql-layer-plugin',
     options: async config => {
-      if (!initialized) {
+      if (!initialized && !isProd) {
         log('> Initializing GraphQL layer...')
         console.time(initMessage)
         await init(options)
