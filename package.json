@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "svelte-kit dev",
-    "build": "svelte-kit build",
+    "build": "node scripts/build.cjs",
     "start": "svelte-kit start"
   },
   "dependencies": {

@@ -1,6 +1,6 @@
 const { spawn } = require('child_process')
 
-async function run(command) {
+module.exports = async function run(command) {
   return new Promise((resolve, reject) => {
     const cmd = spawn(
       ...command.split(' ').reduce((acc, value, index, source) => {
@@ -14,6 +14,7 @@ async function run(command) {
     )
 
     cmd.on('error', error => {
+      console.log('ERRORRRRRR', error)
       reject(`${error.message}`)
     })
 
