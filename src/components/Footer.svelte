@@ -6,7 +6,7 @@
 </script>
 
 <footer>
-  <p>&copy; {new Date().getFullYear()}, Build with <a href="https://svelte.dev">Svelte</a></p>
+  <p>&copy; {new Date().getFullYear()}, Built with <a href="https://svelte.dev">Svelte</a></p>
   <div>
     <a
       href="https://twitter.com/josefaidt"

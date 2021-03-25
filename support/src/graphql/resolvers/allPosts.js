@@ -2,7 +2,7 @@ const { find } = require('../../db')
 
 module.exports = async function queryAllPosts(parent, args, ctx, info) {
   // prep result based on supplied sort
-  const result = await find({ zone: 'blog' })
+  const result = await find({ zone: 'posts' })
   const { sortBy, order } = args.data || {}
   if (!['asc', 'desc'].includes(order.toLowerCase())) {
     throw new Error('Invalid sort order supplied, must be one of "ASC" or "DESC"')

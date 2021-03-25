@@ -17,8 +17,8 @@
     //   path: '/uses',
     // },
     {
-      name: 'Blog',
-      path: '/blog',
+      name: 'Posts',
+      path: '/posts',
     },
   ]
 </script>

@@ -6,7 +6,7 @@ import fetch from 'node-fetch'
  * @returns {import('@sveltejs/kit').Response}
  */
 export async function get(req, { api }) {
-  const articleQuery = `
+  const postQuery = `
     query POST($slug: String!) {
       post(slug: $slug) {
         _id
@@ -27,8 +27,8 @@ export async function get(req, { api }) {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      query: articleQuery,
-      variables: { slug: `/blog/${slug}` },
+      query: postQuery,
+      variables: { slug: `/posts/${slug}` },
     }),
   })
   const { data, errors } = await res.json()

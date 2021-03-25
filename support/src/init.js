@@ -8,5 +8,5 @@ module.exports = async function init({ content, app } = options) {
   for (let page of pages) {
     await insert(await generatePostData(content, page))
   }
-  await insert(Object.assign(app, { _id: '__app' }))
+  await insert(Object.assign(app, { id: '__app' }))
 }
