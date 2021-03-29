@@ -4,37 +4,8 @@
   import DarkModeIcon from '$icons/asleep.svg.svelte'
 
   const theme = getContext('theme')
-  console.log({ theme })
   $: toggle = theme?.toggle
   $: current = theme?.current
-  // import { browser as isBrowser } from '$app/env'
-  // function _prefersColorScheme() {
-  //   if (isBrowser && window.matchMedia('(prefers-color-scheme:dark)').matches) {
-  //     return 'dark'
-  //   } else {
-  //     return 'light'
-  //   }
-  // }
-
-  // function _initFromLocalStorage() {
-  //   let stored = isBrowser && window.localStorage.getItem(STORAGE_KEY)
-  //   if (stored && ['light', 'dark'].includes(stored)) return stored
-  //   else return null
-  // }
-
-  // let current = 'dark'
-  // onMount(() => {
-  //   current = _initFromLocalStorage() || _prefersColorScheme()
-  // })
-
-  // $: current = _initFromLocalStorage() || _prefersColorScheme()
-  // $: isBrowser && document.documentElement.setAttribute('theme', current)
-  // $: isBrowser && window.localStorage.setItem(STORAGE_KEY, current)
-
-  // function toggle() {
-  //   if (current === 'dark') current = 'light'
-  //   else if (current === 'light') current = 'dark'
-  // }
 </script>
 
 <button on:click="{toggle}">

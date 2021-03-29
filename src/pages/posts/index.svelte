@@ -35,7 +35,7 @@
 
   <h2>Posts</h2>
   {#each posts as post}
-    <a sapper:prefetch href="{post.slug}" aria-labelledby="{post._id}">
+    <a sveltekit:prefetch href="{post.slug}" aria-labelledby="{post._id}">
       <article>
         <h3 id="{post._id}">{post.frontmatter.title}</h3>
       </article>

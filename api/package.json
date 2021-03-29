@@ -1,0 +1,2 @@
+// blank package.json to fix vercel's errors about type:module in parent
+{}
