@@ -1,4 +1,4 @@
-import fetch from 'node-fetch'
+import { useGraphQL } from '$hooks'
 
 /**
  * @param {import('@sveltejs/kit').Request} request
@@ -22,16 +22,7 @@ export async function get(req, { api }) {
     }
     `
   const { page: slug } = req.params
-
-  const res = await fetch(api, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      query: pageQuery,
-      variables: { slug: `/${slug}` },
-    }),
-  })
-  const { data, errors } = await res.json()
+  const { data, errors } = await useGraphQL(pageQuery, { slug: `/${slug}` })
   const { page } = data || {}
 
   if (page) {

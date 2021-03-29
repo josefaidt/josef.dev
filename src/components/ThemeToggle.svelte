@@ -1,43 +1,44 @@
-<script context="module">
-  const STORAGE_KEY = '__josefdev_theme'
-</script>
-
 <script>
-  import { onMount } from 'svelte'
+  import { getContext } from 'svelte'
   import LightModeIcon from '$icons/light.svg.svelte'
   import DarkModeIcon from '$icons/asleep.svg.svelte'
-  import { browser as isBrowser } from '$app/env'
-  function _prefersColorScheme() {
-    if (isBrowser && window.matchMedia('(prefers-color-scheme:dark)').matches) {
-      return 'dark'
-    } else {
-      return 'light'
-    }
-  }
 
-  function _initFromLocalStorage() {
-    let stored = isBrowser && window.localStorage.getItem(STORAGE_KEY)
-    if (stored && ['light', 'dark'].includes(stored)) return stored
-    else return null
-  }
+  const theme = getContext('theme')
+  console.log({ theme })
+  $: toggle = theme?.toggle
+  $: current = theme?.current
+  // import { browser as isBrowser } from '$app/env'
+  // function _prefersColorScheme() {
+  //   if (isBrowser && window.matchMedia('(prefers-color-scheme:dark)').matches) {
+  //     return 'dark'
+  //   } else {
+  //     return 'light'
+  //   }
+  // }
 
-  let current = 'dark'
-  onMount(() => {
-    current = _initFromLocalStorage() || _prefersColorScheme()
-  })
+  // function _initFromLocalStorage() {
+  //   let stored = isBrowser && window.localStorage.getItem(STORAGE_KEY)
+  //   if (stored && ['light', 'dark'].includes(stored)) return stored
+  //   else return null
+  // }
 
-  $: current = _initFromLocalStorage() || _prefersColorScheme()
-  $: isBrowser && document.documentElement.setAttribute('theme', current)
-  $: isBrowser && window.localStorage.setItem(STORAGE_KEY, current)
+  // let current = 'dark'
+  // onMount(() => {
+  //   current = _initFromLocalStorage() || _prefersColorScheme()
+  // })
 
-  function toggle() {
-    if (current === 'dark') current = 'light'
-    else if (current === 'light') current = 'dark'
-  }
+  // $: current = _initFromLocalStorage() || _prefersColorScheme()
+  // $: isBrowser && document.documentElement.setAttribute('theme', current)
+  // $: isBrowser && window.localStorage.setItem(STORAGE_KEY, current)
+
+  // function toggle() {
+  //   if (current === 'dark') current = 'light'
+  //   else if (current === 'light') current = 'dark'
+  // }
 </script>
 
 <button on:click="{toggle}">
-  {#if current === 'dark'}
+  {#if $current === 'dark'}
     <DarkModeIcon />
   {:else}
     <LightModeIcon />

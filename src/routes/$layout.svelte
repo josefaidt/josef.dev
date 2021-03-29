@@ -1,36 +1,46 @@
+<script context="module">
+  const STORAGE_KEY = '__josefdev_theme'
+</script>
+
 <script>
+  import { ThemeWrapper } from 'svelte-themer'
+  import { themes } from '$components/theme'
   // PRIMARY LAYOUT
   import Nav from '$components/Nav.svelte'
   import ThemeToggle from '$components/ThemeToggle.svelte'
   import Logo from '$components/Logo.svelte'
   import Footer from '$components/Footer.svelte'
-
-  import '$styles/normalize.css'
-  import '$styles/global.css'
-  import '$styles/theme.css'
-  import '$styles/style.css'
-  import '$styles/prism.css'
 </script>
 
-<div class="container">
-  <header>
-    <Logo />
-    <div>
-      <Nav />
-      <ThemeToggle />
-    </div>
-  </header>
-  <main>
-    <slot />
-  </main>
-  <Footer />
-</div>
+<ThemeWrapper key="{STORAGE_KEY}" themes="{themes}">
+  <div class="container">
+    <header>
+      <Logo />
+      <div>
+        <Nav />
+        <ThemeToggle />
+      </div>
+    </header>
+    <main>
+      <slot />
+    </main>
+    <Footer />
+  </div>
+</ThemeWrapper>
 
 <style>
-  :global(*) {
+  @import '$styles/normalize.css';
+  @import '$styles/global.css';
+  @import '$styles/style.css';
+  @import '$styles/prism.css';
+
+  :global(html, body) {
     color: var(--theme-text);
-    background-color: var(--theme-background-color);
-    transition-property: color, background-color;
+    background-color: var(--theme-bg);
+  }
+
+  :global(*) {
+    transition-property: background-color;
     transition-duration: 200ms;
     transition-timing-function: ease;
   }

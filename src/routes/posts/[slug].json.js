@@ -1,11 +1,11 @@
-import fetch from 'node-fetch'
+import { useGraphQL } from '$hooks'
 
 /**
  * @param {import('@sveltejs/kit').Request} request
  * @param {any} context
  * @returns {import('@sveltejs/kit').Response}
  */
-export async function get(req, { api }) {
+export async function get(req) {
   const postQuery = `
     query POST($slug: String!) {
       post(slug: $slug) {
@@ -22,16 +22,7 @@ export async function get(req, { api }) {
     }
     `
   const { slug } = req.params
-
-  const res = await fetch(api, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      query: postQuery,
-      variables: { slug: `/posts/${slug}` },
-    }),
-  })
-  const { data, errors } = await res.json()
+  const { data, errors } = await useGraphQL(postQuery, { slug: `/posts/${slug}` })
   const { post } = data || {}
 
   if (post) {
