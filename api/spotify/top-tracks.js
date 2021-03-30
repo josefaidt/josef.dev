@@ -10,7 +10,8 @@ module.exports = async function (req, res) {
     title: track.name,
   }))
 
-  res.setHeader('Cache-Control', 'public, s-maxage=86400, stale-while-revalidate=43200')
+  if (process.env.VERCEL)
+    res.setHeader('Cache-Control', 'public, s-maxage=86400, stale-while-revalidate=43200')
 
   return res.status(200).json({ tracks })
 }

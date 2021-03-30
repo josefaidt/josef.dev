@@ -1,44 +1,27 @@
 <script context="module">
-  import { browser as isBrowser } from '$app/env'
   /**
    * @type {import('@sveltejs/kit').Load}
    */
   export async function load({ page, fetch, session, context }) {
-    if (!isBrowser) {
-      return {
-        props: {
-          isPlaying: false,
-        },
-      }
-    }
-
-    const url = `/api/spotify/currently-playing`
-    const res = await fetch(url)
-
-    if (res.ok) {
-      return {
-        props: {
-          ...(await res.json()),
-        },
-      }
-    }
-
     return {
-      status: res.status,
-      error: new Error(`Could not load ${url}`),
+      props: {
+        isPlaying: false,
+      },
     }
   }
 </script>
 
 <script>
   import { onMount } from 'svelte'
-
-  export let album
-  export let albumImageUrl
-  export let artist
-  export let songUrl
-  export let title
   export let isPlaying
+  export let currentlyPlaying = {}
+
+  $: isPlaying = currentlyPlaying.isPlaying
+  $: album = currentlyPlaying.album
+  $: albumImageUrl = currentlyPlaying.albumImageUrl
+  $: artist = currentlyPlaying.artist
+  $: songUrl = currentlyPlaying.songUrl
+  $: title = currentlyPlaying.title
 
   async function getSpotifyCurrentlyPlaying() {
     const res = await fetch(`/api/spotify/currently-playing`)
@@ -50,9 +33,10 @@
   }
 
   onMount(async () => {
-    console.log('MOUNTING')
-    $$props = Object.assign(await getSpotifyCurrentlyPlaying(), $$props)
+    currentlyPlaying = await getSpotifyCurrentlyPlaying()
   })
+
+  $: console.log(title)
 </script>
 
 <h1>Dashboard</h1>

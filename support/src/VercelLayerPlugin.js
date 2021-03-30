@@ -1,6 +1,4 @@
 const { resolve, extname } = require('path')
-const merge = require('deepmerge')
-const defaultOptions = require('./options')
 const recursiveReadDir = require('./recursiveReadDir')
 
 function log(message) {
@@ -15,23 +13,25 @@ module.exports = function VercelLayerPlugin() {
   return {
     name: 'vercel-layer-plugin',
     configureServer: async server => {
+      // attach helpers to serverResponse for Vercel's serverless functions
+      server.middlewares.use((req, res, next) => {
+        res.__proto__.json = function json(payload) {
+          this.setHeader('Content-Type', 'application/json')
+          this.end(JSON.stringify(payload))
+        }
+        res.__proto__.status = function status(code) {
+          this.statusCode = code
+          return this
+        }
+        next()
+      })
+
+      // read endpoint file paths
       const endpoints = await recursiveReadDir(apidir, { only: ['js'] })
       for (endpoint of endpoints) {
         const handler = require(endpoint)
+        // create api route from full file path
         const route = endpoint.replace(apidir, '/api').replace(extname(endpoint), '')
-        server.middlewares.use((req, res, next) => {
-          // add methods for Micro that don't exist in Node httpServer
-          res.__proto__.json = payload => {
-            res.setHeader('Content-Type', 'application/json')
-            res.end(JSON.stringify(payload))
-          }
-          res.__proto__.status = code => {
-            res.statusCode = code
-            // return res to chain this call with `.json()`
-            return res
-          }
-          next()
-        })
         server.middlewares.use(route, handler?.default || handler)
       }
       log('> Vercel API Layer initialized!')
