@@ -1,6 +1,6 @@
 const { resolve } = require('path')
-const static = require('@sveltejs/adapter-static')
-const { GraphQLLayerPlugin, preprocessGraphQL } = require('support')
+const adapter = require('@sveltejs/adapter-static')
+const { GraphQLLayerPlugin, preprocessGraphQL, VercelLayerPlugin } = require('support')
 const app = require('./app.config.cjs')
 const pkg = require('./package.json')
 
@@ -10,7 +10,7 @@ module.exports = {
     // By default, `npm run build` will create a standard Node app.
     // You can create optimized builds for different platforms by
     // specifying a different adapter
-    adapter: static(),
+    adapter: adapter(),
 
     // hydrate the <div id="svelte"> element in src/app.html
     target: '#svelte',
@@ -20,7 +20,7 @@ module.exports = {
     },
 
     vite: {
-      plugins: [GraphQLLayerPlugin({ app })],
+      plugins: [GraphQLLayerPlugin({ app }), VercelLayerPlugin()],
       ssr: {
         noExternal: Object.keys(pkg.dependencies || {}),
       },

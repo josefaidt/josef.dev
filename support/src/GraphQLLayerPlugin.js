@@ -10,7 +10,7 @@ function log(message) {
 
 const isProd = process.env.NODE_ENV === 'production'
 
-module.exports = function GraphQLLayerPlugin(pluginOptions) {
+module.exports = function GraphQLLayerPlugin(pluginOptions = {}) {
   const options = merge(defaultOptions, pluginOptions)
   const route = options.api
   const initMessage = '> GraphQL layer initialization'

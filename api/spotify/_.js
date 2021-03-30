@@ -1,5 +1,5 @@
-import fetch from 'node-fetch'
-import querystring from 'querystring'
+const fetch = require('node-fetch')
+const querystring = require('querystring')
 
 const client_id = process.env.SPOTIFY_CLIENT_ID
 const client_secret = process.env.SPOTIFY_CLIENT_SECRET
@@ -15,33 +15,33 @@ async function getAccessToken() {
     method: 'POST',
     headers: {
       Authorization: `Basic ${basic}`,
-      'Content-Type': 'application/x-www-form-urlencoded'
+      'Content-Type': 'application/x-www-form-urlencoded',
     },
     body: querystring.stringify({
       grant_type: 'refresh_token',
-      refresh_token
-    })
-  });
+      refresh_token,
+    }),
+  })
 
-  return response.json();
-};
+  return response.json()
+}
 
-export async function getNowPlaying() {
-  const { access_token } = await getAccessToken();
+exports.getNowPlaying = async function getNowPlaying() {
+  const { access_token } = await getAccessToken()
 
   return fetch(NOW_PLAYING_ENDPOINT, {
     headers: {
-      Authorization: `Bearer ${access_token}`
-    }
-  });
-};
+      Authorization: `Bearer ${access_token}`,
+    },
+  })
+}
 
-export async function getTopTracks() {
-  const { access_token } = await getAccessToken();
+exports.getTopTracks = async function getTopTracks() {
+  const { access_token } = await getAccessToken()
 
   return fetch(TOP_TRACKS_ENDPOINT, {
     headers: {
-      Authorization: `Bearer ${access_token}`
-    }
-  });
-};
+      Authorization: `Bearer ${access_token}`,
+    },
+  })
+}

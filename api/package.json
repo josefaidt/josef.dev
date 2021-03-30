@@ -1,2 +1,8 @@
-// blank package.json to fix vercel's errors about type:module in parent
-{}
+{
+  "name": "api",
+  "version": "0.0.1",
+  "dependencies": {
+    "node-fetch": "^2.6.1",
+    "querystring": "^0.2.1"
+  }
+}

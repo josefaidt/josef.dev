@@ -1,6 +1,6 @@
 {
   "name": "support",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "scripts": {
     "dev": "yarn build watch",
     "build": "node scripts/build.js"
