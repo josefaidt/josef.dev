@@ -1,4 +1,6 @@
 <script context="module">
+  export const hydrate = false
+  export const prerender = true
   export async function load({ page, fetch, context }) {
     const res = await fetch(`${page.path}.json`)
     const { post } = await res.json()

@@ -1,5 +1,15 @@
 <script context="module">
   const STORAGE_KEY = '__josefdev_theme'
+
+  export async function load({ fetch }) {
+    let response
+    try {
+      response = await fetch('/api/spotify/currently-playing.json')
+    } catch (error) {
+      console.error('there was an issue fetching')
+    }
+    return { props: { currentlyPlaying: await response.json() } }
+  }
 </script>
 
 <script>
@@ -21,18 +31,18 @@
   $: songUrl = currentlyPlaying.songUrl
   $: title = currentlyPlaying.title
 
-  async function getSpotifyCurrentlyPlaying() {
-    const res = await fetch(`/api/spotify/currently-playing`)
-    if (res.ok) {
-      return await res.json()
-    } else {
-      throw new Error('Unable to fetch')
-    }
-  }
+  // async function getSpotifyCurrentlyPlaying() {
+  //   const res = await fetch(`/api/spotify/currently-playing`)
+  //   if (res.ok) {
+  //     return await res.json()
+  //   } else {
+  //     throw new Error('Unable to fetch')
+  //   }
+  // }
 
-  onMount(async () => {
-    currentlyPlaying = await getSpotifyCurrentlyPlaying()
-  })
+  // onMount(async () => {
+  //   currentlyPlaying = await getSpotifyCurrentlyPlaying()
+  // })
 
   import '$styles/normalize.css'
   import '$styles/global.css'

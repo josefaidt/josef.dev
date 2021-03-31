@@ -1,5 +1,5 @@
 const { resolve } = require('path')
-const adapter = require('@sveltejs/adapter-static')
+const adapter = require('@sveltejs/adapter-vercel')
 const { GraphQLLayerPlugin, preprocessGraphQL, VercelLayerPlugin } = require('support')
 const app = require('./app.config.cjs')
 const pkg = require('./package.json')
@@ -20,7 +20,7 @@ module.exports = {
     },
 
     vite: {
-      plugins: [GraphQLLayerPlugin({ app }), VercelLayerPlugin()],
+      plugins: [GraphQLLayerPlugin({ app })],
       ssr: {
         noExternal: Object.keys(pkg.dependencies || {}),
       },
