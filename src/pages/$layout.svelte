@@ -3,6 +3,7 @@
 </script>
 
 <script>
+  import { onMount } from 'svelte'
   import { ThemeWrapper } from 'svelte-themer'
   import { themes } from '$components/theme'
   // PRIMARY LAYOUT
@@ -10,6 +11,33 @@
   import ThemeToggle from '$components/ThemeToggle.svelte'
   import Logo from '$components/Logo.svelte'
   import Footer from '$components/Footer.svelte'
+
+  export let currentlyPlaying = {}
+
+  $: isPlaying = currentlyPlaying.isPlaying
+  $: album = currentlyPlaying.album
+  $: albumImageUrl = currentlyPlaying.albumImageUrl
+  $: artist = currentlyPlaying.artist
+  $: songUrl = currentlyPlaying.songUrl
+  $: title = currentlyPlaying.title
+
+  async function getSpotifyCurrentlyPlaying() {
+    const res = await fetch(`/api/spotify/currently-playing`)
+    if (res.ok) {
+      return await res.json()
+    } else {
+      throw new Error('Unable to fetch')
+    }
+  }
+
+  onMount(async () => {
+    currentlyPlaying = await getSpotifyCurrentlyPlaying()
+  })
+
+  import '$styles/normalize.css'
+  import '$styles/global.css'
+  import '$styles/style.css'
+  import '$styles/prism.css'
 </script>
 
 <ThemeWrapper key="{STORAGE_KEY}" themes="{themes}">
@@ -24,15 +52,39 @@
     <main>
       <slot />
     </main>
-    <Footer />
+    <Footer>
+      <div class="spotify">
+        <p>
+          <b>{isPlaying ? `Now playing ` : 'Not playing'}</b>
+          {isPlaying ? `${title} by ${artist}` : ''}
+          <span>&ndash; Spotify</span>
+        </p>
+      </div>
+    </Footer>
   </div>
 </ThemeWrapper>
 
 <style>
-  @import '$styles/normalize.css';
-  @import '$styles/global.css';
-  @import '$styles/style.css';
-  @import '$styles/prism.css';
+  .spotify {
+    /* border: 1px solid green; */
+  }
+
+  .spotify p {
+    margin: 0;
+  }
+
+  .spotify p span {
+    color: var(--theme-text);
+    filter: invert(0.4);
+  }
+
+  :global(html) {
+    height: 100%;
+  }
+
+  :global(body) {
+    min-height: 100%;
+  }
 
   :global(html, body) {
     color: var(--theme-text);
