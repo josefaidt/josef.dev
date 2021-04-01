@@ -7,7 +7,8 @@
 
 <style>
   div {
-    margin: 3rem auto;
+    margin: auto;
+    margin-bottom: 3rem;
 
     text-align: center;
     font-style: italic;

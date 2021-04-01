@@ -94,11 +94,16 @@
 
   :global(body) {
     min-height: 100%;
+    display: flex;
   }
 
   :global(html, body) {
     color: var(--theme-text);
     background-color: var(--theme-bg);
+  }
+
+  :global(#svelte) {
+    flex: 1 1 auto;
   }
 
   :global(*) {

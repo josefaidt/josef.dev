@@ -17,10 +17,8 @@ module.exports = async function generatePostData(basePath, postPath) {
   // add formatted JS date
   if (frontmatter.date) frontmatter.date = new Date(`${frontmatter.date}`).toString()
 
-  // content zone (i.e. /content/blog -> "blog")
-  const zone = (await fs.lstat(path.dirname(postPath))).isDirectory()
-    ? path.basename(path.dirname(postPath))
-    : null
+  // content zone (i.e. /content/posts -> "posts")
+  const zone = path.basename(path.dirname(postPath))
 
   const html = await markdown(content)
 

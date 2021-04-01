@@ -3,6 +3,7 @@ interface Node {
   name: String!
   ext: String!
   absolutePath: String!
+  zone: String!
 }
 
 type Frontmatter {
@@ -22,6 +23,7 @@ type Post implements Node {
   absolutePath: String!
   slug: String
   frontmatter: Frontmatter!
+  zone: String!
 }
 
 type Page implements Node {
@@ -32,6 +34,7 @@ type Page implements Node {
   absolutePath: String!
   slug: String
   frontmatter: Frontmatter!
+  zone: String!
 }
 
 type SiteMetadata {
@@ -50,6 +53,7 @@ input InputData {
 
 type Query {
   allPosts(data: InputData!): [Post]!
+  allPages: [Page]!
   post(slug: String!): Post
   page(slug: String!): Page
   meta: SiteMetadata!

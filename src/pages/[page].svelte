@@ -1,8 +1,26 @@
 <script context="module">
-  export async function load({ page, fetch }) {
-    const res = await fetch(`${page.path}.json`)
-    const { page: _page } = await res.json()
-    return { props: { page: _page } }
+  export const prerender = true
+
+  /**
+   * @type { RouteLoad }
+   */
+  export async function load({ page: _page, fetch, session }) {
+    const { pages } = session || {}
+    if (pages?.length) {
+      const page = pages.find(({ slug }) => slug === _page.path)
+      if (page) {
+        return {
+          props: {
+            page,
+          },
+        }
+      } else {
+        return {
+          status: 404,
+          error: new Error('Not found'),
+        }
+      }
+    }
   }
 </script>
 

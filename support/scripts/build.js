@@ -13,6 +13,7 @@ const [subcommand] = process.argv.slice(2)
 async function main() {
   if (exists(outdir)) await rmdir(outdir, { recursive: true })
   const entryPoints = await recursiveReadDir(srcdir, { only: ['js'] })
+
   try {
     await build({
       entryPoints,

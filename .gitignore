@@ -8,4 +8,5 @@ node_modules
 /build
 .vercel
 
-/support/db/store.db
+
+/store.db

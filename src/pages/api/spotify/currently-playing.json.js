@@ -24,9 +24,10 @@ export async function get(req) {
   const albumImageUrl = song.item.album.images[0].url
   const songUrl = song.item.external_urls.spotify
 
-  // res.setHeader('Cache-Control', 'public, s-maxage=60, stale-while-revalidate=30')
-
   return {
+    headers: {
+      'Cache-Control': 'public, s-maxage=60, stale-while-revalidate=30',
+    },
     body: {
       album,
       albumImageUrl,

@@ -1,4 +1,4 @@
-const { join } = require('path')
+const { resolve } = require('path')
 const unified = require('unified')
 const visit = require('unist-util-visit')
 
@@ -29,7 +29,7 @@ const plugins = [
   [
     require('rehype-local-image-to-cloudinary'),
     {
-      baseDir: join(process.cwd(), 'static'),
+      baseDir: resolve('content/posts/images'),
       uploadFolder: 'josef.dev',
       transformations: 'q_auto,f_auto',
     },

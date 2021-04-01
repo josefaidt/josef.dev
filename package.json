@@ -14,22 +14,52 @@
     "svelte-themer": "next"
   },
   "devDependencies": {
-    "@babel/core": "^7.13.1",
-    "@babel/preset-env": "^7.13.5",
+    "@babel/core": "^7.13.14",
+    "@babel/preset-env": "^7.13.12",
     "@sveltejs/adapter-static": "next",
     "@sveltejs/adapter-vercel": "next",
     "@sveltejs/kit": "next",
-    "autoprefixer": "^10.2.4",
+    "autoprefixer": "^10.2.5",
+    "eslint": "^7.23.0",
+    "eslint-plugin-svelte3": "^3.1.2",
+    "eslint-config-prettier": "^8.1.0",
     "graphql-request": "^3.4.0",
-    "postcss": "^8.2.6",
-    "postcss-import": "^14.0.0",
-    "prettier": "^2.1.2",
-    "prettier-plugin-svelte": "^1.4.0",
+    "postcss": "^8.2.9",
+    "postcss-import": "^14.0.1",
+    "prettier": "^2.2.1",
+    "prettier-plugin-svelte": "^2.2.0",
     "support": "./support",
     "svelte": "^3.29.0",
     "svelte-preprocess": "^4.6.6",
     "vercel": "^21.3.3",
-    "vite": "^2.1.0"
+    "vite": "^2.1.5"
+  },
+  "eslintConfig": {
+    "root": true,
+    "extends": [
+      "eslint:recommended",
+      "prettier"
+    ],
+    "plugins": [
+      "svelte3"
+    ],
+    "overrides": [
+      {
+        "files": [
+          "*.svelte"
+        ],
+        "processor": "svelte3/svelte3"
+      }
+    ],
+    "parserOptions": {
+      "sourceType": "module",
+      "ecmaVersion": 2019
+    },
+    "env": {
+      "browser": true,
+      "es2017": true,
+      "node": true
+    }
   },
   "prettier": {
     "printWidth": 100,

@@ -19,6 +19,10 @@ module.exports = {
       routes: resolve('src/pages'),
     },
 
+    prerender: {
+      force: true,
+    },
+
     vite: {
       plugins: [GraphQLLayerPlugin({ app })],
       ssr: {
