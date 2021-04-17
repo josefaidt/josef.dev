@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "svelte-kit dev",
-    "build": "node scripts/build.cjs",
+    "build": "svelte-kit build",
     "start": "svelte-kit start"
   },
   "dependencies": {
@@ -16,18 +16,24 @@
   "devDependencies": {
     "@babel/core": "^7.13.14",
     "@babel/preset-env": "^7.13.12",
+    "@rollup/plugin-dynamic-import-vars": "^1.1.1",
     "@sveltejs/adapter-static": "next",
     "@sveltejs/adapter-vercel": "next",
     "@sveltejs/kit": "next",
     "autoprefixer": "^10.2.5",
     "eslint": "^7.23.0",
-    "eslint-plugin-svelte3": "^3.1.2",
     "eslint-config-prettier": "^8.1.0",
+    "eslint-plugin-svelte3": "^3.1.2",
     "graphql-request": "^3.4.0",
+    "mdsvex": "^0.8.9",
     "postcss": "^8.2.9",
     "postcss-import": "^14.0.1",
     "prettier": "^2.2.1",
     "prettier-plugin-svelte": "^2.2.0",
+    "rehype-autolink-headings": "^5.0.1",
+    "rehype-slug": "^4.0.1",
+    "remark-abbr": "^1.4.1",
+    "remark-github": "^10.0.1",
     "support": "./support",
     "svelte": "^3.29.0",
     "svelte-preprocess": "^4.6.6",
@@ -53,7 +59,7 @@
     ],
     "parserOptions": {
       "sourceType": "module",
-      "ecmaVersion": 2019
+      "ecmaVersion": 2020
     },
     "env": {
       "browser": true,
@@ -62,7 +68,7 @@
     }
   },
   "prettier": {
-    "printWidth": 100,
+    "printWidth": 80,
     "trailingComma": "es5",
     "tabWidth": 2,
     "semi": false,

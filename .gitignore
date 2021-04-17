@@ -7,6 +7,4 @@ node_modules
 /.svelte
 /build
 .vercel
-
-
-/store.db
+.vercel_build_output

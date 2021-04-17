@@ -1,23 +1,43 @@
 <script context="module">
-  export const query = `
-    query ALL_POSTS {
-      allPosts(data:{}) {
-        _id
-        slug
-        frontmatter {
-          title
-          date
-          published
-          tags
+  const extRegex = /\.(md|svx)$/
+  const files = import.meta.glob(`./posts/**/*.md`)
+
+  let body = []
+
+  for (const file in files) {
+    body.push(
+      files[file]().then(({ metadata }) => {
+        return {
+          ...metadata,
+          slug: file.replace('/content', '').replace(extRegex, ''),
         }
-      }
+      })
+    )
+  }
+
+  function byDate(a, b) {
+    return new Date(b.date) - new Date(a.date)
+  }
+
+  /**
+   * @type {import('@sveltejs/kit').Load}
+   */
+  export async function load({ page, fetch }) {
+    const posts = (await Promise.all(body)).sort(byDate)
+    return {
+      props: {
+        posts,
+      },
     }
-  `
+  }
 </script>
 
 <script>
   import SEO from '$components/SEO.svelte'
-  $: posts = query?.allPosts
+
+  export let posts
+  console.log({ posts })
+
   const seoProps = {
     title: 'Snakes and Sparklers',
     description:
@@ -30,14 +50,15 @@
   <h1>{seoProps.title}</h1>
   <p>{seoProps.description}</p>
   <blockquote>
-    "Snakes and Sparklers are the only ones I like." -Kicking Wing, Joe Dirt (2001)
+    "Snakes and Sparklers are the only ones I like." -Kicking Wing, Joe Dirt
+    (2001)
   </blockquote>
 
   <h2>Posts</h2>
-  {#each posts as post}
-    <a sveltekit:prefetch href="{post.slug}" aria-labelledby="{post._id}">
+  {#each posts as post, index}
+    <a sveltekit:prefetch href="{post.slug}" aria-labelledby="{index}">
       <article>
-        <h3 id="{post._id}">{post.frontmatter.title}</h3>
+        <h3 id="{index}">{post.title}</h3>
       </article>
     </a>
   {/each}

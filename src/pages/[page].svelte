@@ -2,23 +2,20 @@
   export const prerender = true
 
   /**
-   * @type { RouteLoad }
+   * @type {import('@sveltejs/kit').Load}
    */
-  export async function load({ page: _page, fetch, session }) {
-    const { pages } = session || {}
-    if (pages?.length) {
-      const page = pages.find(({ slug }) => slug === _page.path)
-      if (page) {
-        return {
-          props: {
-            page,
-          },
-        }
-      } else {
-        return {
-          status: 404,
-          error: new Error('Not found'),
-        }
+  export async function load({ page: _page }) {
+    const page = await import(`../../content/${_page.params.page}.md`)
+    if (page) {
+      return {
+        props: {
+          page,
+        },
+      }
+    } else {
+      return {
+        status: 404,
+        error: new Error('Not found'),
       }
     }
   }
@@ -30,14 +27,14 @@
   export let page
 
   const seoProps = {
-    ...page.frontmatter,
+    ...page.metadata,
   }
 </script>
 
 <SEO {...seoProps} />
 
-<h1>{page.frontmatter.title}</h1>
+<h1>{page.metadata.title}</h1>
 
 <div class="content">
-  {@html page.html}
+  <svelte:component this="{page.default}" />
 </div>

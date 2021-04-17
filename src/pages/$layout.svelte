@@ -13,7 +13,6 @@
 </script>
 
 <script>
-  import { onMount } from 'svelte'
   import { ThemeWrapper } from 'svelte-themer'
   import { themes } from '$components/theme'
   // PRIMARY LAYOUT

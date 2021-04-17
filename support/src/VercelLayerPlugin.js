@@ -28,7 +28,7 @@ module.exports = function VercelLayerPlugin() {
 
       // read endpoint file paths
       const endpoints = await recursiveReadDir(apidir, { only: ['js'] })
-      for (endpoint of endpoints) {
+      for (const endpoint of endpoints) {
         const handler = require(endpoint)
         // create api route from full file path
         const route = endpoint.replace(apidir, '/api').replace(extname(endpoint), '')
