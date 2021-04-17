@@ -22,7 +22,7 @@
   /**
    * @type {import('@sveltejs/kit').Load}
    */
-  export async function load({ page, fetch }) {
+  export async function load() {
     const posts = (await Promise.all(body)).sort(byDate)
     return {
       props: {
