@@ -1,5 +1,9 @@
 {
   "name": "josef.dev",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
   "version": "0.0.1",
   "license": "MIT",
   "type": "module",
@@ -10,12 +14,13 @@
   },
   "dependencies": {
     "node-fetch": "^2.6.1",
-    "querystring": "^0.2.1",
-    "svelte-themer": "next"
+    "querystring": "^0.2.1"
   },
   "devDependencies": {
+    "svelte-themer": "next",
     "@babel/core": "^7.13.14",
     "@babel/preset-env": "^7.13.12",
+    "@josef/markdown": "*",
     "@rollup/plugin-dynamic-import-vars": "^1.1.1",
     "@sveltejs/adapter-static": "next",
     "@sveltejs/adapter-vercel": "next",

@@ -1,0 +1,1 @@
+// pull in posts metadata for main blog page

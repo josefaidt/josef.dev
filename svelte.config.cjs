@@ -1,7 +1,7 @@
 const { resolve } = require('path')
 const { mdsvex } = require('mdsvex')
 const adapter = require('@sveltejs/adapter-vercel')
-// const app = require('./app.config.cjs')
+const { preprocess: markdown } = require('@josef/markdown')
 const pkg = require('./package.json')
 
 const mdsvexConfig = {
@@ -9,9 +9,10 @@ const mdsvexConfig = {
   smartypants: {
     dashes: 'oldschool',
   },
-  layout: {
-    _: resolve("src/pages/posts/$layout.svelte"),
-  },
+  // layout: {
+  //   _: resolve('src/pages/posts/[slug].svelte'),
+  //   page: resolve('src/pages/[slug].svelte'),
+  // },
   remarkPlugins: [
     [
       require('remark-github'),
@@ -34,7 +35,7 @@ const mdsvexConfig = {
     [
       require('rehype-local-image-to-cloudinary'),
       {
-        baseDir: resolve('src/pages/posts/images'),
+        baseDir: resolve('content/posts/images'),
         uploadFolder: 'josef.dev',
         transformations: 'q_auto,f_auto',
       },
@@ -44,7 +45,7 @@ const mdsvexConfig = {
 
 /** @type {import('@sveltejs/kit').Config} */
 module.exports = {
-  extensions: ['.svelte', ...mdsvexConfig.extensions],
+  extensions: ['.svelte', '.md'],
   kit: {
     // By default, `npm run build` will create a standard Node app.
     // You can create optimized builds for different platforms by
@@ -64,7 +65,7 @@ module.exports = {
 
     vite: {
       // plugins: [GraphQLLayerPlugin({ app })],
-      plugins: [require('@rollup/plugin-dynamic-import-vars')],
+      // plugins: [require('@rollup/plugin-dynamic-import-vars')],
       ssr: {
         noExternal: Object.keys(pkg.dependencies || {}),
       },
@@ -81,6 +82,7 @@ module.exports = {
   },
   preprocess: [
     mdsvex(mdsvexConfig),
+    // markdown(),
     require('svelte-preprocess')({
       postcss: {
         plugins: [require('autoprefixer')()],

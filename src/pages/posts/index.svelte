@@ -1,29 +1,15 @@
 <script context="module">
-  const extRegex = /\.(md|svx)$/
-  const files = import.meta.glob(`./posts/**/*.md`)
-
-  let body = []
-
-  for (const file in files) {
-    body.push(
-      files[file]().then(({ metadata }) => {
-        return {
-          ...metadata,
-          slug: file.replace('/content', '').replace(extRegex, ''),
-        }
-      })
-    )
-  }
+  import { getAllPosts } from './_posts'
 
   function byDate(a, b) {
-    return new Date(b.date) - new Date(a.date)
+    return new Date(b.metadata.date) - new Date(a.metadata.date)
   }
 
   /**
    * @type {import('@sveltejs/kit').Load}
    */
   export async function load() {
-    const posts = (await Promise.all(body)).sort(byDate)
+    const posts = (await getAllPosts()).sort(byDate)
     return {
       props: {
         posts,
@@ -36,7 +22,6 @@
   import SEO from '$components/SEO.svelte'
 
   export let posts
-  console.log({ posts })
 
   const seoProps = {
     title: 'Snakes and Sparklers',
@@ -58,7 +43,7 @@
   {#each posts as post, index}
     <a sveltekit:prefetch href="{post.slug}" aria-labelledby="{index}">
       <article>
-        <h3 id="{index}">{post.title}</h3>
+        <h3 id="{index}">{post.metadata.title}</h3>
       </article>
     </a>
   {/each}

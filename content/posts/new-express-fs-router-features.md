@@ -140,9 +140,7 @@ if (!method && (!handler?.name || handler?.name === 'all')) {
     `[FS-ROUTER] Duplicate entry detected: ${route} where file-system methods routes are enabled. Consider deleting ${directory}/${path}.js. Skipping...`
   )
   continue
-} else if (
-  Object.keys(existing.route.methods).includes(method || handler?.name)
-) {
+} else if (Object.keys(existing.route.methods).includes(method || handler?.name)) {
   // warn user of duplicate entries for same route and method
   console.warn(
     `[FS-ROUTER] Duplicate entry detected: ${route} with method ${

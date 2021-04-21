@@ -1,6 +1,7 @@
 ---
 title: Uses
 date: 2020-09-04
+# layout: page
 ---
 
 # {title}
