@@ -6,7 +6,7 @@ tags: ['javascript', 'tooling']
 published: true
 ---
 
-![PA Coal Power Plant - steam network - Photo by Martin Adams on Unsplash](martin-adams--unsplash.jpg)
+![PA Coal Power Plant - steam network - Photo by Martin Adams on Unsplash](./images/martin-adams--unsplash.jpg)
 
 <!-- <a
   style='background-color:black;color:white;text-decoration:none;padding:4px 6px;font-family:-apple-system, BlinkMacSystemFont, "San Francisco", "Helvetica Neue", Helvetica, Ubuntu, Roboto, Noto, "Segoe UI", Arial, sans-serif;font-size:12px;font-weight:bold;line-height:1.2;display:inline-block;border-radius:3px'

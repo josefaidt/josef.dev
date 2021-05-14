@@ -56,7 +56,7 @@ Before we get started, there is another pre-requisite to ensure application asse
 
 Next we'll need to add our new domain to ZEIT Now and point the nameservers to that of ZEIT. Something like this:
 
-![Google Domains NameServers change example](screenshots/gdomains-dns-nameservers.png)
+![Google Domains NameServers change example](./images/screenshots/gdomains-dns-nameservers.png)
 
 After a few hours or so the ZEIT Now domains panel should show that the domain is now verified. Great, we'll want to use the Now CLI to set up a new record.
 
@@ -105,7 +105,10 @@ The [routing capabilities](https://zeit.co/docs/configuration/#project/routes) w
       "src": "/request/(.*)",
       "dest": "http://home.myplexdomain.com:9001/request/$1"
     },
-    { "src": "/metrics/(.*)", "dest": "http://home.myplexdomain.com:9002/metrics/$1" }
+    {
+      "src": "/metrics/(.*)",
+      "dest": "http://home.myplexdomain.com:9002/metrics/$1"
+    }
   ]
 }
 ```
@@ -129,8 +132,15 @@ To fix the last item in the routing notes, let's set up a redirect:
       "src": "/request/(.*)",
       "dest": "http://home.myplexdomain.com:9001/request/$1"
     },
-    { "src": "/request", "status": 301, "headers": { "Location": "/request/" } },
-    { "src": "/metrics/(.*)", "dest": "http://home.myplexdomain.com:9002/metrics/$1" },
+    {
+      "src": "/request",
+      "status": 301,
+      "headers": { "Location": "/request/" }
+    },
+    {
+      "src": "/metrics/(.*)",
+      "dest": "http://home.myplexdomain.com:9002/metrics/$1"
+    },
     { "src": "/metric", "status": 301, "headers": { "Location": "/metrics/" } }
   ]
 }
@@ -146,10 +156,21 @@ Now if we attempt to hit `/metrics` without the trailing slash, we should expect
       "src": "/request/(.*)",
       "dest": "http://home.myplexdomain.com:9001/request/$1"
     },
-    { "src": "/request", "status": 301, "headers": { "Location": "/request/login" } },
-    { "src": "/metrics/(.*)", "dest": "http://home.myplexdomain.com:9002/metrics/$1" },
+    {
+      "src": "/request",
+      "status": 301,
+      "headers": { "Location": "/request/login" }
+    },
+    {
+      "src": "/metrics/(.*)",
+      "dest": "http://home.myplexdomain.com:9002/metrics/$1"
+    },
     { "src": "/metric", "status": 301, "headers": { "Location": "/metrics/" } },
-    { "src": "/launch", "status": 301, "headers": { "Location": "https://app.plex.tv/" } }
+    {
+      "src": "/launch",
+      "status": 301,
+      "headers": { "Location": "https://app.plex.tv/" }
+    }
   ]
 }
 ```
@@ -193,10 +214,21 @@ It's really quite bare, however for this proof-of-concept implementation I'll le
       "src": "/request/(.*)",
       "dest": "http://home.myplexdomain.com:9001/request/$1"
     },
-    { "src": "/request", "status": 301, "headers": { "Location": "/request/login" } },
-    { "src": "/metrics/(.*)", "dest": "http://home.myplexdomain.com:9002/metrics/$1" },
+    {
+      "src": "/request",
+      "status": 301,
+      "headers": { "Location": "/request/login" }
+    },
+    {
+      "src": "/metrics/(.*)",
+      "dest": "http://home.myplexdomain.com:9002/metrics/$1"
+    },
     { "src": "/metric", "status": 301, "headers": { "Location": "/metrics/" } },
-    { "src": "/launch", "status": 301, "headers": { "Location": "https://app.plex.tv/" } }
+    {
+      "src": "/launch",
+      "status": 301,
+      "headers": { "Location": "https://app.plex.tv/" }
+    }
   ]
 }
 ```

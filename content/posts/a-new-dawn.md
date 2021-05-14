@@ -6,7 +6,7 @@ tags: ['websites', 'javascript', 'gatsby']
 published: true
 ---
 
-![Gatsby poster](Gatsby.jpg)
+![Gatsby poster](./images/Gatsby.jpg)
 
 Well, I'm sure you've visited the rest of the site by this point. This is my first official site built using <a href="https://gastbyjs.org" target="_blank">Gatsby.js</a>, and I had a great time using it. I've helped set up a site in the past, I'd played around with templates, and I contributed technical documentation to the project, but I never quite finished my website. Started quite a few times, actually, and ended up moving back over to another project. Thus is the hobby of development, I guess.
 

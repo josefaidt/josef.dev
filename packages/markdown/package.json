@@ -1,31 +1,32 @@
 {
   "name": "@josef/markdown",
-  "version": "1.0.0",
-  "main": "index.js",
+  "version": "0.1.0",
+  "type": "module",
+  "main": "build/index.cjs",
+  "module": "build/index.js",
+  "scripts": {
+    "dev": "run-p \"build:** -- --watch\"",
+    "build": "run-p build:*",
+    "build:esm": "esbuild index.js --format=esm --outfile=build/index.js",
+    "build:cjs": "esbuild index.js --format=cjs --platform=node --outfile=build/index.cjs"
+  },
   "dependencies": {
-    "escape-html": "^1.0.3",
-    "fast-glob": "^3.2.5",
-    "front-matter": "^4.0.2",
-    "rehype-format": "^3.1.0",
+    "@mapbox/rehype-prism": "^0.6.0",
+    "dayjs": "^1.10.4",
+    "js-yaml": "^4.1.0",
+    "rehype-highlight": "^4.1.0",
     "rehype-local-image-to-cloudinary": "^1.1.0",
     "rehype-stringify": "^8.0.0",
     "remark": "^13.0.0",
-    "remark-autolink-headings": "^6.0.1",
+    "remark-frontmatter": "^3.0.0",
+    "remark-gfm": "^1.0.0",
     "remark-parse": "^9.0.0",
     "remark-rehype": "^8.1.0",
-    "remark-slug": "^6.0.0",
-    "retext": "^7.0.1",
-    "retext-emoji": "^7.0.2",
-    "retext-english": "^3.0.4",
-    "retext-profanities": "^6.1.0",
-    "retext-smartypants": "^4.0.0",
-    "unified": "^9.2.1",
-    "unist-util-visit": "^2.0.3"
+    "to-vfile": "^6.1.0",
+    "unified": "^9.2.1"
   },
   "devDependencies": {
-    "svelte": "^3.37.0"
-  },
-  "peerDependencies": {
-    "svelte": "^3.37.0"
+    "esbuild": "^0.11.17",
+    "npm-run-all": "^4.1.5"
   }
 }

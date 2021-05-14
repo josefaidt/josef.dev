@@ -7,8 +7,12 @@
 
 <footer>
   <slot />
+  <div class=""></div>
   <div class="links-container">
-    <p>&copy; {new Date().getFullYear()}, Built with <a href="https://svelte.dev">Svelte</a></p>
+    <p>
+      &copy; {`${new Date().getFullYear()}`}, Built with
+      <a href="https://svelte.dev">Svelte</a>
+    </p>
     <div class="socials">
       <a
         href="https://twitter.com/josefaidt"

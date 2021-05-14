@@ -23,10 +23,13 @@
 
 <script>
   export let metadata
-  export let component
-  export let slug
-  console.log('props', $$props)
+  export let content
+  // export let metadata
+  // export let component
+  // export let slug
+  // console.log('props', $$props)
 </script>
 
 <h1>hello from page slug template</h1>
-<svelte:component this="{component}" />
+<!-- <svelte:component this="{component}" /> -->
+{@html content}

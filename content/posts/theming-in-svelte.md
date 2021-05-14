@@ -6,7 +6,7 @@ tags: ['svelte', 'css', 'theming', 'websites']
 published: true
 ---
 
-![Peacock - Photo by Steve Harvey on Unsplash](steve-harvey-peacock.jpg)
+![Peacock - Photo by Steve Harvey on Unsplash](./images/steve-harvey-peacock.jpg)
 
 In React there are numerous theming solutions to choose from; styled-components, Emotion, styled-system, theme-ui &ndash; the list goes on. But in Svelte, a framework that feels like you have a front-row spot on The Platform&trade;, those kinds of solutions don't exist. When I cracked open my brand new Svelte project I knew I wanted I knew I wanted to allow visitors to set (and persist) their preferred theme so they don't have to feel the pain of light mode if they don't want to.
 
@@ -183,7 +183,9 @@ It's important to note that `_current` is prefixed with an underscore as it will
     toggle: () => {
       // update internal state
       let _currentIndex = themes.findIndex(h => h.name === _current)
-      _current = themes[_currentIndex === themes.length - 1 ? 0 : (_currentIndex += 1)].name
+      _current =
+        themes[_currentIndex === themes.length - 1 ? 0 : (_currentIndex += 1)]
+          .name
       // update Theme store
       Theme.update(t => ({ ...t, ...getCurrentTheme(_current) }))
     },
@@ -233,7 +235,9 @@ Since Svelte feels close to The Platform™️ we'll leverage CSS Variables. In 
     toggle: () => {
       // update internal state
       let _currentIndex = themes.findIndex(h => h.name === _current)
-      _current = themes[_currentIndex === themes.length - 1 ? 0 : (_currentIndex += 1)].name
+      _current =
+        themes[_currentIndex === themes.length - 1 ? 0 : (_currentIndex += 1)]
+          .name
       // update Theme store
       Theme.update(t => ({ ...t, ...getCurrentTheme(_current) }))
       setRootColors(getCurrentTheme(_current))
@@ -284,7 +288,6 @@ And we're ready to put it all together! We've got our theme context, a toggle bu
 <strong>Hint</strong>
 </summary>
 
-
 ```css
 main {
   background-color: var(--theme-background);
@@ -293,7 +296,6 @@ main {
 ```
 
 </details>
-
 
 ## Theming Result
 

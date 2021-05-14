@@ -1,7 +1,8 @@
 <script>
-  //
+  import SEO from '$components/SEO.svelte'
 </script>
 
+<SEO title="Home" />
 <h1>Hello</h1>
 <div><q>The power of imagination makes us infinite — John Muir</q></div>
 

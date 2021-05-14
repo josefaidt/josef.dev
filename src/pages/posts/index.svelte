@@ -1,19 +1,13 @@
 <script context="module">
-  import { getAllPosts } from './_posts'
+  export const prerender = true
 
-  function byDate(a, b) {
-    return new Date(b.metadata.date) - new Date(a.metadata.date)
-  }
-
-  /**
-   * @type {import('@sveltejs/kit').Load}
-   */
-  export async function load() {
-    const posts = (await getAllPosts()).sort(byDate)
+  export async function load({ fetch }) {
+    console.log('MADE IT HERE')
+    console.log(await fetch(`/posts.json`))
+    const posts = await fetch(`posts.json`).then(r => r.json())
+    console.log({ posts })
     return {
-      props: {
-        posts,
-      },
+      props: { posts },
     }
   }
 </script>
@@ -22,6 +16,7 @@
   import SEO from '$components/SEO.svelte'
 
   export let posts
+  console.log({ posts })
 
   const seoProps = {
     title: 'Snakes and Sparklers',
@@ -41,7 +36,7 @@
 
   <h2>Posts</h2>
   {#each posts as post, index}
-    <a sveltekit:prefetch href="{post.slug}" aria-labelledby="{index}">
+    <a href="{post.slug}" aria-labelledby="{index}">
       <article>
         <h3 id="{index}">{post.metadata.title}</h3>
       </article>

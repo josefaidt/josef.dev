@@ -1,57 +1,36 @@
-// start of markdown package for preprocessing markdown files
-const { resolve } = require('path')
-const { compile, parse } = require('svelte/compiler')
-const unified = require('unified')
-const fm = require('front-matter')
-const visit = require('unist-util-visit')
+import { resolve } from 'path'
+import vfile from 'to-vfile'
+import unified from 'unified'
+import parse from 'remark-parse'
+import gfm from 'remark-gfm'
+import remark2rehype from 'remark-rehype'
+import rehypeStringify from 'rehype-stringify'
+import frontmatter from 'remark-frontmatter'
+import highlight from '@mapbox/rehype-prism'
+import cloudinary from 'rehype-local-image-to-cloudinary'
+import yaml from 'js-yaml'
+import dayjs from 'dayjs'
 
-const retextPlugins = [
-  require('retext-english'),
-  require('retext-profanities'),
-  [require('retext-emoji'), { convert: 'encode' }],
-  require('retext-smartypants'),
-]
+const parser = unified().use(parse).use(gfm).use(frontmatter, ['yaml'])
+const cloudinaryConfig = {
+  baseDir: resolve('content/posts'),
+  uploadFolder: 'josef.dev',
+  transformations: 'q_auto,f_auto',
+}
+const runner = unified()
+  .use(remark2rehype)
+  .use(cloudinary, cloudinaryConfig)
+  .use(highlight)
+  .use(rehypeStringify)
 
-function retext() {
-  const processor = require('retext')().use(retextPlugins)
-
-  return function (tree) {
-    visit(tree, 'text', node => {
-      node.value = String(processor.processSync(node.value))
-    })
+export async function process(filename) {
+  const tree = parser.parse(vfile.readSync(filename))
+  let metadata = null
+  if (tree.children.length > 0 && tree.children[0].type === 'yaml') {
+    metadata = yaml.load(tree.children[0].value)
+    tree.children = tree.children.slice(1, tree.children.length)
+    metadata.date = dayjs(metadata.date).format('MMM D, YYYY')
   }
+  const content = runner.stringify(await runner.run(tree))
+  return { metadata, content }
 }
-
-const plugins = [
-  require('remark-parse'),
-  require('remark-autolink-headings'),
-  require('remark-slug'),
-  retext,
-  // require('escape-html'),
-  require('remark-rehype'),
-  require('rehype-format'),
-  [
-    require('rehype-local-image-to-cloudinary'),
-    {
-      baseDir: resolve('content/posts/images'),
-      uploadFolder: 'josef.dev',
-      transformations: 'q_auto,f_auto',
-    },
-  ],
-]
-
-exports.markdown = function markdown(content) {
-  return new Promise((resolve, reject) => {
-    const { attributes: meta, body } = fm(content)
-    unified()
-      .use(plugins)
-      .use(require('rehype-stringify'))
-      .process(body, (err, file) => {
-        // console.log(file)
-        if (err) reject(err)
-        else resolve(String(file))
-      })
-  })
-}
-
-exports.preprocess = require('./preprocess')

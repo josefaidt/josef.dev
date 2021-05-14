@@ -49,7 +49,7 @@
   import '$styles/prism.css'
 </script>
 
-<ThemeWrapper key="{STORAGE_KEY}" themes="{themes}">
+<ThemeWrapper key="{STORAGE_KEY}" themes="{themes}" theme="light">
   <div class="container">
     <header>
       <Logo />

@@ -1,19 +1,8 @@
-<script context="module">
-  /**
-   * @type {import('@sveltejs/kit').Load}
-   */
-  // export async function load({ page, fetch, session, context }) {
-  //   return {
-  //     props: {
-  //       isPlaying: false,
-  //     },
-  //   }
-  // }
-</script>
-
 <script>
+  import SEO from '$components/SEO.svelte'
 </script>
 
+<SEO />
 <h1>Dashboard</h1>
 
 <style>

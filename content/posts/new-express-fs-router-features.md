@@ -6,7 +6,7 @@ tags: ['javascript', 'tooling', 'thoughts']
 published: true
 ---
 
-![Roller Coaster - Photo by Priscilla Du Preez on Unsplash](./priscilla-du-preez-FOsina4f7qM-unsplash.jpg)
+![Roller Coaster - Photo by Priscilla Du Preez on Unsplash](./images/priscilla-du-preez-FOsina4f7qM-unsplash.jpg)
 
 In my [last post](https://josefaidt.dev/blog/2020/04/express-filesystem-routing/) I talked about replicating Vercel's file-system routing for Express, and the reasoning behind the motivation.
 
@@ -107,7 +107,7 @@ And that's it! Middleware support is now fully functional for the Express routin
 
 Not only can a user define what HTTP method a route should use via the function name, but now developers are enabled to create a directory with files using the naming convention `:method`; e.g. `:get`, `:post`:
 
-```text
+```
 |- api/
   |- methods/
     |- :get.js
@@ -140,7 +140,9 @@ if (!method && (!handler?.name || handler?.name === 'all')) {
     `[FS-ROUTER] Duplicate entry detected: ${route} where file-system methods routes are enabled. Consider deleting ${directory}/${path}.js. Skipping...`
   )
   continue
-} else if (Object.keys(existing.route.methods).includes(method || handler?.name)) {
+} else if (
+  Object.keys(existing.route.methods).includes(method || handler?.name)
+) {
   // warn user of duplicate entries for same route and method
   console.warn(
     `[FS-ROUTER] Duplicate entry detected: ${route} with method ${
