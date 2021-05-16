@@ -2,6 +2,9 @@
   "name": "markdown-old",
   "version": "1.0.0",
   "main": "index.js",
+  "scripts": {
+    "build": "echo 'no build, exiting...'"
+  },
   "dependencies": {
     "escape-html": "^1.0.3",
     "fast-glob": "^3.2.5",

@@ -2,9 +2,17 @@ import { resolve } from 'path'
 import { readFile } from 'fs/promises'
 import adapter from '@sveltejs/adapter-vercel'
 import preprocess from 'svelte-preprocess'
+import { GraphQLLayerPlugin } from '@josef/graphql'
 import autoprefixer from 'autoprefixer'
 
 const pkg = JSON.parse(await readFile(resolve('package.json'), 'utf-8'))
+export const app = {
+  title: 'josef',
+  url: 'https://josef.dev',
+  description: 'Welcome to my personal site',
+  keywords: ['josef', 'aidt', 'personal', 'portfolio', 'svelte'],
+  author: 'josefaidt',
+}
 
 /** @type {import('@sveltejs/kit').Config} */
 export default {
@@ -27,7 +35,7 @@ export default {
     },
 
     vite: {
-      // plugins: [GraphQLLayerPlugin({ app })],
+      plugins: [GraphQLLayerPlugin({ app })],
       // plugins: [require('@rollup/plugin-dynamic-import-vars')],
       ssr: {
         noExternal: Object.keys(pkg.dependencies || {}),

@@ -1,0 +1,60 @@
+interface Node {
+  _id: ID!
+  name: String!
+  ext: String!
+  absolutePath: String!
+  zone: String!
+}
+
+type NodeMetadata {
+  title: String
+  date: String
+  description: String
+  tags: [String]
+  keywords: [String]
+  published: Boolean
+}
+
+type Post implements Node {
+  _id: ID!
+  name: String!
+  ext: String!
+  html: String!
+  absolutePath: String!
+  slug: String
+  metadata: NodeMetadata!
+  zone: String!
+}
+
+type Page implements Node {
+  _id: ID!
+  name: String!
+  ext: String!
+  html: String!
+  absolutePath: String!
+  slug: String
+  metadata: NodeMetadata!
+  zone: String!
+}
+
+type SiteMetadata {
+  title: String!
+  author: String!
+  url: String!
+  description: String
+  keywords: [String]
+}
+
+input InputData {
+  sortBy: String = "date"
+  order: String = "desc"
+  directory: String = "src/pages/blog"
+}
+
+type Query {
+  allPosts(data: InputData!): [Post]!
+  # allPages: [Page]!
+  post(slug: String!): Post
+  # page(slug: String!): Page
+  meta: SiteMetadata!
+}

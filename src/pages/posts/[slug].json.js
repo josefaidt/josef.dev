@@ -1,4 +1,5 @@
 import { process } from '@josef/markdown'
+import { query } from '@josef/graphql'
 
 export async function get({ params }) {
   const { slug } = params

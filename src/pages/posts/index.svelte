@@ -2,10 +2,10 @@
   export const prerender = true
 
   export async function load({ fetch }) {
-    console.log('MADE IT HERE')
-    console.log(await fetch(`/posts.json`))
+    // console.log('MADE IT HERE')
+    // console.log(await fetch(`/posts.json`))
     const posts = await fetch(`posts.json`).then(r => r.json())
-    console.log({ posts })
+    // console.log({ posts })
     return {
       props: { posts },
     }
@@ -16,7 +16,7 @@
   import SEO from '$components/SEO.svelte'
 
   export let posts
-  console.log({ posts })
+  // console.log({ posts })
 
   const seoProps = {
     title: 'Snakes and Sparklers',
