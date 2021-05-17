@@ -74,10 +74,5 @@
         "@babel/preset-env"
       ]
     ]
-  },
-  "lint-staged": {
-    "*.{js,md,svelte,svx,json,html,css}": [
-      "prettier --write"
-    ]
   }
 }
