@@ -1,6 +1,6 @@
 import * as acorn from 'acorn'
 import * as walk from 'acorn-walk'
-import { request } from 'graphql-request'
+import { default as request } from './query'
 
 export function preprocessGraphQL() {
   return {
@@ -48,11 +48,13 @@ export function preprocessGraphQL() {
             ;[query, vars] = evaluated
           } else query = evaluated
 
-          data = await request(
-            `http://localhost:${3000}/___graphql`,
-            query,
-            vars
-          )
+          // data = await request(
+          //   `http://localhost:${3000}/___graphql`,
+          //   query,
+          //   vars
+          // )
+          console.log('QUERYING FOR', query)
+          data = await request(query, vars)
         } catch (error) {
           // throw new Error(`There was an error requesting data\n${error}`)
           console.log(

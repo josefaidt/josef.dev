@@ -45,14 +45,18 @@ type SiteMetadata {
   keywords: [String]
 }
 
+enum SortDirection {
+  ASC
+  DESC
+}
+
 input InputData {
   sortBy: String = "date"
-  order: String = "desc"
-  directory: String = "src/pages/blog"
+  order: SortDirection = DESC
 }
 
 type Query {
-  allPosts(data: InputData!): [Post]!
+  allPosts(sortBy: String = "date", order: SortDirection = DESC): [Post]!
   # allPages: [Page]!
   post(slug: String!): Post
   # page(slug: String!): Page

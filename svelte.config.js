@@ -1,8 +1,8 @@
 import { resolve } from 'path'
 import { readFile } from 'fs/promises'
-import adapter from '@sveltejs/adapter-vercel'
+import adapter from '@sveltejs/adapter-static'
 import preprocess from 'svelte-preprocess'
-import { GraphQLLayerPlugin } from '@josef/graphql'
+import { GraphQLLayerPlugin, preprocessGraphQL } from '@josef/graphql'
 import autoprefixer from 'autoprefixer'
 
 const pkg = JSON.parse(await readFile(resolve('package.json'), 'utf-8'))
@@ -59,6 +59,6 @@ export default {
         plugins: [autoprefixer()],
       },
     }),
-    // preprocessGraphQL(),
+    preprocessGraphQL(),
   ],
 }

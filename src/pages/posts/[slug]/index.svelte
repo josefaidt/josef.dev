@@ -15,13 +15,8 @@
 
 <script>
   export let post
-  const { metadata, content } = post
-  // console.log({ content })
-  // export let component
-  // export let slug
-  // console.log($$props)
 </script>
 
-<h1>{metadata.title}</h1>
+<h1>{post.metadata.title}</h1>
 <!-- <svelte:component this="{component}" /> -->
-{@html content}
+{@html post.html}

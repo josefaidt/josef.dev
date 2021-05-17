@@ -11,7 +11,7 @@
     "postinstall": "yarn workspaces run build",
     "dev": "svelte-kit dev",
     "build": "svelte-kit build",
-    "start": "svelte-kit start"
+    "preview": "svelte-kit preview"
   },
   "dependencies": {},
   "devDependencies": {

@@ -1,13 +1,20 @@
+import { readdir } from 'fs/promises'
+import { join } from 'path'
+import generateNodeData from '../generateNodeData'
+import config from '../options'
+
 export async function allPosts(parent, args, ctx, info) {
   // prep result based on supplied sort
-  const files = await import.meta.glob(ctx.files.content.posts)
-  let result
-  const { sortBy, order } = args.data || {}
-  if (!['asc', 'desc'].includes(order.toLowerCase())) {
-    throw new Error(
-      'Invalid sort order supplied, must be one of "ASC" or "DESC"'
-    )
+  const postPath = join(config.content, 'posts')
+  const files = (await readdir(postPath))
+    .filter(fileName => /.+\.md$/.test(fileName))
+    .map(fileName => generateNodeData(join(postPath, fileName)))
+
+  let result = []
+  for await (let file of files) {
+    result.push(file)
   }
+  const { sortBy, order } = args || {}
 
   const pre = prop => {
     if (sortBy.toLowerCase() === 'date') {
@@ -18,13 +25,13 @@ export async function allPosts(parent, args, ctx, info) {
 
   if (order.toLowerCase() === 'asc') {
     result.sort((a, b) =>
-      pre(a.frontmatter[sortBy]) < pre(b.frontmatter[sortBy]) ? -1 : 1
+      pre(a.metadata[sortBy]) < pre(b.metadata[sortBy]) ? -1 : 1
     )
   }
 
   if (order.toLowerCase() === 'desc') {
     result.sort((a, b) =>
-      pre(a.frontmatter[sortBy]) > pre(b.frontmatter[sortBy]) ? -1 : 1
+      pre(a.metadata[sortBy]) > pre(b.metadata[sortBy]) ? -1 : 1
     )
   }
 
