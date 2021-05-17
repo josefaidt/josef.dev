@@ -60,5 +60,5 @@ type Query {
   allPages: [Page]!
   post(slug: String!): Post
   page(slug: String!): Page
-  meta: SiteMetadata!
+  metadata: SiteMetadata!
 }

@@ -1,14 +1,20 @@
+<script context="module">
+  export const query = `
+    query SITE_METADATA {
+      metadata {
+        title
+        url
+        description
+        keywords
+        author
+      }
+    }
+  `
+</script>
+
 <script>
   import { page } from '$app/stores'
-
-  const metadata = {
-    title: 'josef',
-    url: 'https://josef.dev',
-    description: 'Welcome to my personal site',
-    keywords: ['josef', 'aidt', 'personal', 'portfolio', 'svelte'],
-    author: 'josefaidt',
-  }
-
+  $: metadata = query?.data?.metadata
   export let title = metadata?.title
   export let overrideTitle = false
   export let date

@@ -34,13 +34,6 @@ export function preprocessGraphQL() {
         const evaluated = eval(code)
 
         let data
-        // try {
-        //   let mod = await import(filename)
-        //   console.log('MOD LOADED', mod)
-        // } catch (error) {
-        //   console.error('Unable to import file', filename)
-        // }
-
         try {
           let query = ``
           let vars = {}
@@ -48,19 +41,13 @@ export function preprocessGraphQL() {
             ;[query, vars] = evaluated
           } else query = evaluated
 
-          // data = await request(
-          //   `http://localhost:${3000}/___graphql`,
-          //   query,
-          //   vars
-          // )
-          console.log('QUERYING FOR', query)
           data = await request(query, vars)
         } catch (error) {
-          // throw new Error(`There was an error requesting data\n${error}`)
-          console.log(
-            'There was an error requesting data, is the GraphQL Layer running?',
-            error.message
-          )
+          throw new Error(`There was an error requesting data\n${error}`)
+          // console.log(
+          //   'There was an error requesting data, is the GraphQL Layer running?',
+          //   error.message
+          // )
         }
 
         return { code: content.replace(code, JSON.stringify(data)) }

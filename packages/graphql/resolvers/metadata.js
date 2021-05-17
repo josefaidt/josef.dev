@@ -1,7 +1,7 @@
 import { resolve } from 'path'
 import defaultOptions from '../options'
 
-export async function meta(parent, args, ctx, info) {
+export async function metadata(parent, args, ctx, info) {
   const svelteConfig = await import(resolve('svelte.config.js'))
   return svelteConfig?.app || defaultOptions.app
 }
