@@ -1,6 +1,6 @@
 import { resolve } from 'path'
 import { readFile } from 'fs/promises'
-import adapter from '@sveltejs/adapter-static'
+import adapter from '@sveltejs/adapter-vercel'
 import preprocess from 'svelte-preprocess'
 import { GraphQLLayerPlugin, preprocessGraphQL } from '@josef/graphql'
 import autoprefixer from 'autoprefixer'

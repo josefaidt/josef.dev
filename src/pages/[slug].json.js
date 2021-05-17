@@ -6,8 +6,8 @@ import { query } from '@josef/graphql'
 export async function get({ path, ...rest }) {
   const { data, errors } = await query(
     `
-    query GET_POST($slug: String!) {
-      post(slug:$slug) {
+    query GET_PAGE($slug: String!) {
+      page(slug:$slug) {
         slug
         metadata {
           title
@@ -29,7 +29,7 @@ export async function get({ path, ...rest }) {
     }
   }
 
-  const body = JSON.stringify(data.post)
+  const body = JSON.stringify(data.page)
 
   return {
     body,

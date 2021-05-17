@@ -1,5 +1,8 @@
 import { query } from '@josef/graphql'
 
+/**
+ * @type {import('@sveltejs/kit').RequestHandler}
+ */
 export async function get(req) {
   const { data, errors } = await query(`
     query ALL_POSTS {

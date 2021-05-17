@@ -57,8 +57,8 @@ input InputData {
 
 type Query {
   allPosts(sortBy: String = "date", order: SortDirection = DESC): [Post]!
-  # allPages: [Page]!
+  allPages: [Page]!
   post(slug: String!): Post
-  # page(slug: String!): Page
+  page(slug: String!): Page
   meta: SiteMetadata!
 }

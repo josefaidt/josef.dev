@@ -1,35 +1,22 @@
 <script context="module">
-  import { get } from './_pages'
-
   export const prerender = true
+  export const hydrate = false
 
   /**
    * @type {import('@sveltejs/kit').Load}
    */
-  export async function load({ page: _page, fetch, session, context }) {
-    const page = await get(`/${_page.params.slug}`)
-    if (!page) {
-      return {
-        code: 404,
-      }
-    }
+  export async function load({ page: _page, fetch }) {
+    const { slug } = _page.params
+    const page = await fetch(`/${slug}.json`).then(r => r.json())
     return {
-      props: {
-        ...page,
-      },
+      props: { page },
     }
   }
 </script>
 
 <script>
-  export let metadata
-  export let content
-  // export let metadata
-  // export let component
-  // export let slug
-  // console.log('props', $$props)
+  export let page
 </script>
 
-<h1>hello from page slug template</h1>
-<!-- <svelte:component this="{component}" /> -->
-{@html content}
+<h1>{page.metadata.title}</h1>
+{@html page.html}

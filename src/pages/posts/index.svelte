@@ -1,4 +1,10 @@
 <script context="module">
+  export const prerender = true
+  export const hydrate = false
+
+  /**
+   * @type {import('@sveltejs/kit').Load}
+   */
   export async function load({ fetch }) {
     const posts = await fetch(`posts.json`).then(r => r.json())
     return {

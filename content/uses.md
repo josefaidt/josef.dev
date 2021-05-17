@@ -1,10 +1,7 @@
 ---
 title: Uses
 date: 2020-09-04
-# layout: page
 ---
-
-# {title}
 
 Sometimes I wonder what others' development environment looks like. What computer are they using? What OS do they like? What editor fits their needs? Well, here's a comprehensive list of my picks.
 
