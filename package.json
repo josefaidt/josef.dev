@@ -23,31 +23,17 @@
     "@sveltejs/adapter-static": "next",
     "@sveltejs/adapter-vercel": "next",
     "@sveltejs/kit": "next",
-    "@typescript-eslint/eslint-plugin": "^4.22.0",
-    "@typescript-eslint/parser": "^4.22.0",
     "autoprefixer": "^10.2.5",
     "eslint": "^7.25.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-svelte3": "^3.2.0",
-    "mdsvex": "^0.9.3",
     "postcss": "^8.2.13",
     "postcss-import": "^14.0.1",
     "prettier": "^2.2.1",
     "prettier-plugin-svelte": "^2.2.0",
-    "rehype-autolink-headings": "^5.0.1",
-    "rehype-document": "^5.1.0",
-    "rehype-format": "^3.1.0",
-    "rehype-local-image-to-cloudinary": "^1.1.0",
-    "rehype-slug": "^4.0.1",
-    "remark-abbr": "^1.4.1",
-    "remark-autolink-headings": "^6.0.1",
-    "remark-github": "^10.0.1",
-    "remark-slug": "^6.0.0",
     "svelte": "^3.38.1",
     "svelte-preprocess": "^4.7.2",
     "svelte-themer": "^0.4.8",
-    "tslib": "^2.2.0",
-    "typescript": "^4.2.4",
     "vercel": "^22.0.1",
     "vite": "^2.2.3"
   },
@@ -67,6 +53,36 @@
     "plugins": [
       "./node_modules/prettier-plugin-svelte"
     ]
+  },
+  "eslintConfig": {
+    "root": true,
+    "extends": [
+      "eslint:recommended",
+      "prettier"
+    ],
+    "plugins": [
+      "svelte3"
+    ],
+    "ignorePatterns": [
+      "*.cjs"
+    ],
+    "overrides": [
+      {
+        "files": [
+          "*.svelte"
+        ],
+        "processor": "svelte3/svelte3"
+      }
+    ],
+    "parserOptions": {
+      "sourceType": "module",
+      "ecmaVersion": 2019
+    },
+    "env": {
+      "browser": true,
+      "es2017": true,
+      "node": true
+    }
   },
   "babel": {
     "presets": [

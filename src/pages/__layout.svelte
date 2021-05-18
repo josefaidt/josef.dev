@@ -30,19 +30,6 @@
   $: songUrl = currentlyPlaying.songUrl
   $: title = currentlyPlaying.title
 
-  // async function getSpotifyCurrentlyPlaying() {
-  //   const res = await fetch(`/api/spotify/currently-playing`)
-  //   if (res.ok) {
-  //     return await res.json()
-  //   } else {
-  //     throw new Error('Unable to fetch')
-  //   }
-  // }
-
-  // onMount(async () => {
-  //   currentlyPlaying = await getSpotifyCurrentlyPlaying()
-  // })
-
   import '$styles/normalize.css'
   import '$styles/global.css'
   import '$styles/style.css'
@@ -161,14 +148,13 @@
     /* background-color: tomato; */
     /* color: black; */
     grid-area: main;
-    width: 80%;
     max-width: inherit;
     margin: 0 auto;
   }
 
-  /* @media (max-width: 33rem) {
+  @media (min-width: 33rem) {
     main {
-      width: 95vw;
+      width: 80%;
     }
-  } */
+  }
 </style>
