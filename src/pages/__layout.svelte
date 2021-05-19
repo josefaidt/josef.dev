@@ -1,34 +1,36 @@
 <script context="module">
   const STORAGE_KEY = '__josefdev_theme'
 
-  export async function load({ fetch }) {
-    let response
-    try {
-      response = await fetch('/api/spotify/currently-playing.json')
-    } catch (error) {
-      console.error('there was an issue fetching')
-    }
-    return { props: { currentlyPlaying: await response.json() } }
-  }
+  // when prerendering posts and posts/[slug], this code will not work
+  // export async function load({ fetch }) {
+  //   let response
+  //   try {
+  //     response = await fetch('/api/spotify/currently-playing.json')
+  //   } catch (error) {
+  //     console.error('there was an issue fetching')
+  //   }
+  //   return { props: { currentlyPlaying: await response.json() } }
+  // }
 </script>
 
 <script>
+  import { onMount } from 'svelte'
   import { ThemeWrapper } from 'svelte-themer'
   import { themes } from '$components/theme'
   // PRIMARY LAYOUT
+  import CMDK from '$components/cmd-k.svelte'
   import Nav from '$components/Nav.svelte'
   import ThemeToggle from '$components/ThemeToggle.svelte'
   import Logo from '$components/Logo.svelte'
   import Footer from '$components/Footer.svelte'
 
-  export let currentlyPlaying = {}
+  let currentlyPlaying = {}
+  onMount(async () => {
+    const res = await fetch('/api/spotify/currently-playing.json')
+    currentlyPlaying = await res.json()
+  })
 
-  $: isPlaying = currentlyPlaying.isPlaying
-  $: album = currentlyPlaying.album
-  $: albumImageUrl = currentlyPlaying.albumImageUrl
-  $: artist = currentlyPlaying.artist
-  $: songUrl = currentlyPlaying.songUrl
-  $: title = currentlyPlaying.title
+  $: isPlaying = currentlyPlaying.isPlaying ?? false
 
   import '$styles/normalize.css'
   import '$styles/global.css'
@@ -37,6 +39,7 @@
 </script>
 
 <ThemeWrapper key="{STORAGE_KEY}" themes="{themes}" theme="light">
+  <CMDK />
   <div class="container">
     <header>
       <Logo />
@@ -52,7 +55,9 @@
       <div class="spotify">
         <p>
           <b>{isPlaying ? `Now playing ` : 'Not playing'}</b>
-          {isPlaying ? `${title} by ${artist}` : ''}
+          {isPlaying
+            ? `${currentlyPlaying.title} by ${currentlyPlaying.artist}`
+            : ''}
           <span>&ndash; Spotify</span>
         </p>
       </div>

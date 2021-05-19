@@ -1,13 +1,12 @@
 <script context="module">
   export const prerender = true
-  export const hydrate = false
 
   /**
    * @type {import('@sveltejs/kit').Load}
    */
   export async function load({ page: _page, fetch }) {
     const { slug } = _page.params
-    const page = await fetch(`/${slug}.json`).then(r => r.json())
+    const page = await (await fetch(`/${slug}.json`)).json()
     return {
       props: { page },
     }
@@ -15,8 +14,11 @@
 </script>
 
 <script>
+  import SEO from '$components/SEO.svelte'
+
   export let page
 </script>
 
+<SEO {...page.metadata} />
 <h1>{page.metadata.title}</h1>
 {@html page.html}

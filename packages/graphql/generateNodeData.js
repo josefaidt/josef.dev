@@ -16,6 +16,10 @@ export default async function generateNodeData(postPath) {
 
   // add formatted JS date
   if (metadata.date) metadata.date = new Date(`${metadata.date}`).toString()
+  // provide empty description
+  if (!metadata.description) metadata.description = ''
+  // provide empty keywords
+  if (!metadata.keywords) metadata.keywords = []
 
   // content zone (i.e. /content/posts -> "posts")
   const zone = basename(dirname(postPath))

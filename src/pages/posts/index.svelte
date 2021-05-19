@@ -1,18 +1,32 @@
 <script context="module">
+  export const prerender = true
+  export const query = `
+    query ALL_POSTS {
+      allPosts {
+        slug
+        metadata {
+          title
+          description
+        }
+      }
+    }
+  `
+
   /**
    * @type {import('@sveltejs/kit').Load}
    */
-  export async function load({ fetch }) {
-    const posts = await fetch(`posts.json`).then(r => r.json())
-    return {
-      props: { posts },
-    }
-  }
+  // export async function load({ fetch }) {
+  //   const posts = await (await fetch(`posts.json`)).json()
+  //   return {
+  //     props: { posts },
+  //   }
+  // }
 </script>
 
 <script>
   import SEO from '$components/SEO.svelte'
-  export let posts
+  // export let posts
+  $: posts = query?.data?.allPosts ?? []
 
   const seoProps = {
     title: 'Snakes and Sparklers',
