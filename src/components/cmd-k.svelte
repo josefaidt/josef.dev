@@ -1,5 +1,6 @@
 <script>
   import { goto } from '$app/navigation'
+  import { onMount } from 'svelte'
 
   let needed = ['Meta', 'k']
   let keyPair = new Map()
@@ -47,7 +48,7 @@
             bind:value="{input}"
             use:focus
           />
-          <button on:click="{() => (enabled = false)}">x</button>
+          <!-- <button on:click="{() => (enabled = false)}">x</button> -->
         </form>
       </div>
     </div>
