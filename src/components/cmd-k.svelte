@@ -85,7 +85,7 @@
     'gi'
   )
   $: filteredCommands = Commands.filter(cmd => filterBy.test(cmd.name))
-  $: highlighted = filteredCommands[0]
+  $: highlighted = 0
 
   function handleKeydown({ key, keyCode }) {
     switch (keyCode) {
@@ -100,7 +100,7 @@
         break
       }
       case KEYCODE_DOWN: {
-        if (highlighted === Commands.length - 1) return
+        if (highlighted === filteredCommands.length - 1) return
         else highlighted += 1
         break
       }
