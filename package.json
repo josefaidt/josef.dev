@@ -13,12 +13,14 @@
     "build": "svelte-kit build",
     "preview": "svelte-kit preview"
   },
-  "dependencies": {},
+  "dependencies": {
+    "fuse.js": "^6.4.6"
+  },
   "devDependencies": {
     "@babel/core": "^7.14.0",
     "@babel/preset-env": "^7.14.0",
-    "@josef/markdown": "*",
     "@josef/graphql": "*",
+    "@josef/markdown": "*",
     "@rollup/plugin-dynamic-import-vars": "^1.1.1",
     "@sveltejs/adapter-static": "next",
     "@sveltejs/adapter-vercel": "next",
