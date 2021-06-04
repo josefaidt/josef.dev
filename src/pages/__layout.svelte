@@ -38,8 +38,8 @@
   import '$styles/prism.css'
 </script>
 
+<CMDK />
 <ThemeWrapper key="{STORAGE_KEY}" themes="{themes}" theme="light">
-  <CMDK />
   <div class="container">
     <header>
       <Logo />
@@ -129,16 +129,16 @@
   }
 
   header {
-    margin: 1rem 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
     grid-area: header;
+    margin: 0.8rem 1rem 0 1rem;
   }
-
-  @media (max-width: 33rem) {
+  
+  @media (min-width: 33rem) {
     header {
-      margin: 0.5rem 0;
+      margin: 1rem 0;
     }
   }
 
@@ -153,13 +153,16 @@
     /* background-color: tomato; */
     /* color: black; */
     grid-area: main;
-    max-width: inherit;
+    max-width: calc(100vw - 16px);
     margin: 0 auto;
+    padding: 0 0.5rem;
   }
-
-  @media (min-width: 33rem) {
+  
+  @media (min-width: 66rem) {
     main {
       width: 80%;
+      max-width: 800px;
+      padding: 0;
     }
   }
 </style>

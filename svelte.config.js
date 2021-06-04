@@ -30,9 +30,9 @@ export default {
       routes: resolve('src/pages'),
     },
 
-    prerender: {
-      force: true,
-    },
+    // prerender: {
+    //   force: true,
+    // },
 
     vite: {
       plugins: [GraphQLLayerPlugin({ app })],
@@ -49,6 +49,7 @@ export default {
           $content: resolve('content'),
         },
       },
+      // optimizeDeps: ['css-vars-ponyfill'],
     },
   },
   preprocess: [

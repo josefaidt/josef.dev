@@ -13,9 +13,7 @@
     "build": "svelte-kit build",
     "preview": "svelte-kit preview"
   },
-  "dependencies": {
-    "fuse.js": "^6.4.6"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@babel/core": "^7.14.0",
     "@babel/preset-env": "^7.14.0",
@@ -34,8 +32,9 @@
     "prettier": "^2.2.1",
     "prettier-plugin-svelte": "^2.2.0",
     "svelte": "^3.38.1",
+    "svelte-cmdk": "next",
     "svelte-preprocess": "^4.7.2",
-    "svelte-themer": "^0.4.8",
+    "svelte-themer": "next",
     "vercel": "^22.0.1",
     "vite": "^2.2.3"
   },

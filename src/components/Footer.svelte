@@ -56,7 +56,7 @@
 
 <style>
   footer {
-    width: 80%;
+    width: 100%;
     margin-left: auto;
     margin-right: auto;
     display: grid;
@@ -66,12 +66,34 @@
     grid-area: footer;
   }
 
+  footer {
+    padding: 0 0.5rem;
+  }
+
+  @media (min-width: 33rem) {
+    footer {
+      padding: 0;
+    }
+  }
+
+  @media (min-width: 66rem) {
+    footer {
+      width: 80%;
+    }
+  }
+
   .links-container {
-    padding-bottom: 2rem;
+    padding-bottom: 0;
     display: flex;
     align-items: center;
     justify-content: space-between;
     font-size: 90%;
+  }
+
+  @media (min-width: 33rem) {
+    .links-container {
+      padding-bottom: 2rem;
+    }
   }
 
   footer p {
