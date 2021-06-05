@@ -12,7 +12,7 @@ Say you want to practice some interview questions or edit a quick file, but stil
 
 ## ESLint
 
-In this brief tutorial we will be using VSCode + ESLint extension to point our editor to wherever we decide to drop our ESLint config file. First things first, let's install ESLint! We will be using <a href="https://yarnpkg.org" target="_blank">Yarn</a> to install our packages. Open your terminal and input the following:
+In this brief tutorial we will be using VSCode + ESLint extension to point our editor to wherever we decide to drop our ESLint config file. First things first, let's install ESLint! We will be using [Yarn](https://yarnpkg.org) to install our packages. Open your terminal and input the following:
 
 `yarn global add eslint`
 
@@ -32,7 +32,7 @@ Great, we have ESLint installed globally and our dotfile has been created and po
 
 ## VSCode Integration
 
-First, install the <a href="https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint" target="_blank">ESLint extension for VSCode</a>. This will give us access to settings available for ESLint in our editor.
+First, install the [ESLint extension for VSCode](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint). This will give us access to settings available for ESLint in our editor.
 
 If you created the ESLint dotfile elsewhere than the location noted above, don't worry, the location will not matter (seriously, you can put this thing anywhere if you wanted to, except the project directory - we'll get into that later). What will matter is the fact that VSCode will not be able to utilize environment variables to identify the location of your file, therefore you will need to use the full qualified path (example: `/Users/josef/.config/` rather than `~/.config`). Personally I drop mine in the `.config/` folder instead of the home root to avoid clogging up the directory with a plethora of dotfiles (this is virtually unavoidable). Given this information your VSCode User Settings for ESLint look this:
 
@@ -55,22 +55,16 @@ Okay. A couple things to note:
 
 ## Test It Out
 
-We should be all set. Go ahead and open a fresh VSCode instance (or reload your current window), pop open a JavaScript file and type away! You should notice little red squiggles underneath affected code. This is good! For reference as to what the ruleset we used (`eslint:recommended`) you can check out the list of rules <a href="https://eslint.org/docs/rules/" target="_blank">here</a>.
+We should be all set. Go ahead and open a fresh VSCode instance (or reload your current window), pop open a JavaScript file and type away! You should notice little red squiggles underneath affected code. This is good! For reference as to what the ruleset we used (`eslint:recommended`) you can check out the list of rules [here](https://eslint.org/docs/rules/).
 
 ---
 
 ## A Quick Note
 
-If you'd like to dive further into ESLint, I recommend checking out <a href="https://prettier.io" target="_blank">Prettier</a>. I don't use ESLint without Prettier because the formatting provided by Prettier out-of-the-box is _amazing_. Maybe try out some popular style guides like <a href="https://github.com/airbnb/javascript" target="_blank">AirBnB</a> or <a href="https://standardjs.com" target="_blank">Standard</a> (my personal favorite).
+If you'd like to dive further into ESLint, I recommend checking out [Prettier](https://prettier.io). I don't use ESLint without Prettier because the formatting provided by Prettier out-of-the-box is _amazing_. Maybe try out some popular style guides like [AirBnB](https://github.com/airbnb/javascript) or [Standard](https://standardjs.com) (my personal favorite).
 
 ### Quick Links
 
-- <a href="https://gist.github.com/josefaidt/c79bcff379683ac6109730523354fb82" target="_blank">
-    My current ESLint dotfile
-  </a>
-- <a href="https://gist.github.com/josefaidt/ed9dcc84164243c5f03b9340161acd26" target="_blank">
-    Fish shell ESLint utilities
-  </a>
-- <a href="https://fishshell.org" target="_blank">
-    Fish
-  </a>
+- [My current ESLint dotfile](https://gist.github.com/josefaidt/c79bcff379683ac6109730523354fb82)
+- [Fish shell ESLint utilities](https://gist.github.com/josefaidt/ed9dcc84164243c5f03b9340161acd26)
+- [Fish](https://fishshell.org)

@@ -7,6 +7,9 @@
         metadata {
           title
           description
+          readingTime {
+            text
+          }
         }
       }
     }
@@ -45,16 +48,27 @@
   </blockquote>
 
   <h2>Posts</h2>
-  {#each posts as post, index}
-    <a href="{post.slug}" aria-labelledby="{index}">
-      <article>
-        <h3 id="{index}">{post.metadata.title}</h3>
-      </article>
-    </a>
-  {/each}
+  <ul>
+    {#each posts as post, index}
+      <li>
+        <a href="{post.slug}" aria-labelledby="{index}">
+          <article>
+            <p id="{index}">{post.metadata.title}</p>
+            <div>
+              <span>{post.metadata.readingTime.text}</span>
+            </div>
+          </article>
+        </a>
+      </li>
+    {/each}
+  </ul>
 </section>
 
 <style>
+  ul {
+    list-style: none;
+    padding: 0;
+  }
   a,
   article {
     color: var(--theme-text);
@@ -62,12 +76,22 @@
   }
 
   article {
-    box-shadow: 0 4px 8px 0 var(--theme-shadow);
+    /* box-shadow: 0 4px 8px 0 var(--theme-shadow); */
     border: 1px solid var(--theme-shadow);
     border-radius: 5px;
     margin: 1rem 0;
     transition: all 0.3s ease;
-    padding: 1rem;
+    /* padding: 1rem; */
+  }
+
+  article {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  article p {
+    margin: 0;
   }
 
   article:hover {

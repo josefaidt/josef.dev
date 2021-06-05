@@ -25,10 +25,10 @@
   import Footer from '$components/Footer.svelte'
 
   let currentlyPlaying = {}
-  onMount(async () => {
-    const res = await fetch('/api/spotify/currently-playing.json')
-    currentlyPlaying = await res.json()
-  })
+  // onMount(async () => {
+  //   const res = await fetch('/api/spotify/currently-playing.json')
+  //   currentlyPlaying = await res.json()
+  // })
 
   $: isPlaying = currentlyPlaying.isPlaying ?? false
 
@@ -136,7 +136,7 @@
     grid-area: header;
   }
 
-  @media (max-width: 33rem) {
+  @media (min-width: 66rem) {
     header {
       margin: 0.5rem 0;
     }
@@ -153,11 +153,12 @@
     /* background-color: tomato; */
     /* color: black; */
     grid-area: main;
-    max-width: inherit;
+    min-width: 80%;
+    max-width: calc(100vw - 16px);
     margin: 0 auto;
   }
 
-  @media (min-width: 33rem) {
+  @media (min-width: 66rem) {
     main {
       width: 80%;
     }

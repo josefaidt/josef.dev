@@ -8,6 +8,8 @@ import rehypeStringify from 'rehype-stringify'
 import frontmatter from 'remark-frontmatter'
 import highlight from '@mapbox/rehype-prism'
 import cloudinary from 'rehype-local-image-to-cloudinary'
+import sanitize from 'rehype-sanitize'
+import readingTime from 'reading-time'
 import yaml from 'js-yaml'
 import dayjs from 'dayjs'
 
@@ -21,15 +23,18 @@ const runner = unified()
   .use(remark2rehype)
   .use(cloudinary, cloudinaryConfig)
   .use(highlight)
+  .use(sanitize)
   .use(rehypeStringify)
 
 export async function process(filename) {
-  const tree = parser.parse(vfile.readSync(filename))
+  const file = vfile.readSync(filename)
+  const tree = parser.parse(file)
   let metadata = null
   if (tree.children.length > 0 && tree.children[0].type === 'yaml') {
     metadata = yaml.load(tree.children[0].value)
     tree.children = tree.children.slice(1, tree.children.length)
     metadata.date = dayjs(metadata.date).format('MMM D, YYYY')
+    metadata.readingTime = readingTime(file?.contents?.toString())
   }
   const content = runner.stringify(await runner.run(tree))
   return { metadata, content }

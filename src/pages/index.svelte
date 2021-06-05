@@ -4,7 +4,6 @@
 
 <SEO title="josef.dev" />
 <h1>Hello</h1>
-<p>Try using cmd+k</p>
 <div><q>The power of imagination makes us infinite — John Muir</q></div>
 
 <style>

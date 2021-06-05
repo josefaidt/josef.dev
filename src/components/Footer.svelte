@@ -66,6 +66,22 @@
     grid-area: footer;
   }
 
+  footer {
+    padding: 0 0.5rem;
+  }
+
+  @media (min-width: 66rem) {
+    footer {
+      padding: 0;
+    }
+  }
+
+  @media (min-width: 66rem) {
+    footer {
+      width: 80%;
+    }
+  }
+
   .links-container {
     padding-bottom: 2rem;
     display: flex;

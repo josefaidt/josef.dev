@@ -6,6 +6,13 @@ interface Node {
   zone: String!
 }
 
+type ReadingTime {
+  text: String
+  minutes: Float
+  time: Int
+  words: Int
+}
+
 type NodeMetadata {
   title: String
   date: String
@@ -13,6 +20,7 @@ type NodeMetadata {
   tags: [String]
   keywords: [String]
   published: Boolean
+  readingTime: ReadingTime
 }
 
 type Post implements Node {
