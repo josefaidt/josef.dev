@@ -8,7 +8,6 @@ import rehypeStringify from 'rehype-stringify'
 import frontmatter from 'remark-frontmatter'
 import highlight from '@mapbox/rehype-prism'
 import cloudinary from 'rehype-local-image-to-cloudinary'
-import sanitize from 'rehype-sanitize'
 import readingTime from 'reading-time'
 import yaml from 'js-yaml'
 import dayjs from 'dayjs'
@@ -23,7 +22,6 @@ const runner = unified()
   .use(remark2rehype)
   .use(cloudinary, cloudinaryConfig)
   .use(highlight)
-  .use(sanitize)
   .use(rehypeStringify)
 
 export async function process(filename) {

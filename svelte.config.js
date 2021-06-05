@@ -6,6 +6,8 @@ import { GraphQLLayerPlugin, preprocessGraphQL } from '@josef/graphql'
 import autoprefixer from 'autoprefixer'
 
 const pkg = JSON.parse(await readFile(resolve('package.json'), 'utf-8'))
+const isProduction = process.env.NODE_ENV === 'production'
+
 export const app = {
   title: 'josef',
   url: 'https://josef.dev',
@@ -47,6 +49,13 @@ export default {
           $icons: resolve('src/components/icons'),
           $styles: resolve('src/styles'),
           $content: resolve('content'),
+        },
+      },
+      build: {
+        rollupOptions: {
+          input: {
+            app: resolve(`src/pages/app${!isProduction ? '.dev' : ''}.html`),
+          },
         },
       },
     },

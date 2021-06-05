@@ -158,9 +158,10 @@
     margin: 0 auto;
   }
 
-  @media (min-width: 66rem) {
+  @media (min-width: 33rem) {
     main {
       width: 80%;
+      max-width: 800px;
     }
   }
 </style>

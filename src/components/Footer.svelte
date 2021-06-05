@@ -70,7 +70,7 @@
     padding: 0 0.5rem;
   }
 
-  @media (min-width: 66rem) {
+  @media (min-width: 33rem) {
     footer {
       padding: 0;
     }

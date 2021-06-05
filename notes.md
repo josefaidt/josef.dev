@@ -6,3 +6,4 @@ Improvements, fun ideas, etc.
 - improve graphql layer state/config
 - graphql layer autogenerates based on directory structure of `content`
 - build out dashboard
+- polish markdown code block highlighting
