@@ -6,7 +6,9 @@
         slug
         metadata {
           title
+          date
           description
+          tags
           readingTime {
             text
           }
@@ -48,15 +50,31 @@
   </blockquote>
 
   <h2>Posts</h2>
-  <ul>
+  <ul class="post-list">
     {#each posts as post, index}
       <li>
         <a href="{post.slug}" aria-labelledby="{index}">
           <article>
-            <p id="{index}">{post.metadata.title}</p>
-            <div>
-              <span>{post.metadata.readingTime.text}</span>
+            <div class="post-meta">
+              <span>
+                {new Date(post.metadata.date).toLocaleDateString(undefined, {
+                  year: 'numeric',
+                  month: 'short',
+                  day: 'numeric',
+                })}
+              </span>
+              <span class="reading-time">{post.metadata.readingTime.text}</span>
             </div>
+            <h3 id="{index}">{post.metadata.title}</h3>
+            {#if post.metadata.tags?.length > 0}
+              <div>
+                <ul class="post-tags">
+                  {#each post.metadata.tags as tag, kindex}
+                    <li><span>#{tag}</span></li>
+                  {/each}
+                </ul>
+              </div>
+            {/if}
           </article>
         </a>
       </li>
@@ -68,10 +86,17 @@
   ul {
     list-style: none;
     padding: 0;
-
-    --gap: 0.3rem;
+  }
+  ul.post-list {
+    --gap: 1.3rem;
     display: grid;
     grid-gap: var(--gap);
+  }
+
+  @media (min-width: 33rem) {
+    ul.post-list {
+      --gap: 0.8rem;
+    }
   }
   a,
   article {
@@ -85,28 +110,69 @@
     border: 1px solid var(--border-color);
     border-radius: 5px;
     margin: 0 calc(var(--article-offset) * -1);
-    padding: 0 var(--article-offset);
+    padding: calc(var(--article-offset) / 1.5) var(--article-offset);
 
-    transition: all 100ms ease;
+    transition: all 50ms ease;
   }
 
   article {
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    align-items: flex-start;
     justify-content: space-between;
   }
 
-  article p {
+  article h3 {
     margin: 0;
-    font-weight: 600;
+
+    font-size: large;
+    padding-top: 0pc;
+    line-height: 1.8rem;
+    /* font-weight: 600; */
+  }
+
+  @media (min-width: 33rem) {
+    article h3 {
+      font-size: large;
+      line-height: 2.1rem;
+      padding-top: 0.2rem;
+    }
+  }
+
+  article div.post-meta {
+    display: grid;
+    grid-auto-flow: column;
+    grid-gap: 0.8rem;
   }
 
   article span {
     font-size: smaller;
+    line-height: 1.2rem;
+  }
+
+  article .reading-time {
+    display: none;
+    font-style: italic;
+  }
+  @media (min-width: 33rem) {
+    article .reading-time {
+      display: inline;
+    }
+  }
+
+  article ul.post-tags {
+    display: grid;
+    grid-auto-flow: column;
+    column-gap: 0.75rem;
+  }
+
+  article ul.post-tags li {
+    line-height: 1rem;
   }
 
   article:hover {
-    --hover: var(--theme-primary);
+    /* --hover: var(--theme-primary); */
+    --hover: var(--rouge);
     background-color: var(--hover);
     color: var(--theme-bg);
     transition: all 100ms ease;
@@ -114,10 +180,5 @@
 
   :global(html[theme='dark']) article {
     box-shadow: initial;
-  }
-
-  article h3 {
-    font-size: 1.5rem;
-    margin-top: 0.25rem;
   }
 </style>

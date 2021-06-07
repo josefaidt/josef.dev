@@ -18,7 +18,7 @@
         href="https://twitter.com/josefaidt"
         aria-label="Twitter"
         target="_blank"
-        rel="noreferrer noorigin"
+        rel="me noreferrer noorigin"
       >
         <TwitterIcon />
       </a>
@@ -26,14 +26,14 @@
         href="https://linkedin.com/in/josefaidt"
         aria-label="LinkedIn"
         target="_blank"
-        rel="noreferrer noorigin"
+        rel="me noreferrer noorigin"
       >
         <LinkedInIcon />
       </a>
       <a
         href="https://open.spotify.com/user/1215285465?si=oxVZ8WelTQyZBdr97Tz4fQ"
         target="_blank"
-        rel="noreferrer noorigin"
+        rel="me noreferrer noorigin"
         aria-label="Spotify"
       >
         <SpotifyIcon />
@@ -41,7 +41,7 @@
       <a
         href="https://github.com/josefaidt"
         target="_blank"
-        rel="noreferrer noorigin"
+        rel="me noreferrer noorigin"
         data-icon="github"
         aria-label="Github"
       >
@@ -57,6 +57,7 @@
 <style>
   footer {
     width: 80%;
+    margin-top: var(--spacing, 0);
     margin-left: auto;
     margin-right: auto;
     display: grid;
@@ -73,6 +74,7 @@
   @media (min-width: 33rem) {
     footer {
       padding: 0;
+      margin-bottom: calc(var(--spacing, 0) / 2);
     }
   }
 
@@ -83,7 +85,7 @@
   }
 
   .links-container {
-    padding-bottom: 2rem;
+    /* padding-bottom: 2rem; */
     display: flex;
     align-items: center;
     justify-content: space-between;

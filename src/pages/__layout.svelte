@@ -51,7 +51,7 @@
     <main>
       <slot />
     </main>
-    <Footer>
+    <Footer --spacing="4rem">
       <div class="spotify">
         <p>
           <b>{isPlaying ? `Now playing ` : 'Not playing'}</b>
@@ -115,7 +115,7 @@
     display: grid;
     grid-auto-flow: row;
     grid-template-rows: min-content 1fr min-content;
-    grid-gap: 4rem;
+    grid-gap: 2rem;
     grid-template-areas:
       'header'
       'main'
@@ -125,6 +125,7 @@
   @media (min-width: 33rem) {
     .container {
       max-width: 60rem;
+      grid-gap: 4rem;
     }
   }
 
