@@ -182,7 +182,7 @@
   }
 
   article ul.post-tags li {
-    line-height: 1rem;
+    line-height: 1.4rem;
   }
 
   article:hover {
