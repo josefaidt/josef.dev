@@ -53,6 +53,18 @@ type SiteMetadata {
   keywords: [String]
 }
 
+enum DateInputType {
+  long
+  short
+  numeric
+}
+
+input LocaleDateStringOptions {
+  year: DateInputType
+  month: DateInputType
+  day: DateInputType
+}
+
 enum SortDirection {
   ASC
   DESC
@@ -63,10 +75,18 @@ input InputData {
   order: SortDirection = DESC
 }
 
+input Options {
+  toLocaleDateStringOptions: LocaleDateStringOptions
+}
+
 type Query {
-  allPosts(sortBy: String = "date", order: SortDirection = DESC): [Post]!
-  allPages: [Page]!
-  post(slug: String!): Post
-  page(slug: String!): Page
+  allPosts(
+    sortBy: String = "date"
+    order: SortDirection = DESC
+    options: Options = {}
+  ): [Post]!
+  allPages(options: Options = {}): [Page]!
+  post(slug: String!, options: Options = {}): Post
+  page(slug: String!, options: Options = {}): Page
   metadata: SiteMetadata!
 }

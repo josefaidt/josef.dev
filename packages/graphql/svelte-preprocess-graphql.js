@@ -31,11 +31,17 @@ export function preprocessGraphQL() {
         if (!start) return { code: content }
 
         const code = content.slice(start, end)
-        // const evaluated = eval(code)
+        const evaluated = eval(code)
 
         let data
         try {
-          data = await request(code)
+          let query = ``
+          let vars = {}
+          if (Array.isArray(evaluated)) {
+            ;[query, vars] = evaluated
+          } else query = evaluated
+
+          data = await request(query, vars)
         } catch (error) {
           throw new Error(`There was an error requesting data\n${error}`)
           // console.log(

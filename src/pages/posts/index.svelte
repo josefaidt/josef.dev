@@ -1,8 +1,11 @@
 <script context="module">
   export const prerender = true
-  export const query = `
-    query ALL_POSTS {
-      allPosts {
+  export const query = [
+    `
+    query ALL_POSTS($toLocaleDateStringOptions: LocaleDateStringOptions) {
+      allPosts(options:
+        { toLocaleDateStringOptions: $toLocaleDateStringOptions}
+      ) {
         slug
         metadata {
           title
@@ -15,7 +18,15 @@
         }
       }
     }
-  `
+  `,
+    {
+      toLocaleDateStringOptions: {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
+      },
+    },
+  ]
 
   /**
    * @type {import('@sveltejs/kit').Load}
@@ -30,6 +41,7 @@
 
 <script>
   import SEO from '$components/SEO.svelte'
+  import Tag from './_tag.svelte'
   // export let posts
   $: posts = query?.data?.allPosts ?? []
 
@@ -51,17 +63,13 @@
 
   <h2>Posts</h2>
   <ul class="post-list">
-    {#each posts as post, index}
+    {#each posts as post, index (index)}
       <li>
         <a href="{post.slug}" aria-labelledby="{index}">
           <article>
             <div class="post-meta">
               <span>
-                {new Date(post.metadata.date).toLocaleDateString(undefined, {
-                  year: 'numeric',
-                  month: 'short',
-                  day: 'numeric',
-                })}
+                {post.metadata.date}
               </span>
               <span class="reading-time">{post.metadata.readingTime.text}</span>
             </div>
@@ -69,8 +77,8 @@
             {#if post.metadata.tags?.length > 0}
               <div>
                 <ul class="post-tags">
-                  {#each post.metadata.tags as tag, kindex}
-                    <li><span>#{tag}</span></li>
+                  {#each post.metadata.tags as tag, kindex (kindex)}
+                    <li><Tag>#{tag}</Tag></li>
                   {/each}
                 </ul>
               </div>
@@ -88,14 +96,14 @@
     padding: 0;
   }
   ul.post-list {
-    --gap: 1.3rem;
+    --gap: 1.5rem;
     display: grid;
     grid-gap: var(--gap);
   }
 
   @media (min-width: 33rem) {
     ul.post-list {
-      --gap: 0.8rem;
+      --gap: 1.3rem;
     }
   }
   a,
@@ -126,16 +134,17 @@
     margin: 0;
 
     font-size: large;
-    padding-top: 0pc;
+    /* padding-top: 0pc; */
     line-height: 1.8rem;
     /* font-weight: 600; */
+    /* padding-top for font offset with josefin sans */
+    padding-top: 0.2rem;
   }
 
   @media (min-width: 33rem) {
     article h3 {
       font-size: large;
       line-height: 2.1rem;
-      padding-top: 0.2rem;
     }
   }
 

@@ -6,7 +6,9 @@ import config from '../options'
 export async function allPages(parent, args, ctx, info) {
   const files = (await readdir(config.content))
     .filter(fileName => /.+\.md$/.test(fileName))
-    .map(fileName => generateNodeData(join(config.content, fileName)))
+    .map(fileName =>
+      generateNodeData(join(config.content, fileName), args.options)
+    )
 
   let result = []
   for await (let file of files) {

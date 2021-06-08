@@ -4,7 +4,8 @@ import { process } from '@josef/markdown'
 import config from './options'
 
 const indexRegex = /index\.(svx|md)$/
-export default async function generateNodeData(postPath) {
+export default async function generateNodeData(postPath, options) {
+  const { toLocaleDateStringOptions } = options || {}
   // This will give you a valid svelte component
   const { metadata, content: html } = await process(postPath)
   let slug = postPath.replace(config.content, '')
@@ -15,7 +16,11 @@ export default async function generateNodeData(postPath) {
   slug = slug.replace(extname(postPath), '')
 
   // add formatted JS date
-  if (metadata.date) metadata.date = new Date(`${metadata.date}`).toString()
+  if (metadata.date)
+    metadata.date = new Date(`${metadata.date}`).toLocaleDateString(
+      undefined,
+      toLocaleDateStringOptions
+    )
   // provide empty description
   if (!metadata.description) metadata.description = ''
   // provide empty keywords

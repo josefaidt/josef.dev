@@ -8,7 +8,7 @@ export async function allPosts(parent, args, ctx, info) {
   const postPath = join(config.content, 'posts')
   const files = (await readdir(postPath))
     .filter(fileName => /.+\.md$/.test(fileName))
-    .map(fileName => generateNodeData(join(postPath, fileName)))
+    .map(fileName => generateNodeData(join(postPath, fileName), args.options))
 
   let result = []
   for await (let file of files) {
