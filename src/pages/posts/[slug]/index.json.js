@@ -6,8 +6,11 @@ import { query } from '@josef/graphql'
 export async function get({ path, ...rest }) {
   const { data, errors } = await query(
     `
-    query GET_POST($slug: String!) {
-      post(slug:$slug) {
+    query GET_POST($slug: String!, $toLocaleDateStringOptions: LocaleDateStringOptions) {
+      post(
+        slug:$slug, 
+        options: { toLocaleDateStringOptions: $toLocaleDateStringOptions }
+      ) {
         slug
         metadata {
           title
@@ -19,7 +22,14 @@ export async function get({ path, ...rest }) {
       }
     }
   `,
-    { slug: path.replace(/\.json$/, '') }
+    {
+      slug: path.replace(/\.json$/, ''),
+      toLocaleDateStringOptions: {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
+      },
+    }
   )
 
   if (errors) {

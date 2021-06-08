@@ -96,7 +96,7 @@
     padding: 0;
   }
   ul.post-list {
-    --gap: 1.5rem;
+    --gap: 1rem;
     display: grid;
     grid-gap: var(--gap);
   }
@@ -133,7 +133,7 @@
   article h3 {
     margin: 0;
 
-    font-size: large;
+    font-size: x-large;
     /* padding-top: 0pc; */
     line-height: 1.8rem;
     /* font-weight: 600; */
@@ -170,9 +170,15 @@
   }
 
   article ul.post-tags {
-    display: grid;
+    display: none;
     grid-auto-flow: column;
     column-gap: 0.75rem;
+  }
+
+  @media (min-width: 33rem) {
+    article ul.post-tags {
+      display: grid;
+    }
   }
 
   article ul.post-tags li {
