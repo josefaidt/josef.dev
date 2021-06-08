@@ -14,7 +14,7 @@
 </script>
 
 <nav>
-  {#each navItems as item}
+  {#each navItems as item, index (index)}
     <a
       sveltekit:prefetch
       href="{item.path}"
@@ -54,6 +54,7 @@
     filter: initial;
     /* background-color: var(--theme-accent); */
     border: 2px solid var(--theme-accent);
+
     color: var(--theme-text);
     transition: all 100ms ease;
     text-decoration: none;
