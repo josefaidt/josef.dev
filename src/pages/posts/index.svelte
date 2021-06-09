@@ -53,15 +53,16 @@
 </script>
 
 <SEO {...seoProps} />
-<section>
+<!-- <section>
   <h1>{seoProps.title}</h1>
   <p>{seoProps.description}</p>
   <blockquote>
-    "Snakes and Sparklers are the only ones I like." -Kicking Wing, Joe Dirt
-    (2001)
+    <q>Snakes and Sparklers are the only ones I like.</q>
+    <cite>&ndash; Kicking Wing, Joe Dirt (2001)</cite>
   </blockquote>
-
-  <h2>Posts</h2>
+</section> -->
+<section>
+  <!-- <h2>Posts</h2> -->
   <ul class="post-list">
     {#each posts as post, index (index)}
       <li>
@@ -117,10 +118,16 @@
     --article-offset: 0.8rem;
     border: 1px solid var(--border-color);
     border-radius: 5px;
-    margin: 0 calc(var(--article-offset) * -1);
+    margin: 0 calc(var(--article-offset) * -1 / 2);
     padding: calc(var(--article-offset) / 1.5) var(--article-offset);
 
     transition: all 50ms ease;
+  }
+
+  @media (min-width: 33rem) {
+    article {
+      margin: 0 calc(var(--article-offset) * -1);
+    }
   }
 
   article {
@@ -151,7 +158,7 @@
   article div.post-meta {
     display: grid;
     grid-auto-flow: column;
-    grid-gap: 0.8rem;
+    column-gap: 0.8rem;
   }
 
   article span {

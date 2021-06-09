@@ -26,7 +26,7 @@ export async function get({ path, ...rest }) {
       slug: path.replace(/\.json$/, ''),
       toLocaleDateStringOptions: {
         year: 'numeric',
-        month: 'short',
+        month: 'long',
         day: 'numeric',
       },
     }

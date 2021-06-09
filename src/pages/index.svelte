@@ -4,7 +4,12 @@
 
 <SEO title="josef.dev" />
 <h1>Hello</h1>
-<div><q>The power of imagination makes us infinite — John Muir</q></div>
+<div>
+  <blockquote>
+    <q>The power of imagination makes us infinite</q>
+    <cite>&ndash; John Muir</cite>
+  </blockquote>
+</div>
 
 <style>
   div {

@@ -1,3 +1,8 @@
+* {
+  text-rendering: optimizeLegibility;
+  text-shadow: rgb(0 0 0 / 1%) 0 0 1px;
+}
+
 body {
   /* line-height: 2rem; */
   font-size: 16px;

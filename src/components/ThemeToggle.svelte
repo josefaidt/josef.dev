@@ -20,9 +20,9 @@
   button {
     cursor: pointer;
     color: var(--theme-text);
-    border: 2px solid var(--theme-bg-contrast);
+    border: 2px solid transparent;
     border-radius: 3px;
-    background-color: var(--theme-bg-contrast);
+    background-color: transparent;
     padding: 0.2rem 0.4rem;
     margin: 0;
 
@@ -38,7 +38,9 @@
     /* font-weight: bold; */
   }
 
-  button:hover {
-    border-color: var(--theme-primary);
+  button:hover,
+  button:focus {
+    border-color: var(--theme-accent);
+    background-color: transparent;
   }
 </style>

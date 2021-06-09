@@ -29,6 +29,7 @@
 <style>
   h1 {
     --font-size: 2rem;
+    margin-top: 0.75rem;
     margin-bottom: 0;
     line-height: calc(var(--font-size) + 0.2rem);
     font-size: var(--font-size);

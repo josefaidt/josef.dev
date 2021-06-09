@@ -2,10 +2,10 @@
   import { page } from '$app/stores'
 
   let navItems = [
-    {
-      name: 'Home',
-      path: '/',
-    },
+    // {
+    //   name: 'Home',
+    //   path: '/',
+    // },
     {
       name: 'Posts',
       path: '/posts',
@@ -70,7 +70,7 @@
   }
 
   @media (max-width: 33rem) {
-    nav {
+    /* nav {
       position: fixed;
       bottom: 0;
       right: 0;
@@ -80,18 +80,17 @@
 
       height: var(--nav-offset);
       background-color: var(--theme-bg-contrast);
-      /* box-shadow: 0px 0px 40px -10px var(--theme-shadow); */
-    }
+    } */
 
-    a {
+    /* a {
       border-bottom: 0 solid transparent;
       border-top: 2px solid var(--theme-bg-contrast);
-    }
+    } */
 
-    a.active {
+    /* a.active {
       border-bottom: 0 solid transparent;
       border-top: 2px solid var(--theme-primary);
-    }
+    } */
 
     a:focus {
       outline: none;
