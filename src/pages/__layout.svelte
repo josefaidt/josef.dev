@@ -158,13 +158,13 @@
     max-width: calc(100vw - 16px);
     margin: 0 auto;
 
-    --main-grid-flow: row;
+    /* --main-grid-flow: row;
     --main-grid-row-gap: 0rem;
     --main-grid-column-gap: 0rem;
     display: grid;
     grid-auto-flow: var(--main-grid-flow);
     row-gap: var(--main-grid-row-gap);
-    column-gap: var(--main-grid-column-gap);
+    column-gap: var(--main-grid-column-gap); */
   }
 
   @media (min-width: 33rem) {

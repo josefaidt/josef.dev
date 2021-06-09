@@ -21,10 +21,14 @@ blockquote {
 pre {
   border-radius: 3px;
   overflow: auto;
-  overflow-wrap: normal;
+  /* overflow-wrap: normal; */
 }
 
 img {
   width: 100%;
   border-radius: 3px;
+}
+
+ul {
+  padding-inline-start: 1.3rem;
 }

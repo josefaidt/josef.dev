@@ -57,7 +57,7 @@ pre {
 }
 
 code {
-  white-space: nowrap;
+  /* white-space: nowrap; */
   background-color: var(--theme-bg-contrast);
   padding: 0.3rem;
   border-radius: 0.3rem;

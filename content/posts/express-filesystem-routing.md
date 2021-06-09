@@ -92,7 +92,6 @@ Noted earlier, [express-fs-router](https://www.npmjs.com/package/express-fs-rout
 - functions named with a request method will attach that handler using the defined method
 
   ```js
-  // api/hello.js
   export default function get(req, res) {}
   ```
 
