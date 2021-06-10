@@ -1,8 +1,8 @@
 <script>
-  import GitHubIcon from './icons/github.svg.svelte'
-  import SpotifyIcon from './icons/spotify.svg.svelte'
-  import TwitterIcon from './icons/twitter.svg.svelte'
-  import LinkedInIcon from './icons/linkedin.svg.svelte'
+  import GitHubIcon from '$icons/github.svg.svelte'
+  import SpotifyIcon from '$icons/spotify.svg.svelte'
+  import TwitterIcon from '$icons/twitter.svg.svelte'
+  import LinkedInIcon from '$icons/linkedin.svg.svelte'
 </script>
 
 <footer>

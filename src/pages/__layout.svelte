@@ -14,15 +14,14 @@
 </script>
 
 <script>
-  import { onMount } from 'svelte'
   import { ThemeWrapper } from 'svelte-themer'
   import { themes } from '$components/theme'
   // PRIMARY LAYOUT
   // import CMDK from '$components/cmd-k.svelte'
-  import Nav from '$components/Nav.svelte'
   import ThemeToggle from '$components/ThemeToggle.svelte'
   import Logo from '$components/Logo.svelte'
-  import Footer from '$components/Footer.svelte'
+  import Nav from './_nav.svelte'
+  import Footer from './_footer.svelte'
 
   let currentlyPlaying = {}
   // onMount(async () => {
@@ -146,7 +145,7 @@
   header > div {
     display: grid;
     grid-auto-flow: column;
-    grid-gap: 2rem;
+    column-gap: 1.5rem;
     align-items: center;
   }
 
