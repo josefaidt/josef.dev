@@ -18,7 +18,7 @@
   import { ThemeWrapper } from 'svelte-themer'
   import { themes } from '$components/theme'
   // PRIMARY LAYOUT
-  import CMDK from '$components/cmd-k.svelte'
+  // import CMDK from '$components/cmd-k.svelte'
   import Nav from '$components/Nav.svelte'
   import ThemeToggle from '$components/ThemeToggle.svelte'
   import Logo from '$components/Logo.svelte'
@@ -39,7 +39,7 @@
 </script>
 
 <ThemeWrapper key="{STORAGE_KEY}" themes="{themes}" theme="light">
-  <CMDK />
+  <!-- <CMDK /> -->
   <div class="container">
     <header>
       <Logo />

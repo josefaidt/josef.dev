@@ -15,3 +15,6 @@ Improvements, fun ideas, etc.
   - gather data from g-analytics
   - prepare migration to panelbear
 - share API
+- progress bar as you read posts?
+- mobile FAB (prepare for safari design)
+- publishing post generates post on dev.to? how can this be automated?

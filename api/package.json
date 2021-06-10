@@ -1,0 +1,11 @@
+{
+  "name": "@josef/api",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "echo 'empty build script to pass postinstall'"
+  },
+  "dependencies": {
+    "node-fetch": "^2.6.1",
+    "querystring": "^0.2.1"
+  }
+}
