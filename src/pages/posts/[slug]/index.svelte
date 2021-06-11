@@ -20,7 +20,7 @@
   export let post
 </script>
 
-<SEO {...post.metadata} type="article" />
+<SEO {...post.metadata} type="article" card="summary_large_image" />
 <h1>{post.metadata.title}</h1>
 <div class="post-meta">
   <span>

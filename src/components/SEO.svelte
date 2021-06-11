@@ -23,6 +23,7 @@
   export let author = query.data.metadata.author
   export let imageUrl = '/favicon.png'
   export let type = 'website'
+  export let card = 'summary'
 </script>
 
 <svelte:head>
@@ -38,7 +39,7 @@
   <meta name="og:image" content="{imageUrl}" />
   <meta name="og:type" content="{type}" />
 
-  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:card" content="{card}" />
   <meta name="twitter:creator" content="{`@${query.data.metadata.handle}`}" />
   <meta name="twitter:title" content="{title}" />
   <meta name="twitter:description" content="{description.slice(0, 244)}" />
