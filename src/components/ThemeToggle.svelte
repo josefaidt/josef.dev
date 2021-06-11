@@ -36,6 +36,9 @@
 
     /* temporary until icons */
     /* font-weight: bold; */
+
+    /* override site-wide background-color transition prop */
+    transition-property: all;
   }
 
   button:hover,

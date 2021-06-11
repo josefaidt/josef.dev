@@ -14,6 +14,7 @@
 </script>
 
 <script>
+  import { onMount } from 'svelte'
   import { ThemeWrapper } from 'svelte-themer'
   import { themes } from '$components/theme'
   // PRIMARY LAYOUT
@@ -24,10 +25,14 @@
   import Footer from './_footer.svelte'
 
   let currentlyPlaying = {}
-  // onMount(async () => {
-  //   const res = await fetch('/api/spotify/currently-playing.json')
-  //   currentlyPlaying = await res.json()
-  // })
+  onMount(async () => {
+    try {
+      const res = await fetch('/api/spotify/currently-playing')
+      currentlyPlaying = await res.json()
+    } catch (error) {
+      //
+    }
+  })
 
   $: isPlaying = currentlyPlaying.isPlaying ?? false
 

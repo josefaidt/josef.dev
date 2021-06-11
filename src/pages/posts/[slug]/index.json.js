@@ -16,7 +16,7 @@ export async function get({ path, ...rest }) {
           title
           description
           date
-          keywords
+          tags
         }
         html
       }

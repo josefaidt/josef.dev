@@ -42,7 +42,6 @@
 <script>
   import SEO from '$components/SEO.svelte'
   import Article from './_article.svelte'
-  import Tag from './_tag.svelte'
   // export let posts
   $: posts = query?.data?.allPosts ?? []
 
@@ -70,7 +69,7 @@
         <a href="{post.slug}" aria-labelledby="{index}">
           <Article
             {...post.metadata}
-            readingTime="{post.metadata.readingTime.text}"
+            readingTime="{post.metadata?.readingTime?.text}"
           />
         </a>
       </li>
@@ -95,7 +94,8 @@
     }
   }
 
-  a {
+  a,
+  a:hover {
     text-decoration: none;
   }
 </style>
