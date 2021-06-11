@@ -15,25 +15,22 @@
 </script>
 
 <script>
-  import getShareImage from '@jlengstorf/get-share-image'
   import SEO from '$components/SEO.svelte'
-  import { themes } from '$components/theme'
 
   export let post
-
-  const socialImage = getShareImage({
-    title: post.metadata.title,
-    tagline: post.metadata.tags.map(k => `#${k}`).join('  '),
-    cloudName: import.meta.env.VITE_CLOUDINARY_CLOUD_NAME,
-    imagePublicID: import.meta.env.VITE_CLOUDINARY_IMAGE_PUBLIC_ID,
-    textColor: themes.light.text.slice(1),
-  })
 </script>
 
-<SEO {...post.metadata} imageUrl="{socialImage}" />
+<SEO {...post.metadata} type="article" />
 <h1>{post.metadata.title}</h1>
-<span>{post.metadata.date}</span>
-{@html post.html}
+<div class="post-meta">
+  <span>
+    {post.metadata.date}
+  </span>
+  <span class="reading-time">{post.metadata.readingTime.text}</span>
+</div>
+<div class="post-content">
+  {@html post.html}
+</div>
 
 <style>
   h1 {
@@ -42,5 +39,45 @@
     margin-bottom: 0;
     line-height: calc(var(--title-font-size) + 0.2rem);
     font-size: var(--title-font-size);
+  }
+
+  .post-meta {
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: max-content;
+    column-gap: 0.8rem;
+  }
+
+  .reading-time {
+    font-style: italic;
+  }
+
+  .post-content :global(a) {
+    text-decoration: underline;
+  }
+
+  .post-content :global(h2 a),
+  .post-content :global(h3 a),
+  .post-content :global(h4 a) {
+    color: var(--theme-text);
+    text-decoration: none;
+  }
+
+  .post-content :global(h2 a:hover),
+  .post-content :global(h3 a:hover),
+  .post-content :global(h4 a:hover) {
+    text-decoration: underline;
+  }
+
+  .post-content :global(h3) {
+    font-size: larger;
+  }
+
+  .post-content :global(h4) {
+    font-size: larger;
+  }
+
+  :global(.icon.icon-link) {
+    background-image: url(/link.svg);
   }
 </style>

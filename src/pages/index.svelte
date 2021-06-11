@@ -2,7 +2,7 @@
   import SEO from '$components/SEO.svelte'
 </script>
 
-<SEO title="josef.dev" />
+<SEO title="josef.dev" description="Welcome to josef.dev, a new home." />
 <h1>Hello</h1>
 <div>
   <blockquote>

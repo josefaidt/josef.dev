@@ -1,4 +1,6 @@
 import { query } from '@josef/graphql'
+import getShareImage from '@jlengstorf/get-share-image'
+import { themes } from '$lib/theme'
 
 /**
  * @type {import('@sveltejs/kit').RequestHandler}
@@ -17,6 +19,9 @@ export async function get({ path }) {
           description
           date
           tags
+          readingTime {
+            text
+          }
         }
         html
       }
@@ -37,6 +42,18 @@ export async function get({ path }) {
       status: 400,
       body: JSON.stringify(errors),
     }
+  }
+
+  const imageUrl = getShareImage({
+    title: data.post.metadata.title,
+    tagline: data.post.metadata.tags.map(k => `#${k}`).join('  '),
+    cloudName: import.meta.env.VITE_CLOUDINARY_CLOUD_NAME,
+    imagePublicID: import.meta.env.VITE_CLOUDINARY_IMAGE_PUBLIC_ID,
+    textColor: themes.light.text.slice(1),
+  })
+
+  if (imageUrl) {
+    data.post.metadata.imageUrl = imageUrl
   }
 
   const body = JSON.stringify(data.post)

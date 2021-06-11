@@ -48,6 +48,7 @@ type Page implements Node {
 type SiteMetadata {
   title: String!
   author: String!
+  handle: String!
   url: String!
   description: String
   keywords: [String]

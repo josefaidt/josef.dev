@@ -13,7 +13,8 @@ export const app = {
   url: 'https://josef.dev',
   description: 'Welcome to my personal site',
   keywords: ['josef', 'aidt', 'personal', 'portfolio', 'svelte'],
-  author: 'josefaidt',
+  author: 'Josef Aidt',
+  handle: 'josefaidt',
 }
 
 /** @type {import('@sveltejs/kit').Config} */
@@ -29,6 +30,7 @@ export default {
     target: '#svelte',
 
     files: {
+      assets: resolve('public'),
       routes: resolve('src/pages'),
     },
 

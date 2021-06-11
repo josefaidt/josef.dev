@@ -16,6 +16,7 @@ export const ja = {
   },
   secondary: '#518a8d',
   accent: '#c6797e',
+  link: '#955b5f',
   grey: {
     _: '#8b868c',
     light: 'dimgrey',
@@ -39,6 +40,7 @@ export const themes = {
       light: ja.primary._,
     },
     accent: ja.accent,
+    link: ja.link,
     shadow: ja.shadow.light,
   },
   dark: {
@@ -52,6 +54,7 @@ export const themes = {
       light: ja.accent,
     },
     accent: ja.secondary,
+    link: ja.secondary,
     shadow: ja.black.light,
   },
 }

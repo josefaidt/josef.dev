@@ -3,9 +3,11 @@ import vfile from 'to-vfile'
 import unified from 'unified'
 import parse from 'remark-parse'
 import gfm from 'remark-gfm'
+import slug from 'remark-slug'
+import headings from 'remark-autolink-headings'
+import frontmatter from 'remark-frontmatter'
 import remark2rehype from 'remark-rehype'
 import rehypeStringify from 'rehype-stringify'
-import frontmatter from 'remark-frontmatter'
 import highlight from '@mapbox/rehype-prism'
 import cloudinary from 'rehype-local-image-to-cloudinary'
 import readingTime from 'reading-time'
@@ -13,12 +15,18 @@ import yaml from 'js-yaml'
 import dayjs from 'dayjs'
 
 const parser = unified().use(parse).use(gfm).use(frontmatter, ['yaml'])
+
 const cloudinaryConfig = {
   baseDir: resolve('content/posts'),
   uploadFolder: 'josef.dev',
   transformations: 'q_auto,f_auto',
 }
+
 const runner = unified()
+  .use(slug)
+  .use(headings, {
+    behavior: 'wrap',
+  })
   .use(remark2rehype)
   .use(cloudinary, cloudinaryConfig)
   .use(highlight)

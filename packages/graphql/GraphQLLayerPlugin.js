@@ -13,35 +13,20 @@ const isProd = process.env.NODE_ENV === 'production'
 export function GraphQLLayerPlugin(pluginOptions = {}) {
   const options = merge(defaultOptions, pluginOptions)
   const route = options.api
-  const initMessage = '> GraphQL layer initialization'
 
   let initialized = false
   let layer = isProd && express()
-  let server
   return {
     name: 'graphql-layer-plugin',
     options: async config => {
       if (!initialized && !isProd) {
-        // log('> Initializing GraphQL layer...')
         initialized = true
         log('> GraphQL layer initialized!')
       }
-      // if (isProd && !server) {
-      //   layer.use(route, handler)
-      //   server = layer.listen(3000, () => log('> Production layer listening...'))
-      // }
       return config
     },
     configureServer: async server => {
       server.middlewares.use(route, handler)
-    },
-    buildEnd: error => {
-      // ends after client and SSR build steps
-      if (error) throw error
-      // if (server) server.close()
-    },
-    closeBundle: () => {
-      // closes after client and SSR build steps
     },
   }
 }

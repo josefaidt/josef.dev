@@ -3,9 +3,7 @@
   import LightModeIcon from '$icons/light.svg.svelte'
   import DarkModeIcon from '$icons/asleep.svg.svelte'
 
-  const theme = getContext('theme')
-  $: toggle = theme?.toggle
-  $: current = theme?.current
+  const { toggle, current } = getContext('theme')
 </script>
 
 <button on:click="{toggle}">

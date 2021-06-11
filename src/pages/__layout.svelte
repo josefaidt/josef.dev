@@ -16,7 +16,7 @@
 <script>
   import { onMount } from 'svelte'
   import { ThemeWrapper } from 'svelte-themer'
-  import { themes } from '$components/theme'
+  import { themes } from '$lib/theme'
   // PRIMARY LAYOUT
   // import CMDK from '$components/cmd-k.svelte'
   import ThemeToggle from '$components/ThemeToggle.svelte'
@@ -108,7 +108,7 @@
   }
 
   :global(a) {
-    color: var(--theme-accent);
+    color: var(--theme-link);
   }
 
   .container {
