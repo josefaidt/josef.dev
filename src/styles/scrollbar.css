@@ -1,0 +1,27 @@
+/* width */
+::-webkit-scrollbar {
+  width: 0.5rem;
+  height: 0.5rem;
+  transition: all 200ms ease;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: var(--theme-bg-contrast);
+  box-shadow: inset 0 0 2px var(--theme-shadow);
+  transition: all 200ms ease;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--theme-primary);
+  border-radius: 3px;
+  transition: all 200ms ease;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--theme-primary);
+  transition: all 200ms ease;
+  cursor: pointer;
+}
