@@ -45,7 +45,7 @@
     display: grid;
     grid-auto-flow: column;
     grid-template-columns: max-content;
-    column-gap: 0.8rem;
+    column-gap: 1rem;
   }
 
   .reading-time {
@@ -75,6 +75,15 @@
 
   .post-content :global(h4) {
     font-size: larger;
+  }
+
+  @media (min-width: 66rem) {
+    .post-content :global(p img) {
+      width: unset;
+      max-width: calc(100% + 4rem);
+      margin-left: -2rem;
+      margin-right: -2rem;
+    }
   }
 
   :global(.icon.icon-link) {

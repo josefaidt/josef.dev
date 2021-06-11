@@ -40,6 +40,7 @@
   import '$styles/global.css'
   import '$styles/style.css'
   import '$styles/prism.css'
+  import '$styles/scrollbar.css'
 </script>
 
 <ThemeWrapper key="{STORAGE_KEY}" themes="{themes}" theme="light">
