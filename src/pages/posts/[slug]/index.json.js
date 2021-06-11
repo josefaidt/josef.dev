@@ -3,7 +3,7 @@ import { query } from '@josef/graphql'
 /**
  * @type {import('@sveltejs/kit').RequestHandler}
  */
-export async function get({ path, ...rest }) {
+export async function get({ path }) {
   const { data, errors } = await query(
     `
     query GET_POST($slug: String!, $toLocaleDateStringOptions: LocaleDateStringOptions) {

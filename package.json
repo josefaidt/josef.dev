@@ -36,6 +36,7 @@
     "prettier": "^2.2.1",
     "prettier-plugin-svelte": "^2.2.0",
     "svelte": "^3.38.1",
+    "svelte-check": "^2.1.0",
     "svelte-preprocess": "^4.7.2",
     "svelte-themer": "^0.4.8",
     "vercel": "^22.0.1",
