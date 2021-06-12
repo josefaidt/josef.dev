@@ -12,9 +12,9 @@
     border-radius: 0.2rem;
     text-decoration: none;
     transition: all 100ms ease;
-    color: var(--theme-text);
-    background-color: var(--theme-bg);
-    border: none;
+    color: var(--theme-bg);
+    background-color: var(--theme-primary);
+    border: 2px solid var(--theme-primary);
     cursor: pointer;
   }
 

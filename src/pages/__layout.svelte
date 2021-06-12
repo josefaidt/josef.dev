@@ -159,8 +159,8 @@
     /* background-color: tomato; */
     /* color: black; */
     grid-area: main;
-    min-width: 80%;
-    max-width: calc(100vw - 16px);
+    /* min-width: 80%; */
+    width: calc(100vw - 16px);
     margin: 0 auto;
 
     /* --main-grid-flow: row;

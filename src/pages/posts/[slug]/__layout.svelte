@@ -1,4 +1,4 @@
 <div>
-  <a href="/posts">Go back</a>
+  <a href="/posts">&larr; Go back</a>
 </div>
 <slot />

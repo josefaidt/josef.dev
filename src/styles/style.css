@@ -3,6 +3,13 @@
   text-shadow: rgb(0 0 0 / 1%) 0 0 1px;
 }
 
+/* Smooth scrolling IF user doesn't have a preference due to motion sensitivities */
+@media screen and (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
 body {
   /* line-height: 2rem; */
   font-size: 16px;
