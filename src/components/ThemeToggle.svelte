@@ -21,7 +21,7 @@
     border: 2px solid transparent;
     border-radius: 3px;
     background-color: transparent;
-    padding: 0.2rem 0.4rem;
+    padding: 0.3rem 0.4rem;
     margin: 0;
 
     display: flex;
@@ -42,6 +42,7 @@
   button:hover,
   button:focus {
     border-color: var(--theme-accent);
+    outline-color: var(--theme-link);
     background-color: transparent;
   }
 </style>

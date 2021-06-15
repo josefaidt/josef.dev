@@ -19,3 +19,4 @@ Improvements, fun ideas, etc.
 - mobile FAB (prepare for safari design)
 - publishing post generates post on dev.to? how can this be automated?
 - sharp to load picture outlines
+- relative image paths in markdown, enables images for pages other than posts

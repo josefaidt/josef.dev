@@ -111,6 +111,11 @@
   :global(a) {
     color: var(--theme-link);
   }
+  :global(a:focus) {
+    outline-width: 2px;
+    outline-color: var(--theme-link);
+    outline-offset: 2px;
+  }
 
   .container {
     margin: 0 auto;
@@ -151,7 +156,7 @@
   header > div {
     display: grid;
     grid-auto-flow: column;
-    column-gap: 1.5rem;
+    column-gap: 1rem;
     align-items: center;
   }
 

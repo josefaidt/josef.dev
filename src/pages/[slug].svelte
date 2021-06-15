@@ -15,10 +15,13 @@
 
 <script>
   import SEO from '$components/SEO.svelte'
+  import Markdown from '$components/Markdown.svelte'
 
   export let page
 </script>
 
 <SEO {...page.metadata} />
-<h1>{page.metadata.title}</h1>
-{@html page.html}
+<Markdown>
+  <h1>{page.metadata.title}</h1>
+  {@html page.html}
+</Markdown>
