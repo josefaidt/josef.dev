@@ -43,7 +43,13 @@
   import '$styles/scrollbar.css'
 </script>
 
-<ThemeWrapper key="{STORAGE_KEY}" themes="{themes}" base="{base}" theme="light">
+<ThemeWrapper
+  key="{STORAGE_KEY}"
+  themes="{themes}"
+  base="{base}"
+  prefix="{null}"
+  theme="light"
+>
   <!-- <CMDK /> -->
   <div class="container">
     <header>
@@ -80,7 +86,7 @@
   }
 
   .spotify p span {
-    color: var(--theme-text);
+    color: var(--colors-text);
     /* filter: invert(0.4); */
   }
 
@@ -94,8 +100,8 @@
   }
 
   :global(html, body) {
-    color: var(--theme-text);
-    background-color: var(--theme-bg);
+    color: var(--colors-text);
+    background-color: var(--colors-bg);
   }
 
   :global(#svelte) {
@@ -109,11 +115,11 @@
   }
 
   :global(a) {
-    color: var(--theme-link);
+    color: var(--colors-link);
   }
   :global(a:focus) {
     outline-width: 2px;
-    outline-color: var(--theme-link);
+    outline-color: var(--colors-link);
     outline-offset: 2px;
   }
 

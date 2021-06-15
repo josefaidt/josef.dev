@@ -12,14 +12,14 @@
     border-radius: 0.2rem;
     text-decoration: none;
     transition: all 100ms ease;
-    color: var(--theme-bg);
-    background-color: var(--theme-primary);
-    border: 2px solid var(--theme-primary);
+    color: var(--colors-bg);
+    background-color: var(--colors-primary);
+    border: 2px solid var(--colors-primary);
     cursor: pointer;
   }
 
   button:hover {
-    background-color: var(--theme-accent);
+    background-color: var(--colors-accent);
     color: var(--ja-white);
     transition: all 200ms ease;
   }

@@ -30,31 +30,42 @@ export const ja = {
 
 export const themes = {
   light: {
-    bg: {
-      _: ja.white._,
-      contrast: ja.white.dark,
+    colors: {
+      bg: {
+        _: ja.white._,
+        contrast: ja.white.dark,
+      },
+      text: ja.grey.dark,
+      primary: {
+        _: ja.primary._,
+        light: ja.primary._,
+      },
+      accent: ja.accent,
+      link: ja.link,
+      shadow: ja.shadow.light,
     },
-    text: ja.grey.dark,
-    primary: {
-      _: ja.primary._,
-      light: ja.primary._,
-    },
-    accent: ja.accent,
-    link: ja.link,
-    shadow: ja.shadow.light,
   },
   dark: {
-    bg: {
-      _: ja.black.darker,
-      contrast: ja.black._,
+    colors: {
+      bg: {
+        _: ja.black.darker,
+        contrast: ja.black._,
+      },
+      text: ja.black.lighter,
+      primary: {
+        _: ja.primary.light,
+        light: ja.accent,
+      },
+      accent: ja.secondary,
+      link: ja.secondary,
+      shadow: ja.black.light,
     },
-    text: ja.black.lighter,
-    primary: {
-      _: ja.primary.light,
-      light: ja.accent,
-    },
-    accent: ja.secondary,
-    link: ja.secondary,
-    shadow: ja.black.light,
+  },
+}
+
+export const base = {
+  breakpoint: {
+    small: '33rem',
+    large: '66rem',
   },
 }

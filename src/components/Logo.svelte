@@ -27,15 +27,15 @@
     margin: 0;
     font-size: 2.5rem;
     font-weight: 700;
-    color: var(--theme-text);
-    text-shadow: 0.1rem 0.1rem var(--theme-primary);
+    color: var(--colors-text);
+    text-shadow: 0.1rem 0.1rem var(--colors-primary);
     transition: all 300ms;
     line-height: 1;
   }
 
   h1:hover {
     transition: all 300ms;
-    text-shadow: 0.05rem 0.05rem var(--theme-primary);
+    text-shadow: 0.05rem 0.05rem var(--colors-primary);
   }
 
   @media (max-width: 33rem) {

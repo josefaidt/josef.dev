@@ -14,7 +14,7 @@
   div :global(h2 a),
   div :global(h3 a),
   div :global(h4 a) {
-    color: var(--theme-text);
+    color: var(--colors-text);
     text-decoration: none;
   }
 

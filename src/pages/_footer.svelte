@@ -111,11 +111,11 @@
   :global(footer svg) {
     width: 20px;
     height: 20px;
-    fill: var(--theme-text);
+    fill: var(--colors-text);
   }
 
   :global(footer svg:hover) {
-    fill: var(--theme-primary);
+    fill: var(--colors-primary);
   }
 
   @media (max-width: 33rem) {

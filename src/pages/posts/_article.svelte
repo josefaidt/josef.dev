@@ -24,7 +24,7 @@
 <style>
   a,
   article {
-    color: var(--theme-text);
+    color: var(--colors-text);
     text-decoration: none;
   }
 
@@ -88,10 +88,10 @@
   }
 
   article:hover {
-    /* --hover: var(--theme-primary); */
+    /* --hover: var(--colors-primary); */
     --hover: var(--rouge);
     background-color: var(--hover);
-    color: var(--theme-bg);
+    color: var(--colors-bg);
     transition: all 100ms ease;
   }
 

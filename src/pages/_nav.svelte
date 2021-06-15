@@ -46,27 +46,27 @@
     height: min-content;
     text-decoration: none;
     transition: all 100ms ease;
-    color: var(--theme-text);
+    color: var(--colors-text);
     border: 2px solid transparent;
     border-radius: 0.2rem;
     filter: initial;
   }
   a.active {
-    border-bottom: 2px solid var(--theme-primary);
+    border-bottom: 2px solid var(--colors-primary);
   }
 
   a:hover {
     filter: initial;
-    /* background-color: var(--theme-accent); */
-    border: 2px solid var(--theme-accent);
+    /* background-color: var(--colors-accent); */
+    border: 2px solid var(--colors-accent);
 
-    color: var(--theme-text);
+    color: var(--colors-text);
     transition: all 100ms ease;
     text-decoration: none;
   }
 
   a.active:hover {
-    border-bottom: 2px solid var(--theme-primary);
+    border-bottom: 2px solid var(--colors-primary);
   }
 
   :global(html) {

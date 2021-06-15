@@ -17,7 +17,7 @@
 <style>
   button {
     cursor: pointer;
-    color: var(--theme-text);
+    color: var(--colors-text);
     border: 2px solid transparent;
     border-radius: 3px;
     background-color: transparent;
@@ -30,7 +30,7 @@
     /* width: 40px;
     height: 40px; */
 
-    fill: var(--theme-text);
+    fill: var(--colors-text);
 
     /* temporary until icons */
     /* font-weight: bold; */
@@ -41,8 +41,8 @@
 
   button:hover,
   button:focus {
-    border-color: var(--theme-accent);
-    outline-color: var(--theme-link);
+    border-color: var(--colors-accent);
+    outline-color: var(--colors-link);
     background-color: transparent;
   }
 </style>

@@ -21,6 +21,6 @@
   }
 
   q {
-    color: var(--theme-text);
+    color: var(--colors-text);
   }
 </style>
