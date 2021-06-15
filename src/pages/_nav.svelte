@@ -30,8 +30,15 @@
     display: grid;
     grid-auto-flow: column;
     grid-template-columns: min-content;
-    column-gap: 1rem;
+    column-gap: 0.5rem;
   }
+
+  @media (min-width: 33rem) {
+    nav {
+      column-gap: 1rem;
+    }
+  }
+
   a {
     font-weight: bold;
     display: inline-block;

@@ -16,6 +16,7 @@
 
 <script>
   import SEO from '$components/SEO.svelte'
+  import Markdown from '$components/Markdown.svelte'
 
   export let post
 </script>
@@ -28,9 +29,9 @@
   </span>
   <span class="reading-time">{post.metadata.readingTime.text}</span>
 </div>
-<div class="post-content">
+<Markdown>
   {@html post.html}
-</div>
+</Markdown>
 
 <style>
   h1 {
@@ -50,43 +51,5 @@
 
   .reading-time {
     font-style: italic;
-  }
-
-  .post-content :global(a) {
-    text-decoration: underline;
-  }
-
-  .post-content :global(h2 a),
-  .post-content :global(h3 a),
-  .post-content :global(h4 a) {
-    color: var(--theme-text);
-    text-decoration: none;
-  }
-
-  .post-content :global(h2 a:hover),
-  .post-content :global(h3 a:hover),
-  .post-content :global(h4 a:hover) {
-    text-decoration: underline;
-  }
-
-  .post-content :global(h3) {
-    font-size: larger;
-  }
-
-  .post-content :global(h4) {
-    font-size: larger;
-  }
-
-  @media (min-width: 66rem) {
-    .post-content :global(p img) {
-      width: unset;
-      max-width: calc(100% + 4rem);
-      margin-left: -2rem;
-      margin-right: -2rem;
-    }
-  }
-
-  :global(.icon.icon-link) {
-    background-image: url(/link.svg);
   }
 </style>

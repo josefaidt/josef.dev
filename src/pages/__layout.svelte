@@ -16,7 +16,7 @@
 <script>
   import { onMount } from 'svelte'
   import { ThemeWrapper } from 'svelte-themer'
-  import { themes } from '$lib/theme'
+  import { themes, base } from '$lib/theme'
   // PRIMARY LAYOUT
   // import CMDK from '$components/cmd-k.svelte'
   import ThemeToggle from '$components/ThemeToggle.svelte'
@@ -43,7 +43,7 @@
   import '$styles/scrollbar.css'
 </script>
 
-<ThemeWrapper key="{STORAGE_KEY}" themes="{themes}" theme="light">
+<ThemeWrapper key="{STORAGE_KEY}" themes="{themes}" base="{base}" theme="light">
   <!-- <CMDK /> -->
   <div class="container">
     <header>
@@ -156,8 +156,14 @@
   header > div {
     display: grid;
     grid-auto-flow: column;
-    column-gap: 1rem;
+    column-gap: 0.5rem;
     align-items: center;
+  }
+
+  @media (min-width: 33rem) {
+    header > div {
+      column-gap: 1rem;
+    }
   }
 
   main {
