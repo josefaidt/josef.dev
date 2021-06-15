@@ -49,7 +49,7 @@ export async function get({ path }) {
     tagline: data.post.metadata.tags.map(k => `#${k}`).join('  '),
     cloudName: import.meta.env.VITE_CLOUDINARY_CLOUD_NAME,
     imagePublicID: import.meta.env.VITE_CLOUDINARY_IMAGE_PUBLIC_ID,
-    textColor: themes.light.text.slice(1),
+    textColor: themes.light.colors.text.slice(1),
   })
 
   if (imageUrl) {

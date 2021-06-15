@@ -162,14 +162,8 @@
   header > div {
     display: grid;
     grid-auto-flow: column;
-    column-gap: 0.5rem;
+    column-gap: 1rem;
     align-items: center;
-  }
-
-  @media (min-width: 33rem) {
-    header > div {
-      column-gap: 1rem;
-    }
   }
 
   main {

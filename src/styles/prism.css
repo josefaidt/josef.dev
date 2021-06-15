@@ -49,7 +49,7 @@ html[theme='dark'] {
 }
 
 pre {
-  background-color: var(--theme-bg-contrast);
+  background-color: var(--colors-bg-contrast);
   color: var(--rouge);
   font-size: 90%;
   padding: 2rem 1rem;
@@ -58,7 +58,7 @@ pre {
 
 code {
   /* white-space: nowrap; */
-  background-color: var(--theme-bg-contrast);
+  background-color: var(--colors-bg-contrast);
   padding: 0.3rem;
   border-radius: 0.3rem;
   font-size: 0.9rem;
@@ -73,7 +73,7 @@ code {
 }
 
 .token {
-  color: var(--theme-text, initial);
+  color: var(--colors-text, initial);
 }
 
 .token.keyword {
