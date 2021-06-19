@@ -1,11 +1,17 @@
 import { resolve } from 'path'
 
+// not in use
 const markdown = {
-  cloudinary: {
-    baseDir: resolve('content/posts'),
-    uploadFolder: 'josef.dev',
-    transformations: 'q_auto,f_auto',
-  },
+  rehypePlugins: [
+    [
+      'cloudinary', // replace with actual package, consider app-specific plugins
+      {
+        baseDir: resolve('content/posts'),
+        uploadFolder: 'josef.dev',
+        transformations: 'q_auto,f_auto',
+      },
+    ],
+  ],
 }
 
 const app = {
