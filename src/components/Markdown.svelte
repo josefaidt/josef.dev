@@ -9,6 +9,7 @@
 <style>
   div :global(a) {
     text-decoration: underline;
+    font-weight: bold;
   }
 
   div :global(h2 a),
