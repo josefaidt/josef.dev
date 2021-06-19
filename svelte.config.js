@@ -10,15 +10,6 @@ import VercelLayerPlugin from '@josef/plugin-vercel'
 const pkg = JSON.parse(await readFile(resolve('package.json'), 'utf-8'))
 const isProduction = process.env.NODE_ENV === 'production'
 
-export const app = {
-  title: 'josef',
-  url: 'https://josef.dev',
-  description: 'Welcome to my personal site',
-  keywords: ['josef', 'aidt', 'personal', 'portfolio', 'svelte'],
-  author: 'Josef Aidt',
-  handle: 'josefaidt',
-}
-
 /** @type {import('@sveltejs/kit').Config} */
 export default {
   extensions: ['.svelte', '.md'],
@@ -41,7 +32,7 @@ export default {
     },
 
     vite: {
-      plugins: [GraphQLLayerPlugin({ app }), VercelLayerPlugin()],
+      plugins: [GraphQLLayerPlugin(), VercelLayerPlugin()],
       ssr: {
         noExternal: Object.keys(pkg.dependencies || {}),
       },

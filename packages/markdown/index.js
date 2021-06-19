@@ -1,4 +1,3 @@
-import { resolve } from 'path'
 import vfile from 'to-vfile'
 import unified from 'unified'
 import parse from 'remark-parse'
@@ -13,35 +12,32 @@ import cloudinary from 'rehype-local-image-to-cloudinary'
 import readingTime from 'reading-time'
 import yaml from 'js-yaml'
 import dayjs from 'dayjs'
+import config from '@josef/options'
 
 const parser = unified().use(parse).use(gfm).use(frontmatter, ['yaml'])
-
-const cloudinaryConfig = {
-  baseDir: resolve('content/posts'),
-  uploadFolder: 'josef.dev',
-  transformations: 'q_auto,f_auto',
-}
-
-const runner = unified()
-  .use(slug)
-  .use(headings, {
-    behavior: 'wrap',
-  })
-  .use(remark2rehype)
-  .use(cloudinary, cloudinaryConfig)
-  .use(highlight)
-  .use(rehypeStringify)
 
 export async function process(filename) {
   const file = vfile.readSync(filename)
   const tree = parser.parse(file)
-  let metadata = null
+
+  let metadata = {}
   if (tree.children.length > 0 && tree.children[0].type === 'yaml') {
     metadata = yaml.load(tree.children[0].value)
     tree.children = tree.children.slice(1, tree.children.length)
     metadata.date = dayjs(metadata.date).format('MMM D, YYYY')
     metadata.readingTime = readingTime(file?.contents?.toString())
   }
+
+  let remarkPlugins = [slug, [headings, { behavior: 'wrap' }]]
+  let rehypePlugins = [highlight]
+  if (config.app.cloudinaryConfig) {
+    rehypePlugins.push([cloudinary, config.app.cloudinaryConfig])
+  }
+  const runner = unified()
+    .use(remarkPlugins)
+    .use(remark2rehype)
+    .use(rehypePlugins)
+    .use(rehypeStringify)
   const content = runner.stringify(await runner.run(tree))
   return { metadata, content }
 }

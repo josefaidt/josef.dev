@@ -1,7 +1,7 @@
 import { resolve } from 'path'
-import defaultOptions from '../options'
+import config from '@josef/options'
 
 export async function metadata(parent, args, ctx, info) {
   const svelteConfig = await import(resolve('svelte.config.js'))
-  return svelteConfig?.app || defaultOptions.app
+  return svelteConfig?.app || config.app
 }

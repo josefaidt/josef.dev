@@ -1,7 +1,7 @@
 import { readdir } from 'fs/promises'
 import { join } from 'path'
 import generateNodeData from '../generateNodeData'
-import config from '../options'
+import config from '@josef/options'
 
 export async function allPosts(parent, args, ctx, info) {
   // prep result based on supplied sort

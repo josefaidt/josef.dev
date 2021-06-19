@@ -1,6 +1,6 @@
 import { basename, extname, dirname } from 'path'
 import { process } from '@josef/markdown'
-import config from './options'
+import config from '@josef/options'
 
 const indexRegex = /index\.(svx|md)$/
 export default async function generateNodeData(postPath, options) {

@@ -1,6 +1,6 @@
 import { join } from 'path'
 import generateNodeData from '../generateNodeData'
-import config from '../options'
+import config from '@josef/options'
 
 export async function page(parent, args, ctx, info) {
   const { slug } = args || {}

@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@josef/markdown": "*",
+    "@josef/options": "*",
     "@graphql-tools/schema": "^7.1.5",
     "acorn": "^8.2.4",
     "acorn-walk": "^8.1.0",

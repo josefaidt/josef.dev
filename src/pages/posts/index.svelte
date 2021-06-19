@@ -43,7 +43,7 @@
   import SEO from '$components/SEO.svelte'
   import Article from './_article.svelte'
   // export let posts
-  $: posts = query?.data?.allPosts ?? []
+  const posts = query.data.allPosts ?? []
 
   const seoProps = {
     title: 'Snakes and Sparklers',
