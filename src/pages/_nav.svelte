@@ -51,6 +51,7 @@
     border-radius: 0.2rem;
     filter: initial;
   }
+
   a.active {
     border-bottom: 2px solid var(--colors-primary);
   }

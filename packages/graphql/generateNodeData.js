@@ -1,4 +1,3 @@
-import { readFile } from 'fs/promises'
 import { basename, extname, dirname } from 'path'
 import { process } from '@josef/markdown'
 import config from './options'

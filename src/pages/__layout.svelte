@@ -14,27 +14,15 @@
 </script>
 
 <script>
-  import { onMount } from 'svelte'
   import { ThemeWrapper } from 'svelte-themer'
   import { themes, base } from '$lib/theme'
   // PRIMARY LAYOUT
   // import CMDK from '$components/cmd-k.svelte'
   import ThemeToggle from '$components/ThemeToggle.svelte'
   import Logo from '$components/Logo.svelte'
+  import SpotifyCurrentlyPlaying from '$components/spotify/CurrentlyPlaying.svelte'
   import Nav from './_nav.svelte'
   import Footer from './_footer.svelte'
-
-  let currentlyPlaying = {}
-  onMount(async () => {
-    try {
-      const res = await fetch('/api/spotify/currently-playing')
-      currentlyPlaying = await res.json()
-    } catch (error) {
-      //
-    }
-  })
-
-  $: isPlaying = currentlyPlaying.isPlaying ?? false
 
   import '$styles/normalize.css'
   import '$styles/global.css'
@@ -63,33 +51,12 @@
       <slot />
     </main>
     <Footer --spacing="4rem">
-      <div class="spotify">
-        <p>
-          <b>{isPlaying ? `Now playing ` : 'Not playing'}</b>
-          {isPlaying
-            ? `${currentlyPlaying.title} by ${currentlyPlaying.artist}`
-            : ''}
-          <span>&ndash; Spotify</span>
-        </p>
-      </div>
+      <SpotifyCurrentlyPlaying />
     </Footer>
   </div>
 </ThemeWrapper>
 
 <style>
-  .spotify {
-    /* border: 1px solid green; */
-  }
-
-  .spotify p {
-    margin: 0;
-  }
-
-  .spotify p span {
-    color: var(--colors-text);
-    /* filter: invert(0.4); */
-  }
-
   :global(html) {
     height: 100%;
   }

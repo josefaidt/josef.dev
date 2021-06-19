@@ -1,4 +1,4 @@
-import { getNowPlaying } from './_'
+import { getNowPlaying } from './_.js'
 
 export default async function (req, res) {
   const response = await getNowPlaying()

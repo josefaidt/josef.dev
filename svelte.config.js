@@ -1,10 +1,12 @@
 import { resolve } from 'path'
 import { readFile } from 'fs/promises'
+import autoprefixer from 'autoprefixer'
 import adapter from '@sveltejs/adapter-static'
 import preprocess from 'svelte-preprocess'
 import { GraphQLLayerPlugin, preprocessGraphQL } from '@josef/graphql'
-import autoprefixer from 'autoprefixer'
+import VercelLayerPlugin from '@josef/plugin-vercel'
 
+// https://nodejs.org/api/esm.html#esm_no_json_module_loading
 const pkg = JSON.parse(await readFile(resolve('package.json'), 'utf-8'))
 const isProduction = process.env.NODE_ENV === 'production'
 
@@ -39,8 +41,7 @@ export default {
     },
 
     vite: {
-      plugins: [GraphQLLayerPlugin({ app })],
-      // plugins: [require('@rollup/plugin-dynamic-import-vars')],
+      plugins: [GraphQLLayerPlugin({ app }), VercelLayerPlugin()],
       ssr: {
         noExternal: Object.keys(pkg.dependencies || {}),
       },
@@ -63,8 +64,6 @@ export default {
     },
   },
   preprocess: [
-    // mdsvex(mdsvexConfig),
-    // markdown(),
     preprocess({
       postcss: {
         plugins: [autoprefixer()],

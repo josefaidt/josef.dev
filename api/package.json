@@ -1,11 +1,16 @@
 {
   "name": "@josef/api",
   "version": "1.0.0",
+  "type": "commonjs",
   "scripts": {
-    "build": "echo 'empty build script to pass postinstall'"
+    "dev": "json -I -f ./package.json -e 'this.type=\"module\"'",
+    "build": "json -I -f ./package.json -e 'this.type=\"commonjs\"'"
   },
   "dependencies": {
     "node-fetch": "^2.6.1",
     "querystring": "^0.2.1"
+  },
+  "devDependencies": {
+    "json": "^11.0.0"
   }
 }

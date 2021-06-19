@@ -7,6 +7,7 @@ Improvements, fun ideas, etc.
 - graphql layer autogenerates based on directory structure of `content`
   - codegen? `@content('contentPath')`
     - stitch base schema with user schema?
+    - @live to enable queries on live graphql endpoint
 - build out dashboard
 - polish markdown code block highlighting
 - webmentions
@@ -20,3 +21,5 @@ Improvements, fun ideas, etc.
 - publishing post generates post on dev.to? how can this be automated?
 - sharp to load picture outlines
 - relative image paths in markdown, enables images for pages other than posts
+
+user-read-recently-played

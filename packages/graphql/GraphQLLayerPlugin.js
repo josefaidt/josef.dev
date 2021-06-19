@@ -1,4 +1,3 @@
-import { resolve } from 'path'
 import merge from 'deepmerge'
 import express from 'express'
 import handler from './handler'

@@ -2,16 +2,18 @@
   "name": "@josef/plugin-vercel",
   "version": "1.0.0",
   "type": "module",
-  "main": "build/index.cjs",
-  "module": "build/index.js",
+  "exports": {
+    "import": "./index.js"
+  },
   "scripts": {
     "dev": "run-p \"build:** -- --watch\"",
-    "build": "run-p build:*",
-    "build:esm": "esbuild index.js --format=esm --outfile=build/index.js",
-    "build:cjs": "esbuild index.js --format=cjs --platform=node --outfile=build/index.cjs"
+    "build": "echo 'no build for plugin-vercel'"
   },
   "devDependencies": {
     "esbuild": "^0.11.17",
     "npm-run-all": "^4.1.5"
+  },
+  "dependencies": {
+    "fast-glob": "^3.2.5"
   }
 }
