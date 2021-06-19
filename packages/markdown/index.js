@@ -30,6 +30,7 @@ export async function process(filename) {
 
   let remarkPlugins = [slug, [headings, { behavior: 'wrap' }]]
   let rehypePlugins = [highlight]
+  // TODO: restructure to use `markdown` config object with remark and rehype plugins?
   if (config.app.cloudinaryConfig) {
     rehypePlugins.push([cloudinary, config.app.cloudinaryConfig])
   }
