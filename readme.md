@@ -21,5 +21,6 @@ My new personal site built with [Svelte-Kit](http://kit.svelte.dev/). Svelte-Kit
 ## Nuances
 
 - <div id="1"></div>Vercel serverless functions are used in conjunction with the static SK adapter in order to deliver api routes without using the Vercel adapter. When using the Vercel adapter static content pages require extra lifting, and can nix interactivity from parent layouts
+  - when pulling for local dev, run `yarn dev` in api
 - When deploying to Vercel, be sure to remote `"type": "module"` from Vercel layer `package.json`; Vercel can't deploy using ESM and the Vercel Layer Plugin will not work unless the files are in an ESM context like the site project itself.
   - this is automated for now being that `api` is a workspace and `yarn build` will execute the `build` script in every workspace
