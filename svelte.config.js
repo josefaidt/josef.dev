@@ -25,6 +25,7 @@ export default {
     files: {
       assets: resolve('public'),
       routes: resolve('src/pages'),
+      template: resolve(`src/app${!isProduction ? '.dev' : ''}.html`),
     },
 
     prerender: {
@@ -43,13 +44,6 @@ export default {
           $icons: resolve('src/components/icons'),
           $styles: resolve('src/styles'),
           $content: resolve('content'),
-        },
-      },
-      build: {
-        rollupOptions: {
-          input: {
-            app: resolve(`src/pages/app${!isProduction ? '.dev' : ''}.html`),
-          },
         },
       },
     },
