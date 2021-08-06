@@ -2,10 +2,14 @@
   import { page } from '$app/stores'
 
   let navItems = [
-    {
-      name: 'Uses',
-      path: '/uses',
-    },
+    // {
+    //   name: 'Work',
+    //   path: '/work',
+    // },
+    // {
+    //   name: 'Uses',
+    //   path: '/uses',
+    // },
     {
       name: 'Posts',
       path: '/posts',
