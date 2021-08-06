@@ -15,7 +15,8 @@
     "preview": "svelte-kit preview"
   },
   "dependencies": {
-    "@jlengstorf/get-share-image": "^0.8.0"
+    "@jlengstorf/get-share-image": "^0.8.0",
+    "fuzzyset": "^1.0.6"
   },
   "devDependencies": {
     "@babel/core": "^7.14.0",
