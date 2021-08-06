@@ -28,7 +28,7 @@ export default {
     },
 
     prerender: {
-      force: true,
+      onError: 'continue',
     },
 
     vite: {
