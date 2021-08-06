@@ -11,8 +11,13 @@ export async function allPosts(parent, args, ctx, info) {
     .map(fileName => generateNodeData(join(postPath, fileName), args.options))
 
   let result = []
+  const { published } = args?.options || {}
   for await (let file of files) {
-    result.push(file)
+    if (published) {
+      if (file.metadata.published) result.push(file)
+    } else {
+      result.push(file)
+    }
   }
   const { sortBy, order } = args || {}
 

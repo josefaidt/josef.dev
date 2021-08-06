@@ -2,9 +2,12 @@
   export const prerender = true
   export const query = [
     `
-    query ALL_POSTS($toLocaleDateStringOptions: LocaleDateStringOptions) {
+    query ALL_POSTS(
+      $toLocaleDateStringOptions: LocaleDateStringOptions,
+      $published: Boolean
+    ) {
       allPosts(options:
-        { toLocaleDateStringOptions: $toLocaleDateStringOptions}
+        { toLocaleDateStringOptions: $toLocaleDateStringOptions, published: $published }
       ) {
         slug
         metadata {
@@ -25,6 +28,9 @@
         month: 'short',
         day: 'numeric',
       },
+      // TODO: is this possible? receiving "Cannot use 'import.meta' outside a module"
+      // published: import.meta.env.PROD,
+      published: true,
     },
   ]
 
@@ -45,6 +51,11 @@
   // export let posts
   const posts = query.data.allPosts ?? []
 
+  function submit(event) {
+    event?.preventDefault()
+    search()
+  }
+
   const seoProps = {
     title: 'Snakes and Sparklers',
     description:
@@ -63,18 +74,20 @@
 </section> -->
 <section>
   <!-- <h2>Posts</h2> -->
-  <ul class="post-list">
-    {#each posts as post, index (index)}
-      <li>
-        <a href="{post.slug}" aria-labelledby="{index}">
-          <Article
-            {...post.metadata}
-            readingTime="{post.metadata?.readingTime?.text}"
-          />
-        </a>
-      </li>
-    {/each}
-  </ul>
+  {#if posts.length}
+    <ul class="post-list">
+      {#each posts as post, index (index)}
+        <li>
+          <a href="{post.slug}" aria-labelledby="{index}">
+            <Article
+              {...post.metadata}
+              readingTime="{post.metadata?.readingTime?.text}"
+            />
+          </a>
+        </li>
+      {/each}
+    </ul>
+  {/if}
 </section>
 
 <style>

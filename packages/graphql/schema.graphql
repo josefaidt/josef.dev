@@ -78,6 +78,7 @@ input InputData {
 
 input Options {
   toLocaleDateStringOptions: LocaleDateStringOptions
+  published: Boolean = true
 }
 
 type Query {
