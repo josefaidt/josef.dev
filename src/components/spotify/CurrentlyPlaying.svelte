@@ -57,8 +57,8 @@
     row-gap: 0.5rem;
     place-items: center;
 
-    padding: 1rem 2rem;
-    border: 2px solid green;
+    /* padding: 1rem 2rem; */
+    border: 2px solid transparent;
     border-radius: 3px;
   }
 
