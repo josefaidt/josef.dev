@@ -34,7 +34,6 @@
   themes="{themes}"
   base="{base}"
   prefix="{null}"
-  theme="light"
 >
   <!-- <CMDK /> -->
   <div class="container">
