@@ -3,8 +3,7 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "json -I -f ./package.json -e 'this.type=\"module\"'",
-    "build": "json -I -f ./package.json -e 'this.type=\"commonjs\"'"
+    "build": "echo 'no build required'"
   },
   "dependencies": {
     "node-fetch": "^2.6.1",

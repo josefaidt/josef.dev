@@ -16,7 +16,7 @@ My new personal site built with [Svelte-Kit](http://kit.svelte.dev/). Svelte-Kit
 - Vercel API Layer: small utility to pull in Vercel serverless functions into Vite dev server for use locally <sup>[1](#1)</sup>
 - GraphQL Layer: attached to Vite dev server for availability in dev and build
 - GraphQL preprocessor: pulls in data from GraphQL layer before Svelte compiles, allows for static data (no dynamic queries)
-- Markdown: I do not care for the mdsvex DX with svelte-kit, it feels like duplicating logic (layouts, etc). This site uses markdown for page content
+- Markdown
 
 ## Nuances
 
