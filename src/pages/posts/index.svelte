@@ -33,28 +33,12 @@
       published: true,
     },
   ]
-
-  /**
-   * @type {import('@sveltejs/kit').Load}
-   */
-  // export async function load({ fetch }) {
-  //   const posts = await (await fetch(`posts.json`)).json()
-  //   return {
-  //     props: { posts },
-  //   }
-  // }
 </script>
 
 <script>
   import SEO from '$components/SEO.svelte'
-  import Article from './_article.svelte'
-  // export let posts
+  import Article from './_components/article.svelte'
   const posts = query.data.allPosts ?? []
-
-  function submit(event) {
-    event?.preventDefault()
-    search()
-  }
 
   const seoProps = {
     title: 'Snakes and Sparklers',
@@ -64,16 +48,7 @@
 </script>
 
 <SEO {...seoProps} />
-<!-- <section>
-  <h1>{seoProps.title}</h1>
-  <p>{seoProps.description}</p>
-  <blockquote>
-    <q>Snakes and Sparklers are the only ones I like.</q>
-    <cite>&ndash; Kicking Wing, Joe Dirt (2001)</cite>
-  </blockquote>
-</section> -->
 <section>
-  <!-- <h2>Posts</h2> -->
   {#if posts.length}
     <ul class="post-list">
       {#each posts as post, index (index)}

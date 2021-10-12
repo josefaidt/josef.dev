@@ -16,8 +16,6 @@
 <script>
   import { ThemeWrapper } from 'svelte-themer'
   import { themes, base } from '$lib/theme'
-  // PRIMARY LAYOUT
-  // import CMDK from '$components/cmd-k.svelte'
   import ThemeToggle from '$components/ThemeToggle.svelte'
   import Logo from '$components/Logo.svelte'
   import SpotifyCurrentlyPlaying from '$components/spotify/CurrentlyPlaying.svelte'

@@ -23,20 +23,20 @@ const argHash = Object.fromEntries(
 )
 
 await build({
-  entryPoints: [resolve('index.js')],
-  outdir: resolve('out'),
+  entryPoints: [resolve('src/index.js')],
+  outdir: resolve('build'),
   bundle: true,
   minify: false,
   format: 'esm',
   platform: 'node',
   plugins: [graphqlLoaderPlugin?.default()],
-  external: Object.keys(pkg.dependencies),
+  external: [...Object.keys(pkg.dependencies)],
   watch: argHash?.watch || false,
 })
 await build({
-  entryPoints: [resolve('index.js')],
+  entryPoints: [resolve('src/index.js')],
   // outdir: resolve('out'),
-  outfile: resolve('out/index.cjs'),
+  outfile: resolve('build/index.cjs'),
   bundle: true,
   minify: false,
   format: 'cjs',

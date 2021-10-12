@@ -1,5 +1,5 @@
 <script>
-  import Tags from './_tags.svelte'
+  import Tags from './tags.svelte'
 
   export let id = 0
   export let date
