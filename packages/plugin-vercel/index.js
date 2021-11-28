@@ -27,7 +27,7 @@ export default function VercelLayerPlugin() {
       })
 
       // read endpoint file paths
-      const endpoints = await glob('**/[!_]*.js', {
+      const endpoints = await glob('(**|!node_modules)/[!_]*.js', {
         cwd: apidir,
         absolute: true,
       })
