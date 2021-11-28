@@ -12,7 +12,7 @@
     "build": "esbuild --format=cjs --platform=node --outfile=build/index.cjs index.js"
   },
   "devDependencies": {
-    "esbuild": "^0.13.4"
+    "esbuild": "^0.13.14"
   },
   "dependencies": {
     "deepmerge": "^4.2.2"
