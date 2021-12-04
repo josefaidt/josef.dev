@@ -5,16 +5,26 @@ import readingTime from 'reading-time'
 import dayjs from 'dayjs'
 import yaml from 'js-yaml'
 
-marked.use({
-  pedantic: false,
-  gfm: true,
-  breaks: false,
-  sanitize: false,
-  smartLists: true,
-  smartypants: false,
-  xhtml: false,
-})
+/**
+ * @typedef {object} Metadata
+ * @property {string} [title]
+ * @property {string} [date] transformed date string
+ * @property {boolean} [fragment]
+ * @property {boolean} [published]
+ */
 
+/**
+ * @typedef {object} Frontmatter
+ * @property {Metadata} metadata
+ * @property {string} body
+ */
+
+/**
+ * Generates frontmatter object from Markdown
+ * @function fm
+ * @param {string} fileContents
+ * @returns {Frontmatter}
+ */
 function fm(fileContents) {
   const DELIMITER = '---'
   let metadata = {}
@@ -52,8 +62,29 @@ function fm(fileContents) {
   return { metadata, body }
 }
 
-export async function process(filename) {
-  const fileContents = await readFile(filename, 'utf-8')
+marked.use({
+  pedantic: false,
+  gfm: true,
+  breaks: false,
+  sanitize: false,
+  smartLists: true,
+  smartypants: false,
+  xhtml: false,
+})
+
+/**
+ * @typedef {object} ProcessedContent
+ * @property {Metadata} metadata
+ * @property {string} content
+ */
+
+/**
+ * Process Markdown file
+ * @param {string} filePath absolute path to file
+ * @returns {ProcessedContent}
+ */
+export async function process(filePath) {
+  const fileContents = await readFile(filePath, 'utf-8')
   const { metadata, body } = fm(fileContents)
   const content = marked.parse(body)
 
