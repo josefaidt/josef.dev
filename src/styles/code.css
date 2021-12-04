@@ -50,7 +50,7 @@ html[theme='dark'] {
 
 pre {
   background-color: var(--colors-bg-contrast);
-  color: var(--rouge);
+  color: var(--colors-text);
   font-size: 90%;
   padding: 2rem 1rem;
   line-height: 1.42;
@@ -72,41 +72,42 @@ code {
   }
 }
 
-.token {
+code {
   color: var(--colors-text, initial);
 }
 
-.token.keyword {
+code .keyword {
   color: var(--rouge-purple);
 }
 
-.token.string {
+code .string {
   color: var(--rouge-green);
 }
 
-.token.comment {
+code .comment {
   transition: none;
   color: var(--rouge-comment);
   /* filter: brightness(50%); */
 }
 
-.token.function {
+code .function {
   color: var(--rouge-orange);
 }
 
-.token.punctuation {
+code .punctuation {
   color: var(--rouge-purple);
 }
 
-.token.operator {
+code .operator {
   color: var(--rouge-purple);
 }
 
-.token.parameter {
+code .parameter,
+code .params {
   color: var(--rouge-red);
 }
 
-.token.number,
-.token.boolean {
+code .number,
+code .boolean {
   color: var(--rouge-peach);
 }

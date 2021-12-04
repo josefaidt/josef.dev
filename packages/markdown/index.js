@@ -1,6 +1,8 @@
 import { readFile } from 'fs/promises'
 import { EOL } from 'os'
 import { marked } from 'marked'
+import hljs from 'highlight.js'
+import hljsDefineGraphQL from 'highlightjs-graphql'
 import readingTime from 'reading-time'
 import dayjs from 'dayjs'
 import yaml from 'js-yaml'
@@ -62,6 +64,8 @@ function fm(fileContents) {
   return { metadata, body }
 }
 
+hljsDefineGraphQL(hljs)
+hljs.configure({ classPrefix: '' })
 marked.use({
   pedantic: false,
   gfm: true,
@@ -70,6 +74,9 @@ marked.use({
   smartLists: true,
   smartypants: true,
   xhtml: false,
+  highlight: function (code, lang) {
+    return hljs.highlight(lang, code).value
+  },
 })
 
 /**

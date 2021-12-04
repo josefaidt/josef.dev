@@ -56,7 +56,7 @@ Head on over to the "Security" tab.
 
 Give it a name like "serverless-demo" or something that makes sense to you, then hold on to that key. Create a new file, `.env`:
 
-```
+```text
 DB_TOKEN=<fauna-security-token>
 ```
 
@@ -72,7 +72,7 @@ now
 
 Follow the prompts and continue on through accepting the defaults or changing the name. Create a new directory named `api` and spin up the new project with `yarn init -y`, after it should look something like:
 
-```
+```text
 | my-new-serverless-project
   |- api/
   |- schema.graphql

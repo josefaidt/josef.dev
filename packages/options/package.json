@@ -4,8 +4,11 @@
   "license": "MIT",
   "type": "module",
   "exports": {
-    "import": "./index.js",
-    "require": "./build/index.cjs"
+    ".": {
+      "import": "./index.js",
+      "require": "./build/index.cjs"
+    },
+    "./package.json": "./package.json"
   },
   "scripts": {
     "dev": "yarn build --watch",

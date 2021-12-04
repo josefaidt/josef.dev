@@ -107,7 +107,7 @@ And that's it! Middleware support is now fully functional for the Express routin
 
 Not only can a user define what HTTP method a route should use via the function name, but now developers are enabled to create a directory with files using the naming convention `:method`; e.g. `:get`, `:post`:
 
-```
+```text
 |- api/
   |- methods/
     |- :get.js
