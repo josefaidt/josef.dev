@@ -1,6 +1,6 @@
 import * as acorn from 'acorn'
 import * as walk from 'acorn-walk'
-import { default as request } from './query'
+import { default as request } from './query.js'
 
 export function preprocessGraphQL() {
   return {

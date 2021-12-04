@@ -1,6 +1,6 @@
 import { existsSync as exists } from 'fs'
 import { join } from 'path'
-import generateNodeData from '../generateNodeData'
+import generateNodeData from '../generateNodeData.js'
 import config from '@josef/options'
 
 export async function page(parent, args, ctx, info) {
@@ -16,8 +16,5 @@ export async function page(parent, args, ctx, info) {
   if (exists(namedDir)) {
     nodeFile = namedDir
   }
-  return await generateNodeData(
-    nodeFile,
-    args.options
-  )
+  return await generateNodeData(nodeFile, args.options)
 }

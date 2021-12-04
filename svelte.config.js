@@ -1,4 +1,4 @@
-import { resolve } from 'path'
+import { join, resolve } from 'path'
 import { readFile } from 'fs/promises'
 import autoprefixer from 'autoprefixer'
 import adapter from '@sveltejs/adapter-static'
@@ -6,12 +6,28 @@ import preprocess from 'svelte-preprocess'
 import { GraphQLLayerPlugin, preprocessGraphQL } from '@josef/graphql'
 import VercelLayerPlugin from '@josef/plugin-vercel'
 
-// https://nodejs.org/api/esm.html#esm_no_json_module_loading
-const pkg = JSON.parse(await readFile(resolve('package.json'), 'utf-8'))
 const isProduction = process.env.NODE_ENV === 'production'
 
+async function read(file) {
+  return await readFile(new URL(file, import.meta.url), 'utf-8')
+}
+
+async function getDependencies(modulePath) {
+  const modulePackageJson = join(modulePath, 'package.json')
+  return (
+    Object.keys(JSON.parse(await read(modulePackageJson)).dependencies) || {}
+  )
+}
+
+const external = (await getDependencies('./'))
+  .concat(
+    await getDependencies('./packages/markdown'),
+    await getDependencies('./packages/graphql')
+  )
+  .filter(moduleName => !moduleName.startsWith('@josef'))
+
 /** @type {import('@sveltejs/kit').Config} */
-export default {
+const config = {
   extensions: ['.svelte', '.md'],
   kit: {
     // By default, `npm run build` will create a standard Node app.
@@ -35,7 +51,12 @@ export default {
     vite: {
       plugins: [GraphQLLayerPlugin(), VercelLayerPlugin()],
       ssr: {
-        noExternal: Object.keys(pkg.dependencies || {}),
+        external,
+      },
+      build: {
+        rollupOptions: {
+          external: ['fs/promises', 'node:*'],
+        },
       },
       resolve: {
         alias: {
@@ -57,3 +78,5 @@ export default {
     preprocessGraphQL(),
   ],
 }
+
+export default config

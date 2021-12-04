@@ -4,7 +4,7 @@
   "type": "module",
   "exports": {
     ".": {
-      "import": "./build/index.js",
+      "import": "./src/index.js",
       "require": "./build/index.cjs"
     }
   },
@@ -15,7 +15,7 @@
   "license": "MIT",
   "devDependencies": {
     "@luckycatfactory/esbuild-graphql-loader": "^3.7.0",
-    "esbuild": "^0.13.4",
+    "esbuild": "^0.14.2",
     "graphql-tag": "^2.12.5"
   },
   "dependencies": {

@@ -1,44 +1,61 @@
-import vfile from 'to-vfile'
-import unified from 'unified'
-import parse from 'remark-parse'
-import gfm from 'remark-gfm'
-import slug from 'remark-slug'
-import headings from 'remark-autolink-headings'
-import frontmatter from 'remark-frontmatter'
-import remark2rehype from 'remark-rehype'
-import rehypeStringify from 'rehype-stringify'
-import highlight from '@mapbox/rehype-prism'
-import cloudinary from 'rehype-local-image-to-cloudinary'
+import { readFile } from 'fs/promises'
+import { EOL } from 'os'
+import { marked } from 'marked'
 import readingTime from 'reading-time'
-import yaml from 'js-yaml'
 import dayjs from 'dayjs'
-import config from '@josef/options'
+import yaml from 'js-yaml'
 
-const parser = unified().use(parse).use(gfm).use(frontmatter, ['yaml'])
+marked.use({
+  pedantic: false,
+  gfm: true,
+  breaks: false,
+  sanitize: false,
+  smartLists: true,
+  smartypants: false,
+  xhtml: false,
+})
+
+function fm(fileContents) {
+  const DELIMITER = '---'
+  let metadata = {}
+  let body = fileContents
+  const iterable = fileContents.split(EOL) || []
+
+  let frontmatter = []
+  for (let i = 0; i < iterable.length; i++) {
+    const line = iterable[i]
+    if (iterable[0] === DELIMITER) {
+      frontmatter.push(line)
+      if (i === 0) continue
+      if (line === DELIMITER) {
+        frontmatter = frontmatter.slice(1, -1).join(EOL)
+        // check if contents have empty line after frontmatter
+        const sliceLength = !iterable[i + 2] ? i + 1 : i + 2
+        body = iterable.slice(sliceLength).join(EOL)
+        break
+      }
+    }
+  }
+  try {
+    metadata = yaml.load(frontmatter)
+  } catch (error) {
+    throw new Error('Unable to parse yaml frontmatter', error)
+  }
+
+  // transform dates
+  for (let [key, value] of Object.entries(metadata || {})) {
+    if (value instanceof Date)
+      metadata[key] = dayjs(value).format('MMM D, YYYY')
+  }
+  metadata.readingTime = readingTime(body)
+
+  return { metadata, body }
+}
 
 export async function process(filename) {
-  const file = vfile.readSync(filename)
-  const tree = parser.parse(file)
+  const fileContents = await readFile(filename, 'utf-8')
+  const { metadata, body } = fm(fileContents)
+  const content = marked.parse(body)
 
-  let metadata = {}
-  if (tree.children.length > 0 && tree.children[0].type === 'yaml') {
-    metadata = yaml.load(tree.children[0].value)
-    tree.children = tree.children.slice(1, tree.children.length)
-    metadata.date = dayjs(metadata.date).format('MMM D, YYYY')
-    metadata.readingTime = readingTime(file?.contents?.toString())
-  }
-
-  let remarkPlugins = [slug, [headings, { behavior: 'wrap' }]]
-  let rehypePlugins = [highlight]
-  // TODO: restructure to use `markdown` config object with remark and rehype plugins?
-  if (config.app.cloudinaryConfig) {
-    rehypePlugins.push([cloudinary, config.app.cloudinaryConfig])
-  }
-  const runner = unified()
-    .use(remarkPlugins)
-    .use(remark2rehype)
-    .use(rehypePlugins)
-    .use(rehypeStringify)
-  const content = runner.stringify(await runner.run(tree))
   return { metadata, content }
 }
