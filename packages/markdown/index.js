@@ -68,7 +68,7 @@ marked.use({
   breaks: false,
   sanitize: false,
   smartLists: true,
-  smartypants: false,
+  smartypants: true,
   xhtml: false,
 })
 
