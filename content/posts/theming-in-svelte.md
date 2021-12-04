@@ -6,7 +6,7 @@ tags: ['svelte', 'css', 'theming', 'websites']
 published: true
 ---
 
-![Peacock - Photo by Steve Harvey on Unsplash](./images/steve-harvey-peacock.jpg)
+![Peacock - Photo by Steve Harvey on Unsplash](/images/steve-harvey-peacock.jpg)
 
 In React there are numerous theming solutions to choose from; styled-components, Emotion, styled-system, theme-ui &ndash; the list goes on. But in Svelte, a framework that feels like you have a front-row spot on The Platform&trade;, those kinds of solutions don't exist. When I cracked open my brand new Svelte project I knew I wanted I knew I wanted to allow visitors to set (and persist) their preferred theme so they don't have to feel the pain of light mode if they don't want to.
 

@@ -6,7 +6,7 @@ tags: ['javascript', 'conferences', 'experiences']
 published: true
 ---
 
-![MagnoliaJS Poster](./images/magnoliajs.png)
+![MagnoliaJS Poster](/images/magnoliajs.png)
 
 Late 2018 I attended my first tech conference the Tableau Conference &mdash; a massive event full of workshops and sessions stretched across the New Orleans' convention center (about a 1/4 mile long). The covered topics were mostly data-related with a few gritty developer talks sprinkled throughout. I learned a ton of data analytics concepts and tools, but even though I sat in on the developer talks I didn't feel like I fit the mould. At the time my attendance made sense given my position as a developer focusing 50%+ of efforts on BI tasks, specifically SQL reports and Tableau visualizations.
 

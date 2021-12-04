@@ -56,7 +56,7 @@ Before we get started, there is another pre-requisite to ensure application asse
 
 Next we'll need to add our new domain to ZEIT Now and point the nameservers to that of ZEIT. Something like this:
 
-![Google Domains NameServers change example](./images/screenshots/gdomains-dns-nameservers.png)
+![Google Domains NameServers change example](/images/screenshots/gdomains-dns-nameservers.png)
 
 After a few hours or so the ZEIT Now domains panel should show that the domain is now verified. Great, we'll want to use the Now CLI to set up a new record.
 

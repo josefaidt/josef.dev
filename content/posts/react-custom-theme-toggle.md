@@ -6,7 +6,7 @@ tags: ['react', 'hooks', 'websites']
 published: true
 ---
 
-![Peacock Macro](./images/unsplash-peacock.jpg)
+![Peacock Macro](/images/unsplash-peacock.jpg)
 
 Nowadays plenty of sites have opted for a theme toggle allowing users to choose between light and dark modes. Typically we see those that hang out around screens often - developers - choosing dark modes since its a bit easier on the eyes. Other times we'll see a [button that cycles through multiple themes](https://theme-ui.com/) other than light and dark like a Solarized theme; how cool! Here we'll walk through an implementation of this theme toggle with:
 

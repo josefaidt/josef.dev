@@ -6,7 +6,7 @@ tags: ['serverless', 'infrastructure', 'graphql', 'fauna']
 published: true
 ---
 
-![White Building - Photo by Joel Filipe on Unsplash](./images/joel-filipe-white-building.jpg)
+![White Building - Photo by Joel Filipe on Unsplash](/images/joel-filipe-white-building.jpg)
 
 Getting started with databases and GraphQL has really never been easier. Previously I've gone through [Wes Bos's Advanced React and GraphQL course](https://advancedreact.com/) and it was _great_ despite the fact that I was not able to apply the backend knowledge professionally. My background is with relational databases such as Microsoft SQL and Oracle SQL on top of others like MySQL and MariaDB, and since I've only dabbled with MongoDB Atlas I decided to give another NoSQL database a try. Ultimately I ended up with [FaunaDB](https://fauna.com/), but it's not quite a NoSQL database, it's something... nicer.
 
@@ -44,7 +44,7 @@ type Query {
 
 After taking the tour of FaunaDB, head on over to create a new database - `demo` - and import the new GraphQL schema to our Fauna database.
 
-![GraphQL Dashboard for FaunaDB](./images/screenshots/fauna-graphql-dashboard.png)
+![GraphQL Dashboard for FaunaDB](/images/screenshots/fauna-graphql-dashboard.png)
 
 Once Fauna is done importing the schema use the playground to poke around at what has been generated for us to consume like `createUser`. All of our CRUD operations have been generated for us, and all we have to do is perform operations via GraphQL queries and mutations.
 
@@ -52,7 +52,7 @@ When the playground loads you'll notice it's pointing to `https://graphql.fauna.
 
 Head on over to the "Security" tab.
 
-![Fauna Security tab](./images/screenshots/fauna-security.png)
+![Fauna Security tab](/images/screenshots/fauna-security.png)
 
 Give it a name like "serverless-demo" or something that makes sense to you, then hold on to that key. Create a new file, `.env`:
 
