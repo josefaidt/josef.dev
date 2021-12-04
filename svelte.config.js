@@ -19,12 +19,13 @@ async function getDependencies(modulePath) {
   )
 }
 
-const external = (await getDependencies('./'))
-  .concat(
-    await getDependencies('./packages/markdown'),
-    await getDependencies('./packages/graphql')
-  )
-  .filter(moduleName => !moduleName.startsWith('@josef'))
+const external = (await getDependencies('./')).concat(
+  await getDependencies('./packages/markdown'),
+  await getDependencies('./packages/graphql'),
+  '@josef/graphql',
+  '@josef/markdown'
+)
+// .filter(moduleName => !moduleName.startsWith('@josef'))
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
