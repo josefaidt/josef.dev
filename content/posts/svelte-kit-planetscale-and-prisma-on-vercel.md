@@ -92,7 +92,7 @@ Now, _continuing_ the blog post we'll need to add a parameter to the MySQL conne
 In the end, our `DATABASE_URL` environment variable in Vercel will end up looking as follows:
 
 ```text
-mysql://<username>:<host-url>/<database-name>?sslmode=require&sslaccept=strict&ssclcert=/etc/pki/tls/certs/ca-bundle.crt
+mysql://<username>:<password>@<host-url>/<database-name>?sslmode=require&sslaccept=strict&ssclcert=/etc/pki/tls/certs/ca-bundle.crt
 ```
 
 Finally, the last piece we'll need is necessary to copy the Prisma schema file and Prisma client engines' information to the location of the render function created by Svelte-Kit when we use the Vercel adapter. The following `package.json` snippet was derived from [this wonderful Svelte-Kit & Prisma repository by Mike Nikles](https://github.com/mikenikles/sveltekit-prisma/blob/main/package.json#L13):
