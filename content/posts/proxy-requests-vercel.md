@@ -3,7 +3,7 @@ title: Proxy Requests in Vercel
 description: Quick note to demonstrate how to proxy requests using Vercel's Micro HTTP framework
 date: 2021-10-12
 tags: ['backend', 'serverless']
-published: true
+published: false
 ---
 
 - [npm:micro](https://www.npmjs.com/package/micro)
