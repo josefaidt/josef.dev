@@ -3,7 +3,7 @@ title: 'Svelte-Kit, PlanetScale, and Prisma on Vercel'
 description: 'Notes on deploying Svelte-Kit, PlanetScale, and Prisma on Vercel'
 date: 2021-12-06
 tags: ['serverless', 'svelte-kit', 'planetscale', 'prisma', 'vercel']
-published: false
+published: true
 ---
 
 References:
