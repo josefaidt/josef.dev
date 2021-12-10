@@ -7,11 +7,12 @@
       "import": "./src/index.js",
       "require": "./build/index.cjs"
     },
-    "./package.json": "./package.json"
+    "./package.json": "./package.json",
+    "./schema.graphql": "./schema.graphql"
   },
   "scripts": {
     "dev": "node scripts/build --watch",
-    "build": "node scripts/build"
+    "build": "echo 'no build' # node scripts/build"
   },
   "license": "MIT",
   "devDependencies": {

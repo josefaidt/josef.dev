@@ -19,14 +19,6 @@ async function getDependencies(modulePath) {
   )
 }
 
-const external = (await getDependencies('./')).concat(
-  await getDependencies('./packages/markdown'),
-  await getDependencies('./packages/graphql'),
-  '@josef/graphql',
-  '@josef/markdown'
-)
-// .filter(moduleName => !moduleName.startsWith('@josef'))
-
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
   extensions: ['.svelte', '.md'],
@@ -49,11 +41,13 @@ const config = {
       onError: 'continue',
     },
 
+    ssr: false,
+
     vite: {
       plugins: [GraphQLLayerPlugin(), VercelLayerPlugin()],
-      ssr: {
-        external,
-      },
+      // ssr: {
+      //   external: ['node:*'],
+      // },
       build: {
         rollupOptions: {
           external: ['fs/promises', 'node:*'],

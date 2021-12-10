@@ -7,12 +7,19 @@ function log(message) {
 
 const apidir = resolve('api')
 
+async function loadSecrets() {
+  return (await import('dotenv')).config({
+    path: resolve('.env'),
+  })
+}
+
 // this is created to mitigate issues with client-side code not running
 // when `svelte-kit dev` is wrapped with `vercel dev`
 export default function VercelLayerPlugin() {
   return {
     name: 'vercel-layer-plugin',
     configureServer: async server => {
+      await loadSecrets()
       // attach helpers to serverResponse for Vercel's serverless functions
       server.middlewares.use((req, res, next) => {
         res.__proto__.json = function json(payload) {

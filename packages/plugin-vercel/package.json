@@ -13,6 +13,7 @@
     "esbuild": "^0.14.0"
   },
   "dependencies": {
+    "dotenv": "^10.0.0",
     "fast-glob": "^3.2.7"
   }
 }
