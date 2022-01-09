@@ -5,7 +5,7 @@ import { themes } from '$lib/theme'
 /**
  * @type {import('@sveltejs/kit').RequestHandler}
  */
-export async function get({ path }) {
+export async function get({ url }) {
   const { data, errors } = await query(
     `
     query GET_POST($slug: String!, $toLocaleDateStringOptions: LocaleDateStringOptions) {
@@ -28,7 +28,7 @@ export async function get({ path }) {
     }
   `,
     {
-      slug: path.replace(/\.json$/, ''),
+      slug: url.pathname.replace(/\.json$/, ''),
       toLocaleDateStringOptions: {
         year: 'numeric',
         month: 'long',

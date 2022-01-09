@@ -22,7 +22,7 @@
     <a
       sveltekit:prefetch
       href="{item.path}"
-      class:active="{$page.path === item.path}"
+      class:active="{$page.url.pathname === item.path}"
     >
       {item.name}
     </a>

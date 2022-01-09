@@ -33,7 +33,7 @@
   <meta name="description" content="{description.slice(0, 244)}" />
   <meta name="keywords" content="{[].concat(keywords || tags).join(',')}" />
 
-  <meta name="og:url" content="{$page.path || query.data.metadata.url}" />
+  <meta name="og:url" content="{$page.url.pathname || query.data.metadata.url}" />
   <meta name="og:title" content="{title}" />
   <meta name="og:description" content="{description.slice(0, 244)}" />
   <meta name="og:image" content="{imageUrl}" />

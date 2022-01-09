@@ -4,8 +4,8 @@
   /**
    * @type {import('@sveltejs/kit').Load}
    */
-  export async function load({ page: _page, fetch }) {
-    const { slug } = _page.params
+  export async function load({ params, fetch }) {
+    const { slug } = params
     const page = await (await fetch(`/${slug}.json`)).json()
     return {
       props: { page },
