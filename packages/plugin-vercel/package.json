@@ -10,10 +10,10 @@
     "build": "echo 'no build for plugin-vercel'"
   },
   "devDependencies": {
-    "esbuild": "^0.14.0"
+    "esbuild": "^0.14.11"
   },
   "dependencies": {
     "dotenv": "^10.0.0",
-    "fast-glob": "^3.2.7"
+    "fast-glob": "^3.2.10"
   }
 }

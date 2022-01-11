@@ -1,4 +1,4 @@
-import { query } from '@josef/graphql'
+import query from '@josef/graphql/query'
 import getShareImage from '@jlengstorf/get-share-image'
 import { themes } from '$lib/theme'
 

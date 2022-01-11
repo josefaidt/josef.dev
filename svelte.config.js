@@ -19,6 +19,11 @@ async function getDependencies(modulePath) {
   )
 }
 
+const noExternal = [
+  ...(await getDependencies('packages/graphql')),
+  ...(await getDependencies('packages/markdown')),
+]
+
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
   extensions: ['.svelte', '.md'],
@@ -45,9 +50,9 @@ const config = {
 
     vite: {
       plugins: [GraphQLLayerPlugin(), VercelLayerPlugin()],
-      // ssr: {
-      //   external: ['node:*'],
-      // },
+      ssr: {
+        noExternal,
+      },
       build: {
         rollupOptions: {
           external: ['fs/promises', 'node:*'],
