@@ -8,6 +8,7 @@
     const { slug } = params
     const page = await (await fetch(`/${slug}.json`)).json()
     return {
+      status: !!page ? 200 : 404,
       props: { page },
     }
   }
@@ -17,7 +18,7 @@
   import SEO from '$components/SEO.svelte'
   import Markdown from '$components/Markdown.svelte'
 
-  export let page
+  export let page = {}
 </script>
 
 <SEO {...page.metadata} />

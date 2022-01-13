@@ -10,7 +10,7 @@
   let isPlaying = false
 
   async function getSpotifyCurrentlyPlaying() {
-    const res = await fetch(`/api/spotify/currently-playing`)
+    const res = await fetch(`/api/spotify/currently-playing.json`)
     if (res.ok) {
       return await res.json()
     } else {
@@ -19,7 +19,7 @@
   }
 
   async function getSpotifyRecentlyPlayed() {
-    const res = await fetch(`/api/spotify/recently-played`)
+    const res = await fetch(`/api/spotify/recently-played.json`)
     if (res.ok) {
       return await res.json()
     } else {

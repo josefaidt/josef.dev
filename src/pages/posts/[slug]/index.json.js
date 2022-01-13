@@ -1,41 +1,18 @@
-import query from '@josef/graphql/query'
 import getShareImage from '@jlengstorf/get-share-image'
 import { themes } from '$lib/theme'
+import { getPost } from '$lib/content'
 
 /**
  * @type {import('@sveltejs/kit').RequestHandler}
  */
 export async function get({ url }) {
-  const { data, errors } = await query(
-    `
-    query GET_POST($slug: String!, $toLocaleDateStringOptions: LocaleDateStringOptions) {
-      post(
-        slug:$slug, 
-        options: { toLocaleDateStringOptions: $toLocaleDateStringOptions }
-      ) {
-        slug
-        metadata {
-          title
-          description
-          date
-          tags
-          readingTime {
-            text
-          }
-        }
-        html
-      }
-    }
-  `,
-    {
-      slug: url.pathname.replace(/\.json$/, ''),
-      toLocaleDateStringOptions: {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-      },
-    }
-  )
+  let errors
+  let post
+  try {
+    post = await getPost(url.pathname.replace(/\.json$/, ''))
+  } catch (error) {
+    errors = [error]
+  }
 
   if (errors) {
     return {
@@ -44,19 +21,32 @@ export async function get({ url }) {
     }
   }
 
+  if (!post) {
+    return {
+      status: 404,
+      body: JSON.stringify({
+        errors: [
+          {
+            message: 'Page not found',
+          },
+        ],
+      }),
+    }
+  }
+
   const imageUrl = getShareImage({
-    title: data.post.metadata.title,
-    tagline: data.post.metadata.tags.map(k => `#${k}`).join('  '),
+    title: post.metadata.title,
+    tagline: post.metadata.tags?.map(k => `#${k}`)?.join('  ') || '',
     cloudName: import.meta.env.VITE_CLOUDINARY_CLOUD_NAME,
     imagePublicID: import.meta.env.VITE_CLOUDINARY_IMAGE_PUBLIC_ID,
     textColor: themes.light.colors.text.slice(1),
   })
 
   if (imageUrl) {
-    data.post.metadata.imageUrl = imageUrl
+    post.metadata.imageUrl = imageUrl
   }
 
-  const body = JSON.stringify(data.post)
+  const body = JSON.stringify(post)
 
   return {
     body,

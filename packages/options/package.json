@@ -11,7 +11,7 @@
     "./package.json": "./package.json"
   },
   "scripts": {
-    "dev": "yarn build --watch",
+    "dev": "pnpm build --watch",
     "build": "esbuild --format=cjs --platform=node --outfile=build/index.cjs index.js"
   },
   "devDependencies": {
