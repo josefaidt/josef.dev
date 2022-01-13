@@ -10,17 +10,12 @@ My new personal site built with [Svelte-Kit](http://kit.svelte.dev/). Svelte-Kit
 - [Svelte-Kit](https://kit.svelte.dev)
 - GraphQL
 - [PanelBear](https://panelbear.com/) for Analytics (yay no more G-analytics)
+- GitHub (-as-a-CMS)
 
 ## Features
 
-- Vercel API Layer: small utility to pull in Vercel serverless functions into Vite dev server for use locally <sup>[1](#1)</sup>
+- [Vercel API Layer](packages/plugin-vercel): small utility to pull in Vercel serverless functions into Vite dev server for use locally -- **no longer used in favor of the Vercel adapter**
 - GraphQL Layer: attached to Vite dev server for availability in dev and build
 - GraphQL preprocessor: pulls in data from GraphQL layer before Svelte compiles, allows for static data (no dynamic queries)
 - Markdown
-
-## Nuances
-
-- <div id="1"></div>Vercel serverless functions are used in conjunction with the static SK adapter in order to deliver api routes without using the Vercel adapter. When using the Vercel adapter static content pages require extra lifting, and can nix interactivity from parent layouts
-  - when pulling for local dev, run `yarn dev` in api
-- When deploying to Vercel, be sure to remote `"type": "module"` from Vercel layer `package.json`; Vercel can't deploy using ESM and the Vercel Layer Plugin will not work unless the files are in an ESM context like the site project itself.
-  - this is automated for now being that `api` is a workspace and `yarn build` will execute the `build` script in every workspace
+- GitHub-as-a-CMS, uses [GitHub issues in this repository](https://github.com/josefaidt/josef.dev/issues) as content
