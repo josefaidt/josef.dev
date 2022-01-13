@@ -28,7 +28,9 @@ function queryListIssues(labels = []) {
 query { 
   viewer {
     repository(name:"josef.dev") {
-      issues(labels: [${'"' + labels.join('","') + '"'}], first: 100) {
+      issues(states: [OPEN], labels: [${
+        '"' + labels.join('","') + '"'
+      }], first: 100) {
         totalCount
         edges {
           node {
@@ -84,15 +86,36 @@ export async function generateContentFromGithub(nodes, options = {}) {
   return content
 }
 
-export async function listContent(options) {
+export async function listContent(options = {}) {
   const { data, error } = await query(QUERY_LIST_CONTENT)
   if (error) {
     throw new Error('Unable to list content', error)
   }
   const content = await generateContentFromGithub(
-    data.viewer.repository.issues.edges,
-    options
+    data.viewer.repository.issues.edges
   )
+
+  const { sortBy = 'date', order = 'desc' } = options
+
+  const pre = prop => {
+    if (sortBy.toLowerCase() === 'date') {
+      return new Date(prop)
+    }
+    return prop
+  }
+
+  if (order.toLowerCase() === 'asc') {
+    content.sort((a, b) =>
+      pre(a.metadata[sortBy]) < pre(b.metadata[sortBy]) ? -1 : 1
+    )
+  }
+
+  if (order.toLowerCase() === 'desc') {
+    content.sort((a, b) =>
+      pre(a.metadata[sortBy]) > pre(b.metadata[sortBy]) ? -1 : 1
+    )
+  }
+
   return content
 }
 
