@@ -92,7 +92,8 @@ export async function listContent(options = {}) {
     throw new Error('Unable to list content', error)
   }
   const content = await generateContentFromGithub(
-    data.viewer.repository.issues.edges
+    data.viewer.repository.issues.edges,
+    options
   )
 
   const { sortBy = 'date', order = 'desc' } = options
