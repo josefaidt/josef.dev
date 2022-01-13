@@ -1,44 +1,23 @@
 <script context="module">
   export const prerender = true
-  export const query = [
-    `
-    query ALL_POSTS(
-      $toLocaleDateStringOptions: LocaleDateStringOptions,
-      $published: Boolean
-    ) {
-      allPosts(options:
-        { toLocaleDateStringOptions: $toLocaleDateStringOptions, published: $published }
-      ) {
-        slug
-        metadata {
-          title
-          date
-          description
-          tags
-          readingTime {
-            text
-          }
-        }
-      }
+  // export const hydrate = false
+
+  /**
+   * @type {import('@sveltejs/kit').Load}
+   */
+   export async function load({ fetch }) {
+    const posts = await (await fetch(`/posts.json`)).json()
+    return {
+      props: { posts },
     }
-  `,
-    {
-      toLocaleDateStringOptions: {
-        year: 'numeric',
-        month: 'short',
-        day: 'numeric',
-      },
-      // TODO: is this possible? receiving "Cannot use 'import.meta' outside a module"
-      // published: import.meta.env.PROD,
-      published: true,
-    },
-  ]
+  }
 </script>
 
 <script>
   import SEO from '$components/SEO.svelte'
   import Article from './_components/article.svelte'
-  const posts = query.data.allPosts ?? []
+  
+  export let posts = []
 
   const seoProps = {
     title: 'Snakes and Sparklers',
@@ -55,7 +34,7 @@
         <li>
           <a href="{post.slug}" aria-labelledby="{index}">
             <Article
-              {...post.metadata}
+              {...(post.metadata || {})}
               readingTime="{post.metadata?.readingTime?.text}"
             />
           </a>

@@ -25,7 +25,7 @@
   import '$styles/normalize.css'
   import '$styles/global.css'
   import '$styles/style.css'
-  import '$styles/prism.css'
+  import '$styles/code.css'
   import '$styles/scrollbar.css'
 </script>
 

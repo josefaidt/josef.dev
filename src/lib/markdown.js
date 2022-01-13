@@ -1,11 +1,11 @@
-import { readFile } from 'fs/promises'
-import { EOL } from 'os'
 import { marked } from 'marked'
 import hljs from 'highlight.js'
 import hljsDefineGraphQL from 'highlightjs-graphql'
 import readingTime from 'reading-time'
 import dayjs from 'dayjs'
 import yaml from 'js-yaml'
+
+const EOL = '\n'
 
 /**
  * @typedef {object} Metadata
@@ -27,19 +27,23 @@ import yaml from 'js-yaml'
  * @param {string} fileContents
  * @returns {Frontmatter}
  */
-function fm(fileContents) {
-  const DELIMITER = '---'
+function fm(contents, options) {
+  const {
+    EOL = '\n',
+    DELIMITER = '---',
+    OPENING = '```yml',
+    CLOSING = '```',
+  } = options
   let metadata = {}
-  let body = fileContents
-  const iterable = fileContents.split(EOL) || []
-
+  let body = contents
+  const iterable = contents.split(EOL) || []
   let frontmatter = []
   for (let i = 0; i < iterable.length; i++) {
     const line = iterable[i]
-    if (iterable[0] === DELIMITER) {
+    if (iterable[0] === DELIMITER || iterable[0] === OPENING) {
       frontmatter.push(line)
       if (i === 0) continue
-      if (line === DELIMITER) {
+      if (line === DELIMITER || line === CLOSING) {
         frontmatter = frontmatter.slice(1, -1).join(EOL)
         // check if contents have empty line after frontmatter
         const sliceLength = !iterable[i + 2] ? i + 1 : i + 2
@@ -74,8 +78,8 @@ marked.use({
   smartLists: true,
   smartypants: true,
   xhtml: false,
-  highlight: function (code, lang) {
-    return hljs.highlight(lang, code).value
+  highlight: function (code, language) {
+    return hljs.highlight(code, { language }).value
   },
 })
 
@@ -86,14 +90,13 @@ marked.use({
  */
 
 /**
- * Process Markdown file
- * @param {string} filePath absolute path to file
+ * Process Markdown content
+ * @param {string} contents raw markdown file contents
  * @returns {ProcessedContent}
  */
-export async function process(filePath) {
-  const fileContents = await readFile(filePath, 'utf-8')
-  const { metadata, body } = fm(fileContents)
-  const content = marked.parse(body)
+export async function processMarkdown(contents) {
+  const { metadata, body } = fm(contents, { EOL: '\r\n' })
+  const html = marked.parse(body)
 
-  return { metadata, content }
+  return { metadata, html }
 }

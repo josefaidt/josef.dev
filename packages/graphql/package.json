@@ -4,30 +4,36 @@
   "type": "module",
   "exports": {
     ".": {
-      "import": "./build/index.js",
+      "import": "./src/index.js",
       "require": "./build/index.cjs"
+    },
+    "./package.json": "./package.json",
+    "./schema.graphql": "./schema.graphql",
+    "./query": {
+      "import": "./src/query.js",
+      "require": "./build/query.cjs"
     }
   },
   "scripts": {
     "dev": "node scripts/build --watch",
-    "build": "node scripts/build"
+    "build": "echo 'no build' # node scripts/build"
   },
   "license": "MIT",
   "devDependencies": {
     "@luckycatfactory/esbuild-graphql-loader": "^3.7.0",
-    "esbuild": "^0.13.4",
+    "esbuild": "^0.14.2",
     "graphql-tag": "^2.12.5"
   },
   "dependencies": {
     "@josef/markdown": "*",
     "@josef/options": "*",
-    "@graphql-tools/schema": "^8.2.0",
-    "acorn": "^8.5.0",
+    "@graphql-tools/schema": "^8.3.1",
+    "acorn": "^8.7.0",
     "acorn-walk": "^8.2.0",
     "deepmerge": "^4.2.2",
-    "express": "^4.17.1",
+    "express": "^4.17.2",
     "express-graphql": "^0.12.0",
-    "graphql": "^15.6.1",
-    "graphql-request": "^3.5.0"
+    "graphql": "^16.2.0",
+    "graphql-request": "^3.7.0"
   }
 }

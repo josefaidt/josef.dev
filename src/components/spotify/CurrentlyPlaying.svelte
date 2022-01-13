@@ -2,15 +2,15 @@
   import { onMount } from 'svelte'
   import SpotifyIcon from '../icons/spotify.svg.svelte'
 
-  export let album
-  export let albumImageUrl
-  export let artist
-  export let songUrl
-  export let title
-  export let isPlaying = false
+  let album
+  let albumImageUrl
+  let artist
+  let songUrl
+  let title
+  let isPlaying = false
 
   async function getSpotifyCurrentlyPlaying() {
-    const res = await fetch(`/api/spotify/currently-playing`)
+    const res = await fetch(`/api/spotify/currently-playing.json`)
     if (res.ok) {
       return await res.json()
     } else {
@@ -19,7 +19,7 @@
   }
 
   async function getSpotifyRecentlyPlayed() {
-    const res = await fetch(`/api/spotify/recently-played`)
+    const res = await fetch(`/api/spotify/recently-played.json`)
     if (res.ok) {
       return await res.json()
     } else {
@@ -28,9 +28,14 @@
   }
 
   onMount(async () => {
-    $$props = Object.assign(await getSpotifyCurrentlyPlaying(), $$props)
-    if (!isPlaying) {
-      $$props = Object.assign(await getSpotifyRecentlyPlayed(), $$props)
+    const currentlyPlaying = await getSpotifyCurrentlyPlaying()
+    if (currentlyPlaying?.isPlaying) {
+      isPlaying = true
+      album = currentlyPlaying.album
+      albumImageUrl = currentlyPlaying.albumImageUrl
+      artist = currentlyPlaying.artist
+      songUrl = currentlyPlaying.songUrl
+      title = currentlyPlaying.title
     }
   })
 </script>
@@ -38,7 +43,15 @@
 <section>
   <div>
     <SpotifyIcon />
-    <p>{isPlaying ? `Now Playing` : 'Currently Offline'}</p>
+    <p>
+      {isPlaying ? `Now Playing` : 'Currently Offline'}
+      {#if isPlaying}
+        <span>&mdash;</span>
+        <a href="{songUrl}" target="_blank">
+          <span>{title} by {artist}</span>
+        </a>
+      {/if}
+    </p>
   </div>
 </section>
 

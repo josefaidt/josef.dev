@@ -1,6 +1,6 @@
 import { promises as fs } from 'fs'
 import { join } from 'path'
-import generateNodeData from '../generateNodeData'
+import generateNodeData from '../generateNodeData.js'
 import config from '@josef/options'
 const { readdir } = fs
 

@@ -4,10 +4,11 @@
   /**
    * @type {import('@sveltejs/kit').Load}
    */
-  export async function load({ page: _page, fetch }) {
-    const { slug } = _page.params
+  export async function load({ params, fetch }) {
+    const { slug } = params
     const page = await (await fetch(`/${slug}.json`)).json()
     return {
+      status: !!page ? 200 : 404,
       props: { page },
     }
   }
@@ -17,7 +18,7 @@
   import SEO from '$components/SEO.svelte'
   import Markdown from '$components/Markdown.svelte'
 
-  export let page
+  export let page = {}
 </script>
 
 <SEO {...page.metadata} />

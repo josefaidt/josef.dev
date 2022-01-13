@@ -9,3 +9,5 @@ node_modules
 /build
 .vercel
 .vercel_build_output
+packages/**/build
+packages/**/lib
