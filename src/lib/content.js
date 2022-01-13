@@ -23,14 +23,11 @@ export async function query(queryString, variables = {}) {
   return client.query(queryString, variables).toPromise()
 }
 
-function queryListIssues(labels = []) {
-  return `
-query { 
+export const QUERY_LIST_CONTENT = `
+query($labels: [String!], $first: Int = 100) { 
   viewer {
     repository(name:"josef.dev") {
-      issues(states: [OPEN], labels: [${
-        '"' + labels.join('","') + '"'
-      }], first: 100) {
+      issues(states: [OPEN], labels: $labels, first: $first) {
         totalCount
         edges {
           node {
@@ -54,14 +51,6 @@ query {
   }
 }
 `
-}
-
-export const QUERY_LIST_CONTENT = queryListIssues([
-  'type/post',
-  'type/page',
-  'status/published',
-  'status/not-published',
-])
 
 export async function generateContentFromGithub(nodes, options = {}) {
   const { slugPrefix = '/' } = options
@@ -87,7 +76,14 @@ export async function generateContentFromGithub(nodes, options = {}) {
 }
 
 export async function listContent(options = {}) {
-  const { data, error } = await query(QUERY_LIST_CONTENT)
+  const { data, error } = await query(QUERY_LIST_CONTENT, {
+    labels: [
+      'type/post',
+      'type/page',
+      'status/not-published',
+      'status/published',
+    ],
+  })
   if (error) {
     throw new Error('Unable to list content', error)
   }
