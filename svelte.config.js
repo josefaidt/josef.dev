@@ -5,6 +5,9 @@ import adapter from '@sveltejs/adapter-vercel'
 import preprocess from 'svelte-preprocess'
 import { GraphQLLayerPlugin, preprocessGraphQL } from '@josef/graphql'
 import VercelLayerPlugin from '@josef/plugin-vercel'
+// this is needed to build locally
+import dotenv from 'dotenv'
+dotenv.config()
 
 const isProduction = process.env.NODE_ENV === 'production'
 
@@ -42,17 +45,13 @@ const config = {
       template: resolve(`src/app${!isProduction ? '.dev' : ''}.html`),
     },
 
-    prerender: {
-      onError: 'continue',
-    },
-
-    ssr: false,
+    // prerender: {
+    //   onError: 'continue',
+    // },
 
     vite: {
-      plugins: [GraphQLLayerPlugin(), VercelLayerPlugin()],
-      ssr: {
-        noExternal,
-      },
+      plugins: [GraphQLLayerPlugin()],
+      ssr: {},
       build: {
         rollupOptions: {
           external: ['fs/promises', 'node:*'],
