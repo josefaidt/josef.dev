@@ -67,8 +67,10 @@ function fm(contents, options) {
     throw new Error('Unable to parse yaml frontmatter', error)
   }
 
+  if (!metadata) metadata = {}
+
   // transform dates
-  for (let [key, value] of Object.entries(metadata || {})) {
+  for (let [key, value] of Object.entries(metadata)) {
     if (value instanceof Date) metadata[key] = date(value)
   }
   metadata.readingTime = readingTime(body)

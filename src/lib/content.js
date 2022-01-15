@@ -148,7 +148,7 @@ export async function generateContentFromGithub(nodes, options = {}) {
   let content = []
   for (let { node } of nodes) {
     let published = options.published || false
-    const { metadata, html } = await processMarkdown(node.body)
+    let { metadata, html } = await processMarkdown(node.body)
 
     metadata.title = node.title
     metadata.type = type
@@ -182,13 +182,17 @@ export async function generateContentFromGithub(nodes, options = {}) {
 }
 
 export async function listContent(options = {}) {
-  const { data, error } = await query(QUERY_LIST_CONTENT, {
-    issueLabels: [
+  const {
+    labels = [
       'type/post',
       'type/page',
+      'type/page-fragment',
       'status/not-published',
       'status/published',
     ],
+  } = options
+  const { data, error } = await query(QUERY_LIST_CONTENT, {
+    issueLabels: labels,
     discussionsCategoryId: POST_DISCUSSION_CATEGORY_ID,
   })
   if (error) {
@@ -222,6 +226,13 @@ export async function listContent(options = {}) {
   return sortByDate(content, options)
 }
 
+export async function listPageFragments(options = {}) {
+  const content = await listContent({
+    labels: ['type/page-fragment', 'status/not-published', 'status/published'],
+  })
+  return content
+}
+
 export async function listDiscussionPosts(options = {}) {
   const { data, error } = await query(QUERY_LIST_DISCUSSION_POSTS, {
     categoryId: POST_DISCUSSION_CATEGORY_ID,
@@ -251,10 +262,12 @@ export async function getPost(slug) {
 
 export async function listPages() {
   const content = await listContent()
-  return content.filter(({ metadata }) => metadata.type === 'page')
+  let allowedTypes = ['page', 'page-fragment']
+  return content.filter(({ metadata }) => allowedTypes.includes(metadata.type))
 }
 
-export async function getPage(slug) {
+export async function getPage(slug, options = {}) {
+  const { fragment = false } = options
   const pages = await listPages()
   const page = pages.find(({ slug: pageSlug }) => pageSlug === slug)
   return page

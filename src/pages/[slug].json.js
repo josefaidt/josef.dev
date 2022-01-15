@@ -4,15 +4,15 @@ import { getPage } from '$lib/content'
  * @type {import('@sveltejs/kit').RequestHandler}
  */
 export async function get({ url, ...rest }) {
-  let errors
+  let errors = []
   let page
   try {
     page = await getPage(url.pathname.replace(/\.json$/, ''))
   } catch (error) {
-    errors = [error]
+    errors.push(error)
   }
 
-  if (errors) {
+  if (errors.length) {
     return {
       status: 400,
       body: JSON.stringify(errors),
@@ -32,9 +32,7 @@ export async function get({ url, ...rest }) {
     }
   }
 
-  const body = JSON.stringify(page)
-
   return {
-    body,
+    body: page,
   }
 }

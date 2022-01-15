@@ -8,10 +8,10 @@
 <footer>
   <slot />
   <div class=""></div>
-  <div class="links-container">
+  <section class="links-container">
     <p>
       &copy; {`${new Date().getFullYear()}`}, Built with
-      <a href="https://svelte.dev">Svelte</a>
+      <a href="https://kit.svelte.dev">Svelte-Kit</a>
     </p>
     <div class="socials">
       <a
@@ -51,7 +51,7 @@
       <!-- twitter -->
       <!-- linkedin -->
     </div>
-  </div>
+  </section>
 </footer>
 
 <style>
