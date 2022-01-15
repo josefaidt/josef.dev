@@ -61,7 +61,7 @@ export const QUERY_LIST_CONTENT = `
 query($discussionsCategoryId: ID!, $issueLabels: [String!], $first: Int = 100) { 
   viewer {
     repository(name:"josef.dev") {
-      issues(states: [OPEN], labels: $issueLabels, first: $first) {
+      issues(filterBy: {createdBy: "josefaidt"}, states: [OPEN], labels: $issueLabels, first: $first) {
         totalCount
         edges {
           node {
