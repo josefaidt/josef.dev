@@ -210,18 +210,14 @@ export async function listContent(options = {}) {
   } catch (error) {
     // don't worry about throwing error
     // most likely errors 429 in local dev
-    console.error('error fetching list page views')
+    // console.error('error fetching list page views')
   }
 
-  if (pageViews) {
-    content = nodes.map(node => {
-      let views = pageViews.find(({ path }) => path === node.slug)
-      if (views) {
-        node.metadata.views = views.event_count || 0
-      }
-      return node
-    })
-  }
+  content = nodes.map(node => {
+    let views = pageViews?.find(({ path }) => path === node.slug)
+    node.metadata.views = views?.event_count || 0
+    return node
+  })
 
   return sortByDate(content, options)
 }

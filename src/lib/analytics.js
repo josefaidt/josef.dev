@@ -27,10 +27,12 @@ export async function listPageViews(options = {}) {
   if (get(store).pageViews) return get(store).pageViews
   const response = await fetch(API_URL_STATS, {
     method: 'POST',
-    cache: 'force-cache',
+    // cache: 'force-cache',
     headers: {
       Authorization: `Bearer ${API_KEY}`,
       'Content-Type': 'application/json',
+      // 'Cache-Control': 'max-age=86400', // 24 hours
+      'Cache-Control': 'max-age=604800', // 7 days
     },
     body: JSON.stringify(params),
   })
