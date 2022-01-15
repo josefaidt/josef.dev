@@ -2,6 +2,8 @@ import { createClient } from '@urql/core'
 import _slugify from 'slugify'
 import { processMarkdown, date } from './markdown.js'
 
+const POST_DISCUSSION_CATEGORY_ID = 'DIC_kwDOFFxubs4CAsIL'
+
 function slugify(str) {
   return _slugify(str, {
     replacement: '-',
@@ -185,7 +187,7 @@ export async function listContent(options = {}) {
       'status/not-published',
       'status/published',
     ],
-    discussionsCategoryId: 'DIC_kwDOFFxubs4CAsIL',
+    discussionsCategoryId: POST_DISCUSSION_CATEGORY_ID,
   })
   if (error) {
     throw new Error('Unable to list content', error)
@@ -203,7 +205,7 @@ export async function listContent(options = {}) {
 
 export async function listDiscussionPosts(options = {}) {
   const { data, error } = await query(QUERY_LIST_DISCUSSION_POSTS, {
-    categoryId: 'DIC_kwDOFFxubs4CAsIL',
+    categoryId: POST_DISCUSSION_CATEGORY_ID,
   })
 
   if (error) {
