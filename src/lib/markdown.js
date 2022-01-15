@@ -5,6 +5,15 @@ import readingTime from 'reading-time'
 import dayjs from 'dayjs'
 import yaml from 'js-yaml'
 
+/**
+ * Transforms date to formatted string
+ * @param {Date} value
+ * @returns {string}
+ */
+export function date(value) {
+  return dayjs(value).format('MMM D, YYYY')
+}
+
 const EOL = '\n'
 
 /**
@@ -60,8 +69,7 @@ function fm(contents, options) {
 
   // transform dates
   for (let [key, value] of Object.entries(metadata || {})) {
-    if (value instanceof Date)
-      metadata[key] = dayjs(value).format('MMM D, YYYY')
+    if (value instanceof Date) metadata[key] = date(value)
   }
   metadata.readingTime = readingTime(body)
 

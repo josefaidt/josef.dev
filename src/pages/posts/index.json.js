@@ -1,4 +1,4 @@
-import { listPosts } from '$lib/content.js'
+import { listPosts, listDiscussionPosts } from '$lib/content.js'
 
 /**
  * @type {import('@sveltejs/kit').RequestHandler}
@@ -6,6 +6,7 @@ import { listPosts } from '$lib/content.js'
 export async function get(req) {
   let errors
   let posts
+
   try {
     posts = await listPosts()
   } catch (error) {
