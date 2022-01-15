@@ -1,8 +1,8 @@
 # josef.dev
 
-⚠️ WARNING: UNDER ACTIVE DEVELOPMENT ⚠️
-
 My new personal site built with [Svelte-Kit](http://kit.svelte.dev/). Svelte-Kit is still in beta, therefore this will change.
+
+[[Posts](https://github.com/josefaidt/josef.dev/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc+label%3Atype%2Fpost+label%3Astatus%2Fpublished)] | [[Pages](https://github.com/josefaidt/josef.dev/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc+label%3Astatus%2Fpublished+label%3Atype%2Fpage)]
 
 ## Technologies
 
