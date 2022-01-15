@@ -1,4 +1,4 @@
-import { listPosts } from '$lib/content.js'
+import { listPosts, listDiscussionPosts } from '$lib/content.js'
 
 /**
  * @type {import('@sveltejs/kit').RequestHandler}
@@ -6,15 +6,26 @@ import { listPosts } from '$lib/content.js'
 export async function get(req) {
   let errors
   let posts
+  let discussions
+
   try {
     posts = await listPosts()
   } catch (error) {
     errors = [error]
   }
 
+  try {
+    discussions = await listDiscussionPosts()
+  } catch (error) {
+    errors = [...errors, error]
+  }
+
+  let result = [...discussions]
+
   if (import.meta.env.PROD) {
     posts = posts.filter(post => post.published)
   }
+  result.push.apply(result, posts)
 
   if (errors) {
     console.log({ errors })
@@ -31,7 +42,7 @@ export async function get(req) {
     }
   }
 
-  const body = JSON.stringify(posts)
+  const body = JSON.stringify(result)
 
   return {
     body,

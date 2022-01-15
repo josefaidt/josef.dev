@@ -18,6 +18,7 @@
   import Article from './_components/article.svelte'
   
   export let posts = []
+  $: console.log(posts)
 
   const seoProps = {
     title: 'Snakes and Sparklers',

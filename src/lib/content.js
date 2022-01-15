@@ -1,6 +1,6 @@
 import { createClient } from '@urql/core'
 import _slugify from 'slugify'
-import { processMarkdown } from './markdown.js'
+import { processMarkdown, date } from './markdown.js'
 
 function slugify(str) {
   return _slugify(str, {
@@ -8,6 +8,37 @@ function slugify(str) {
     lower: true,
     strict: true,
   })
+}
+
+/**
+ *
+ * @param {object} options
+ * @property {string} options.sortBy
+ * @property {string} options.order
+ */
+export function sortByDate(content, options = {}) {
+  const { sortBy = 'date', order = 'desc' } = options
+
+  const pre = prop => {
+    if (sortBy.toLowerCase() === 'date') {
+      return new Date(prop)
+    }
+    return prop
+  }
+
+  if (order.toLowerCase() === 'asc') {
+    content.sort((a, b) =>
+      pre(a.metadata[sortBy]) < pre(b.metadata[sortBy]) ? -1 : 1
+    )
+  }
+
+  if (order.toLowerCase() === 'desc') {
+    content.sort((a, b) =>
+      pre(a.metadata[sortBy]) > pre(b.metadata[sortBy]) ? -1 : 1
+    )
+  }
+
+  return content
 }
 
 export const client = createClient({
@@ -52,24 +83,78 @@ query($labels: [String!], $first: Int = 100) {
 }
 `
 
+export const QUERY_LIST_DISCUSSION_POSTS = `
+query($categoryId: ID!, $first: Int = 100) {
+  viewer {
+    repository(name: "josef.dev") {
+      discussions(categoryId: $categoryId, first: $first) {
+        edges {
+          node {
+            createdAt
+            lastEditedAt
+            author {
+              login
+              avatarUrl
+            }
+            title
+            body
+          }
+        }
+      }
+    }
+  }
+}
+`
+
+export const QUERY_LIST_DISCUSSION_CATEGORIES = `
+query {
+  viewer {
+    repository(name: "josef.dev") {
+      discussionCategories(filterByAssignable: true, first: 50) {
+        edges {
+          node {
+            id
+            name
+          }
+        }
+      }
+    }
+  }
+}
+`
+
 export async function generateContentFromGithub(nodes, options = {}) {
-  const { slugPrefix = '/' } = options
+  const { slugPrefix = '/', type } = options
   let content = []
   for (let { node } of nodes) {
+    let published = options.published || true
     const { metadata, html } = await processMarkdown(node.body)
+
     metadata.title = node.title
-    metadata._labels = node.labels.edges.map(({ node }) => node.name)
-    metadata.type = metadata._labels
-      .find(label => label.startsWith('type/'))
-      .split('/')[1]
+
+    if (!metadata.date) {
+      metadata.date = date(
+        node.editedAt > node.createdAt ? node.editedAt : node.createdAt
+      )
+    }
+
+    if (node.labels) {
+      metadata._labels = node.labels.edges.map(({ node }) => node.name)
+      published = node.labels.edges.some(
+        ({ node: label }) => label.name === 'status/published'
+      )
+    }
+
+    metadata.type =
+      type ||
+      metadata._labels.find(label => label.startsWith('type/')).split('/')[1]
+
     content.push({
       author: node.author.login,
       metadata,
       html,
       slug: slugPrefix + slugify(metadata.title),
-      published: node.labels.edges.some(
-        ({ node: label }) => label.name === 'status/published'
-      ),
+      published,
     })
   }
   return content
@@ -92,28 +177,23 @@ export async function listContent(options = {}) {
     options
   )
 
-  const { sortBy = 'date', order = 'desc' } = options
+  return sortByDate(content, options)
+}
 
-  const pre = prop => {
-    if (sortBy.toLowerCase() === 'date') {
-      return new Date(prop)
-    }
-    return prop
+export async function listDiscussionPosts(options = {}) {
+  const { data, error } = await query(QUERY_LIST_DISCUSSION_POSTS, {
+    categoryId: 'DIC_kwDOFFxubs4CAsIL',
+  })
+
+  if (error) {
+    throw new Error('Unable to list content', error)
   }
+  const content = await generateContentFromGithub(
+    data.viewer.repository.discussions.edges,
+    { ...options, slugPrefix: '/posts/', type: 'post' }
+  )
 
-  if (order.toLowerCase() === 'asc') {
-    content.sort((a, b) =>
-      pre(a.metadata[sortBy]) < pre(b.metadata[sortBy]) ? -1 : 1
-    )
-  }
-
-  if (order.toLowerCase() === 'desc') {
-    content.sort((a, b) =>
-      pre(a.metadata[sortBy]) > pre(b.metadata[sortBy]) ? -1 : 1
-    )
-  }
-
-  return content
+  return sortByDate(content, options)
 }
 
 export async function listPosts() {
