@@ -146,7 +146,7 @@ export async function generateContentFromGithub(nodes, options = {}) {
   const { slugPrefix = '/', type } = options
   let content = []
   for (let { node } of nodes) {
-    let published = options.published || true
+    let published = options.published || false
     const { metadata, html } = await processMarkdown(node.body)
 
     metadata.title = node.title
