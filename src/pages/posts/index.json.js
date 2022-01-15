@@ -13,12 +13,7 @@ export async function get(req) {
     errors = [error]
   }
 
-  if (import.meta.env.PROD) {
-    posts = posts.filter(post => post.published)
-  }
-
   if (errors) {
-    console.log({ errors })
     return {
       status: 400,
       body: JSON.stringify(errors),
@@ -32,9 +27,16 @@ export async function get(req) {
     }
   }
 
-  const body = JSON.stringify(posts)
+  posts = posts.map(post => {
+    if (!post.published) post.metadata.tags.unshift('NOT_PUBLISHED')
+    return post
+  })
+
+  if (import.meta.env.PROD) {
+    posts = posts.filter(post => post.published)
+  }
 
   return {
-    body,
+    body: posts,
   }
 }

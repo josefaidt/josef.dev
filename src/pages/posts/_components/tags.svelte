@@ -16,6 +16,7 @@
 
     display: none;
     grid-auto-flow: column;
+    grid-auto-columns: max-content;
     column-gap: 0.5rem;
   }
 

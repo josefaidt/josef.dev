@@ -1,6 +1,7 @@
 import { createClient } from '@urql/core'
 import _slugify from 'slugify'
-import { processMarkdown, date } from './markdown.js'
+import { processMarkdown, date } from './markdown'
+import { listPageViews } from './analytics'
 
 const POST_DISCUSSION_CATEGORY_ID = 'DIC_kwDOFFxubs4CAsIL'
 
@@ -152,6 +153,7 @@ export async function generateContentFromGithub(nodes, options = {}) {
     metadata.title = node.title
     metadata.type = type
 
+    if (!metadata.tags) metadata.tags = []
     if (!metadata.date) {
       metadata.date = date(
         node.editedAt > node.createdAt ? node.editedAt : node.createdAt
@@ -172,7 +174,7 @@ export async function generateContentFromGithub(nodes, options = {}) {
       author: node.author.login,
       metadata,
       html,
-      slug: slugPrefix + slugify(metadata.title),
+      slug: metadata.slug || slugPrefix + slugify(metadata.title),
       published,
     })
   }
@@ -192,13 +194,34 @@ export async function listContent(options = {}) {
   if (error) {
     throw new Error('Unable to list content', error)
   }
-  const content = await generateContentFromGithub(
+  const nodes = await generateContentFromGithub(
     [
       ...data.viewer.repository.issues.edges,
       ...data.viewer.repository.discussions.edges,
     ],
     options
   )
+
+  let pageViews
+  let content = nodes
+
+  try {
+    pageViews = await listPageViews()
+  } catch (error) {
+    // don't worry about throwing error
+    // most likely errors 429 in local dev
+    console.error('error fetching list page views')
+  }
+
+  if (pageViews) {
+    content = nodes.map(node => {
+      let views = pageViews.find(({ path }) => path === node.slug)
+      if (views) {
+        node.metadata.views = views.event_count || 0
+      }
+      return node
+    })
+  }
 
   return sortByDate(content, options)
 }

@@ -1,16 +1,5 @@
 <script context="module">
   const STORAGE_KEY = '__josefdev_theme'
-
-  // when prerendering posts and posts/[slug], this code will not work
-  // export async function load({ fetch }) {
-  //   let response
-  //   try {
-  //     response = await fetch('/api/spotify/currently-playing.json')
-  //   } catch (error) {
-  //     console.error('there was an issue fetching')
-  //   }
-  //   return { props: { currentlyPlaying: await response.json() } }
-  // }
 </script>
 
 <script>

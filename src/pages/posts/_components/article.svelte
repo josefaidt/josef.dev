@@ -6,18 +6,26 @@
   export let title
   export let readingTime
   export let tags
+  export let views = 0
 </script>
 
 <article>
-  <div class="post-meta">
-    <span>
-      {date}
-    </span>
-    <span class="reading-time">{readingTime}</span>
+  <div>
+    <div class="post-meta">
+      <span>
+        {date}
+      </span>
+      <span class="reading-time">{readingTime}</span>
+    </div>
+    <h3 id="{id}"><slot>{title}</slot></h3>
+    {#if tags?.length > 0}
+      <Tags tags="{tags}" />
+    {/if}
   </div>
-  <h3 id="{id}"><slot>{title}</slot></h3>
-  {#if tags?.length > 0}
-    <Tags tags="{tags}" />
+  {#if views > 0}
+    <div>
+      <span class="page-views">{views} {views === 1 ? 'view' : 'views'}</span>
+    </div>
   {/if}
 </article>
 
@@ -30,9 +38,8 @@
 
   article {
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
     justify-content: space-between;
+    align-items: center;
 
     --border-color: transparent;
     --article-offset: 0.8rem;
@@ -42,6 +49,13 @@
     padding: calc(var(--article-offset) / 1.5) var(--article-offset);
 
     transition: all 50ms ease;
+  }
+
+  article > div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
   }
 
   @media (min-width: 33rem) {
@@ -77,12 +91,17 @@
     line-height: normal;
   }
 
-  article .reading-time {
+  article .page-views {
+    font-size: normal;
+    font-weight: bold;
+  }
+
+  article .reading-time, article .page-views {
     display: none;
     font-style: italic;
   }
   @media (min-width: 33rem) {
-    article .reading-time {
+    article .reading-time, article .page-views {
       display: inline;
     }
   }
