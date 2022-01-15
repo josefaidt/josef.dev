@@ -77,7 +77,9 @@ function fm(contents, options) {
 }
 
 hljsDefineGraphQL(hljs)
-hljs.configure({ classPrefix: '' })
+hljs.configure({
+  classPrefix: '',
+})
 marked.use({
   pedantic: false,
   gfm: true,

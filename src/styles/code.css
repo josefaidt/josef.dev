@@ -76,8 +76,8 @@ code {
   color: var(--colors-text, initial);
 }
 
-code .keyword {
-  color: var(--rouge-purple);
+code.language-js {
+  color: var(--rouge);
 }
 
 code .string {
@@ -90,7 +90,12 @@ code .comment {
   /* filter: brightness(50%); */
 }
 
-code .function {
+code .attr {
+  color: var(--colors-text);
+}
+
+code .function,
+code .function_ {
   color: var(--rouge-orange);
 }
 
@@ -110,4 +115,8 @@ code .params {
 code .number,
 code .boolean {
   color: var(--rouge-peach);
+}
+
+code .keyword {
+  color: var(--rouge-purple);
 }
