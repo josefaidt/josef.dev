@@ -56,6 +56,7 @@
 </section>
 
 <style>
+
   section :global(svg),
   section :global(svg:hover) {
     fill: limegreen;
@@ -88,7 +89,7 @@
   }
 
   p span {
-    color: var(--colors-text);
+    /* color: var(--colors-text); */
     /* filter: invert(0.4); */
   }
 </style>
