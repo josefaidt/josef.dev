@@ -23,7 +23,7 @@
     {/if}
   </div>
   {#if views > 0}
-    <div>
+    <div class="page-views--container">
       <span class="page-views">{views} {views === 1 ? 'view' : 'views'}</span>
     </div>
   {/if}
@@ -96,11 +96,14 @@
     font-weight: bold;
   }
 
-  article .reading-time, article .page-views {
+  article .reading-time, article .page-views--container {
     display: none;
     font-style: italic;
   }
   @media (min-width: 33rem) {
+    article .page-views--container {
+      display: block;
+    }
     article .reading-time, article .page-views {
       display: inline;
     }
