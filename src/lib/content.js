@@ -55,10 +55,10 @@ export async function query(queryString, variables = {}) {
 }
 
 export const QUERY_LIST_CONTENT = `
-query($labels: [String!], $first: Int = 100) { 
+query($discussionsCategoryId: ID!, $issueLabels: [String!], $first: Int = 100) { 
   viewer {
     repository(name:"josef.dev") {
-      issues(states: [OPEN], labels: $labels, first: $first) {
+      issues(states: [OPEN], labels: $issueLabels, first: $first) {
         totalCount
         edges {
           node {
@@ -75,6 +75,23 @@ query($labels: [String!], $first: Int = 100) {
             }
             title
             body
+          }
+        }
+      }
+      discussions(categoryId: $discussionsCategoryId, first: $first) {
+        edges {
+          node {
+            createdAt
+            lastEditedAt
+            author {
+              login
+              avatarUrl
+            }
+            title
+            body
+            category {
+              name
+            }
           }
         }
       }
@@ -131,6 +148,7 @@ export async function generateContentFromGithub(nodes, options = {}) {
     const { metadata, html } = await processMarkdown(node.body)
 
     metadata.title = node.title
+    metadata.type = type
 
     if (!metadata.date) {
       metadata.date = date(
@@ -143,11 +161,10 @@ export async function generateContentFromGithub(nodes, options = {}) {
       published = node.labels.edges.some(
         ({ node: label }) => label.name === 'status/published'
       )
+      metadata.type = metadata._labels
+        .find(label => label.startsWith('type/'))
+        .split('/')[1]
     }
-
-    metadata.type =
-      type ||
-      metadata._labels.find(label => label.startsWith('type/')).split('/')[1]
 
     content.push({
       author: node.author.login,
@@ -162,18 +179,22 @@ export async function generateContentFromGithub(nodes, options = {}) {
 
 export async function listContent(options = {}) {
   const { data, error } = await query(QUERY_LIST_CONTENT, {
-    labels: [
+    issueLabels: [
       'type/post',
       'type/page',
       'status/not-published',
       'status/published',
     ],
+    discussionsCategoryId: 'DIC_kwDOFFxubs4CAsIL',
   })
   if (error) {
     throw new Error('Unable to list content', error)
   }
   const content = await generateContentFromGithub(
-    data.viewer.repository.issues.edges,
+    [
+      ...data.viewer.repository.issues.edges,
+      ...data.viewer.repository.discussions.edges,
+    ],
     options
   )
 
@@ -197,7 +218,7 @@ export async function listDiscussionPosts(options = {}) {
 }
 
 export async function listPosts() {
-  const content = await listContent({ slugPrefix: '/posts/' })
+  const content = await listContent({ slugPrefix: '/posts/', type: 'post' })
   return content.filter(({ metadata }) => metadata.type === 'post')
 }
 
