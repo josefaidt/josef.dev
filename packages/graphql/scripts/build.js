@@ -6,7 +6,7 @@ import graphqlLoaderPlugin from '@luckycatfactory/esbuild-graphql-loader'
 const pkg = JSON.parse(await readFile(resolve('package.json'), 'utf8'))
 const args = process.argv.slice(2)
 const argRegex = /^--(?<name>\w+)$/
-const name = arg => arg?.match(argRegex)?.groups?.name
+const name = (arg) => arg?.match(argRegex)?.groups?.name
 const argHash = Object.fromEntries(
   args.reduce((acc, value, index, source) => {
     const argName = name(value)

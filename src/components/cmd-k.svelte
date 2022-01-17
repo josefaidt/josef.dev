@@ -80,11 +80,11 @@
   $: filterBy = new RegExp(
     input
       .split('')
-      .map(str => `${str}.*`)
+      .map((str) => `${str}.*`)
       .join(''),
     'gi'
   )
-  $: filteredCommands = Commands.filter(cmd => filterBy.test(cmd.name))
+  $: filteredCommands = Commands.filter((cmd) => filterBy.test(cmd.name))
   $: highlighted = 0
 
   function handleKeydown({ key, keyCode }) {

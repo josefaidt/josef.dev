@@ -7,6 +7,6 @@ export async function getSession({ context }) {
       description: 'Welcome to my personal site',
       keywords: ['josef', 'aidt', 'personal', 'portfolio', 'svelte'],
       author: 'josefaidt',
-    }
+    },
   }
 }

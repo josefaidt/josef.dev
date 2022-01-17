@@ -21,7 +21,7 @@
   export let tags = []
   export let keywords = [].concat(query.data.metadata.keywords || [])
   export let author = query.data.metadata.author
-  export let imageUrl = '/favicon.png'
+  export let imageUrl = '/favicon.ico'
   export let type = 'website'
   export let card = 'summary'
 </script>
@@ -33,7 +33,10 @@
   <meta name="description" content="{description.slice(0, 244)}" />
   <meta name="keywords" content="{[].concat(keywords || tags).join(',')}" />
 
-  <meta name="og:url" content="{$page.url.pathname || query.data.metadata.url}" />
+  <meta
+    name="og:url"
+    content="{$page.url.pathname || query.data.metadata.url}"
+  />
   <meta name="og:title" content="{title}" />
   <meta name="og:description" content="{description.slice(0, 244)}" />
   <meta name="og:image" content="{imageUrl}" />

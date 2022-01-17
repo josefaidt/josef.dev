@@ -35,7 +35,7 @@
   h1 {
     margin-bottom: 0;
   }
-  
+
   div {
     display: flex;
     flex-direction: column;

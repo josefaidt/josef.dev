@@ -56,7 +56,6 @@
 </section>
 
 <style>
-
   section :global(svg),
   section :global(svg:hover) {
     fill: limegreen;

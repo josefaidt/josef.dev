@@ -36,7 +36,7 @@ export async function get({ url }) {
 
   const imageUrl = getShareImage({
     title: post.metadata.title,
-    tagline: post.metadata.tags?.map(k => `#${k}`)?.join('  ') || '',
+    tagline: post.metadata.tags?.map((k) => `#${k}`)?.join('  ') || '',
     cloudName: import.meta.env.VITE_CLOUDINARY_CLOUD_NAME,
     imagePublicID: import.meta.env.VITE_CLOUDINARY_IMAGE_PUBLIC_ID,
     textColor: themes.light.colors.text.slice(1),

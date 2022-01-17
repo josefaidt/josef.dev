@@ -96,7 +96,8 @@
     font-weight: bold;
   }
 
-  article .reading-time, article .page-views--container {
+  article .reading-time,
+  article .page-views--container {
     display: none;
     font-style: italic;
   }
@@ -104,7 +105,8 @@
     article .page-views--container {
       display: block;
     }
-    article .reading-time, article .page-views {
+    article .reading-time,
+    article .page-views {
       display: inline;
     }
   }

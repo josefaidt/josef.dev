@@ -22,7 +22,7 @@ function slugify(str) {
 export function sortByDate(content, options = {}) {
   const { sortBy = 'date', order = 'desc' } = options
 
-  const pre = prop => {
+  const pre = (prop) => {
     if (sortBy.toLowerCase() === 'date') {
       return new Date(prop)
     }
@@ -166,7 +166,7 @@ export async function generateContentFromGithub(nodes, options = {}) {
         ({ node: label }) => label.name === 'status/published'
       )
       metadata.type = metadata._labels
-        .find(label => label.startsWith('type/'))
+        .find((label) => label.startsWith('type/'))
         .split('/')[1]
     }
 
@@ -217,7 +217,7 @@ export async function listContent(options = {}) {
     // console.error('error fetching list page views')
   }
 
-  content = nodes.map(node => {
+  content = nodes.map((node) => {
     let views = pageViews?.find(({ path }) => path === node.slug)
     node.metadata.views = views?.event_count || 0
     return node

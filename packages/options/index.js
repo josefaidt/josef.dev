@@ -28,7 +28,7 @@ export class Options {
   async init() {
     const appConfig = resolve('app.config.js')
     if (appConfig) {
-      import(appConfig).then(opts =>
+      import(appConfig).then((opts) =>
         Object.assign(this.app, opts?.default ?? {})
       )
     }

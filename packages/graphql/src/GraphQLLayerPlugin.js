@@ -13,14 +13,14 @@ export function GraphQLLayerPlugin(pluginOptions = {}) {
   let initialized = false
   return {
     name: 'graphql-layer-plugin',
-    options: async config => {
+    options: async (config) => {
       if (!initialized && !isProd) {
         initialized = true
         log('> GraphQL layer initialized!')
       }
       return config
     },
-    configureServer: async server => {
+    configureServer: async (server) => {
       server.middlewares.use(route, handler)
     },
   }

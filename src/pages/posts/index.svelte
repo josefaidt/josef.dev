@@ -5,7 +5,7 @@
   /**
    * @type {import('@sveltejs/kit').Load}
    */
-   export async function load({ fetch }) {
+  export async function load({ fetch }) {
     const posts = await (await fetch(`/posts.json`)).json()
     return {
       props: { posts },
@@ -16,7 +16,7 @@
 <script>
   import SEO from '$components/SEO.svelte'
   import Article from './_components/article.svelte'
-  
+
   export let posts = []
 
   const seoProps = {
@@ -34,7 +34,7 @@
         <li>
           <a href="{post.slug}" aria-labelledby="{index}" sveltekit:prefetch>
             <Article
-              {...(post.metadata || {})}
+              {...post.metadata || {}}
               readingTime="{post.metadata?.readingTime?.text}"
             />
           </a>

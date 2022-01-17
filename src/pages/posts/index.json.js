@@ -27,13 +27,13 @@ export async function get(req) {
     }
   }
 
-  posts = posts.map(post => {
+  posts = posts.map((post) => {
     if (!post.published) post.metadata.tags.unshift('NOT_PUBLISHED')
     return post
   })
 
   if (import.meta.env.PROD) {
-    posts = posts.filter(post => post.published)
+    posts = posts.filter((post) => post.published)
   }
 
   return {

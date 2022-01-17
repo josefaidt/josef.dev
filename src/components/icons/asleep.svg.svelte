@@ -1,4 +1,10 @@
-<svg id="icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><defs>
+<svg
+  id="icon"
+  xmlns="http://www.w3.org/2000/svg"
+  width="32"
+  height="32"
+  viewBox="0 0 32 32"
+  ><defs>
     <style>
       .cls-1 {
         fill: none;
@@ -14,5 +20,5 @@
     data-name="<Transparent Rectangle>"
     class="cls-1"
     width="32"
-    height="32"
-  ></rect></svg>
+    height="32"></rect></svg
+>

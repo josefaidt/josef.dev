@@ -40,6 +40,6 @@ export async function listPageViews(options = {}) {
     throw await response.json()
   }
   const { data } = await response.json()
-  store.update(state => ({ ...state, pageViews: data }))
+  store.update((state) => ({ ...state, pageViews: data }))
   return data
 }
