@@ -1,5 +1,1 @@
-export * from './allPosts.js'
-export * from './allPages.js'
 export * from './metadata.js'
-export * from './post.js'
-export * from './page.js'
