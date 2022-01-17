@@ -3,9 +3,5 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": true
   },
-  "conventionalCommits.scopes": ["app"],
-  "pasteImage.path": "${projectRoot}/public/images/screenshots/",
-  "pasteImage.basePath": "${projectRoot}/",
-  "pasteImage.namePrefix": "screenshot-",
-  "pasteImage.prefix": "./"
+  "conventionalCommits.scopes": ["app"]
 }
