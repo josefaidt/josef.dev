@@ -6,9 +6,17 @@
    */
   export async function load({ params, fetch }) {
     const { slug } = params
-    const page = await (await fetch(`/${slug}.json`)).json()
+    const response = await fetch(`/${slug}.json`)
+    const page = await response.json()
+    if (response.status !== 200) {
+      return {
+        status: response.status,
+        error: page.errors[0]?.message || 'Uh oh',
+      }
+    }
+
     return {
-      status: !!page ? 200 : 404,
+      status: response.status,
       props: { page },
     }
   }
@@ -18,7 +26,7 @@
   import SEO from '$components/SEO.svelte'
   import Markdown from '$components/Markdown.svelte'
 
-  export let page = {}
+  export let page
 </script>
 
 <SEO {...page.metadata} />

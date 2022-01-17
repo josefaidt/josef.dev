@@ -1,5 +1,6 @@
 <script context="module">
   export function load({ error, status }) {
+    console.log({ error })
     return {
       props: {
         status,
@@ -11,6 +12,7 @@
 
 <script>
   import SEO from '$components/SEO.svelte'
+  import CodeSnippet from '$components/CodeSnippet.svelte'
 
   export let status
   export let error
@@ -24,4 +26,7 @@
 <SEO {...seoProps} />
 <h1>{status}</h1>
 <p>{error.message}</p>
+{#if error.status !== 404}
+  <CodeSnippet>{error.stack}</CodeSnippet>
+{/if}
 <slot />
