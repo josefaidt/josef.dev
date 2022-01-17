@@ -13,42 +13,35 @@
   "dependencies": {
     "@jlengstorf/get-share-image": "^0.8.0",
     "@urql/core": "^2.3.6",
-    "fuzzyset": "^1.0.7",
     "graphql": "^16.2.0",
-    "marked": "^4.0.9",
-    "node-fetch": "^3.1.0"
+    "marked": "^4.0.10",
+    "node-fetch": "^3.1.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.16.7",
-    "@babel/preset-env": "^7.16.7",
     "@josef/graphql": "workspace:*",
-    "@josef/markdown": "workspace:*",
-    "@josef/plugin-vercel": "workspace:*",
-    "@rollup/plugin-dynamic-import-vars": "^1.4.1",
-    "@sveltejs/adapter-static": "next",
     "@sveltejs/adapter-vercel": "next",
     "@sveltejs/kit": "next",
     "autoprefixer": "^10.4.2",
     "dayjs": "^1.10.7",
-    "dotenv": "^10.0.0",
-    "eslint": "^8.6.0",
+    "dotenv": "^14.1.0",
+    "eslint": "^8.7.0",
     "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-svelte3": "^3.3.0",
+    "eslint-plugin-svelte3": "^3.4.0",
     "highlight.js": "^11.4.0",
     "highlightjs-graphql": "^1.0.2",
     "js-yaml": "^4.1.0",
     "postcss": "^8.4.5",
     "postcss-import": "^14.0.2",
     "prettier": "^2.5.1",
-    "prettier-plugin-svelte": "^2.5.1",
+    "prettier-plugin-svelte": "^2.6.0",
     "reading-time": "^1.5.0",
     "slugify": "^1.6.5",
-    "svelte": "^3.45.0",
-    "svelte-check": "^2.2.11",
+    "svelte": "^3.46.2",
+    "svelte-check": "^2.3.0",
     "svelte-preprocess": "^4.10.1",
     "svelte-themer": "next",
     "vercel": "^23.1.2",
-    "vite": "^2.7.10"
+    "vite": "^2.7.12"
   },
   "prettier": {
     "printWidth": 80,
@@ -96,12 +89,5 @@
       "es2017": true,
       "node": true
     }
-  },
-  "babel": {
-    "presets": [
-      [
-        "@babel/preset-env"
-      ]
-    ]
   }
 }

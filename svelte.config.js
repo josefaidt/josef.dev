@@ -1,35 +1,17 @@
-import { join, resolve } from 'path'
-import { readFile } from 'fs/promises'
+import { resolve } from 'path'
 import autoprefixer from 'autoprefixer'
 import adapter from '@sveltejs/adapter-vercel'
 import preprocess from 'svelte-preprocess'
 import { GraphQLLayerPlugin, preprocessGraphQL } from '@josef/graphql'
-import VercelLayerPlugin from '@josef/plugin-vercel'
 // this is needed to build locally
 import dotenv from 'dotenv'
 dotenv.config()
 
 const isProduction = process.env.NODE_ENV === 'production'
 
-async function read(file) {
-  return await readFile(new URL(file, import.meta.url), 'utf-8')
-}
-
-async function getDependencies(modulePath) {
-  const modulePackageJson = join(modulePath, 'package.json')
-  return (
-    Object.keys(JSON.parse(await read(modulePackageJson)).dependencies) || {}
-  )
-}
-
-const noExternal = [
-  ...(await getDependencies('packages/graphql')),
-  ...(await getDependencies('packages/markdown')),
-]
-
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
-  extensions: ['.svelte', '.md'],
+  extensions: ['.svelte'],
   kit: {
     // By default, `npm run build` will create a standard Node app.
     // You can create optimized builds for different platforms by
