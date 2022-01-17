@@ -32,7 +32,7 @@
     <ul class="post-list">
       {#each posts as post, index (index)}
         <li>
-          <a href="{post.slug}" aria-labelledby="{index}">
+          <a href="{post.slug}" aria-labelledby="{index}" sveltekit:prefetch>
             <Article
               {...(post.metadata || {})}
               readingTime="{post.metadata?.readingTime?.text}"
