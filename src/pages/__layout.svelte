@@ -36,8 +36,10 @@
     <main>
       <slot />
     </main>
-    <Footer --spacing="4rem">
-      <SpotifyCurrentlyPlaying />
+    <Footer>
+      <div class="spotify--container">
+        <SpotifyCurrentlyPlaying />
+      </div>
     </Footer>
   </div>
 </ThemeWrapper>
@@ -95,6 +97,7 @@
     .container {
       max-width: 60rem;
       grid-gap: 4rem;
+      padding: 0 2rem;
     }
   }
 
@@ -120,20 +123,19 @@
   }
 
   main {
-    /* background-color: tomato; */
-    /* color: black; */
     grid-area: main;
-    /* min-width: 80%; */
     width: calc(100vw - 16px);
     margin: 0 auto;
+    min-height: 50vh;
+    padding-bottom: 4rem;
 
-    /* --main-grid-flow: row;
-    --main-grid-row-gap: 0rem;
-    --main-grid-column-gap: 0rem;
-    display: grid;
-    grid-auto-flow: var(--main-grid-flow);
-    row-gap: var(--main-grid-row-gap);
-    column-gap: var(--main-grid-column-gap); */
+    display: flex;
+    flex-direction: column;
+  }
+
+  .spotify--container {
+    /* justify-self: flex-end; */
+    margin: 0.5rem 0;
   }
 
   @media (min-width: 33rem) {

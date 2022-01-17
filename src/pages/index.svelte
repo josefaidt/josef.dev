@@ -25,10 +25,10 @@
   <Markdown>
     {@html fragment.html}
   </Markdown>
-  <blockquote>
+  <!-- <blockquote>
     <q>The power of imagination makes us infinite</q>
     <cite>&ndash; John Muir</cite>
-  </blockquote>
+  </blockquote> -->
 </div>
 
 <style>
@@ -42,10 +42,8 @@
     justify-content: space-between;
     height: 100%;
   }
-  blockquote {
-    margin: auto;
-    margin-bottom: 3rem;
 
+  blockquote {
     text-align: center;
     font-style: italic;
   }

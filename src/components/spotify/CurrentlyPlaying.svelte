@@ -58,6 +58,8 @@
 <style>
   section :global(svg),
   section :global(svg:hover) {
+    width: 24px;
+    height: 24px;
     fill: limegreen;
   }
 
@@ -69,6 +71,8 @@
     column-gap: 1rem;
     row-gap: 0.5rem;
     place-items: center;
+
+    font-size: 90%;
 
     /* padding: 1rem 2rem; */
     border: 2px solid transparent;
