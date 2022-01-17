@@ -25,7 +25,7 @@
       <div>
         <h4>Links</h4>
         <ul>
-          <li><a href="/" sveltekit:prefetch>Home</a></li>
+          <li><a href="/">Home</a></li>
           <li><a href="/posts" sveltekit:prefetch>Posts</a></li>
           <li><a href="/uses" sveltekit:prefetch>Uses</a></li>
           <li>
@@ -103,7 +103,7 @@
   }
 
   .footer--container {
-    width: 80%;
+    /* width: 80%; */
     max-width: 800px;
     grid-area: footer;
     margin-left: auto;
@@ -130,7 +130,7 @@
   }
 
   @media (min-width: 66rem) {
-    footer {
+    .footer--container {
       width: 80%;
     }
   }
