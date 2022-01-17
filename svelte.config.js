@@ -8,10 +8,6 @@ import dotenv from 'dotenv'
 dotenv.config()
 
 const isProduction = process.env.NODE_ENV === 'production'
-console.log(
-  { isProduction },
-  resolve(`src/app${!isProduction ? '.dev' : ''}.html`)
-)
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
