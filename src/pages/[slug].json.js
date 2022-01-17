@@ -14,7 +14,7 @@ export async function get({ url, ...rest }) {
 
   if (errors.length) {
     return {
-      status: 400,
+      status: 500,
       body: JSON.stringify(errors),
     }
   }
