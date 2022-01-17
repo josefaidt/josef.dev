@@ -103,7 +103,7 @@
   }
 
   .footer--container {
-    /* width: 80%; */
+    width: 80%;
     max-width: 800px;
     grid-area: footer;
     margin-left: auto;
@@ -118,12 +118,12 @@
     row-gap: 2rem;
   }
 
-  footer {
+  .footer--container {
     padding: 0 0.5rem;
   }
 
   @media (min-width: 33rem) {
-    footer {
+    .footer--container {
       padding: 0;
       margin-bottom: calc(var(--spacing, 0) / 2);
     }
@@ -170,7 +170,7 @@
   }
 
   @media (max-width: 33rem) {
-    footer {
+    .footer--container {
       width: 100%;
       padding-bottom: calc(var(--nav-offset, 3rem) + 0.5rem);
     }
