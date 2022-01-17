@@ -7,34 +7,34 @@
 </div>
 
 <style>
-  div :global(a) {
+  [data-markdown] :global(a) {
     text-decoration: underline;
     font-weight: bold;
   }
 
-  div :global(h2 a),
-  div :global(h3 a),
-  div :global(h4 a) {
+  [data-markdown] :global(h2 a),
+  [data-markdown] :global(h3 a),
+  [data-markdown] :global(h4 a) {
     color: var(--colors-text);
     text-decoration: none;
   }
 
-  div :global(h2 a:hover),
-  div :global(h3 a:hover),
-  div :global(h4 a:hover) {
+  [data-markdown] :global(h2 a:hover),
+  [data-markdown] :global(h3 a:hover),
+  [data-markdown] :global(h4 a:hover) {
     text-decoration: underline;
   }
 
-  div :global(h3) {
+  [data-markdown] :global(h3) {
     font-size: larger;
   }
 
-  div :global(h4) {
+  [data-markdown] :global(h4) {
     font-size: larger;
   }
 
   @media (min-width: 66rem) {
-    div :global(p img) {
+    [data-markdown] :global(p img) {
       width: unset;
       max-width: calc(100% + 4rem);
       margin-left: -2rem;
