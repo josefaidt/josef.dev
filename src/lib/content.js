@@ -58,7 +58,7 @@ export async function query(queryString, variables = {}) {
 }
 
 export const QUERY_LIST_CONTENT = `
-query($discussionsCategoryId: ID!, $issueLabels: [String!], $first: Int = 100) { 
+query($issueLabels: [String!], $first: Int = 100) { 
   viewer {
     repository(name:"josef.dev") {
       issues(filterBy: {createdBy: "josefaidt"}, states: [OPEN], labels: $issueLabels, first: $first) {
@@ -81,20 +81,32 @@ query($discussionsCategoryId: ID!, $issueLabels: [String!], $first: Int = 100) {
           }
         }
       }
-      discussions(categoryId: $discussionsCategoryId, first: $first) {
+    }
+  }
+}
+`
+
+export const QUERY_LIST_FEATURED_CONTENT = `
+query($issueLabels: [String!], $first: Int = 100, $filterByLabels: [String!]) { 
+  viewer {
+    repository(name:"josef.dev") {
+      issues(filterBy: {createdBy: "josefaidt", labels: $filterByLabels}, states: [OPEN], labels: $issueLabels, first: $first) {
+        totalCount
         edges {
           node {
-            createdAt
-            lastEditedAt
             author {
-              login
               avatarUrl
+              login
+            }
+            labels(first:20) {
+              edges {
+                node {
+                  name
+                }
+              }
             }
             title
             body
-            category {
-              name
-            }
           }
         }
       }
@@ -143,7 +155,7 @@ query {
 }
 `
 
-export async function generateContentFromGithub(nodes, options = {}) {
+export async function generateContentFromGithub(nodes = [], options = {}) {
   const { slugPrefix = '/', type } = options
   let content = []
   for (let { node } of nodes) {
@@ -190,31 +202,35 @@ export async function listContent(options = {}) {
       'status/not-published',
       'status/published',
     ],
+    QUERY = QUERY_LIST_CONTENT,
+    filterByLabels,
   } = options
-  const { data, error } = await query(QUERY_LIST_CONTENT, {
+
+  let variables = {
     issueLabels: labels,
-    discussionsCategoryId: POST_DISCUSSION_CATEGORY_ID,
-  })
+  }
+  if (filterByLabels) variables.filterByLabels = filterByLabels
+
+  const { data, error } = await query(QUERY, variables)
   if (error) {
     throw new Error('Unable to list content', error)
   }
   const nodes = await generateContentFromGithub(
-    [
-      ...data.viewer.repository.issues.edges,
-      ...data.viewer.repository.discussions.edges,
-    ],
+    data.viewer.repository.issues.edges,
     options
   )
 
   let pageViews
   let content = nodes
 
-  try {
-    pageViews = await listPageViews()
-  } catch (error) {
-    // don't worry about throwing error
-    // most likely errors 429 in local dev
-    // console.error('error fetching list page views')
+  if (process.env['FEATURE_ENABLE_ANALYTICS_PAGE_VIEWS'] === 'true') {
+    try {
+      pageViews = await listPageViews()
+    } catch (error) {
+      // don't worry about throwing error
+      // most likely errors 429 in local dev
+      // console.error('error fetching list page views')
+    }
   }
 
   content = nodes.map((node) => {
@@ -252,6 +268,22 @@ export async function listDiscussionPosts(options = {}) {
 export async function listPosts() {
   const content = await listContent({ slugPrefix: '/posts/', type: 'post' })
   return content.filter(({ metadata }) => metadata.type === 'post')
+}
+
+export async function listFeaturedPosts() {
+  const content = await listContent({
+    QUERY: QUERY_LIST_FEATURED_CONTENT,
+    slugPrefix: '/posts/',
+    type: 'post',
+    labels: [
+      'type/post',
+      'status/published',
+      'status/not-published',
+      'meta/featured',
+    ],
+    filterByLabels: ['meta/featured'],
+  })
+  return content
 }
 
 export async function getPost(slug) {

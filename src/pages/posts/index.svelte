@@ -15,7 +15,7 @@
 
 <script>
   import SEO from '$components/SEO.svelte'
-  import Article from './_components/article.svelte'
+  import PostList from './_components/PostList.svelte'
 
   export let posts = []
 
@@ -29,40 +29,6 @@
 <SEO {...seoProps} />
 <section>
   {#if posts.length}
-    <ul class="post-list">
-      {#each posts as post, index (index)}
-        <li>
-          <a href="{post.slug}" aria-labelledby="{index}" sveltekit:prefetch>
-            <Article
-              {...post.metadata || {}}
-              readingTime="{post.metadata?.readingTime?.text}"
-            />
-          </a>
-        </li>
-      {/each}
-    </ul>
+    <PostList posts="{posts}" />
   {/if}
 </section>
-
-<style>
-  ul {
-    list-style: none;
-    padding: 0;
-  }
-  ul.post-list {
-    --gap: 1rem;
-    display: grid;
-    grid-gap: var(--gap);
-  }
-
-  @media (min-width: 33rem) {
-    ul.post-list {
-      --gap: 1.3rem;
-    }
-  }
-
-  a,
-  a:hover {
-    text-decoration: none;
-  }
-</style>

@@ -6,9 +6,15 @@
    */
   export async function load({ params, fetch }) {
     const fragment = await (await fetch(`/home.json`)).json()
+    const featuredResponse = await fetch('/posts/featured.json')
+    let featured = await featuredResponse.json()
+    if (featuredResponse.status !== 200) {
+      console.error('Unable to list featured content', featured.join('\n'))
+      featured = []
+    }
     return {
       status: 200,
-      props: { fragment },
+      props: { fragment, featured },
     }
   }
 </script>
@@ -16,7 +22,9 @@
 <script>
   import SEO from '$components/SEO.svelte'
   import Markdown from '$components/Markdown.svelte'
+  import PostList from './posts/_components/PostList.svelte'
   export let fragment
+  export let featured = []
 </script>
 
 <SEO title="josef.dev" description="Welcome to josef.dev, a new home." />
@@ -30,6 +38,12 @@
     <cite>&ndash; John Muir</cite>
   </blockquote> -->
 </div>
+{#if featured?.length}
+  <section>
+    <h2>Featured Content</h2>
+    <PostList posts="{featured}" />
+  </section>
+{/if}
 
 <style>
   h1 {
