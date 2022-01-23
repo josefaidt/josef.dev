@@ -172,6 +172,7 @@
   @media (max-width: 33rem) {
     .footer--container {
       width: 100%;
+      max-width: 100vw;
       padding-bottom: calc(var(--nav-offset, 3rem) + 0.5rem);
     }
   }

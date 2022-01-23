@@ -43,15 +43,18 @@
 <section>
   <div>
     <SpotifyIcon />
-    <p>
-      {isPlaying ? `Now Playing` : 'Currently Offline'}
+    <div class="currently-playing--container">
+      <span class:isPlaying
+        >{isPlaying ? `Now Playing` : 'Currently Offline'}</span
+      >
       {#if isPlaying}
-        <span>&mdash;</span>
-        <a href="{songUrl}" target="_blank">
-          <span>{title} by {artist}</span>
-        </a>
+        <p>
+          <a href="{songUrl}" target="_blank">
+            <span>{title} by {artist}</span>
+          </a>
+        </p>
       {/if}
-    </p>
+    </div>
   </div>
 </section>
 
@@ -66,7 +69,8 @@
   section {
     display: grid;
     grid-auto-flow: row;
-    grid-auto-columns: max-content;
+    /* grid-auto-columns: max-content; */
+    justify-content: start;
     grid-auto-rows: max-content;
     column-gap: 1rem;
     row-gap: 0.5rem;
@@ -89,6 +93,29 @@
 
   p {
     margin: 0;
+    line-height: 1.2rem;
+  }
+
+  div > span {
+    margin-top: -0.5rem;
+  }
+
+  span.isPlaying {
+    font-size: smaller;
+    position: absolute;
+    top: -0.8rem;
+  }
+
+  @media (min-width: 33rem) {
+    span.isPlaying {
+      position: relative;
+      top: initial;
+    }
+  }
+
+  .currently-playing--container {
+    line-height: 1.2rem;
+    position: relative;
   }
 
   p span {
