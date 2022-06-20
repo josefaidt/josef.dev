@@ -19,7 +19,7 @@ const config = {
     adapter: adapter(),
 
     // hydrate the <div id="svelte"> element in src/app.html
-    target: '#svelte',
+    // target: '#svelte',
 
     files: {
       assets: resolve('public'),
@@ -34,6 +34,9 @@ const config = {
     vite: {
       plugins: [GraphQLLayerPlugin()],
       ssr: {},
+      optimizeDeps: {
+        include: ['highlight.js/lib/core'],
+      },
       build: {
         rollupOptions: {
           external: ['fs/promises', 'node:*'],

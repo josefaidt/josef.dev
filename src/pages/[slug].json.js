@@ -3,7 +3,7 @@ import { getPage } from '$lib/content'
 /**
  * @type {import('@sveltejs/kit').RequestHandler}
  */
-export async function get({ url, ...rest }) {
+export async function get({ url }) {
   let errors = []
   let page
   try {
