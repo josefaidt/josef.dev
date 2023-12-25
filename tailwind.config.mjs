@@ -7,6 +7,7 @@ export default {
       backgroundColor: "#ffffff",
       textColor: "#333333",
       accentColor: "#c6797e",
+      textDecorationColor: "#c6797e",
       colors: {
         accent: "#c6797e",
         blue: "#1fb6ff",

@@ -9,18 +9,18 @@
 
 @layer josef-theme {
   :root {
-    --primary-brand-color: #c6797e;
-    --background-color: #0e0e0e; /* Darker Gray */
-    --text-color: #f0f0f0; /* Softer White */
-    --accent-color: #3a4d6b; /* Dark Blue-Green */
-    --secondary-color: #4d6685; /* Darker Blue */
-    --tertiary-color: #825f4a; /* Darker Brown */
-    --shadow-color: #333333; /* Dark Gray */
+    --josef-primary-color: #c6797e;
+    --josef-background-color: #0e0e0e; /* Darker Gray */
+    --josef-text-color: #f0f0f0; /* Softer White */
+    --josef-accent-color: #3a4d6b; /* Dark Blue-Green */
+    --josef-secondary-color: #4d6685; /* Darker Blue */
+    --josef-tertiary-color: #825f4a; /* Darker Brown */
+    --josef-shadow-color: #333333; /* Dark Gray */
   }
 
   body {
-    background-color: var(--background-color);
-    color: var(--text-color);
+    background-color: var(--josef-background-color);
+    color: var(--josef-text-color);
   }
 }
 
@@ -35,7 +35,11 @@
     font-family: Josefin Sans;
   }
 
-  /* body {
-    @apply bg-background;
-  } */
+  a {
+    text-decoration-color: var(--josef-primary-color);
+  }
+
+  a:hover {
+    @apply decoration-3 underline;
+  }
 }

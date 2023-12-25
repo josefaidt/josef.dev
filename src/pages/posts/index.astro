@@ -10,23 +10,15 @@ const posts = (await getCollection("posts")).sort(
 
 <BaseLayout>
   <section class="">
-    <ul class="grid">
+    <ul class="grid gap-4">
       {
         posts.map((post) => (
           <li>
-            <a href={`/posts/${post.slug}/`}>
-              {post.data.heroImage && (
-                <img
-                  width={720}
-                  height={360}
-                  src={post.data.heroImage}
-                  alt=""
-                />
-              )}
-              <h4 class="title">{post.data.title}</h4>
-              <p class="date">
+            <a class="hover:underline" href={`/posts/${post.slug}/`}>
+              <p>
                 <FormattedDate date={post.data.pubDate} />
               </p>
+              <h4 class="font-semibold text-xl">{post.data.title}</h4>
             </a>
           </li>
         ))
