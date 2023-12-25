@@ -1,0 +1,27 @@
+---
+// import { ViewTransitions } from "astro:transitions"
+import BaseHead from "../components/BaseHead.astro"
+import Header from "../components/Header.astro"
+import Footer from "../components/Footer.astro"
+import { SITE_TITLE, SITE_DESCRIPTION } from "../constants"
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <slot name="head" />
+    <!-- <ViewTransitions /> -->
+  </head>
+  <body class="flex flex-col min-h-screen mx-auto max-w-4xl gap-6">
+    <div class="py-2">
+      <Header />
+    </div>
+    <main>
+      <slot />
+    </main>
+    <div class="self-center mt-auto">
+      <Footer />
+    </div>
+  </body>
+</html>

@@ -1,0 +1,13 @@
+# build output
+dist/
+# generated types
+.astro/
+
+# dependencies
+node_modules/
+
+# no logs
+pnpm-debug.log*
+
+# no dotenv files
+.env*

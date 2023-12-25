@@ -1,0 +1,34 @@
+{
+  "name": "josef.dev",
+  "version": "0.0.1",
+  "type": "module",
+  "scripts": {
+    "astro": "astro",
+    "build": "astro check && astro build",
+    "dev": "astro dev",
+    "preview": "astro preview",
+    "start": "astro dev"
+  },
+  "prettier": {
+    "plugins": [
+      "prettier-plugin-packagejson",
+      "prettier-plugin-organize-imports",
+      "prettier-plugin-tailwindcss"
+    ],
+    "semi": false
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.3.4",
+    "@astrojs/mdx": "^2.0.2",
+    "@astrojs/rss": "^4.0.1",
+    "@astrojs/sitemap": "^3.0.3",
+    "@astrojs/tailwind": "^5.0.4",
+    "astro": "^4.0.7",
+    "prettier": "^3.1.1",
+    "prettier-plugin-organize-imports": "^3.2.4",
+    "prettier-plugin-packagejson": "^2.4.7",
+    "prettier-plugin-tailwindcss": "^0.5.9",
+    "tailwindcss": "^3.4.0",
+    "typescript": "^5.3.3"
+  }
+}

@@ -1,0 +1,14 @@
+---
+import HeaderLink from "./HeaderLink.astro"
+import { SITE_TITLE } from "../constants"
+---
+
+<header>
+  <nav class="flex justify-between">
+    <h2 class="text-2xl"><a href="/">{SITE_TITLE}</a></h2>
+    <div class="grid grid-flow-col gap-2 items-center">
+      <HeaderLink href="/">Home</HeaderLink>
+      <HeaderLink href="/posts">Posts</HeaderLink>
+    </div>
+  </nav>
+</header>

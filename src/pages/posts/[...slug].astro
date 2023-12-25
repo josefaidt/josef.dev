@@ -1,0 +1,40 @@
+---
+import { type CollectionEntry, getCollection } from "astro:content"
+import BaseLayout from "../../layouts/BaseLayout.astro"
+import FormattedDate from "../../components/FormattedDate.astro"
+
+export async function getStaticPaths() {
+  const posts = await getCollection("posts")
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: post,
+  }))
+}
+type Props = CollectionEntry<"posts">
+
+const post = Astro.props
+const { Content } = await post.render()
+const { pubDate, updatedDate, title } = post.data
+---
+
+<BaseLayout>
+  <article class="max-w-3xl mx-auto">
+    <div>
+      <div>
+        <div>
+          <FormattedDate date={pubDate} />
+          {
+            updatedDate && (
+              <div>
+                Last updated on <FormattedDate date={updatedDate} />
+              </div>
+            )
+          }
+        </div>
+        <h1>{title}</h1>
+        <hr />
+      </div>
+      <Content />
+    </div>
+  </article>
+</BaseLayout>

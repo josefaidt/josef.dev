@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: Josefin Sans;
+  src: local("Josefin Sans Semibold"), url(/fonts/josefin-sans-semibold.ttf);
+}
+
+@layer josef-theme {
+  :root {
+    --primary-brand-color: #c6797e;
+    --background-color: #0e0e0e; /* Darker Gray */
+    --text-color: #f0f0f0; /* Softer White */
+    --accent-color: #3a4d6b; /* Dark Blue-Green */
+    --secondary-color: #4d6685; /* Darker Blue */
+    --tertiary-color: #825f4a; /* Darker Brown */
+    --shadow-color: #333333; /* Dark Gray */
+  }
+
+  body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+  }
+}
+
+@layer base {
+  h1 {
+    @apply text-2xl;
+    font-family: Josefin Sans;
+  }
+
+  h2 {
+    @apply text-xl;
+    font-family: Josefin Sans;
+  }
+
+  /* body {
+    @apply bg-background;
+  } */
+}
