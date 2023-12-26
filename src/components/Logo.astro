@@ -1,0 +1,41 @@
+---
+import type { HTMLAttributes } from "astro/types"
+
+type Props = HTMLAttributes<"a">
+
+const { href, class: className, ...props } = Astro.props
+---
+
+<div>
+  <a
+    class:list={[
+      className,
+      // base
+      "no-underline",
+      // shadow
+      "shadow-accent",
+      // focus
+      "focus:outline-offset-8",
+      // hover
+      "hover:no-underline",
+    ]}
+    href={href}
+  >
+    <span class="text-3xl"><slot>logo</slot></span>
+  </a>
+</div>
+
+<style>
+  a {
+    --shadow-spacing: calc(theme("spacing.1") / 2);
+    --transition: all 300ms;
+    text-shadow: var(--shadow-spacing) var(--shadow-spacing)
+      theme("colors.accent");
+    transition: var(--transition);
+  }
+
+  a:hover {
+    --shadow-spacing: calc(theme("spacing.1") / 3);
+    transition: var(--transition);
+  }
+</style>

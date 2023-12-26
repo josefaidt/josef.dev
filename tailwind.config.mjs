@@ -4,8 +4,8 @@ export default {
   darkMode: "class",
   theme: {
     extend: {
-      backgroundColor: "#ffffff",
-      textColor: "#333333",
+      backgroundColor: "#380519",
+      textColor: "#f3e8e0",
       accentColor: "#c6797e",
       textDecorationColor: "#c6797e",
       colors: {

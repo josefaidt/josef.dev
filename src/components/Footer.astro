@@ -1,7 +1,88 @@
 ---
+import { SITE_OWNER_SOCIALS, SITE_OWNER_PROJECTS } from "../constants"
+
 const today = new Date()
+
+const links = [
+  {
+    name: "Home",
+    url: "/",
+  },
+  {
+    name: "Uses",
+    url: "/uses",
+  },
+  {
+    name: "Posts",
+    url: "/posts",
+  },
+]
 ---
 
-<footer>
-  &copy; {today.getFullYear()} josef. All rights reserved.
+<slot name="above" />
+<footer
+  class:list={[
+    // base
+    "grid grid-flow-row w-full",
+  ]}
+>
+  <!-- <span>&copy; {today.getFullYear()} josef. All rights reserved.</span> -->
+  <div
+    class:list={[
+      // base
+      "grid grid-flow-col",
+    ]}
+  >
+    <div
+      class:list={[
+        // base
+        "grid grid-flow-row auto-rows-max gap-y-3",
+      ]}
+    >
+      <span class="font-bold">LINKS</span>
+      <ul class="grid gap-y-1">
+        {
+          links.map((link) => (
+            <li>
+              <a
+                class:list={[
+                  // base
+                  "",
+                ]}
+                href={link.url}
+              >
+                {link.name}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+    <div
+      class:list={[
+        // base
+        "grid grid-flow-row auto-rows-max gap-y-3",
+      ]}
+    >
+      <span class="font-bold">PROJECTS</span>
+      <ul class="grid gap-y-1">
+        {
+          SITE_OWNER_PROJECTS.map((project) => (
+            <li>
+              <a
+                class:list={[
+                  // base
+                  "",
+                ]}
+                href={project.url}
+              >
+                {project.name}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
 </footer>
+<slot name="below" />

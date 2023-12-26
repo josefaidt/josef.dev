@@ -1,6 +1,6 @@
 ---
 import { getCollection } from "astro:content"
-import BaseLayout from "../../layouts/BaseLayout.astro"
+import Layout from "../../layouts/Layout.astro"
 import FormattedDate from "../../components/FormattedDate.astro"
 
 const posts = (await getCollection("posts")).sort(
@@ -8,7 +8,7 @@ const posts = (await getCollection("posts")).sort(
 )
 ---
 
-<BaseLayout>
+<Layout>
   <section class="">
     <ul class="grid gap-4">
       {
@@ -25,4 +25,4 @@ const posts = (await getCollection("posts")).sort(
       }
     </ul>
   </section>
-</BaseLayout>
+</Layout>
