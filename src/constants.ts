@@ -1,20 +1,20 @@
 export const SITE_OWNER = "josef" as const
 export const SITE_OWNER_SOCIALS = [
   {
-    name: "GitHub",
-    url: "https://github.com/josefaidt",
+    name: "Twitter",
+    url: "https://twitter.com/josefaidt",
   },
   {
     name: "LinkedIn",
     url: "https://linkedin.com/in/josefaidt/",
   },
   {
-    name: "Twitter",
-    url: "https://twitter.com/josefaidt",
-  },
-  {
     name: "Spotify",
     url: "https://open.spotify.com/user/1215285465",
+  },
+  {
+    name: "GitHub",
+    url: "https://github.com/josefaidt",
   },
 ] as const
 export const SITE_OWNER_PROJECTS = [

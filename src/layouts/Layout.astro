@@ -4,24 +4,63 @@ import BaseHead from "../components/BaseHead.astro"
 import Header from "../components/Header.astro"
 import Footer from "../components/Footer.astro"
 import { SITE_TITLE, SITE_DESCRIPTION } from "../constants"
+
+interface Props {
+  title: string
+  description: string
+  image: string
+}
+
+const {
+  title = SITE_TITLE,
+  description = SITE_DESCRIPTION,
+  image = "/images/og-image.png",
+} = Astro.props
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
-    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <BaseHead title={title} description={description} image={image} />
     <slot name="head" />
     <!-- <ViewTransitions /> -->
   </head>
-  <body class="flex flex-col min-h-screen mx-auto max-w-4xl gap-6">
+  <body
+    class:list={[
+      // layout
+      "flex flex-col gap-y-6",
+      // full size
+      "min-h-screen mx-auto max-w-4xl",
+    ]}
+  >
     <div class="py-2">
       <Header />
     </div>
-    <main>
-      <slot />
-    </main>
-    <div class="mt-auto mb-8">
-      <Footer />
+    <div
+      class:list={[
+        // carry layout
+        "flex flex-col gap-y-6",
+        // center
+        "mx-auto flex-auto",
+        // smaller than parent container
+        "w-5/6",
+      ]}
+    >
+      <main>
+        <slot />
+      </main>
+      <!-- push footer to the bottom of the page if content is lacking -->
+      <div class="mt-auto mb-8">
+        <!-- give footer some breathing room -->
+        <div class="mt-12">
+          <Footer>
+            <div slot="above">
+              <!-- use the same padding as between link collection headings -->
+              <hr class="py-3 border-rouge-300" />
+            </div>
+          </Footer>
+        </div>
+      </div>
     </div>
   </body>
 </html>

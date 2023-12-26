@@ -1,4 +1,5 @@
 ---
+import { Icon } from "astro-icon/components"
 import { SITE_OWNER_SOCIALS, SITE_OWNER_PROJECTS } from "../constants"
 
 const today = new Date()
@@ -23,10 +24,9 @@ const links = [
 <footer
   class:list={[
     // base
-    "grid grid-flow-row w-full",
+    "grid grid-flow-row w-full gap-y-6",
   ]}
 >
-  <!-- <span>&copy; {today.getFullYear()} josef. All rights reserved.</span> -->
   <div
     class:list={[
       // base
@@ -72,16 +72,47 @@ const links = [
               <a
                 class:list={[
                   // base
-                  "",
+                  "flex flex-auto align-center gap-x-1",
                 ]}
                 href={project.url}
+                target="_blank"
               >
                 {project.name}
+                <Icon
+                  class="inline-block self-center"
+                  name="gg:external"
+                  size={20}
+                />
               </a>
             </li>
           ))
         }
       </ul>
+    </div>
+  </div>
+  <div class="flex justify-between">
+    <span>&copy; {today.getFullYear()} josef. All rights reserved.</span>
+    <div class="grid grid-flow-col gap-x-4">
+      <!-- <Icon name="simple-icons:github" size={18} /> -->
+      {
+        SITE_OWNER_SOCIALS.map((social) => (
+          <a
+            class:list={[
+              // base
+              "inline-block",
+            ]}
+            href={social.url}
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            <Icon
+              class="hover:text-accent"
+              name={`simple-icons:${social.name.toLowerCase()}`}
+              size={18}
+            />
+          </a>
+        ))
+      }
     </div>
   </div>
 </footer>
