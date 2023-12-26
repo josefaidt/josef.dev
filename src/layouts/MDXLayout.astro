@@ -1,5 +1,5 @@
 ---
-import type { MDXLayoutProps } from "astro"
+import { type MDXLayoutProps } from "astro"
 import Layout from "./Layout.astro"
 
 type Props = MDXLayoutProps<{
@@ -11,7 +11,7 @@ type Props = MDXLayoutProps<{
 const { frontmatter } = Astro.props
 ---
 
-<Layout>
+<Layout title={frontmatter.title} description={frontmatter.description}>
   <h1>{frontmatter.title}</h1>
   <slot />
 </Layout>

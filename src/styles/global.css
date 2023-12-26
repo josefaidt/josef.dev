@@ -40,6 +40,6 @@
   }
 
   a:hover {
-    @apply decoration-3 underline;
+    @apply underline decoration-2;
   }
 }

@@ -1,5 +1,6 @@
 ---
-import { type CollectionEntry, getCollection } from "astro:content"
+import type { CollectionEntry } from "astro:content"
+import { getCollection } from "astro:content"
 import Layout from "../../layouts/Layout.astro"
 import FormattedDate from "../../components/FormattedDate.astro"
 
@@ -14,10 +15,10 @@ type Props = CollectionEntry<"posts">
 
 const post = Astro.props
 const { Content } = await post.render()
-const { pubDate, updatedDate, title } = post.data
+const { pubDate, updatedDate, title, description } = post.data
 ---
 
-<Layout>
+<Layout title={title} description={description}>
   <article class="">
     <div>
       <div>

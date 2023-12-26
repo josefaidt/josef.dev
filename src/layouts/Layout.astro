@@ -6,9 +6,9 @@ import Footer from "../components/Footer.astro"
 import { SITE_TITLE, SITE_DESCRIPTION } from "../constants"
 
 interface Props {
-  title: string
-  description: string
-  image: string
+  title?: string
+  description?: string
+  image?: string
 }
 
 const {
@@ -30,7 +30,7 @@ const {
       // layout
       "flex flex-col gap-y-6",
       // full size
-      "min-h-screen mx-auto max-w-4xl",
+      "min-h-screen mx-auto max-w-3xl",
     ]}
   >
     <div class="py-2">
@@ -43,7 +43,8 @@ const {
         // center
         "mx-auto flex-auto",
         // smaller than parent container
-        "w-5/6",
+        "w-full",
+        // "w-5/6",
       ]}
     >
       <main>

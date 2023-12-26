@@ -1,10 +1,12 @@
 {
   "name": "josef.dev",
-  "version": "0.0.1",
+  "version": "3.0.0-next.0",
+  "private": true,
   "type": "module",
   "scripts": {
     "astro": "astro",
-    "build": "astro check && astro build",
+    "build": "astro build",
+    "check": "astro check",
     "dev": "astro dev",
     "preview": "astro preview",
     "start": "astro dev"
@@ -12,7 +14,6 @@
   "prettier": {
     "plugins": [
       "prettier-plugin-packagejson",
-      "prettier-plugin-organize-imports",
       "prettier-plugin-tailwindcss"
     ],
     "semi": false
@@ -28,11 +29,11 @@
     "astro": "^4.0.7",
     "astro-icon": "next",
     "prettier": "^3.1.1",
-    "prettier-plugin-organize-imports": "^3.2.4",
     "prettier-plugin-packagejson": "^2.4.7",
     "prettier-plugin-tailwindcss": "^0.5.9",
     "tailwindcss": "^3.4.0",
     "typescript": "^5.3.3",
     "wrangler": "^3.22.1"
-  }
+  },
+  "packageManager": "pnpm@8.13.1+sha256.9e5f62ce5f2b7d4ceb3c2848f41cf0b33032c24d683c7088b53f62b1885fb246"
 }

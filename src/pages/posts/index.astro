@@ -6,9 +6,15 @@ import FormattedDate from "../../components/FormattedDate.astro"
 const posts = (await getCollection("posts")).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 )
+
+const meta = {
+  title: "Josef's Posts",
+  description:
+    "Collection of thoughts, short little quips, and other takes on things.",
+}
 ---
 
-<Layout>
+<Layout title={meta.title} description={meta.description}>
   <section class="">
     <ul class="grid gap-4">
       {
@@ -18,7 +24,7 @@ const posts = (await getCollection("posts")).sort(
               <p>
                 <FormattedDate date={post.data.pubDate} />
               </p>
-              <h4 class="font-semibold text-xl">{post.data.title}</h4>
+              <h4 class="text-xl font-semibold">{post.data.title}</h4>
             </a>
           </li>
         ))
