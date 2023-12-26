@@ -10,16 +10,20 @@
 @layer josef-theme {
   :root {
     --josef-primary-color: #c6797e;
-    --josef-background-color: #1c0c0f; /* Darker Gray */
-    --josef-text-color: #fffaeb; /* Softer White */
-    --josef-accent-color: #3a4d6b; /* Dark Blue-Green */
-    --josef-secondary-color: #4d6685; /* Darker Blue */
-    --josef-tertiary-color: #825f4a; /* Darker Brown */
-    --josef-shadow-color: #333333; /* Dark Gray */
+    --josef-background-color: #1c0c0f;
+    --josef-text-color: #fffaeb;
+    --josef-accent-color: #3a4d6b;
+    --josef-secondary-color: #4d6685;
+    --josef-tertiary-color: #825f4a;
+    --josef-shadow-color: #333333;
+
+    /* --rouge-background: #151627; */
+    /* --rouge-background: #07070d; */
   }
 
   body {
     background-color: var(--josef-background-color);
+    /* background-color: var(--rouge-background); */
     color: var(--josef-text-color);
   }
 }
