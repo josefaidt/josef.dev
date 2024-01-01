@@ -7,6 +7,38 @@
   src: local("Josefin Sans Semibold"), url(/fonts/josefin-sans-semibold.ttf);
 }
 
+@layer base {
+  h1 {
+    @apply text-2xl;
+    font-family: Josefin Sans;
+  }
+
+  h2 {
+    @apply text-xl;
+    font-family: Josefin Sans;
+  }
+
+  a {
+    text-decoration-color: var(--josef-primary-color);
+  }
+
+  a:hover {
+    @apply underline decoration-2;
+  }
+
+  ul {
+    @apply list-inside list-disc;
+  }
+
+  pre {
+    @apply my-4 text-sm;
+  }
+
+  img {
+    @apply mb-4;
+  }
+}
+
 @layer josef-theme {
   :root {
     --josef-primary-color: #c6797e;
@@ -26,24 +58,8 @@
     /* background-color: var(--rouge-background); */
     color: var(--josef-text-color);
   }
-}
 
-@layer base {
-  h1 {
-    @apply text-2xl;
-    font-family: Josefin Sans;
-  }
-
-  h2 {
-    @apply text-xl;
-    font-family: Josefin Sans;
-  }
-
-  a {
-    text-decoration-color: var(--josef-primary-color);
-  }
-
-  a:hover {
-    @apply underline decoration-2;
+  ::selection {
+    background: #e5bcbd4d;
   }
 }

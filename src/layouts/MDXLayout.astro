@@ -11,7 +11,11 @@ type Props = MDXLayoutProps<{
 const { frontmatter } = Astro.props
 ---
 
-<Layout title={frontmatter.title} description={frontmatter.description}>
+<Layout
+  title={frontmatter.title}
+  description={frontmatter.description}
+  class="grid gap-4"
+>
   <h1>{frontmatter.title}</h1>
   <slot />
 </Layout>

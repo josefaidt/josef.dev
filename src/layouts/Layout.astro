@@ -6,12 +6,26 @@ import Footer from "../components/Footer.astro"
 import { SITE_TITLE, SITE_DESCRIPTION } from "../constants"
 
 interface Props {
+  /**
+   * The class name to apply to the main element.
+   */
+  class?: string
+  /**
+   * The title of the page.
+   */
   title?: string
+  /**
+   * The description of the page.
+   */
   description?: string
+  /**
+   * The open graph image to use for the page.
+   */
   image?: string
 }
 
 const {
+  class: className,
   title = SITE_TITLE,
   description = SITE_DESCRIPTION,
   image = "/images/og-image.png",
@@ -49,7 +63,7 @@ const {
         // "w-5/6",
       ]}
     >
-      <main>
+      <main class={className}>
         <slot />
       </main>
       <!-- push footer to the bottom of the page if content is lacking -->
