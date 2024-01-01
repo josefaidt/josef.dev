@@ -23,7 +23,7 @@ const posts = (await getCollection("posts"))
           const url = new URL(project.url)
           return (
             <li>
-              <a href="hover:underline">
+              <a href={project.url} target="_blank">
                 <>
                   <p class="flex items-center">
                     {url.host}

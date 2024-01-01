@@ -30,6 +30,11 @@ export const SITE_OWNER_PROJECTS = [
     description:
       "VSCode theme created for a dark, material feel with a flushed color palette",
   },
+  {
+    name: "a/links",
+    url: "https://a-links.io",
+    description: "an extension for short, composable bookmarks.",
+  },
 ]
 export const SITE_TITLE = "josef.dev" as const
 export const SITE_DESCRIPTION =
