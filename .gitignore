@@ -1,13 +1,13 @@
-.DS_Store
-node_modules
-*.log
+# build output
+dist/
+# generated types
+.astro/
 
-.env
+# dependencies
+node_modules/
 
-/.svelte
-/.svelte-kit
-/build
-.vercel
-.vercel_build_output
-packages/**/build
-packages/**/lib
+# no logs
+pnpm-debug.log*
+
+# no dotenv files
+.env*

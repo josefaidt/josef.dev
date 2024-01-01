@@ -1,0 +1,40 @@
+---
+import type { CollectionEntry } from "astro:content"
+import { getCollection } from "astro:content"
+import Layout from "../../layouts/Layout.astro"
+import FormattedDate from "../../components/FormattedDate.astro"
+
+export async function getStaticPaths() {
+  const posts = await getCollection("posts")
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: post,
+  }))
+}
+type Props = CollectionEntry<"posts">
+
+const post = Astro.props
+const { Content } = await post.render()
+const { pubDate, updatedDate, title, description } = post.data
+---
+
+<Layout title={title} description={description}>
+  <article class:list={["grid grid-flow-row gap-y-4"]}>
+    <header>
+      <div>
+        <FormattedDate date={pubDate} />
+        {
+          updatedDate && (
+            <div>
+              Last updated on <FormattedDate date={updatedDate} />
+            </div>
+          )
+        }
+      </div>
+      <h1 class="">{title}</h1>
+    </header>
+    <div class="grid grid-flow-row gap-y-4">
+      <Content />
+    </div>
+  </article>
+</Layout>

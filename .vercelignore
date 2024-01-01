@@ -1,6 +1,0 @@
-.vscode
-.svelte-kit
-*.log
-
-.env
-.env.*

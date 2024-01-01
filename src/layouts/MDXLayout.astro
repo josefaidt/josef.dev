@@ -1,0 +1,21 @@
+---
+import { type MDXLayoutProps } from "astro"
+import Layout from "./Layout.astro"
+
+type Props = MDXLayoutProps<{
+  // Define frontmatter props here
+  title: string
+  description: string
+}>
+
+const { frontmatter } = Astro.props
+---
+
+<Layout
+  title={frontmatter.title}
+  description={frontmatter.description}
+  class="grid gap-4"
+>
+  <h1>{frontmatter.title}</h1>
+  <slot />
+</Layout>

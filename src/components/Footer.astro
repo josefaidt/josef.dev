@@ -1,0 +1,119 @@
+---
+import { Icon } from "astro-icon/components"
+import { SITE_OWNER_SOCIALS, SITE_OWNER_PROJECTS } from "../constants"
+
+const today = new Date()
+
+const links = [
+  {
+    name: "Home",
+    url: "/",
+  },
+  {
+    name: "Uses",
+    url: "/uses",
+  },
+  {
+    name: "Posts",
+    url: "/posts",
+  },
+]
+---
+
+<slot name="above" />
+<footer
+  class:list={[
+    // base
+    "grid grid-flow-row w-full gap-y-6",
+  ]}
+>
+  <div
+    class:list={[
+      // base
+      "grid grid-flow-col",
+    ]}
+  >
+    <div
+      class:list={[
+        // base
+        "grid grid-flow-row auto-rows-max gap-y-3",
+      ]}
+    >
+      <span class="font-bold">LINKS</span>
+      <ul class="grid gap-y-1 list-none">
+        {
+          links.map((link) => (
+            <li>
+              <a
+                class:list={[
+                  // base
+                  "",
+                ]}
+                href={link.url}
+              >
+                {link.name}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+    <div
+      class:list={[
+        // base
+        "grid grid-flow-row auto-rows-max gap-y-3",
+      ]}
+    >
+      <span class="font-bold">PROJECTS</span>
+      <ul class="grid gap-y-1 list-none">
+        {
+          SITE_OWNER_PROJECTS.map((project) => (
+            <li>
+              <a
+                class:list={[
+                  // base
+                  "flex flex-auto align-center gap-x-1",
+                ]}
+                href={project.url}
+                target="_blank"
+              >
+                {project.name}
+                <Icon
+                  class="inline-block self-center"
+                  name="gg:external"
+                  size={20}
+                />
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+  <div class="flex justify-between">
+    <span>&copy; {today.getFullYear()} josef</span>
+    <div class="grid grid-flow-col gap-x-4">
+      <!-- <Icon name="simple-icons:github" size={18} /> -->
+      {
+        SITE_OWNER_SOCIALS.map((social) => (
+          <a
+            class:list={[
+              // base
+              "inline-block",
+            ]}
+            href={social.url}
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            <Icon
+              class="hover:text-accent"
+              name={`simple-icons:${social.name.toLowerCase()}`}
+              size={18}
+            />
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</footer>
+<slot name="below" />
