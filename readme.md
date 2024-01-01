@@ -1,3 +1,3 @@
 # josef.dev
 
-My personal site.
+My personal site. Built with [Astro](https://astro.build)
