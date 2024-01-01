@@ -1,8 +1,0 @@
-export default {
-  title: 'josef',
-  url: 'https://josef.dev',
-  description: 'Welcome to my personal site',
-  keywords: ['josef', 'aidt', 'personal', 'portfolio', 'svelte'],
-  author: 'Josef Aidt',
-  handle: 'josefaidt',
-}

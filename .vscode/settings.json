@@ -1,7 +1,5 @@
 {
-  "[javascript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.formatOnSave": true
-  },
-  "conventionalCommits.scopes": ["app"]
+  "files.associations": {
+    "*.css": "tailwindcss"
+  }
 }
