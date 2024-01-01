@@ -21,10 +21,14 @@ export const SITE_OWNER_PROJECTS = [
   {
     name: "svelte-themer",
     url: "https://svelte-themer.vercel.app/",
+    description:
+      "A theming engine for your Svelte apps using CSS Variables, persisted.",
   },
   {
     name: "VSCode Rouge Theme",
     url: "https://marketplace.visualstudio.com/items?itemName=josef.rouge-theme",
+    description:
+      "VSCode theme created for a dark, material feel with a flushed color palette",
   },
 ]
 export const SITE_TITLE = "josef.dev" as const

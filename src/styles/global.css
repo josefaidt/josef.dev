@@ -9,12 +9,12 @@
 
 @layer base {
   h1 {
-    @apply text-2xl;
+    @apply text-3xl;
     font-family: Josefin Sans;
   }
 
   h2 {
-    @apply text-xl;
+    @apply text-2xl;
     font-family: Josefin Sans;
   }
 
