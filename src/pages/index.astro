@@ -1,16 +1,16 @@
 ---
-import { getCollection } from "astro:content"
-import { Icon } from "astro-icon/components"
-import Layout from "../layouts/Layout.astro"
-import FormattedDate from "../components/FormattedDate.astro"
-import { SITE_DESCRIPTION, SITE_OWNER_PROJECTS } from "../constants"
+import { getCollection } from 'astro:content'
+import { Icon } from 'astro-icon/components'
+import Layout from '../layouts/Layout.astro'
+import FormattedDate from '../components/FormattedDate.astro'
+import { SITE_DESCRIPTION, SITE_OWNER_PROJECTS } from '../constants'
 
-const posts = (await getCollection("posts"))
+const posts = (await getCollection('posts'))
   .filter((post) => post.data.isFeatured)
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
 ---
 
-<Layout class="grid grid-flow-row gap-y-10">
+<Layout class="grid grid-flow-row gap-y-12">
   <div>
     <h1 class="">Hello 👋</h1>
     <p>{SITE_DESCRIPTION}</p>
@@ -23,7 +23,7 @@ const posts = (await getCollection("posts"))
           const url = new URL(project.url)
           return (
             <li>
-              <a href={project.url} target="_blank">
+              <a href={project.url} target="_blank" rel="noopener">
                 <>
                   <p class="flex items-center">
                     {url.host}
