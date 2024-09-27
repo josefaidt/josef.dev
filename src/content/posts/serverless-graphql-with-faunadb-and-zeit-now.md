@@ -1,7 +1,7 @@
 ---
 title: Serverless GraphQL with FaunaDB and ZEIT Now
 description: "Discover Now serverless functions to expose an Apollo middleware on top of FaunaDB"
-pubDate: 2020-04-20
+publishDate: 2020-04-20
 tags: ["serverless", "infrastructure", "graphql", "fauna"]
 ---
 

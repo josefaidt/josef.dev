@@ -2,7 +2,7 @@
 title: Building a Svelte Action to Generate Scoped CSS Variables
 description: Learn how to build a Svelte Action to generated localized CSS variables
 tags: ["svelte", "css", "theming"]
-pubDate: 2022-01-23
+publishDate: 2022-01-23
 isFeatured: true
 ---
 

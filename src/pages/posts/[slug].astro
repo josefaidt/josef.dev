@@ -15,14 +15,14 @@ type Props = CollectionEntry<"posts">
 
 const post = Astro.props
 const { Content } = await post.render()
-const { pubDate, updatedDate, title, description } = post.data
+const { publishDate, updatedDate, title, description } = post.data
 ---
 
 <Layout title={title} description={description}>
   <article class:list={["grid grid-flow-row gap-y-4"]}>
     <header>
       <div>
-        <FormattedDate date={pubDate} />
+        <FormattedDate date={publishDate} />
         {
           updatedDate && (
             <div>

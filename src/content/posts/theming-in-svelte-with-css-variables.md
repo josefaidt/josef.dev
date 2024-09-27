@@ -1,7 +1,7 @@
 ---
 title: Theming in Svelte with CSS Variables
 description: "Explore Svelte and theming solutions leveraging platform features like CSS Variables"
-pubDate: 2020-03-13
+publishDate: 2020-03-13
 tags: ["svelte", "css", "theming", "websites"]
 ---
 

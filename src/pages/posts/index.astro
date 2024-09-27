@@ -4,7 +4,7 @@ import Layout from "../../layouts/Layout.astro"
 import FormattedDate from "../../components/FormattedDate.astro"
 
 const posts = (await getCollection("posts")).sort(
-  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+  (a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf()
 )
 
 const meta = {
@@ -22,7 +22,7 @@ const meta = {
           <li>
             <a class="hover:underline" href={`/posts/${post.slug}/`}>
               <p>
-                <FormattedDate date={post.data.pubDate} />
+                <FormattedDate date={post.data.publishDate} />
               </p>
               <h4 class="text-xl font-semibold">{post.data.title}</h4>
             </a>

@@ -1,7 +1,7 @@
 ---
 title: My First Dev Conference
 description: Thoughts driven by post-conference bliss on Mississippi's first ever JavaScript conference
-pubDate: 2019-04-19
+publishDate: 2019-04-19
 tags: ["javascript", "conferences", "experiences"]
 isArchived: true
 ---

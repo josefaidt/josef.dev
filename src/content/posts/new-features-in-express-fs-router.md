@@ -1,7 +1,7 @@
 ---
 title: New Features in Express FS Router
 description: "Adding middleware support and HTTP method file-system routing to the Express FileSystem Router"
-pubDate: 2020-06-01
+publishDate: 2020-06-01
 tags: ["javascript", "tooling", "thoughts"]
 isArchived: true
 ---

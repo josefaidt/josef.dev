@@ -1,13 +1,13 @@
 ---
-import { getCollection } from 'astro:content'
-import { Icon } from 'astro-icon/components'
-import Layout from '../layouts/Layout.astro'
-import FormattedDate from '../components/FormattedDate.astro'
-import { SITE_DESCRIPTION, SITE_OWNER_PROJECTS } from '../constants'
+import { getCollection } from "astro:content"
+import { Icon } from "astro-icon/components"
+import Layout from "../layouts/Layout.astro"
+import FormattedDate from "../components/FormattedDate.astro"
+import { SITE_DESCRIPTION, SITE_OWNER_PROJECTS } from "../constants"
 
-const posts = (await getCollection('posts'))
+const posts = (await getCollection("posts"))
   .filter((post) => post.data.isFeatured)
-  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf())
 ---
 
 <Layout class="grid grid-flow-row gap-y-12">
@@ -50,7 +50,7 @@ const posts = (await getCollection('posts'))
           <li>
             <a class="hover:underline" href={`/posts/${post.slug}/`}>
               <p>
-                <FormattedDate date={post.data.pubDate} />
+                <FormattedDate date={post.data.publishDate} />
               </p>
               <h4 class="text-xl font-semibold">{post.data.title}</h4>
             </a>

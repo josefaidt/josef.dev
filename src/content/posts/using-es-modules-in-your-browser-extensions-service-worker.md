@@ -2,7 +2,7 @@
 title: Using ES Modules in your Browser Extension's Service Worker
 description: Short note on how to use ES Modules in a browser extension's service worker
 tags: ["javascript"]
-pubDate: 2022-06-15
+publishDate: 2022-06-15
 ---
 
 When developing a browser extension -- in this case a Chrome extension -- we may begin developing using the same ES Modules approach we've used in the frontend, but then are presented with an error along the lines of `Cannot use 'import.meta' outside a module`.
