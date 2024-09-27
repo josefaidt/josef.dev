@@ -1,7 +1,7 @@
 ---
 title: Custom Theme Toggle with React hooks and Context API
 description: "Learn to build a custom theme toggle with React hooks and Context API, passing values dynamically to styled-components. Allowing users to cycle through preset themes"
-pubDate: 2020-02-25
+publishDate: 2020-02-25
 tags: ["react", "hooks", "websites"]
 isArchived: true
 ---

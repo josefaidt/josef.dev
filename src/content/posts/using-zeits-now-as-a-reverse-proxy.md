@@ -1,7 +1,7 @@
 ---
 title: Using ZEIT's Now as a Reverse Proxy
 description: Learn how to use ZEIT's Now platform as a reverse proxy for self-hosted services
-pubDate: 2019-11-03
+publishDate: 2019-11-03
 tags: ["infrastructure", "websites"]
 isArchived: true
 ---

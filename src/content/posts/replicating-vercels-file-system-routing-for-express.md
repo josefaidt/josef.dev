@@ -1,7 +1,7 @@
 ---
 title: Replicating Vercel's File-System Routing for Express
 description: "Documenting my experience with building npm:express-fs-router"
-pubDate: 2020-04-27
+publishDate: 2020-04-27
 tags: ["javascript", "tooling"]
 isArchived: true
 ---

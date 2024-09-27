@@ -2,7 +2,7 @@
 title: Migrating Content from Markdown to GitHub
 description: How I migrated content from plain Markdown files to GitHub issues, and lessons learned
 tags: ["content"]
-pubDate: 2022-01-21
+publishDate: 2022-01-21
 isArchived: true
 ---
 
