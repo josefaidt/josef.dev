@@ -1,6 +1,4 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
 @font-face {
   font-family: Josefin Sans;
@@ -42,7 +40,7 @@
 @layer josef-theme {
   :root {
     --josef-primary-color: #c6797e;
-    --josef-background-color: #1c0c0f;
+    --josef-background-color: #2a1518;
     --josef-text-color: #fffaeb;
     --josef-accent-color: #3a4d6b;
     --josef-secondary-color: #4d6685;

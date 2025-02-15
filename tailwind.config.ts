@@ -1,6 +1,6 @@
 import type { Config } from "tailwindcss"
 
-const config: Config = {
+export default {
   content: ["./src/**/*.{js,jsx,ts,tsx,mjs,astro}"],
   theme: {
     extend: {
@@ -45,6 +45,4 @@ const config: Config = {
   //     })
   //   },
   // ],
-}
-
-export default config
+} satisfies Config
