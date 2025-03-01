@@ -1,3 +1,4 @@
+// @ts-check
 import cloudflare from "@astrojs/cloudflare"
 import mdx from "@astrojs/mdx"
 import sitemap from "@astrojs/sitemap"
@@ -6,6 +7,20 @@ import { defineConfig, envField } from "astro/config"
 import expressiveCode from "astro-expressive-code"
 import icon from "astro-icon"
 import rouge2 from "./rouge2-modded.json"
+
+/**
+ * @returns {import('astro-expressive-code').ExpressiveCodePlugin}
+ */
+function rougePlugin() {
+  return {
+    name: "rouge2",
+    styleSettings: {
+      cssVarExclusions: [],
+      defaultValues: {},
+      cssVarReplacements: [["--tooltip-bg", "var(--josef-background-color)"]],
+    },
+  }
+}
 
 // https://astro.build/config
 export default defineConfig({
@@ -32,10 +47,9 @@ export default defineConfig({
   integrations: [
     icon(),
     expressiveCode({
+      cascadeLayer: "expressive-code",
       themes: [rouge2],
-      shiki: {
-        wrap: true,
-      },
+      shiki: {},
     }),
     mdx(),
     sitemap(),

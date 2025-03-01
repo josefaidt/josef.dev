@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@layer expressive-code;
 
 @theme {
   --color-accent: #c6797e;
@@ -90,6 +91,10 @@
     --josef-tertiary-color: #825f4a;
     --josef-shadow-color: #333333;
 
+    /* expressive code overrides */
+    --ec-frm-tooltipSuccessBg: var(--color-rouge-900);
+    --ec-frm-tooltipSuccessFg: var(--josef-text-color);
+
     /* --rouge-background: #151627; */
     /* --rouge-background: #07070d; */
   }
@@ -104,21 +109,20 @@
     background: #e5bcbd4d;
   }
 
-  /* let examples breathe */
-  .expressive-code {
-    margin: 0 -1rem;
-    /* padding: 1rem; */
-  }
-
-  .expressive-code pre {
-    padding: 0 0.5rem;
-  }
-
   /* modify inline code snippets to use background */
   p > code {
     @apply text-sm;
     background-color: #1c0c0f;
     color: #a2a3aa;
     padding: 0.1em 0.3em;
+  }
+
+  /* let examples breathe */
+  .expressive-code {
+    margin: 0 -1rem;
+  }
+
+  .expressive-code pre {
+    padding: 0 0.5rem;
   }
 }
