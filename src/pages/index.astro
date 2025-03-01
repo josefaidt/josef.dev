@@ -57,10 +57,7 @@ if (currentlyPlaying !== null && currentlyPlaying.item.type === "track") {
           josef
         </span>
       </div>
-      <div
-        id="currently-playing"
-        class="right-0 -bottom-1.5 absolute text-right"
-      >
+      <div id="currently-playing" class="right-0 -bottom-1.5 absolute">
         {
           track !== null ? (
             <a href={track.url} target="_blank" rel="noopener noreferrer">
@@ -79,7 +76,27 @@ if (currentlyPlaying !== null && currentlyPlaying.item.type === "track") {
                 </span>
               </div>
             </a>
-          ) : null
+          ) : (
+            <div class="flex items-center justify-end space-x-2">
+              {/* <div class="flex items-center space-x-1"> */}
+              <Icon
+                class="hover:text-accent text-[var(--color-rouge-200)]"
+                name={`simple-icons:spotify`}
+                size={16}
+                aria-hidden="true"
+              />
+              {/* <Icon
+                  class="hover:text-accent text-[var(--color-rouge-200)]"
+                  name={`gg:play-pause`}
+                  size={32}
+                  aria-hidden="true"
+                /> */}
+              {/* </div> */}
+              <span data-text={"not currently playing"}>
+                not currently playing
+              </span>
+            </div>
+          )
         }
       </div>
       <div class="absolute -left-4 bottom-6 text-md">
@@ -151,7 +168,7 @@ if (currentlyPlaying !== null && currentlyPlaying.item.type === "track") {
     color: transparent;
   }
 
-  #currently-playing span:hover::after {
+  #currently-playing a span:hover::after {
     /* @apply underline decoration-2 */
     text-decoration-line: underline;
     text-decoration-thickness: 2px;
