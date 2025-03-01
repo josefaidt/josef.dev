@@ -32,6 +32,32 @@ if (currentlyPlaying !== null && currentlyPlaying.item.type === "track") {
 <div class="flex flex-col min-h-screen">
   <div class="flex items-center justify-center flex-1">
     <div class="relative">
+      <div class="top-1 right-14 w-fit absolute z-20">
+        <div class="grid grid-flow-col gap-x-4 auto-cols-auto">
+          {
+            SITE_OWNER_SOCIALS.map((social) => (
+              <a
+                class:list={
+                  [
+                    // base
+                    // "inline-block",
+                  ]
+                }
+                href={social.url}
+                rel="noopener noreferrer"
+                target="_blank"
+                aria-label={`Visit ${social.name}`}
+              >
+                <Icon
+                  class="hover:text-accent"
+                  name={`simple-icons:${social.name.toLowerCase()}`}
+                  size={18}
+                />
+              </a>
+            ))
+          }
+        </div>
+      </div>
       <div id="logo" class="relative">
         <h1 class="text-9xl select-none">josef</h1>
         <span
@@ -79,34 +105,6 @@ if (currentlyPlaying !== null && currentlyPlaying.item.type === "track") {
       </div>
     </div>
   </div>
-
-  <footer class="w-full max-w-2xl mx-auto pb-4 px-4">
-    <div class="flex justify-between">
-      <span>&copy; {new Date().getFullYear()} josef</span>
-      <div class="grid grid-flow-col gap-x-4">
-        {
-          SITE_OWNER_SOCIALS.map((social) => (
-            <a
-              class:list={[
-                // base
-                "inline-block",
-              ]}
-              href={social.url}
-              rel="noopener noreferrer"
-              target="_blank"
-              aria-label={`Visit ${social.name}`}
-            >
-              <Icon
-                class="hover:text-accent"
-                name={`simple-icons:${social.name.toLowerCase()}`}
-                size={18}
-              />
-            </a>
-          ))
-        }
-      </div>
-    </div>
-  </footer>
 </div>
 
 <style>
