@@ -111,8 +111,16 @@ if (currentlyPlaying !== null && currentlyPlaying.item.type === "track") {
     color: var(--color-primary);
   }
 
+  [data-icon] {
+    color: var(--josef-text-color-muted);
+  }
+
+  [data-icon]:hover {
+    color: var(--josef-primary-color);
+  }
+
   nav a {
-    color: var(--color-rouge-200);
+    color: var(--josef-text-color-muted);
   }
 
   #logo {
@@ -123,7 +131,7 @@ if (currentlyPlaying !== null && currentlyPlaying.item.type === "track") {
     font-family: Josefin Sans;
     transform-style: preserve-3d;
     text-rendering: optimizeLegibility;
-    color: var(--color-rouge-200);
+    color: var(--josef-text-color);
   }
 
   #currently-playing a {
@@ -143,6 +151,13 @@ if (currentlyPlaying !== null && currentlyPlaying.item.type === "track") {
     color: transparent;
   }
 
+  #currently-playing span:hover::after {
+    /* @apply underline decoration-2 */
+    text-decoration-line: underline;
+    text-decoration-thickness: 2px;
+    text-decoration-color: var(--josef-primary-color);
+  }
+
   #currently-playing span::after {
     content: attr(data-text);
     position: absolute;
@@ -150,7 +165,11 @@ if (currentlyPlaying !== null && currentlyPlaying.item.type === "track") {
     width: max-content;
     left: 0;
     top: 0;
-    color: var(--color-rouge-100);
+    color: var(--josef-text-color-muted);
+    /* prevent layout shift - remove flicker when animating */
+    will-change: transform;
+    /* optimize text rendering */
+    text-rendering: optimizeSpeed;
   }
 
   #currently-playing span[data-rotate="true"]::after {

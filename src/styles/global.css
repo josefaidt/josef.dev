@@ -85,24 +85,31 @@
   :root {
     --josef-primary-color: #c6797e;
     --josef-background-color: #2a1518;
-    --josef-text-color: #fffaeb;
+    --josef-text-color: #f8e8d8;
+    /* --josef-text-color-muted: #e8d0c0; */
+    --josef-text-color-muted: #d8bfb0;
     --josef-accent-color: #3a4d6b;
     --josef-secondary-color: #4d6685;
     --josef-tertiary-color: #825f4a;
     --josef-shadow-color: #333333;
 
+    --josef-background-color-700: #201012;
+
     /* expressive code overrides */
     --ec-frm-tooltipSuccessBg: var(--color-rouge-900);
     --ec-frm-tooltipSuccessFg: var(--josef-text-color);
-
-    /* --rouge-background: #151627; */
-    /* --rouge-background: #07070d; */
+    --ec-frm-edTabBarBg: var(--josef-background-color-700);
+    --ec-frm-edTabBarFg: var(--josef-text-color-muted);
+    --ec-frm-trmTtbBg: var(--josef-background-color-700);
+    --ec-frm-edTabBarBrdBtmCol: var(--ec-brdCol);
+    --ec-frm-edActTabBg: var(--code-background);
+    --ec-frm-edActTabFg: var(--josef-text-color-muted);
   }
 
   body {
     background-color: var(--josef-background-color);
-    /* background-color: var(--rouge-background); */
     color: var(--josef-text-color);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
   }
 
   ::selection {
@@ -110,11 +117,16 @@
   }
 
   /* modify inline code snippets to use background */
-  p > code {
+  p > code,
+  li > code {
     @apply text-sm;
     background-color: #1c0c0f;
     color: #a2a3aa;
     padding: 0.1em 0.3em;
+  }
+
+  article a {
+    @apply underline decoration-2;
   }
 
   /* let examples breathe */
@@ -124,5 +136,13 @@
 
   .expressive-code pre {
     padding: 0 0.5rem;
+  }
+
+  .expressive-code .frame.is-terminal {
+    --code-background: var(--ec-frm-edBg);
+  }
+
+  .expressive-code .frame .header {
+    background-color: var(--josef-background-color-700);
   }
 }
