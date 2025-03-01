@@ -105,9 +105,13 @@
   }
 
   /* let examples breathe */
-  .astro-code {
-    margin: 1em -1rem;
-    padding: 1rem;
+  .expressive-code {
+    margin: 0 -1rem;
+    /* padding: 1rem; */
+  }
+
+  .expressive-code pre {
+    padding: 0 0.5rem;
   }
 
   /* modify inline code snippets to use background */

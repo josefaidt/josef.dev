@@ -3,6 +3,7 @@ import mdx from "@astrojs/mdx"
 import sitemap from "@astrojs/sitemap"
 import tailwindcss from "@tailwindcss/vite"
 import { defineConfig, envField } from "astro/config"
+import expressiveCode from "astro-expressive-code"
 import icon from "astro-icon"
 import rouge2 from "./rouge2-modded.json"
 
@@ -28,14 +29,19 @@ export default defineConfig({
     },
     validateSecrets: true,
   },
-  integrations: [icon(), mdx(), sitemap()],
+  integrations: [
+    icon(),
+    expressiveCode({
+      themes: [rouge2],
+      shiki: {
+        wrap: true,
+      },
+    }),
+    mdx(),
+    sitemap(),
+  ],
   markdown: {
     gfm: true,
-    syntaxHighlight: "shiki",
-    shikiConfig: {
-      theme: rouge2,
-      wrap: true,
-    },
   },
   vite: {
     plugins: [tailwindcss()],
