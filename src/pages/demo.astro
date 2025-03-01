@@ -32,8 +32,10 @@ if (currentlyPlaying !== null && currentlyPlaying.item.type === "track") {
 <div class="flex flex-col min-h-screen">
   <div class="flex items-center justify-center flex-1">
     <div class="relative">
-      <div class="top-2 right-13 w-fit absolute z-20 flex gap-2">
-        <div class="grid grid-flow-col gap-x-2 auto-cols-auto items-center">
+      <div class="top-1.5 right-13 w-fit absolute z-20 flex gap-2">
+        <a class="flex items-center" href="/posts">posts</a>
+        <a class="flex items-center" href="/josefaidt_resume.pdf"> resume </a>
+        <!-- <div class="grid grid-flow-col gap-x-2 auto-cols-auto items-center">
           {
             SITE_OWNER_SOCIALS.map((social) => (
               <a
@@ -56,7 +58,7 @@ if (currentlyPlaying !== null && currentlyPlaying.item.type === "track") {
               </a>
             ))
           }
-        </div>
+        </div> -->
       </div>
       <div id="logo" class="relative">
         <h1 class="text-9xl select-none">josef</h1>
@@ -103,12 +105,35 @@ if (currentlyPlaying !== null && currentlyPlaying.item.type === "track") {
           ) : null
         }
       </div>
-      <div class="absolute -right-20 bottom-6 text-md">
-        <a class="flex items-center" href="/posts">posts</a>
+      <div class="absolute -left-4 bottom-6 text-md">
+        <!-- <a class="flex items-center" href="/posts">posts</a>
         <a class="flex items-center" href="/josefaidt_resume.pdf">
           resume
-          <!-- <Icon class="hover:text-accent" name={`gg:external`} size={18} /> -->
-        </a>
+        </a> -->
+        <div class="grid grid-flow-row gap-y-2 auto-cols-auto items-center">
+          {
+            SITE_OWNER_SOCIALS.map((social) => (
+              <a
+                class:list={
+                  [
+                    // base
+                    // "inline-block",
+                  ]
+                }
+                href={social.url}
+                rel="noopener noreferrer"
+                target="_blank"
+                aria-label={`Visit ${social.name}`}
+              >
+                <Icon
+                  class="hover:text-accent"
+                  name={`simple-icons:${social.name.toLowerCase()}`}
+                  size={18}
+                />
+              </a>
+            ))
+          }
+        </div>
       </div>
     </div>
   </div>
@@ -119,6 +144,11 @@ if (currentlyPlaying !== null && currentlyPlaying.item.type === "track") {
     /* font-family: var(--font-serif); */
     color: var(--color-primary);
   }
+
+  #logo {
+    letter-spacing: 0.1rem;
+  }
+
   #logo > span {
     font-family: Josefin Sans;
     transform-style: preserve-3d;
@@ -133,7 +163,7 @@ if (currentlyPlaying !== null && currentlyPlaying.item.type === "track") {
     font-size: var(--text-sm);
     line-height: 1.5rem;
     height: 1.5rem;
-    width: 205px;
+    width: 212px;
     overflow: hidden;
     white-space: nowrap;
     display: inline-block;
