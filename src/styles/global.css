@@ -1,4 +1,4 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
 @theme {
   --color-accent: #c6797e;
@@ -102,5 +102,19 @@
 
   ::selection {
     background: #e5bcbd4d;
+  }
+
+  /* let examples breathe */
+  .astro-code {
+    margin: 1em -1rem;
+    padding: 1rem;
+  }
+
+  /* modify inline code snippets to use background */
+  p > code {
+    @apply text-sm;
+    background-color: #1c0c0f;
+    color: #a2a3aa;
+    padding: 0.1em 0.3em;
   }
 }

@@ -1,12 +1,14 @@
+import cloudflare from "@astrojs/cloudflare"
 import mdx from "@astrojs/mdx"
 import sitemap from "@astrojs/sitemap"
 import tailwindcss from "@tailwindcss/vite"
-import icon from "astro-icon"
 import { defineConfig, envField } from "astro/config"
+import icon from "astro-icon"
 import rouge2 from "./rouge2-modded.json"
 
 // https://astro.build/config
 export default defineConfig({
+  adapter: cloudflare(),
   output: "server",
   site: "https://josef.dev",
   env: {
@@ -29,6 +31,7 @@ export default defineConfig({
   integrations: [icon(), mdx(), sitemap()],
   markdown: {
     gfm: true,
+    syntaxHighlight: "shiki",
     shikiConfig: {
       theme: rouge2,
       wrap: true,
