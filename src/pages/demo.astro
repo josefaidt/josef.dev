@@ -32,8 +32,12 @@ if (currentlyPlaying !== null && currentlyPlaying.item.type === "track") {
 <div class="flex flex-col min-h-screen">
   <div class="flex items-center justify-center flex-1">
     <div class="relative">
-      <div class="top-1 right-14 w-fit absolute z-20">
-        <div class="grid grid-flow-col gap-x-4 auto-cols-auto">
+      <div class="top-2 right-13 w-fit absolute z-20 flex gap-2">
+        <a class="flex items-center text-md" href="/josefaidt_resume.pdf">
+          Resume
+          <Icon class="hover:text-accent" name={`gg:external`} size={18} />
+        </a>
+        <div class="grid grid-flow-col gap-x-2 auto-cols-auto items-center">
           {
             SITE_OWNER_SOCIALS.map((social) => (
               <a
@@ -126,7 +130,7 @@ if (currentlyPlaying !== null && currentlyPlaying.item.type === "track") {
     font-size: var(--text-sm);
     line-height: 1.5rem;
     height: 1.5rem;
-    width: 200px;
+    width: 205px;
     overflow: hidden;
     white-space: nowrap;
     display: inline-block;
