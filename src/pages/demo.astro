@@ -33,10 +33,6 @@ if (currentlyPlaying !== null && currentlyPlaying.item.type === "track") {
   <div class="flex items-center justify-center flex-1">
     <div class="relative">
       <div class="top-2 right-13 w-fit absolute z-20 flex gap-2">
-        <a class="flex items-center text-md" href="/josefaidt_resume.pdf">
-          Resume
-          <Icon class="hover:text-accent" name={`gg:external`} size={18} />
-        </a>
         <div class="grid grid-flow-col gap-x-2 auto-cols-auto items-center">
           {
             SITE_OWNER_SOCIALS.map((social) => (
@@ -106,6 +102,13 @@ if (currentlyPlaying !== null && currentlyPlaying.item.type === "track") {
             </a>
           ) : null
         }
+      </div>
+      <div class="absolute -right-25 bottom-6 text-md">
+        <a class="flex items-center" href="/posts">posts</a>
+        <a class="flex items-center" href="/josefaidt_resume.pdf">
+          resume
+          <Icon class="hover:text-accent" name={`gg:external`} size={18} />
+        </a>
       </div>
     </div>
   </div>
