@@ -48,6 +48,10 @@ export default defineConfig({
     icon(),
     expressiveCode({
       cascadeLayer: "expressive-code",
+      defaultProps: {
+        // Enable word wrap by default
+        wrap: true,
+      },
       themes: [rouge2],
       shiki: {},
     }),
