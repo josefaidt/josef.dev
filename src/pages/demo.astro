@@ -32,7 +32,7 @@ if (currentlyPlaying !== null && currentlyPlaying.item.type === "track") {
 <div class="flex flex-col min-h-screen">
   <div class="flex items-center justify-center flex-1">
     <div class="relative">
-      <div class="top-1.5 right-13 w-fit absolute z-20 flex gap-2">
+      <nav class="top-1.5 right-13 w-fit absolute z-20 flex gap-2">
         <a class="flex items-center" href="/posts">posts</a>
         <a class="flex items-center" href="/josefaidt_resume.pdf"> resume </a>
         <!-- <div class="grid grid-flow-col gap-x-2 auto-cols-auto items-center">
@@ -59,7 +59,7 @@ if (currentlyPlaying !== null && currentlyPlaying.item.type === "track") {
             ))
           }
         </div> -->
-      </div>
+      </nav>
       <div id="logo" class="relative">
         <h1 class="text-9xl select-none">josef</h1>
         <span
@@ -90,6 +90,7 @@ if (currentlyPlaying !== null && currentlyPlaying.item.type === "track") {
             <a href={track.url} target="_blank" rel="noopener noreferrer">
               <div class="flex items-center justify-end space-x-2">
                 <Icon
+                  class="hover:text-accent text-[var(--color-rouge-200)]"
                   name={`simple-icons:spotify`}
                   size={16}
                   aria-hidden="true"
@@ -126,7 +127,7 @@ if (currentlyPlaying !== null && currentlyPlaying.item.type === "track") {
                 aria-label={`Visit ${social.name}`}
               >
                 <Icon
-                  class="hover:text-accent"
+                  class="hover:text-accent text-[var(--color-rouge-200)]"
                   name={`simple-icons:${social.name.toLowerCase()}`}
                   size={18}
                 />
@@ -145,6 +146,10 @@ if (currentlyPlaying !== null && currentlyPlaying.item.type === "track") {
     color: var(--color-primary);
   }
 
+  nav a {
+    color: var(--color-rouge-200);
+  }
+
   #logo {
     letter-spacing: 0.1rem;
   }
@@ -153,6 +158,7 @@ if (currentlyPlaying !== null && currentlyPlaying.item.type === "track") {
     font-family: Josefin Sans;
     transform-style: preserve-3d;
     text-rendering: optimizeLegibility;
+    color: var(--color-rouge-200);
   }
 
   #currently-playing a {
@@ -180,6 +186,7 @@ if (currentlyPlaying !== null && currentlyPlaying.item.type === "track") {
     left: 0;
     top: 0;
     color: var(--josef-text-color);
+    color: var(--color-rouge-100);
   }
 
   #currently-playing span[data-rotate="true"]::after {
