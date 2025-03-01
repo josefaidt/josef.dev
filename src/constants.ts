@@ -1,8 +1,8 @@
 export const SITE_OWNER = "josef" as const
 export const SITE_OWNER_SOCIALS = [
   {
-    name: "Twitter",
-    url: "https://twitter.com/josefaidt",
+    name: "BlueSky",
+    url: "https://bsky.app/profile/josef.dev",
   },
   {
     name: "LinkedIn",

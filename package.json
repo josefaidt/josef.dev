@@ -36,6 +36,7 @@
     "@biomejs/biome": "^1.9.4",
     "@iconify-json/gg": "^1.2.2",
     "@iconify-json/simple-icons": "^1.2.24",
+    "@spotify/web-api-ts-sdk": "^1.2.0",
     "@tailwindcss/vite": "^4.0.6",
     "astro": "^5.3.0",
     "astro-icon": "1.1.5",
