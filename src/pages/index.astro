@@ -78,22 +78,14 @@ if (currentlyPlaying !== null && currentlyPlaying.item.type === "track") {
             </a>
           ) : (
             <div class="flex items-center justify-end space-x-2">
-              {/* <div class="flex items-center space-x-1"> */}
               <Icon
                 class="hover:text-accent text-[var(--color-rouge-200)]"
                 name={`simple-icons:spotify`}
                 size={16}
                 aria-hidden="true"
               />
-              {/* <Icon
-                  class="hover:text-accent text-[var(--color-rouge-200)]"
-                  name={`gg:play-pause`}
-                  size={32}
-                  aria-hidden="true"
-                /> */}
-              {/* </div> */}
-              <span data-text={"not currently playing"}>
-                not currently playing
+              <span data-text={"not currently playing..."}>
+                not currently playing...
               </span>
             </div>
           )
@@ -132,7 +124,7 @@ if (currentlyPlaying !== null && currentlyPlaying.item.type === "track") {
     color: var(--josef-text-color-muted);
   }
 
-  [data-icon]:hover {
+  :not(#currently-playing *)[data-icon]:hover {
     color: var(--josef-primary-color);
   }
 
