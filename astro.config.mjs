@@ -8,20 +8,6 @@ import expressiveCode from "astro-expressive-code"
 import icon from "astro-icon"
 import rouge2 from "./rouge2-modded.json"
 
-/**
- * @returns {import('astro-expressive-code').ExpressiveCodePlugin}
- */
-function rougePlugin() {
-  return {
-    name: "rouge2",
-    styleSettings: {
-      cssVarExclusions: [],
-      defaultValues: {},
-      cssVarReplacements: [["--tooltip-bg", "var(--josef-background-color)"]],
-    },
-  }
-}
-
 // https://astro.build/config
 export default defineConfig({
   adapter: cloudflare(),
