@@ -16,8 +16,6 @@ interface SpotifyTrack {
 
 let track: SpotifyTrack | null = null
 
-console.log("track is", track)
-
 if (currentlyPlaying !== null && currentlyPlaying.item.type === "track") {
   // type-casting is nasty but we've verified the "type" already
   const item = currentlyPlaying.item as Track
