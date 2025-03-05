@@ -1,17 +1,17 @@
 export const SITE_OWNER = "josef" as const
 export const SITE_OWNER_SOCIALS = [
   {
-    name: "Twitter",
-    url: "https://twitter.com/josefaidt",
+    name: "BlueSky",
+    url: "https://bsky.app/profile/josef.dev",
   },
   {
     name: "LinkedIn",
     url: "https://linkedin.com/in/josefaidt/",
   },
-  {
-    name: "Spotify",
-    url: "https://open.spotify.com/user/1215285465",
-  },
+  // {
+  //   name: "Spotify",
+  //   url: "https://open.spotify.com/user/1215285465",
+  // },
   {
     name: "GitHub",
     url: "https://github.com/josefaidt",

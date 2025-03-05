@@ -1,0 +1,78 @@
+---
+import * as resume from "../content/resume.md"
+import "../styles/resume.css"
+
+export const prerender = true
+
+const { Content } = resume
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.png" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Josef's Resume</title>
+  </head>
+  <body>
+    <article class="mx-auto py-4">
+      <h1 class="text-center mb-2">{resume.frontmatter.author}</h1>
+      <div class="text-center flex justify-center gap-2 text-sm">
+        <a href={`mailto:${resume.frontmatter.email}`}>
+          <span>{resume.frontmatter.email}</span>
+        </a>
+        |
+        <a href={resume.frontmatter.website}>
+          {resume.frontmatter.website.replace(/^https\:\/\//, "")}
+        </a>
+        |
+        <a
+          href={resume.frontmatter.linkedin}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {resume.frontmatter.linkedin.replace(/^https\:\/\//, "")}
+        </a>
+        |
+        <a
+          href={resume.frontmatter.github}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {resume.frontmatter.github.replace(/^https\:\/\//, "")}
+        </a>
+      </div>
+      &nbsp;
+      <Content />
+    </article>
+  </body>
+</html>
+
+<style is:global>
+  @reference "../styles/resume.css";
+
+  article {
+    max-width: 65ch;
+  }
+
+  article h1 {
+    @apply text-2xl font-bold;
+  }
+
+  article h2 {
+    @apply mt-1 mb-2 text-xl font-semibold;
+  }
+
+  article h3 {
+    @apply mb-1 font-semibold;
+  }
+
+  article a {
+    @apply font-medium underline;
+  }
+
+  article ul {
+    @apply mb-2 list-disc pl-4 text-sm;
+  }
+</style>

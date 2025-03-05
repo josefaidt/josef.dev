@@ -1,6 +1,48 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@layer expressive-code;
+
+@theme {
+  --color-accent: #c6797e;
+  --color-blue: #1fb6ff;
+  --color-purple: #7e5bef;
+  --color-pink: #ff49db;
+  --color-orange: #ff7849;
+  --color-green: #13ce66;
+  --color-yellow: #ffc82c;
+  --color-gray-dark: #273444;
+  --color-gray: #8492a6;
+  --color-gray-light: #d3dce6;
+
+  --color-rouge-50: #fbf6f5;
+  --color-rouge-100: #f8ebeb;
+  --color-rouge-200: #f1dadb;
+  --color-rouge-300: #e5bcbd;
+  --color-rouge-400: #d59799;
+  --color-rouge-500: #c6797e;
+  --color-rouge-600: #ab535d;
+  --color-rouge-700: #8f414c;
+  --color-rouge-800: #783943;
+  --color-rouge-900: #68333d;
+  --color-rouge-950: #39181d;
+}
+
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
+  }
+}
 
 @font-face {
   font-family: Josefin Sans;
@@ -42,24 +84,65 @@
 @layer josef-theme {
   :root {
     --josef-primary-color: #c6797e;
-    --josef-background-color: #1c0c0f;
-    --josef-text-color: #fffaeb;
+    --josef-background-color: #2a1518;
+    --josef-text-color: #f8e8d8;
+    /* --josef-text-color-muted: #e8d0c0; */
+    --josef-text-color-muted: #d8bfb0;
     --josef-accent-color: #3a4d6b;
     --josef-secondary-color: #4d6685;
     --josef-tertiary-color: #825f4a;
     --josef-shadow-color: #333333;
 
-    /* --rouge-background: #151627; */
-    /* --rouge-background: #07070d; */
+    --josef-background-color-700: #201012;
+
+    /* expressive code overrides */
+    --ec-frm-tooltipSuccessBg: var(--color-rouge-900);
+    --ec-frm-tooltipSuccessFg: var(--josef-text-color);
+    --ec-frm-edTabBarBg: var(--josef-background-color-700);
+    --ec-frm-edTabBarFg: var(--josef-text-color-muted);
+    --ec-frm-trmTtbBg: var(--josef-background-color-700);
+    --ec-frm-edTabBarBrdBtmCol: var(--ec-brdCol);
+    --ec-frm-edActTabBg: var(--code-background);
+    --ec-frm-edActTabFg: var(--josef-text-color-muted);
   }
 
   body {
     background-color: var(--josef-background-color);
-    /* background-color: var(--rouge-background); */
     color: var(--josef-text-color);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
   }
 
   ::selection {
     background: #e5bcbd4d;
+  }
+
+  /* modify inline code snippets to use background */
+  p > code,
+  li > code {
+    @apply text-sm;
+    background-color: #1c0c0f;
+    color: #a2a3aa;
+    padding: 0.1em 0.3em;
+  }
+
+  article a {
+    @apply underline decoration-2;
+  }
+
+  /* let examples breathe */
+  .expressive-code {
+    margin: 0 -1rem;
+  }
+
+  .expressive-code pre {
+    padding: 0 0.5rem;
+  }
+
+  .expressive-code .frame.is-terminal {
+    --code-background: var(--ec-frm-edBg);
+  }
+
+  .expressive-code .frame .header {
+    background-color: var(--josef-background-color-700);
   }
 }
