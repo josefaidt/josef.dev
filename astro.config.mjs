@@ -18,12 +18,10 @@ export default defineConfig({
       SPOTIFY_CLIENT_ID: envField.string({
         access: "secret",
         context: "server",
-        optional: true,
       }),
       SPOTIFY_CLIENT_SECRET: envField.string({
         access: "secret",
         context: "server",
-        optional: true,
       }),
       SPOTIFY_REFRESH_TOKEN: envField.string({
         access: "secret",
