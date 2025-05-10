@@ -3,8 +3,10 @@ import { getCollection } from "astro:content"
 import Layout from "../../layouts/Layout.astro"
 import FormattedDate from "../../components/FormattedDate.astro"
 
+export const prerender = true
+
 const posts = (await getCollection("posts")).sort(
-  (a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf()
+  (a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf(),
 )
 
 const meta = {
