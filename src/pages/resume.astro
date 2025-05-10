@@ -16,17 +16,23 @@ const { Content } = resume
     <title>Josef's Resume</title>
   </head>
   <body>
-    <article class="mx-auto py-4">
+    <article class="mx-auto py-4 px-2 md:px-0">
       <h1 class="text-center mb-2">{resume.frontmatter.author}</h1>
-      <div class="text-center flex justify-center gap-2 text-sm">
+      <div
+        id="contact-info"
+        class:list={[
+          "text-left flex flex-col gap-2 text-sm",
+          "md:text-center md:justify-center md:flex-row md:items-center",
+        ]}
+      >
         <a href={`mailto:${resume.frontmatter.email}`}>
-          <span>{resume.frontmatter.email}</span>
+          {resume.frontmatter.email}
         </a>
-        |
+        <div class="hidden md:block h-4 w-[1.5px] bg-black"></div>
         <a href={resume.frontmatter.website}>
           {resume.frontmatter.website.replace(/^https\:\/\//, "")}
         </a>
-        |
+        <div class="hidden md:block h-4 w-[1.5px] bg-black"></div>
         <a
           href={resume.frontmatter.linkedin}
           target="_blank"
@@ -34,7 +40,7 @@ const { Content } = resume
         >
           {resume.frontmatter.linkedin.replace(/^https\:\/\//, "")}
         </a>
-        |
+        <div class="hidden md:block h-4 w-[1.5px] bg-black"></div>
         <a
           href={resume.frontmatter.github}
           target="_blank"
