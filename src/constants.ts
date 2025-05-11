@@ -38,4 +38,4 @@ export const SITE_OWNER_PROJECTS = [
 ]
 export const SITE_TITLE = "josef.dev" as const
 export const SITE_DESCRIPTION =
-  "Josef is a frontend developer, peasant, and gamer" as const
+  "JavaScript dev, garlic bread connoisseur" as const

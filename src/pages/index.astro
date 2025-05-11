@@ -3,7 +3,7 @@ import type { Track } from "@spotify/web-api-ts-sdk"
 import { Icon } from "astro-icon/components"
 import BaseHead from "../components/BaseHead.astro"
 import { fetchSpotifyCurrentlyPlaying } from "../lib/spotify"
-import { SITE_OWNER_SOCIALS } from "../constants"
+import { SITE_DESCRIPTION, SITE_OWNER_SOCIALS } from "../constants"
 
 const currentlyPlaying = await fetchSpotifyCurrentlyPlaying()
 
@@ -28,7 +28,7 @@ if (currentlyPlaying !== null && currentlyPlaying.item.type === "track") {
 }
 ---
 
-<BaseHead title="josef.dev" description="Josef's personal website" />
+<BaseHead title="josef.dev" description={SITE_DESCRIPTION} />
 <div class="flex flex-col min-h-screen">
   <div class="flex items-center justify-center flex-1">
     <div class="relative">
