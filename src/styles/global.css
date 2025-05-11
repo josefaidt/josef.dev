@@ -129,9 +129,11 @@
     @apply underline decoration-2;
   }
 
-  /* let examples breathe */
   .expressive-code {
+    /* let examples breathe */
     margin: 0 -1rem;
+    /* avoid overflow on mobile */
+    max-width: 100vw;
   }
 
   .expressive-code pre {
