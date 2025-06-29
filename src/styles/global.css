@@ -132,12 +132,10 @@
   .expressive-code {
     /* let examples breathe */
     margin: 0 -1rem;
-    /* avoid overflow on mobile */
-    max-width: 100vw;
-  }
-
-  .expressive-code pre {
-    padding: 0 0.5rem;
+    /* constrain to parent container width */
+    max-width: calc(100% + 2rem);
+    /* make long text scrollable */
+    overflow-x: auto;
   }
 
   .expressive-code .frame.is-terminal {

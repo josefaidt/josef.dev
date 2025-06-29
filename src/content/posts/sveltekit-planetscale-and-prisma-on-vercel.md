@@ -111,8 +111,9 @@ Two notes on the copy commands:
 
 - without copying the schema we will encounter `ENOENT: no such file or directory, open '/var/task/schema.prisma'` when attempting to call the endpoint `/api/players.json`
 - without copying the engine information we will encounter
-  ```text
-  Error: Query engine library for current platform "rhel-openssl-1.0.x" could not be found. You incorrectly pinned it to rhel-openssl-1.0.x This probably happens, because you built Prisma Client on a different platform.
-  ```
+
+```text
+Error: Query engine library for current platform "rhel-openssl-1.0.x" could not be found. You incorrectly pinned it to rhel-openssl-1.0.x This probably happens, because you built Prisma Client on a different platform.
+```
 
 Now we can deploy to Vercel and visit the URL of our SvelteKit endpoint (`/api/players.json`) to see the test player results!
