@@ -21,10 +21,17 @@ const { title, description, image = "/og-image.png" } = Astro.props
 <link rel="icon" type="image/svg+xml" href="/favicon.png" />
 <meta name="generator" content={Astro.generator} />
 
-<!-- Font preloads -->
+<!-- Font Preloads -->
 <link
   rel="preload"
-  href="/fonts/josefin-sans-semibold.ttf"
+  href="/fonts/JosefinSans-VariableFont_wght.ttf"
+  as="font"
+  type="font/ttf"
+  crossorigin
+/>
+<link
+  rel="preload"
+  href="/fonts/JosefinSans-Italic-VariableFont_wght.ttf"
   as="font"
   type="font/ttf"
   crossorigin

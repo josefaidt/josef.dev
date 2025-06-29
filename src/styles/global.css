@@ -46,7 +46,18 @@
 
 @font-face {
   font-family: Josefin Sans;
-  src: local("Josefin Sans Semibold"), url(/fonts/josefin-sans-semibold.ttf);
+  src: url("/fonts/JosefinSans-VariableFont_wght.ttf") format(truetype);
+  font-style: normal;
+  font-weight: 100 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Josefin Sans;
+  src: url("/fonts/JosefinSans-Italic-VariableFont_wght.ttf") format(truetype);
+  font-style: italic;
+  font-weight: 100 700;
+  font-display: swap;
 }
 
 @layer base {
@@ -54,12 +65,11 @@
     @apply text-3xl;
     /* biome-ignore lint/a11y/useGenericFontNames: this is set by tailwind */
     font-family: Josefin Sans;
+    font-weight: 600;
   }
   
   h2 {
     @apply text-2xl;
-    /* biome-ignore lint/a11y/useGenericFontNames: this is set by tailwind */
-    font-family: Josefin Sans;
   }
 
   a {
@@ -84,6 +94,7 @@
 }
 
 @layer josef-theme {
+  /* Dark theme (default) */
   :root {
     --josef-primary-color: #c6797e;
     --josef-background-color: #2a1518;
@@ -108,10 +119,35 @@
     --ec-frm-edActTabFg: var(--josef-text-color-muted);
   }
 
+  /* Light theme - triggered by system preference */
+  @media (prefers-color-scheme: light) {
+    :root {
+      --josef-primary-color: #a85d62;
+      --josef-background-color: #faf7f5;
+      --josef-text-color: #2d1a1c;
+      --josef-text-color-muted: #5c4a45;
+      --josef-accent-color: #7a9bc4;
+      --josef-secondary-color: #6b8ba8;
+      --josef-tertiary-color: #b8956f;
+      --josef-shadow-color: #e0d0c8;
+
+      --josef-background-color-700: #f0ebe8;
+
+      /* expressive code overrides for light theme */
+      --ec-frm-tooltipSuccessBg: var(--color-rouge-100);
+      --ec-frm-tooltipSuccessFg: var(--josef-text-color);
+      --ec-frm-edTabBarBg: var(--josef-background-color-700);
+      --ec-frm-edTabBarFg: var(--josef-text-color-muted);
+      --ec-frm-trmTtbBg: var(--josef-background-color-700);
+      --ec-frm-edTabBarBrdBtmCol: var(--ec-brdCol);
+      --ec-frm-edActTabBg: var(--code-background);
+      --ec-frm-edActTabFg: var(--josef-text-color-muted);
+    }
+  }
+
   body {
     background-color: var(--josef-background-color);
     color: var(--josef-text-color);
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
   }
 
   ::selection {

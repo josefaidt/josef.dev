@@ -17,6 +17,7 @@ const meta = {
 ---
 
 <Layout title={meta.title} description={meta.description}>
+  <h1 class="sr-only">Posts</h1>
   <section class="">
     <ul class="grid gap-4 list-none">
       {
@@ -26,7 +27,7 @@ const meta = {
               <p>
                 <FormattedDate date={post.data.publishDate} />
               </p>
-              <h4 class="text-xl font-semibold">{post.data.title}</h4>
+              <h2 class="text-xl font-semibold font-sans">{post.data.title}</h2>
             </a>
           </li>
         ))
