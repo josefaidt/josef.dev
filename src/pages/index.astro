@@ -8,7 +8,9 @@ import { SITE_DESCRIPTION, SITE_OWNER_SOCIALS } from "../constants"
 let currentlyPlaying: PlaybackState | null = null
 try {
   // Use the full URL for the internal fetch
-  const response = await fetch(`${Astro.url.origin}/api/spotify`)
+  const response = await fetch(
+    `${Astro.url.origin}/api/spotify/currently-playing`,
+  )
   currentlyPlaying = await response.json()
 } catch (error) {
   console.error("Failed to fetch Spotify data during SSR:", error)
