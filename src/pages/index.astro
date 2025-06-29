@@ -14,7 +14,7 @@ interface SpotifyTrack {
   displayText: string
 }
 
-let track: SpotifyTrack | null
+let track: SpotifyTrack | null = null
 
 if (currentlyPlaying?.item?.type === "track") {
   // type-casting is nasty but we've verified the "type" already
@@ -25,9 +25,6 @@ if (currentlyPlaying?.item?.type === "track") {
     url: item.external_urls.spotify,
     displayText: `${item.name} – ${item.artists.map((artist) => artist.name).join(", ")}`,
   }
-} else {
-  // unset so it shows "not currently playing..."
-  track = null
 }
 ---
 
