@@ -1,11 +1,18 @@
 ---
-import type { Track } from "@spotify/web-api-ts-sdk"
+import type { Track, PlaybackState } from "@spotify/web-api-ts-sdk"
 import { Icon } from "astro-icon/components"
 import BaseHead from "../components/BaseHead.astro"
-import { fetchSpotifyCurrentlyPlaying } from "../lib/spotify"
 import { SITE_DESCRIPTION, SITE_OWNER_SOCIALS } from "../constants"
 
-const currentlyPlaying = await fetchSpotifyCurrentlyPlaying()
+// Fetch from your own API route during SSR
+let currentlyPlaying: PlaybackState | null = null
+try {
+  // Use the full URL for the internal fetch
+  const response = await fetch(`${Astro.url.origin}/api/spotify`)
+  currentlyPlaying = await response.json()
+} catch (error) {
+  console.error("Failed to fetch Spotify data during SSR:", error)
+}
 
 interface SpotifyTrack {
   name: string
