@@ -1,2 +1,3 @@
 onlyBuiltDependencies:
   - '@anthropic-ai/claude-code'
+  - '@biomejs/biome'
