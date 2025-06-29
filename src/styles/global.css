@@ -52,11 +52,13 @@
 @layer base {
   h1 {
     @apply text-3xl;
+    /* biome-ignore lint/a11y/useGenericFontNames: this is set by tailwind */
     font-family: Josefin Sans;
   }
-
+  
   h2 {
     @apply text-2xl;
+    /* biome-ignore lint/a11y/useGenericFontNames: this is set by tailwind */
     font-family: Josefin Sans;
   }
 
