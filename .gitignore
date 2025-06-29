@@ -11,3 +11,7 @@ pnpm-debug.log*
 
 # no dotenv files
 .env*
+
+# wrangler files
+.wrangler
+.dev.vars*

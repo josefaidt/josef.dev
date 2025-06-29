@@ -1,8 +1,12 @@
 {
   "files.associations": {
-    "*.css": "tailwindcss"
+    "*.css": "tailwindcss",
+    ".assetsignore": "ignore"
   },
   "[md]": {
     "github.copilot.editor.enableAutoCompletions": false
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "biomejs.biome"
   }
 }

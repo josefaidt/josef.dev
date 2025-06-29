@@ -4,13 +4,14 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "astro": "astro",
     "build": "astro build",
+    "cf-typegen": "wrangler types",
     "check": "astro check",
+    "deploy": "astro build && wrangler deploy",
     "dev": "astro dev",
     "generate-resume-pdf": "tsx scripts/generate-resume-pdf",
     "install-chrome": "puppeteer browsers install chrome",
-    "preview": "astro preview",
+    "preview": "astro build && wrangler dev",
     "start": "astro dev"
   },
   "prettier": {
@@ -30,12 +31,12 @@
     ]
   },
   "dependencies": {
+    "@astrojs/cloudflare": "^12.6.0",
     "astro": "^5.7.12"
   },
   "devDependencies": {
     "@anthropic-ai/claude-code": "^1.0.35",
     "@astrojs/check": "^0.9.4",
-    "@astrojs/cloudflare": "^12.5.2",
     "@astrojs/mdx": "^4.2.6",
     "@astrojs/rss": "^4.0.11",
     "@astrojs/sitemap": "^3.3.1",
@@ -45,6 +46,7 @@
     "@spotify/web-api-ts-sdk": "^1.2.0",
     "@tailwindcss/typography": "^0.5.16",
     "@tailwindcss/vite": "^4.1.6",
+    "@types/node": "^24.0.7",
     "astro-expressive-code": "^0.41.2",
     "astro-icon": "1.1.5",
     "mdast-util-to-string": "^4.0.0",
@@ -57,7 +59,7 @@
     "tailwindcss": "^4.1.6",
     "tsx": "^4.19.3",
     "typescript": "^5.8.3",
-    "wrangler": "^3.114.8"
+    "wrangler": "^4.22.0"
   },
   "packageManager": "pnpm@10.10.0"
 }
