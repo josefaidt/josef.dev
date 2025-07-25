@@ -35,7 +35,6 @@
     "astro": "^5.7.12"
   },
   "devDependencies": {
-    "@anthropic-ai/claude-code": "^1.0.35",
     "@astrojs/check": "^0.9.4",
     "@astrojs/mdx": "^4.2.6",
     "@astrojs/rss": "^4.0.11",

@@ -1,4 +1,9 @@
+ignoredBuiltDependencies:
+  - '@tailwindcss/oxide'
+  - sharp
 onlyBuiltDependencies:
   - '@anthropic-ai/claude-code'
   - '@biomejs/biome'
+  - esbuild
+  - puppeteer
   - workerd
