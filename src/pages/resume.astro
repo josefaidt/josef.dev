@@ -1,6 +1,7 @@
 ---
 import * as resume from "../content/resume.md"
 import "../styles/resume.css"
+import { ResumeToast } from "../components/ResumeToast"
 
 export const prerender = true
 
@@ -17,6 +18,7 @@ const { Content } = resume
     <title>Josef's Resume</title>
   </head>
   <body>
+    <ResumeToast client:load />
     <article class="mx-auto py-4 px-2 md:px-0">
       <h1 class="text-center mb-2">{resume.frontmatter.author}</h1>
       <div
