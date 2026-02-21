@@ -5,6 +5,7 @@ import sitemap from "@astrojs/sitemap"
 import tailwindcss from "@tailwindcss/vite"
 import { defineConfig, envField } from "astro/config"
 import expressiveCode from "astro-expressive-code"
+import expressiveCodeTwoSlash from "expressive-code-twoslash"
 import icon from "astro-icon"
 import rouge2 from "./rouge2-modded.json"
 
@@ -40,6 +41,7 @@ export default defineConfig({
     expressiveCode({
       cascadeLayer: "expressive-code",
       themes: [rouge2],
+      plugins: [expressiveCodeTwoSlash()],
       shiki: {},
     }),
     mdx(),
