@@ -40,6 +40,7 @@ export function ResumeToast() {
             strokeLinejoin="round"
             height="16"
             width="16"
+            aria-hidden="true"
           >
             <circle cx="12" cy="12" r="10" />
             <path d="M12 16v-4" />
