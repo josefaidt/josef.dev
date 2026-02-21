@@ -5,10 +5,11 @@
   "type": "module",
   "scripts": {
     "build": "astro build && pnpm postbuild",
+    "cf-build": "pnpm install-chrome && pnpm build",
     "postbuild": "tsx scripts/generate-resume-pdf",
     "cf-typegen": "wrangler types",
     "check": "astro check",
-    "deploy": "pnpm build && wrangler deploy",
+    "deploy": "pnpm cf-build && wrangler deploy",
     "dev": "astro dev",
     "generate-resume-pdf": "tsx scripts/generate-resume-pdf",
     "install-chrome": "puppeteer browsers install chrome",
