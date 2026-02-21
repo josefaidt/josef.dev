@@ -1,7 +1,6 @@
 import * as http from "node:http"
 import * as path from "node:path"
 import { readFile } from "node:fs/promises"
-import { lookup } from "node:dns/promises"
 import puppeteer from "puppeteer"
 
 console.info("Starting PDF generation from built site...")
@@ -36,7 +35,7 @@ const server = http.createServer(async (req, res) => {
 
     res.writeHead(200, { "Content-Type": contentTypes[ext] || "text/plain" })
     res.end(content)
-  } catch (err) {
+  } catch (_error) {
     res.writeHead(404)
     res.end("Not found")
   }
