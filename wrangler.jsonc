@@ -3,6 +3,9 @@
   "name": "josef-dev",
   "compatibility_date": "2025-06-28",
   "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  "build": {
+    "command": "pnpm run cf-build"
+  },
   "env": {
     "preview": {}
   },
