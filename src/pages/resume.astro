@@ -91,6 +91,11 @@ const { Content } = resume
 
   /* Print-specific optimizations */
   @media print {
+    /* Hide toast in PDF */
+    [data-sonner-toaster] {
+      display: none !important;
+    }
+
     article h2 {
       @apply mt-5 mb-2.5;
     }
