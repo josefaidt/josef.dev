@@ -23,7 +23,7 @@ const { Content } = resume
         id="contact-info"
         class:list={[
           "text-left flex flex-col gap-2 text-sm",
-          "md:text-center md:justify-center md:flex-row md:items-center",
+          "md:text-center md:justify-center md:flex-row md:flex-wrap md:items-center md:gap-x-3",
         ]}
       >
         <a href={`mailto:${resume.frontmatter.email}`}>
@@ -50,7 +50,7 @@ const { Content } = resume
           {resume.frontmatter.github.replace(/^https\:\/\//, "")}
         </a>
       </div>
-      &nbsp;
+      <div class="mb-5"></div>
       <Content />
     </article>
   </body>
@@ -68,11 +68,11 @@ const { Content } = resume
   }
 
   article h2 {
-    @apply mt-1 mb-2 text-xl font-semibold;
+    @apply mt-6 mb-3 text-xl font-semibold;
   }
 
   article h3 {
-    @apply mb-1 font-semibold;
+    @apply mb-1 mt-4 font-semibold text-sm leading-relaxed;
   }
 
   article a {
@@ -80,10 +80,30 @@ const { Content } = resume
   }
 
   article ul {
-    @apply mb-2 list-disc pl-4 text-sm;
+    @apply mb-3 list-disc pl-4 text-sm leading-relaxed;
   }
 
   article p {
-    @apply text-sm;
+    @apply text-sm leading-relaxed;
+  }
+
+  /* Print-specific optimizations */
+  @media print {
+    article h2 {
+      @apply mt-5 mb-2.5;
+    }
+
+    article h3 {
+      font-size: 10pt;
+      margin-top: 14pt;
+    }
+
+    article ul {
+      font-size: 10pt;
+    }
+
+    article p {
+      font-size: 10pt;
+    }
   }
 </style>
