@@ -15,3 +15,4 @@ pnpm-debug.log*
 # wrangler files
 .wrangler
 .dev.vars*
+worker-configuration.d.ts
