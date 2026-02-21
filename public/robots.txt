@@ -1,0 +1,6 @@
+# Block search engine crawlers from indexing resume page
+User-agent: *
+Disallow: /resume
+
+# Allow everything else
+Allow: /
