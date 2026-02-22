@@ -3,9 +3,6 @@
   "name": "josef-dev",
   "compatibility_date": "2025-06-28",
   "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
-  "env": {
-    "preview": {}
-  },
   "main": "./dist/_worker.js/index.js",
   "assets": {
     "binding": "ASSETS",
