@@ -59,10 +59,11 @@ const { Content } = resume
 </html>
 
 <style is:global>
-  @reference "../styles/resume.css";
+  @reference "../styles/global.css";
 
   article {
     max-width: 65ch;
+    font-family: Arial, sans-serif;
   }
 
   article h1 {
@@ -74,7 +75,7 @@ const { Content } = resume
   }
 
   article h3 {
-    @apply mb-1 mt-4 font-semibold text-sm leading-relaxed;
+    @apply mt-4 mb-1 text-sm leading-relaxed font-semibold;
   }
 
   article a {
