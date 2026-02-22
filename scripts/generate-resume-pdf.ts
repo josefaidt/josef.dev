@@ -64,8 +64,19 @@ try {
     timeout: 30000
   })
 
-  // Wait for fonts to load
-  await page.evaluateHandle("document.fonts.ready")
+  // Wait for fonts to load, including variable font weights
+  await page.evaluate(async () => {
+    await document.fonts.ready
+
+    // Force load specific font weights used in resume
+    await Promise.all([
+      document.fonts.load('600 16px "Josefin Sans"'),  // semibold for h3
+      document.fonts.load('700 16px "Josefin Sans"'),  // bold
+    ])
+  })
+
+  // Add small delay to ensure everything is rendered
+  await new Promise(resolve => setTimeout(resolve, 500))
 
   const outputPath = path.join(distPath, "josefaidt_resume.pdf")
 
