@@ -12,5 +12,17 @@
   },
   "observability": {
     "enabled": true
-  }
+  },
+  "routes": [
+    {
+      "pattern": "josef.dev",
+      "zone_name": "josef.dev",
+      "custom_domain": true
+    },
+    {
+      "pattern": "www.josef.dev",
+      "zone_name": "josef.dev",
+      "custom_domain": true
+    }
+  ]
 }
