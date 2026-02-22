@@ -25,17 +25,17 @@ const { Content } = resume
         id="contact-info"
         class:list={[
           "text-left flex flex-col gap-2 text-sm",
-          "md:text-center md:justify-center md:flex-row md:flex-wrap md:items-center md:gap-x-3",
+          "md:text-center md:justify-center md:flex-row md:flex-wrap md:items-center md:gap-x-2",
         ]}
       >
         <a href={`mailto:${resume.frontmatter.email}`}>
           {resume.frontmatter.email}
         </a>
-        <div class="hidden md:block h-4 w-[1.5px] bg-black"></div>
+        <span class="hidden md:inline">|</span>
         <a href={resume.frontmatter.website}>
           {resume.frontmatter.website.replace(/^https\:\/\//, "")}
         </a>
-        <div class="hidden md:block h-4 w-[1.5px] bg-black"></div>
+        <span class="hidden md:inline">|</span>
         <a
           href={resume.frontmatter.linkedin}
           target="_blank"
@@ -43,7 +43,7 @@ const { Content } = resume
         >
           {resume.frontmatter.linkedin.replace(/^https\:\/\//, "")}
         </a>
-        <div class="hidden md:block h-4 w-[1.5px] bg-black"></div>
+        <span class="hidden md:inline">|</span>
         <a
           href={resume.frontmatter.github}
           target="_blank"
