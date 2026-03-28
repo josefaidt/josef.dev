@@ -35,7 +35,8 @@ const server = http.createServer(async (req, res) => {
 
     res.writeHead(200, { "Content-Type": contentTypes[ext] || "text/plain" })
     res.end(content)
-  } catch (_error) {
+  } catch (error) {
+    console.log("Error handling serve", error)
     res.writeHead(404)
     res.end("Not found")
   }
