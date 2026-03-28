@@ -1,6 +1,6 @@
+import { readFile } from "node:fs/promises"
 import * as http from "node:http"
 import * as path from "node:path"
-import { readFile } from "node:fs/promises"
 import puppeteer from "puppeteer"
 
 console.info("Starting PDF generation from built site...")
@@ -61,7 +61,7 @@ try {
 
   await page.goto(url, {
     waitUntil: "networkidle0",
-    timeout: 30000
+    timeout: 30000,
   })
 
   const outputPath = path.join(distPath, "josefaidt_resume.pdf")

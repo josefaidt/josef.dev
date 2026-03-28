@@ -1,9 +1,5 @@
 import type { PlaybackState, AccessToken } from "@spotify/web-api-ts-sdk"
-import {
-  SPOTIFY_CLIENT_ID,
-  SPOTIFY_CLIENT_SECRET,
-  SPOTIFY_REFRESH_TOKEN,
-} from "astro:env/server"
+import { SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET, SPOTIFY_REFRESH_TOKEN } from "astro:env/server"
 
 async function getSpotifyToken(): Promise<AccessToken> {
   const url = new URL("https://accounts.spotify.com/api/token")
@@ -28,10 +24,7 @@ async function getSpotifyToken(): Promise<AccessToken> {
 
 export async function fetchSpotifyCurrentlyPlaying(): Promise<PlaybackState | null> {
   const { access_token: token } = await getSpotifyToken()
-  const url = new URL(
-    "/v1/me/player/currently-playing",
-    "https://api.spotify.com",
-  )
+  const url = new URL("/v1/me/player/currently-playing", "https://api.spotify.com")
   const headers = new Headers({
     Authorization: `Bearer ${token}`,
   })

@@ -131,9 +131,7 @@ const ThemeProvider = ({ children }) => {
   const [state, dispatch] = React.useReducer(() => {}, theme)
   return (
     <ThemeState.Provider value={state}>
-      <ThemeDispatch.Provider value={dispatch}>
-        {children}
-      </ThemeDispatch.Provider>
+      <ThemeDispatch.Provider value={dispatch}>{children}</ThemeDispatch.Provider>
     </ThemeState.Provider>
   )
 }
@@ -155,10 +153,7 @@ const ThemeReducer = (state, action) => {
     default: {
       return {
         ...state,
-        _current:
-          state._current === state.themes.length - 1
-            ? 0
-            : (state._current += 1),
+        _current: state._current === state.themes.length - 1 ? 0 : (state._current += 1),
       }
     }
   }
@@ -184,10 +179,7 @@ const ThemeReducer = (state, action) => {
     default: {
       return {
         ...state,
-        _current:
-          state._current === state.themes.length - 1
-            ? 0
-            : (state._current += 1),
+        _current: state._current === state.themes.length - 1 ? 0 : (state._current += 1),
       }
     }
   }
@@ -197,9 +189,7 @@ const ThemeProvider = ({ children }) => {
   const [state, dispatch] = React.useReducer(ThemeReducer, theme)
   return (
     <ThemeState.Provider value={state}>
-      <ThemeDispatch.Provider value={dispatch}>
-        {children}
-      </ThemeDispatch.Provider>
+      <ThemeDispatch.Provider value={dispatch}>{children}</ThemeDispatch.Provider>
     </ThemeState.Provider>
   )
 }
@@ -268,10 +258,7 @@ const ThemeReducer = (state, action) => {
     default: {
       return {
         ...state,
-        _current:
-          state._current === state.themes.length - 1
-            ? 0
-            : (state._current += 1),
+        _current: state._current === state.themes.length - 1 ? 0 : (state._current += 1),
       }
     }
   }
@@ -281,9 +268,7 @@ const ThemeProvider = ({ children }) => {
   const [state, dispatch] = React.useReducer(ThemeReducer, theme)
   return (
     <ThemeState.Provider value={state}>
-      <ThemeDispatch.Provider value={dispatch}>
-        {children}
-      </ThemeDispatch.Provider>
+      <ThemeDispatch.Provider value={dispatch}>{children}</ThemeDispatch.Provider>
     </ThemeState.Provider>
   )
 }
