@@ -4,6 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "prepare": "git config core.hooksPath .git-hooks",
     "build": "astro build",
     "cf-typegen": "wrangler types",
     "check": "astro check",
@@ -12,23 +13,11 @@
     "generate-pdf": "tsx scripts/generate-resume-pdf",
     "install-chrome": "puppeteer browsers install chrome",
     "preview": "astro build && wrangler dev",
-    "start": "astro dev"
-  },
-  "prettier": {
-    "plugins": [
-      "prettier-plugin-packagejson",
-      "prettier-plugin-tailwindcss",
-      "prettier-plugin-astro"
-    ],
-    "semi": false,
-    "overrides": [
-      {
-        "files": "*.astro",
-        "options": {
-          "parser": "astro"
-        }
-      }
-    ]
+    "start": "astro dev",
+    "fmt": "oxfmt",
+    "fmt:check": "oxfmt --check",
+    "lint": "oxlint",
+    "lint:fix": "oxlint --fix"
   },
   "dependencies": {
     "@astrojs/cloudflare": "^12.6.12",
@@ -43,7 +32,6 @@
     "@astrojs/mdx": "^4.3.13",
     "@astrojs/rss": "^4.0.15",
     "@astrojs/sitemap": "^3.7.0",
-    "@biomejs/biome": "^2.4.4",
     "@iconify-json/gg": "^1.2.2",
     "@iconify-json/simple-icons": "^1.2.33",
     "@spotify/web-api-ts-sdk": "^1.2.0",
@@ -54,10 +42,8 @@
     "astro-icon": "1.1.5",
     "expressive-code-twoslash": "^0.5.3",
     "mdast-util-to-string": "^4.0.0",
-    "prettier": "^3.5.3",
-    "prettier-plugin-astro": "^0.14.1",
-    "prettier-plugin-packagejson": "^2.5.12",
-    "prettier-plugin-tailwindcss": "^0.6.11",
+    "oxfmt": "^0.42.0",
+    "oxlint": "^1.57.0",
     "puppeteer": "^24.8.2",
     "reading-time": "^1.5.0",
     "tailwindcss": "^4.2.0",
@@ -65,5 +51,5 @@
     "typescript": "^5.9.3",
     "wrangler": "^4.67.0"
   },
-  "packageManager": "pnpm@10.30.1+sha512.3590e550d5384caa39bd5c7c739f72270234b2f6059e13018f975c313b1eb9fefcc09714048765d4d9efe961382c312e624572c0420762bdc5d5940cdf9be73a"
+  "packageManager": "bun@1.3.11"
 }
