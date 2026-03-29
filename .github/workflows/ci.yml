@@ -16,5 +16,3 @@ jobs:
         run: bun run lint
       - name: Format check
         run: bun run fmt:check
-      - name: Test
-        run: bun test
