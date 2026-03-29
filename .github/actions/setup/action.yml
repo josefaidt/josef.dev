@@ -1,0 +1,9 @@
+name: Setup
+description: Checkout, install Bun, and install dependencies
+
+runs:
+  using: composite
+  steps:
+    - uses: oven-sh/setup-bun@v2
+    - run: bun ci
+      shell: bash

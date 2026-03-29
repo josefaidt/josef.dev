@@ -1,0 +1,11 @@
+#!/bin/sh
+set -e
+
+[ -n "$CI" ] && exit 0
+
+STAGED=$(git diff --cached --name-only --diff-filter=ACM | grep '\.ts$' || true)
+
+[ -z "$STAGED" ] && exit 0
+
+echo "$STAGED" | xargs oxfmt --check
+echo "$STAGED" | xargs oxlint

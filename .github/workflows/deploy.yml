@@ -1,60 +1,50 @@
 name: Deploy to Cloudflare
 
 on:
-  release:
-    types: [published]
+  workflow_call:
+    inputs:
+      tag:
+        description: "Release tag to deploy"
+        required: true
+        type: string
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      - uses: actions/checkout@v6
         with:
-          node-version-file: .node-version
-      - name: Enable Corepack
-        run: corepack enable
-      - name: Cache pnpm store
-        uses: actions/cache@v4
-        with:
-          path: ${{ github.workspace }}/.pnpm-store
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-store-
-      - name: Configure pnpm store
-        run: pnpm config set store-dir ${{ github.workspace }}/.pnpm-store
+          ref: ${{ inputs.tag }}
+      - uses: ./.github/actions/setup
       - name: Cache Chrome binary
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: ~/.cache/puppeteer
-          key: ${{ runner.os }}-chrome-${{ hashFiles('**/pnpm-lock.yaml') }}
+          key: ${{ runner.os }}-chrome-${{ hashFiles('**/bun.lock') }}
           restore-keys: |
             ${{ runner.os }}-chrome-
       - name: Cache Astro build
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: .astro
-          key: ${{ runner.os }}-astro-${{ hashFiles('**/pnpm-lock.yaml') }}-${{ hashFiles('src/**') }}
+          key: ${{ runner.os }}-astro-${{ hashFiles('**/bun.lock') }}-${{ hashFiles('src/**') }}
           restore-keys: |
-            ${{ runner.os }}-astro-${{ hashFiles('**/pnpm-lock.yaml') }}-
+            ${{ runner.os }}-astro-${{ hashFiles('**/bun.lock') }}-
             ${{ runner.os }}-astro-
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
       - name: Install Chrome
-        run: pnpm install-chrome
+        run: bun run install-chrome
       - name: Build site
-        run: pnpm build
+        run: bun run build
         env:
           SPOTIFY_CLIENT_ID: ${{ secrets.SPOTIFY_CLIENT_ID }}
           SPOTIFY_CLIENT_SECRET: ${{ secrets.SPOTIFY_CLIENT_SECRET }}
           SPOTIFY_REFRESH_TOKEN: ${{ secrets.SPOTIFY_REFRESH_TOKEN }}
       - name: Generate PDF
-        run: pnpm generate-pdf
+        run: bun run generate-pdf
       - name: Deploy to Cloudflare
-        run: pnpm run deploy --message "${{ github.event.release.name }}"
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          TAG: ${{ inputs.tag }}
+        run: bun run deploy --message "$TAG"
