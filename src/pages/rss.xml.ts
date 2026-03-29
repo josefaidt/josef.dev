@@ -7,9 +7,7 @@ export const GET: APIRoute = async (context) => {
   const posts = await getCollection("posts")
   const site = context.site
   if (!site) {
-    throw new Error(
-      'Unable to generate RSS due to missing "site" configuration',
-    )
+    throw new Error('Unable to generate RSS due to missing "site" configuration')
   }
   return rss({
     title: SITE_TITLE,

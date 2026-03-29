@@ -1,6 +1,6 @@
+import { readFile } from "node:fs/promises"
 import * as http from "node:http"
 import * as path from "node:path"
-import { readFile } from "node:fs/promises"
 import puppeteer from "puppeteer"
 
 console.info("Starting PDF generation from built site...")
@@ -35,7 +35,8 @@ const server = http.createServer(async (req, res) => {
 
     res.writeHead(200, { "Content-Type": contentTypes[ext] || "text/plain" })
     res.end(content)
-  } catch (_error) {
+  } catch (error) {
+    console.log("Error handling serve", error)
     res.writeHead(404)
     res.end("Not found")
   }
@@ -61,7 +62,7 @@ try {
 
   await page.goto(url, {
     waitUntil: "networkidle0",
-    timeout: 30000
+    timeout: 30000,
   })
 
   const outputPath = path.join(distPath, "josefaidt_resume.pdf")

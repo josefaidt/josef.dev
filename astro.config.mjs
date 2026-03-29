@@ -4,10 +4,10 @@ import mdx from "@astrojs/mdx"
 import react from "@astrojs/react"
 import sitemap from "@astrojs/sitemap"
 import tailwindcss from "@tailwindcss/vite"
-import { defineConfig, envField } from "astro/config"
 import expressiveCode from "astro-expressive-code"
-import expressiveCodeTwoSlash from "expressive-code-twoslash"
 import icon from "astro-icon"
+import { defineConfig, envField } from "astro/config"
+import expressiveCodeTwoSlash from "expressive-code-twoslash"
 import rouge2 from "./rouge2-modded.json"
 
 // https://astro.build/config
@@ -58,9 +58,11 @@ export default defineConfig({
     resolve: {
       // Use react-dom/server.edge instead of react-dom/server.browser for React 19.
       // Without this, MessageChannel from node:worker_threads needs to be polyfilled.
-      alias: import.meta.env.PROD ? {
-        "react-dom/server": "react-dom/server.edge",
-      } : undefined,
+      alias: import.meta.env.PROD
+        ? {
+            "react-dom/server": "react-dom/server.edge",
+          }
+        : undefined,
     },
   },
 })

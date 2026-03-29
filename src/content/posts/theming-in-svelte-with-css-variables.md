@@ -182,9 +182,7 @@ It's important to note that `_current` is prefixed with an underscore as it will
     toggle: () => {
       // update internal state
       let _currentIndex = themes.findIndex((h) => h.name === _current)
-      _current =
-        themes[_currentIndex === themes.length - 1 ? 0 : (_currentIndex += 1)]
-          .name
+      _current = themes[_currentIndex === themes.length - 1 ? 0 : (_currentIndex += 1)].name
       // update Theme store
       Theme.update((t) => ({ ...t, ...getCurrentTheme(_current) }))
     },
@@ -234,9 +232,7 @@ Since Svelte feels close to The Platform™️ we'll leverage CSS Variables. In 
     toggle: () => {
       // update internal state
       let _currentIndex = themes.findIndex((h) => h.name === _current)
-      _current =
-        themes[_currentIndex === themes.length - 1 ? 0 : (_currentIndex += 1)]
-          .name
+      _current = themes[_currentIndex === themes.length - 1 ? 0 : (_currentIndex += 1)].name
       // update Theme store
       Theme.update((t) => ({ ...t, ...getCurrentTheme(_current) }))
       setRootColors(getCurrentTheme(_current))

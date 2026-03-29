@@ -8,21 +8,21 @@
   "preview_urls": false,
   "assets": {
     "binding": "ASSETS",
-    "directory": "./dist"
+    "directory": "./dist",
   },
   "observability": {
-    "enabled": true
+    "enabled": true,
   },
   "routes": [
     {
       "pattern": "josef.dev",
       "zone_name": "josef.dev",
-      "custom_domain": true
+      "custom_domain": true,
     },
     {
       "pattern": "www.josef.dev",
       "zone_name": "josef.dev",
-      "custom_domain": true
-    }
-  ]
+      "custom_domain": true,
+    },
+  ],
 }

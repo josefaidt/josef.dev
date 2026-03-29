@@ -67,7 +67,7 @@
     font-family: Josefin Sans;
     font-weight: 600;
   }
-  
+
   h2 {
     @apply text-2xl;
   }

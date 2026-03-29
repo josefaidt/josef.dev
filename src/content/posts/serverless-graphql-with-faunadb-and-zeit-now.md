@@ -142,11 +142,7 @@ Let's set up our [Apollo Server](https://www.apollographql.com/docs/apollo-serve
 ```js
 // api/graphql.js
 import { createHttpLink } from "apollo-link-http"
-import {
-  ApolloServer,
-  makeRemoteExecutableSchema,
-  introspectSchema,
-} from "apollo-server-micro"
+import { ApolloServer, makeRemoteExecutableSchema, introspectSchema } from "apollo-server-micro"
 import fetch from "isomorphic-unfetch"
 
 // create Fauna link

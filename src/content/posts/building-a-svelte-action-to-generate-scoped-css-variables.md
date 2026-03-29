@@ -130,9 +130,7 @@ export async function stylesheet(node, theme) {
 
   function setStylesheet() {
     const variables = createCSSVariableCollection(theme)
-    const svelteClass = Array.from(node.classList).find((className) =>
-      className.startsWith("s-"),
-    )
+    const svelteClass = Array.from(node.classList).find((className) => className.startsWith("s-"))
     let innerHTML = `${node.localName}${svelteClass ? `.${svelteClass}` : ""}{`
     for (let [name, value] of variables) {
       innerHTML += `${name}:${value};`
