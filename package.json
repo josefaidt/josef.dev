@@ -36,7 +36,7 @@
     "@iconify-json/simple-icons": "^1.2.33",
     "@spotify/web-api-ts-sdk": "^1.2.0",
     "@tailwindcss/typography": "^0.5.19",
-    "@tailwindcss/vite": "^4.2.0",
+    "@tailwindcss/vite": "^4.2.2",
     "@types/node": "^24.0.7",
     "astro-expressive-code": "^0.41.2",
     "astro-icon": "1.1.5",
@@ -46,7 +46,7 @@
     "oxlint": "^1.57.0",
     "puppeteer": "^24.8.2",
     "reading-time": "^1.5.0",
-    "tailwindcss": "^4.2.0",
+    "tailwindcss": "^4.2.2",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3",
     "wrangler": "^4.67.0"
