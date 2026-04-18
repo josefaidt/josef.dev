@@ -4,6 +4,10 @@ description: Checkout, install Bun, and install dependencies
 runs:
   using: composite
   steps:
+    # workaround: runners default to Node v20, but Astro requires >=22.12.0
+    - uses: actions/setup-node@v4
+      with:
+        node-version: "22"
     - uses: oven-sh/setup-bun@v2
     - run: bun ci
       shell: bash
