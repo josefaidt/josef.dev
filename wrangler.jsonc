@@ -13,6 +13,12 @@
   "observability": {
     "enabled": true,
   },
+  "kv_namespaces": [
+    {
+      "binding": "SESSION",
+      "id": "josef-dev-session",
+    },
+  ],
   "routes": [
     {
       "pattern": "josef.dev",
