@@ -13,10 +13,7 @@ import rouge2 from "./rouge2-modded.json"
 // https://astro.build/config
 export default defineConfig({
   adapter: cloudflare({
-    platformProxy: {
-      enabled: true,
-    },
-    imageService: "cloudflare",
+    imageService: { build: "compile", runtime: "cloudflare-binding" },
   }),
   output: "server",
   site: "https://josef.dev",

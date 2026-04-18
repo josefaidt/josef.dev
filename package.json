@@ -20,18 +20,18 @@
     "lint:fix": "oxlint --fix"
   },
   "dependencies": {
-    "@astrojs/cloudflare": "^12.6.12",
-    "@astrojs/react": "^4.4.2",
-    "astro": "^5.17.3",
+    "@astrojs/cloudflare": "13.1.8",
+    "@astrojs/react": "5.0.3",
+    "astro": "6.1.5",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "sonner": "^2.0.7"
   },
   "devDependencies": {
-    "@astrojs/check": "^0.9.6",
-    "@astrojs/mdx": "^4.3.13",
-    "@astrojs/rss": "^4.0.15",
-    "@astrojs/sitemap": "^3.7.0",
+    "@astrojs/check": "0.9.8",
+    "@astrojs/mdx": "5.0.3",
+    "@astrojs/rss": "4.0.18",
+    "@astrojs/sitemap": "3.7.2",
     "@iconify-json/gg": "^1.2.2",
     "@iconify-json/simple-icons": "^1.2.33",
     "@spotify/web-api-ts-sdk": "^1.2.0",
