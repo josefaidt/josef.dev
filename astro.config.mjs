@@ -1,7 +1,6 @@
 // @ts-check
 import cloudflare from "@astrojs/cloudflare"
 import mdx from "@astrojs/mdx"
-import react from "@astrojs/react"
 import sitemap from "@astrojs/sitemap"
 import tailwindcss from "@tailwindcss/vite"
 import expressiveCode from "astro-expressive-code"
@@ -36,7 +35,6 @@ export default defineConfig({
   },
   integrations: [
     icon(),
-    react(),
     expressiveCode({
       cascadeLayer: "expressive-code",
       themes: [rouge2],

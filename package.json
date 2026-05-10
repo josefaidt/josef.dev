@@ -10,8 +10,6 @@
     "check": "astro check",
     "deploy": "wrangler deploy",
     "dev": "astro dev",
-    "generate-pdf": "tsx scripts/generate-resume-pdf",
-    "install-chrome": "puppeteer browsers install chrome",
     "preview": "astro build && wrangler dev",
     "start": "astro dev",
     "fmt": "oxfmt",
@@ -21,11 +19,7 @@
   },
   "dependencies": {
     "@astrojs/cloudflare": "13.1.8",
-    "@astrojs/react": "5.0.3",
-    "astro": "6.1.5",
-    "react": "^19.2.4",
-    "react-dom": "^19.2.4",
-    "sonner": "^2.0.7"
+    "astro": "6.1.5"
   },
   "devDependencies": {
     "@astrojs/check": "0.9.8",
@@ -44,12 +38,10 @@
     "mdast-util-to-string": "^4.0.0",
     "oxfmt": "^0.42.0",
     "oxlint": "^1.57.0",
-    "puppeteer": "^24.8.2",
     "reading-time": "^1.5.0",
     "tailwindcss": "^4.2.2",
-    "tsx": "^4.21.0",
     "typescript": "^5.9.3",
-    "wrangler": "^4.67.0"
+    "wrangler": "^4.83.0"
   },
   "packageManager": "bun@1.3.11"
 }

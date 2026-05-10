@@ -17,13 +17,6 @@ jobs:
         with:
           ref: ${{ inputs.tag }}
       - uses: ./.github/actions/setup
-      - name: Cache Chrome binary
-        uses: actions/cache@v5
-        with:
-          path: ~/.cache/puppeteer
-          key: ${{ runner.os }}-chrome-${{ hashFiles('**/bun.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-chrome-
       - name: Cache Astro build
         uses: actions/cache@v5
         with:
@@ -32,16 +25,12 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-astro-${{ hashFiles('**/bun.lock') }}-
             ${{ runner.os }}-astro-
-      - name: Install Chrome
-        run: bun run install-chrome
       - name: Build site
         run: bun run build
         env:
           SPOTIFY_CLIENT_ID: ${{ secrets.SPOTIFY_CLIENT_ID }}
           SPOTIFY_CLIENT_SECRET: ${{ secrets.SPOTIFY_CLIENT_SECRET }}
           SPOTIFY_REFRESH_TOKEN: ${{ secrets.SPOTIFY_REFRESH_TOKEN }}
-      - name: Generate PDF
-        run: bun run generate-pdf
       - name: Deploy to Cloudflare
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
