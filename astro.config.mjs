@@ -1,5 +1,6 @@
 // @ts-check
 import cloudflare from "@astrojs/cloudflare"
+import { unified } from "@astrojs/markdown-remark"
 import mdx from "@astrojs/mdx"
 import sitemap from "@astrojs/sitemap"
 import tailwindcss from "@tailwindcss/vite"
@@ -16,6 +17,9 @@ export default defineConfig({
   }),
   output: "server",
   site: "https://josef.dev",
+  markdown: {
+    processor: unified(),
+  },
   env: {
     schema: {
       SPOTIFY_CLIENT_ID: envField.string({
@@ -44,9 +48,6 @@ export default defineConfig({
     mdx(),
     sitemap(),
   ],
-  markdown: {
-    gfm: true,
-  },
   vite: {
     plugins: [tailwindcss()],
   },
