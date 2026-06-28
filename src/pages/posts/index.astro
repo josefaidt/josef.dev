@@ -23,7 +23,7 @@ const meta = {
       {
         posts.map((post) => (
           <li>
-            <a class="hover:underline" href={`/posts/${post.slug}/`}>
+            <a class="hover:underline" href={`/posts/${post.id}/`}>
               <p>
                 <FormattedDate date={post.data.publishDate} />
               </p>
