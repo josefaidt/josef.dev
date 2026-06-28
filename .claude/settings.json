@@ -1,0 +1,14 @@
+{
+  "hooks": {
+    "WorktreeCreate": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd \"$CLAUDE_TOOL_OUTPUT_WORKTREE_PATH\" && bun install"
+          }
+        ]
+      }
+    ]
+  }
+}
