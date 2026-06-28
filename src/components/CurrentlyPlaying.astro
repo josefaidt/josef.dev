@@ -1,0 +1,100 @@
+---
+import type { Track } from "@spotify/web-api-ts-sdk"
+import { Icon } from "astro-icon/components"
+import { fetchSpotifyCurrentlyPlaying } from "../lib/spotify"
+
+const currentlyPlaying = await fetchSpotifyCurrentlyPlaying()
+
+let track: { name: string; artists: { name: string }[]; url: string; displayText: string } | null = null
+
+if (currentlyPlaying?.item?.type === "track") {
+  const item = currentlyPlaying.item as Track
+  track = {
+    name: item.name,
+    artists: item.artists,
+    url: item.external_urls.spotify,
+    displayText: `${item.name} – ${item.artists.map((artist) => artist.name).join(", ")}`,
+  }
+}
+---
+
+<div id="currently-playing" class="right-0 -bottom-1.5 absolute">
+  {
+    track !== null ? (
+      <a href={track.url} target="_blank" rel="noopener noreferrer">
+        <div class="flex items-center justify-end space-x-2">
+          <Icon
+            class="hover:text-accent text-[var(--color-rouge-200)]"
+            name="simple-icons:spotify"
+            size={16}
+            aria-hidden="true"
+          />
+          <span data-rotate={track.displayText.length > 30} data-text={track.displayText}>
+            {track.displayText}
+          </span>
+        </div>
+      </a>
+    ) : (
+      <div class="flex items-center justify-end space-x-2">
+        <Icon
+          class="hover:text-accent text-[var(--color-rouge-200)]"
+          name="simple-icons:spotify"
+          size={16}
+          aria-hidden="true"
+        />
+        <span data-text="not currently playing...">not currently playing...</span>
+      </div>
+    )
+  }
+</div>
+
+<style>
+  #currently-playing a {
+    text-decoration: none;
+  }
+
+  #currently-playing span {
+    font-size: var(--text-sm);
+    line-height: 1.5rem;
+    height: 1.5rem;
+    width: 212px;
+    overflow: hidden;
+    white-space: nowrap;
+    display: inline-block;
+    position: relative;
+    color: transparent;
+  }
+
+  #currently-playing a span:hover::after {
+    text-decoration-line: underline;
+    text-decoration-thickness: 2px;
+    text-decoration-color: var(--josef-primary-color);
+  }
+
+  #currently-playing span::after {
+    content: attr(data-text);
+    position: absolute;
+    white-space: nowrap;
+    width: max-content;
+    left: 0;
+    top: 0;
+    color: var(--josef-text-color-muted);
+    will-change: transform;
+    text-rendering: optimizeSpeed;
+  }
+
+  #currently-playing span[data-rotate="true"]::after {
+    animation: ticker 10s linear infinite;
+  }
+
+  @keyframes ticker {
+    0%,
+    15% {
+      transform: translateX(0);
+    }
+    85%,
+    100% {
+      transform: translateX(calc(-100% + 200px));
+    }
+  }
+</style>
