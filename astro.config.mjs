@@ -49,6 +49,9 @@ export default defineConfig({
     sitemap(),
   ],
   vite: {
+    optimizeDeps: {
+      include: ["@iconify/utils", "@iconify-json/simple-icons", "@iconify-json/gg"],
+    },
     plugins: [tailwindcss()],
   },
 })
