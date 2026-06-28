@@ -5,7 +5,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "cd \"$CLAUDE_TOOL_OUTPUT_WORKTREE_PATH\" && bun install"
+            "command": "cd \"$CLAUDE_TOOL_OUTPUT_WORKTREE_PATH\" && bun install && bunx astro sync"
           }
         ]
       }
