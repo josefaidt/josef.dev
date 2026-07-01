@@ -9,6 +9,8 @@ import icon from "astro-icon"
 import { defineConfig, envField } from "astro/config"
 import expressiveCodeTwoSlash from "expressive-code-twoslash"
 import rouge2 from "./rouge2-modded.json"
+import { remarkBlurImage } from "./plugins/remark-blur-image"
+import { rehypeBlurWrapper } from "./plugins/rehype-blur-wrapper"
 
 // https://astro.build/config
 export default defineConfig({
@@ -18,7 +20,10 @@ export default defineConfig({
   output: "server",
   site: "https://josef.dev",
   markdown: {
-    processor: unified(),
+    processor: unified({
+      remarkPlugins: [remarkBlurImage],
+      rehypePlugins: [rehypeBlurWrapper],
+    }),
   },
   env: {
     schema: {
