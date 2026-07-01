@@ -5,7 +5,20 @@
         "hooks": [
           {
             "type": "command",
-            "command": "cd \"$CLAUDE_TOOL_OUTPUT_WORKTREE_PATH\" && bun install && bunx astro sync"
+            "command": "${CLAUDE_PROJECT_DIR}/.claude/hooks/worktree-create.sh"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "EnterWorktree",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PROJECT_DIR}/.claude/hooks/worktree-setup.sh",
+            "async": true,
+            "timeout": 120
           }
         ]
       }
