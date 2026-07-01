@@ -3,10 +3,12 @@ set -e
 
 [ -n "$CI" ] && exit 0
 
-STAGED=$(git diff --cached --name-only --diff-filter=ACM || true)
+STAGED=$(git diff --cached --name-only --diff-filter=ACM | grep -E '\.(ts|tsx|js|jsx|cjs|mjs|cts|mts|json|jsonc|yaml|yml|toml|css|scss|less|md|mdx|graphql|vue|svelte|html)$' || true)
 
 [ -z "$STAGED" ] && exit 0
 
+STAGED_LINT=$(echo "$STAGED" | grep -E '\.(ts|tsx|js|jsx|cjs|mjs|cts|mts|vue|svelte|astro)$' || true)
+
 echo "$STAGED" | xargs oxfmt
-echo "$STAGED" | xargs oxlint --fix
+[ -n "$STAGED_LINT" ] && echo "$STAGED_LINT" | xargs oxlint --fix
 echo "$STAGED" | xargs git add
