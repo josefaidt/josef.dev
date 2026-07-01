@@ -6,5 +6,5 @@
     "newlinesBetween": false
   },
   "sortPackageJson": true,
-  "ignorePatterns": []
+  "ignorePatterns": [".claude/worktrees/*"]
 }

@@ -18,5 +18,5 @@
     "builtin": true
   },
   "globals": {},
-  "ignorePatterns": []
+  "ignorePatterns": [".claude/worktrees/*"]
 }
