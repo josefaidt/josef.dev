@@ -80,5 +80,17 @@ const {
         </div>
       </div>
     </div>
+    <script is:inline>
+      function revealImage(img) {
+        img.closest(".blur-wrapper")?.setAttribute("data-loaded", "")
+      }
+      function initBlurImages() {
+        document.querySelectorAll(".blur-full").forEach(function (img) {
+          img.addEventListener("load", function () { revealImage(img) }, { once: true })
+          if (img.complete && img.naturalWidth > 0) revealImage(img)
+        })
+      }
+      document.addEventListener("astro:page-load", initBlurImages)
+    </script>
   </body>
 </html>
