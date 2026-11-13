@@ -3,12 +3,24 @@ set -e
 
 [ -n "$CI" ] && exit 0
 
-STAGED=$(git diff --cached --name-only --diff-filter=ACM | grep -E '\.(ts|tsx|js|jsx|cjs|mjs|cts|mts|json|jsonc|yaml|yml|toml|css|scss|less|md|mdx|graphql|vue|svelte|html)$' || true)
+# Checks the staged paths and fixes nothing, so a commit never picks up an unstaged edit. A failure
+# names the command that fixes it.
+STAGED=$(git -c core.quotePath=false diff --cached --name-only --diff-filter=ACMR)
+FMT=$(echo "$STAGED" | grep -E '\.(ts|tsx|js|jsx|cjs|mjs|json|jsonc|yaml|yml|toml|css|md|mdx|html)$' || true)
+LINT=$(echo "$STAGED" | grep -E '\.(ts|tsx|js|jsx|cjs|mjs|astro)$' || true)
 
-[ -z "$STAGED" ] && exit 0
+if [ -n "$FMT" ]; then
+  if ! echo "$FMT" | tr '\n' '\0' | xargs -0 bun x oxfmt --check --no-error-on-unmatched-pattern; then
+    echo
+    echo "pre-commit: format check failed. Run 'bun run fmt', stage the result, and commit again."
+    exit 1
+  fi
+fi
 
-STAGED_LINT=$(echo "$STAGED" | grep -E '\.(ts|tsx|js|jsx|cjs|mjs|cts|mts|vue|svelte|astro)$' || true)
-
-echo "$STAGED" | xargs oxfmt
-[ -n "$STAGED_LINT" ] && echo "$STAGED_LINT" | xargs oxlint --fix
-echo "$STAGED" | xargs git add
+if [ -n "$LINT" ]; then
+  if ! echo "$LINT" | tr '\n' '\0' | xargs -0 bun x oxlint --deny-warnings; then
+    echo
+    echo "pre-commit: lint failed. Fix the errors above, or run 'bun run lint:fix', then commit again."
+    exit 1
+  fi
+fi

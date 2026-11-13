@@ -1,5 +1,4 @@
 ---
-// import { ViewTransitions } from "astro:transitions"
 import BaseHead from "../components/BaseHead.astro"
 import Header from "../components/Header.astro"
 import Footer from "../components/Footer.astro"
@@ -37,7 +36,6 @@ const {
   <head>
     <BaseHead title={title} description={description} image={image} />
     <slot name="head" />
-    <!-- <ViewTransitions /> -->
   </head>
   <body
     class:list={[
@@ -80,17 +78,5 @@ const {
         </div>
       </div>
     </div>
-    <script is:inline>
-      function revealImage(img) {
-        img.closest(".blur-wrapper")?.setAttribute("data-loaded", "")
-      }
-      function initBlurImages() {
-        document.querySelectorAll(".blur-full").forEach(function (img) {
-          img.addEventListener("load", function () { revealImage(img) }, { once: true })
-          if (img.complete && img.naturalWidth > 0) revealImage(img)
-        })
-      }
-      document.addEventListener("astro:page-load", initBlurImages)
-    </script>
   </body>
 </html>

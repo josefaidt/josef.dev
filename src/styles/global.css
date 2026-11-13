@@ -1,5 +1,4 @@
 @import "tailwindcss";
-@layer expressive-code;
 
 @theme {
   --color-accent: #c6797e;
@@ -63,7 +62,6 @@
 @layer base {
   h1 {
     @apply text-3xl;
-    /* biome-ignore lint/a11y/useGenericFontNames: this is set by tailwind */
     font-family: Josefin Sans;
     font-weight: 600;
   }
@@ -92,43 +90,14 @@
     @apply mb-4;
   }
 
-  .blur-wrapper {
-    position: relative;
-    overflow: hidden;
-    width: 100%;
-    @apply mb-4 rounded-md;
-  }
-
-  .blur-wrapper img {
-    margin-bottom: 0;
-  }
-
-  .blur-placeholder {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: blur(20px);
-    transform: scale(1.1);
-    transition: opacity 0.4s ease;
-  }
-
-  .blur-full {
-    display: block;
-    position: relative;
-    width: 100%;
-    height: auto;
-    opacity: 0;
-    transition: opacity 0.4s ease;
-  }
-
-  .blur-wrapper[data-loaded] .blur-placeholder {
-    opacity: 0;
-  }
-
-  .blur-wrapper[data-loaded] .blur-full {
-    opacity: 1;
+  /*
+    The X logo is drawn as hairline outlines, which anti-alias to a lighter tone than the solid
+    icons beside it at 18px. A stroke in the same color gives it their weight.
+  */
+  [data-icon="simple-icons:x"] {
+    stroke: currentColor;
+    stroke-width: 1.25;
+    stroke-linejoin: round;
   }
 }
 
@@ -146,16 +115,6 @@
     --josef-shadow-color: #333333;
 
     --josef-background-color-700: #201012;
-
-    /* expressive code overrides */
-    --ec-frm-tooltipSuccessBg: var(--color-rouge-900);
-    --ec-frm-tooltipSuccessFg: var(--josef-text-color);
-    --ec-frm-edTabBarBg: var(--josef-background-color-700);
-    --ec-frm-edTabBarFg: var(--josef-text-color-muted);
-    --ec-frm-trmTtbBg: var(--josef-background-color-700);
-    --ec-frm-edTabBarBrdBtmCol: var(--ec-brdCol);
-    --ec-frm-edActTabBg: var(--code-background);
-    --ec-frm-edActTabFg: var(--josef-text-color-muted);
   }
 
   /* Light theme - triggered by system preference */
@@ -171,16 +130,6 @@
       --josef-shadow-color: #e0d0c8;
 
       --josef-background-color-700: #f0ebe8;
-
-      /* expressive code overrides for light theme */
-      --ec-frm-tooltipSuccessBg: var(--color-rouge-100);
-      --ec-frm-tooltipSuccessFg: var(--josef-text-color);
-      --ec-frm-edTabBarBg: var(--josef-background-color-700);
-      --ec-frm-edTabBarFg: var(--josef-text-color-muted);
-      --ec-frm-trmTtbBg: var(--josef-background-color-700);
-      --ec-frm-edTabBarBrdBtmCol: var(--ec-brdCol);
-      --ec-frm-edActTabBg: var(--code-background);
-      --ec-frm-edActTabFg: var(--josef-text-color-muted);
     }
   }
 
@@ -200,26 +149,5 @@
     background-color: #1c0c0f;
     color: #a2a3aa;
     padding: 0.1em 0.3em;
-  }
-
-  article a {
-    @apply underline decoration-2;
-  }
-
-  .expressive-code {
-    /* let examples breathe */
-    margin: 0 -1rem;
-    /* constrain to parent container width */
-    max-width: calc(100% + 2rem);
-    /* make long text scrollable */
-    overflow-x: auto;
-  }
-
-  .expressive-code .frame.is-terminal {
-    --code-background: var(--ec-frm-edBg);
-  }
-
-  .expressive-code .frame .header {
-    background-color: var(--josef-background-color-700);
   }
 }

@@ -1,3 +1,7 @@
 [install]
-linker = "isolated"
-globalStore = true
+# astro-icon imports `astro/types` without declaring astro as a peer, so the isolated linker hides
+# it and every <Icon class=...> fails `astro check`. A single-package repo loses nothing by hoisting.
+linker = "hoisted"
+exact = true
+# Only install newly resolved package versions published at least 3 days ago.
+minimumReleaseAge = 259200

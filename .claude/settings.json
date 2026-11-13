@@ -1,4 +1,20 @@
 {
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "permissions": {
+    "allow": [
+      "Bash(bun ci)",
+      "Bash(bun install)",
+      "Bash(bun run build)",
+      "Bash(bun run check)",
+      "Bash(bun run lint)",
+      "Bash(bun run lint:fix)",
+      "Bash(bun run fmt)",
+      "Bash(bun run fmt:check)",
+      "Bash(bun x oxfmt *)",
+      "Bash(bun x oxlint *)"
+    ],
+    "deny": ["Read(**/.env)", "Read(**/.env.local)", "Read(**/.dev.vars*)"]
+  },
   "hooks": {
     "WorktreeCreate": [
       {
@@ -19,6 +35,16 @@
             "command": "${CLAUDE_PROJECT_DIR}/.claude/hooks/worktree-setup.sh",
             "async": true,
             "timeout": 120
+          }
+        ]
+      },
+      {
+        "matcher": "Edit|Write|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$CLAUDE_PROJECT_DIR\"/.claude/hooks/format-file.sh",
+            "timeout": 30
           }
         ]
       }

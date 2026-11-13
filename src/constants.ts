@@ -1,6 +1,10 @@
 export const SITE_OWNER = "josef" as const
 export const SITE_OWNER_SOCIALS = [
   {
+    name: "X",
+    url: "https://x.com/josefaidt",
+  },
+  {
     name: "BlueSky",
     url: "https://bsky.app/profile/josef.dev",
   },
