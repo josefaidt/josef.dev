@@ -5,6 +5,7 @@ Personal landing page built with Astro 7 + Cloudflare Workers (SSR). Deployed vi
 ## Stack
 
 - **Astro 7**: server output mode, `@astrojs/cloudflare` adapter
+- **Route caching**: the homepage calls `Astro.cache.set()`, and the adapter's experimental `cacheCloudflare()` provider caches it at Cloudflare. Caching does nothing in `bun dev`, so check it with `bun run preview`
 - **TailwindCSS 4**: Vite plugin, custom rouge color scale + dark/light theme vars in `src/styles/global.css`
 - **astro-icon**: `simple-icons` and `gg` icon sets
 - **Package manager**: bun (version in `.bun-version`). `bunfig.toml` pins exact versions, skips versions published less than 3 days ago, and uses the hoisted linker (see the comment there for why)

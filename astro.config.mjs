@@ -1,5 +1,6 @@
 // @ts-check
 import cloudflare from "@astrojs/cloudflare"
+import { cacheCloudflare } from "@astrojs/cloudflare/cache"
 import mdx from "@astrojs/mdx"
 import sitemap from "@astrojs/sitemap"
 import tailwindcss from "@tailwindcss/vite"
@@ -11,6 +12,11 @@ export default defineConfig({
   adapter: cloudflare({
     imageService: { build: "compile", runtime: "cloudflare-binding" },
   }),
+  // Routes opt in with Astro.cache.set(). Cache hits are served by Cloudflare without running the
+  // Worker, and every other route gets `no-store`.
+  cache: {
+    provider: cacheCloudflare(),
+  },
   output: "server",
   site: "https://josef.dev",
   env: {
