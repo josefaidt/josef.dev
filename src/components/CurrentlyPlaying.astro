@@ -15,9 +15,11 @@ if (currentlyPlaying?.item?.type === "track") {
   }
 }
 
-// The ticker measures its own overflow in CSS, but CSS cannot turn that distance into a duration,
-// so estimate it from the length: about 7px a character at text-sm, scrolled at about 30px a second
-// for the middle 60% of each pass.
+/**
+ * The ticker measures its own overflow in CSS, but CSS cannot turn that distance into a duration,
+ * so estimate it from the length: about 7px a character at text-sm, scrolled at about 30px a second
+ * for the middle 60% of each pass.
+ */
 const overflow = Math.max(0, (track?.text.length ?? 0) * 7 - 212)
 const duration = `${Math.max(4, overflow / 30 / 0.6).toFixed(1)}s`
 ---
