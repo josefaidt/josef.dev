@@ -9,11 +9,16 @@ import { SITE_DESCRIPTION, SITE_OWNER_SOCIALS } from "../constants"
 <div class="flex flex-col min-h-screen">
   <div class="flex items-center justify-center flex-1">
     <div class="relative">
-      <nav class="top-1.5 right-13 w-fit absolute z-20 flex items-center gap-2">
+      <!--
+        Each link is padded into a 26x34px tap target, larger than the 18px icon, and the targets
+        meet edge to edge, which leaves the icons 8px apart. The negative margin cancels the outer
+        padding so the icons keep their place above the logo.
+      -->
+      <nav class="top-1.5 right-13 -mx-1 -my-2 w-fit absolute z-20 flex items-center">
         {
           SITE_OWNER_SOCIALS.map((social) => (
             <a
-              class="flex items-center"
+              class="flex items-center px-1 py-2"
               href={social.url}
               rel="noopener noreferrer"
               target="_blank"
@@ -60,12 +65,9 @@ import { SITE_DESCRIPTION, SITE_OWNER_SOCIALS } from "../constants"
     color: var(--josef-text-color-muted);
   }
 
-  :not(#currently-playing *)[data-icon]:hover {
+  nav a:hover [data-icon],
+  nav a:focus-visible [data-icon] {
     color: var(--josef-primary-color);
-  }
-
-  nav a {
-    color: var(--josef-text-color-muted);
   }
 
   #logo {
