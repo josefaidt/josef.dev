@@ -57,19 +57,20 @@ const { href } = Astro.props
     color: var(--color-rouge-800);
   }
 
-  /* Light theme - flip the color order */
+  /* Light theme - same four colors as the dark logo, reordered: the cream layer sits
+     right behind the dark face as an outline, then orange and rose stripes */
   @media (prefers-color-scheme: light) {
     #logo [data-layer="1"] {
-      color: var(--color-rouge-900);
+      color: var(--color-rouge-800);
     }
     #logo span[data-layer="2"] {
-      color: var(--color-rouge-700);
+      color: var(--color-cream);
     }
     #logo span[data-layer="3"] {
-      color: var(--color-accent);
+      color: var(--color-orange);
     }
     #logo span[data-layer="4"] {
-      color: var(--color-orange);
+      color: var(--color-accent);
     }
   }
 </style>

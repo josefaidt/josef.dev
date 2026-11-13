@@ -2,6 +2,7 @@
 
 @theme {
   --color-accent: #c6797e;
+  --color-cream: #f8e8d8;
   --color-blue: #1fb6ff;
   --color-purple: #7e5bef;
   --color-pink: #ff49db;
@@ -105,7 +106,8 @@
   /* Dark theme (default) */
   :root {
     --josef-primary-color: #c6797e;
-    --josef-background-color: #2a1518;
+    /* warm graphite with a red-brown tint (HSL 9/10%/13.5%), after Ember Soft */
+    --josef-background-color: #26201f;
     --josef-text-color: #f8e8d8;
     /* --josef-text-color-muted: #e8d0c0; */
     --josef-text-color-muted: #d8bfb0;
@@ -114,14 +116,17 @@
     --josef-tertiary-color: #825f4a;
     --josef-shadow-color: #333333;
 
-    --josef-background-color-700: #201012;
+    --josef-background-color-700: #1f1a19;
+    /* inline code chip, one step darker than the 700 surface */
+    --josef-code-background: #181414;
   }
 
   /* Light theme - triggered by system preference */
   @media (prefers-color-scheme: light) {
     :root {
       --josef-primary-color: #a85d62;
-      --josef-background-color: #faf7f5;
+      /* linen: same red-brown hue as the dark graphite, lifted to L 94% */
+      --josef-background-color: #f3e9e5;
       --josef-text-color: #2d1a1c;
       --josef-text-color-muted: #5c4a45;
       --josef-accent-color: #7a9bc4;
@@ -129,7 +134,7 @@
       --josef-tertiary-color: #b8956f;
       --josef-shadow-color: #e0d0c8;
 
-      --josef-background-color-700: #f0ebe8;
+      --josef-background-color-700: #eadfda;
     }
   }
 
@@ -146,7 +151,7 @@
   p > code,
   li > code {
     @apply text-sm;
-    background-color: #1c0c0f;
+    background-color: var(--josef-code-background);
     color: #a2a3aa;
     padding: 0.1em 0.3em;
   }
