@@ -1,0 +1,47 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  // A lean subset of keyhaw's rules: the bug classes that apply to a small Astro site on Workers.
+  // Type-aware rules are left off, so linting needs no tsgolint binary.
+  "plugins": ["oxc", "typescript", "unicorn", "import"],
+  "rules": {
+    // Type-only imports are a top-level `import type`, never an inline `type` specifier
+    "import/consistent-type-specifier-style": ["error", "prefer-top-level"],
+    "import/no-duplicates": "error",
+    "import/first": "error",
+    "import/no-cycle": "error",
+    "import/no-commonjs": "error",
+    "typescript/no-explicit-any": "error",
+    "typescript/no-non-null-assertion": "error",
+    "typescript/ban-ts-comment": ["error", { "ts-expect-error": "allow-with-description" }],
+    // `{} as T` asserts a shape nothing checked
+    "typescript/consistent-type-assertions": [
+      "error",
+      { "assertionStyle": "as", "objectLiteralTypeAssertions": "never" }
+    ],
+    "eqeqeq": "error",
+    "no-var": "error",
+    "prefer-const": "error",
+    "no-empty": "error",
+    "no-throw-literal": "error",
+    "no-alert": "error",
+    "no-self-compare": "error",
+    "no-sequences": "error",
+    "no-template-curly-in-string": "error",
+    "radix": "error",
+    "eslint/no-console": ["error", { "allow": ["warn", "error"] }],
+    "unicorn/error-message": "error",
+    "unicorn/throw-new-error": "error",
+    "unicorn/prefer-node-protocol": "error",
+    "unicorn/no-document-cookie": "error",
+    "unicorn/no-abusive-eslint-disable": "error",
+    "unicorn/prefer-optional-catch-binding": "error"
+  },
+  "env": {
+    "builtin": true
+  },
+  "options": {
+    // A suppression whose rule no longer fires is dead weight
+    "reportUnusedDisableDirectives": "error"
+  },
+  "ignorePatterns": [".claude/worktrees/*", "**/.astro/**", "**/.wrangler/**", "**/dist/**"]
+}

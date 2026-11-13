@@ -5,44 +5,52 @@ import { fetchSpotifyCurrentlyPlaying } from "../lib/spotify"
 
 const currentlyPlaying = await fetchSpotifyCurrentlyPlaying()
 
-let track: { name: string; artists: { name: string }[]; url: string; displayText: string } | null = null
+let track: { url: string; text: string } | null = null
 
 if (currentlyPlaying?.item?.type === "track") {
   const item = currentlyPlaying.item as Track
   track = {
-    name: item.name,
-    artists: item.artists,
     url: item.external_urls.spotify,
-    displayText: `${item.name} – ${item.artists.map((artist) => artist.name).join(", ")}`,
+    text: `${item.name} – ${item.artists.map((artist) => artist.name).join(", ")}`,
   }
 }
+
+// The ticker measures its own overflow in CSS, but CSS cannot turn that distance into a duration,
+// so estimate it from the length: about 7px a character at text-sm, scrolled at about 30px a second
+// for the middle 60% of each pass.
+const overflow = Math.max(0, (track?.text.length ?? 0) * 7 - 212)
+const duration = `${Math.max(4, overflow / 30 / 0.6).toFixed(1)}s`
 ---
 
 <div id="currently-playing" class="right-0 -bottom-1.5 absolute">
   {
     track !== null ? (
-      <a href={track.url} target="_blank" rel="noopener noreferrer">
-        <div class="flex items-center justify-end space-x-2">
-          <Icon
-            class="hover:text-accent text-[var(--color-rouge-200)]"
-            name="simple-icons:spotify"
-            size={16}
-            aria-hidden="true"
-          />
-          <span data-rotate={track.displayText.length > 30} data-text={track.displayText}>
-            {track.displayText}
-          </span>
-        </div>
-      </a>
-    ) : (
-      <div class="flex items-center justify-end space-x-2">
+      <a
+        class="flex items-center justify-end gap-2"
+        href={track.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        title={track.text}
+      >
         <Icon
-          class="hover:text-accent text-[var(--color-rouge-200)]"
           name="simple-icons:spotify"
           size={16}
           aria-hidden="true"
         />
-        <span data-text="not currently playing...">not currently playing...</span>
+        <span class="ticker" style={`--ticker-duration: ${duration}`}>
+          <span>{track.text}</span>
+        </span>
+      </a>
+    ) : (
+      <div class="flex items-center justify-end gap-2">
+        <Icon
+          name="simple-icons:spotify"
+          size={16}
+          aria-hidden="true"
+        />
+        <span class="ticker">
+          <span>not currently playing...</span>
+        </span>
       </div>
     )
   }
@@ -53,48 +61,70 @@ if (currentlyPlaying?.item?.type === "track") {
     text-decoration: none;
   }
 
-  #currently-playing span {
-    font-size: var(--text-sm);
-    line-height: 1.5rem;
-    height: 1.5rem;
-    width: 212px;
-    overflow: hidden;
-    white-space: nowrap;
-    display: inline-block;
-    position: relative;
-    color: transparent;
+  #currently-playing [data-icon] {
+    flex-shrink: 0;
+    color: var(--josef-text-color-muted);
   }
 
-  #currently-playing a span:hover::after {
-    text-decoration-line: underline;
-    text-decoration-thickness: 2px;
+  /*
+    The clipping box. It is a size container, so the text inside can read the box's width as
+    100cqw and scroll by exactly the distance it overflows, which is zero for text that fits.
+    It starts one fade-width early, over the gap after the icon, and the text is padded by the
+    same amount, so text at rest sits where it would without the fade.
+  */
+  .ticker {
+    --fade: 0.5rem;
+    display: block;
+    width: calc(212px + var(--fade));
+    margin-left: calc(-1 * var(--fade));
+    overflow: hidden;
+    container-type: inline-size;
+    white-space: nowrap;
+    font-size: var(--text-sm);
+    line-height: 1.5rem;
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      #000 var(--fade),
+      #000 calc(100% - var(--fade)),
+      transparent
+    );
+  }
+
+  .ticker > span {
+    display: inline-block;
+    padding-inline: var(--fade);
+    color: var(--josef-text-color-muted);
+    text-decoration: underline 2px transparent;
+    transition: text-decoration-color 150ms ease;
+    animation: ticker var(--ticker-duration, 4s) ease-in-out infinite alternate;
+  }
+
+  #currently-playing a:hover .ticker > span {
     text-decoration-color: var(--josef-primary-color);
   }
 
-  #currently-playing span::after {
-    content: attr(data-text);
-    position: absolute;
-    white-space: nowrap;
-    width: max-content;
-    left: 0;
-    top: 0;
-    color: var(--josef-text-color-muted);
-    will-change: transform;
-    text-rendering: optimizeSpeed;
-  }
-
-  #currently-playing span[data-rotate="true"]::after {
-    animation: ticker 10s linear infinite;
-  }
-
+  /* Holds at each end, then eases back the way it came instead of snapping to the start */
   @keyframes ticker {
     0%,
-    15% {
-      transform: translateX(0);
+    20% {
+      translate: 0;
     }
-    85%,
+    80%,
     100% {
-      transform: translateX(calc(-100% + 200px));
+      translate: min(0px, calc(100cqw - 100%));
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ticker {
+      text-overflow: ellipsis;
+      mask-image: none;
+    }
+
+    .ticker > span {
+      display: inline;
+      animation: none;
     }
   }
 </style>

@@ -1,16 +1,10 @@
 // @ts-check
 import cloudflare from "@astrojs/cloudflare"
-import { unified } from "@astrojs/markdown-remark"
 import mdx from "@astrojs/mdx"
 import sitemap from "@astrojs/sitemap"
 import tailwindcss from "@tailwindcss/vite"
-import expressiveCode from "astro-expressive-code"
 import icon from "astro-icon"
 import { defineConfig, envField } from "astro/config"
-import expressiveCodeTwoSlash from "expressive-code-twoslash"
-import { rehypeBlurWrapper } from "./plugins/rehype-blur-wrapper"
-import { remarkBlurImage } from "./plugins/remark-blur-image"
-import rouge2 from "./rouge2-modded.json"
 
 // https://astro.build/config
 export default defineConfig({
@@ -19,12 +13,6 @@ export default defineConfig({
   }),
   output: "server",
   site: "https://josef.dev",
-  markdown: {
-    processor: unified({
-      remarkPlugins: [remarkBlurImage],
-      rehypePlugins: [rehypeBlurWrapper],
-    }),
-  },
   env: {
     schema: {
       SPOTIFY_CLIENT_ID: envField.string({
@@ -42,17 +30,7 @@ export default defineConfig({
     },
     validateSecrets: true,
   },
-  integrations: [
-    icon(),
-    expressiveCode({
-      cascadeLayer: "expressive-code",
-      themes: [rouge2],
-      plugins: [expressiveCodeTwoSlash()],
-      shiki: {},
-    }),
-    mdx(),
-    sitemap(),
-  ],
+  integrations: [icon(), mdx(), sitemap()],
   vite: {
     optimizeDeps: {
       include: ["@iconify/utils", "@iconify-json/simple-icons", "@iconify-json/gg"],

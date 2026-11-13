@@ -5,14 +5,40 @@ on:
     types: [opened, synchronize, reopened, ready_for_review]
   workflow_call:
 
+# One group per pull request, so a new push cancels the run for the commit it replaces. Through
+# workflow_call the pull request number is empty, so a release falls back to its own run ID and
+# never cancels itself.
+concurrency:
+  group: ci-${{ github.event.pull_request.number || github.run_id }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
 jobs:
+  # One job, since each job spends most of its billed minute on checkout and install. Each check
+  # runs even after an earlier one fails, so a push reports every failure at once.
   ci:
     name: CI
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v6
       - uses: ./.github/actions/setup
-      - name: Lint
-        run: bun run lint
       - name: Format check
         run: bun run fmt:check
+      - name: Lint
+        if: ${{ !cancelled() }}
+        run: bun run lint --format github
+      - name: Typecheck
+        if: ${{ !cancelled() }}
+        run: bun run check
+      # The build validates that the Spotify secrets are set but never calls Spotify, since no page
+      # is prerendered, so placeholders keep secrets out of pull request runs.
+      - name: Build
+        if: ${{ !cancelled() }}
+        env:
+          SPOTIFY_CLIENT_ID: ci-placeholder
+          SPOTIFY_CLIENT_SECRET: ci-placeholder
+          SPOTIFY_REFRESH_TOKEN: ci-placeholder
+        run: bun run build
