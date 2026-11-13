@@ -25,18 +25,14 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       - uses: ./.github/actions/setup
-
       - name: Format check
         run: bun run fmt:check
-
       - name: Lint
         if: ${{ !cancelled() }}
         run: bun run lint --format github
-
       - name: Typecheck
         if: ${{ !cancelled() }}
         run: bun run check
-
       # The build validates that the Spotify secrets are set but never calls Spotify, since no page
       # is prerendered, so placeholders keep secrets out of pull request runs.
       - name: Build
