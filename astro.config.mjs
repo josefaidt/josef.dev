@@ -12,8 +12,10 @@ export default defineConfig({
   adapter: cloudflare({
     imageService: { build: "compile", runtime: "cloudflare-binding" },
   }),
-  // Routes opt in with Astro.cache.set(). Cache hits are served by Cloudflare without running the
-  // Worker, and every other route gets `no-store`.
+  /**
+   * Routes opt in with Astro.cache.set(). Cache hits are served by Cloudflare without running the
+   * Worker, and every other route gets `no-store`.
+   */
   cache: {
     provider: cacheCloudflare(),
   },

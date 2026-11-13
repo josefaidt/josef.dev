@@ -1,8 +1,10 @@
 import type { PlaybackState, AccessToken } from "@spotify/web-api-ts-sdk"
 import { SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET, SPOTIFY_REFRESH_TOKEN } from "astro:env/server"
 
-// Access tokens last an hour, and a Worker isolate serves many requests, so the token is kept in
-// module scope and reused until a minute before it expires.
+/**
+ * Access tokens last an hour, and a Worker isolate serves many requests, so the token is kept in
+ * module scope and reused until a minute before it expires.
+ */
 let cachedToken: { value: string; expiresAt: number } | null = null
 
 async function getSpotifyToken(): Promise<string | null> {

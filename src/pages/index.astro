@@ -4,9 +4,11 @@ import BaseHead from "../components/BaseHead.astro"
 import CurrentlyPlaying from "../components/CurrentlyPlaying.astro"
 import { SITE_DESCRIPTION, SITE_OWNER_SOCIALS } from "../constants"
 
-// Cached at Cloudflare, so most visits skip the Worker and the Spotify calls, and the track is
-// still in the HTML. The ticker can lag by up to a minute: a copy is fresh for 15 seconds, then
-// served stale for up to 45 more while a new one renders in the background.
+/**
+ * Cached at Cloudflare, so most visits skip the Worker and the Spotify calls, and the track is
+ * still in the HTML. The ticker can lag by up to a minute: a copy is fresh for 15 seconds, then
+ * served stale for up to 45 more while a new one renders in the background.
+ */
 Astro.cache.set({ maxAge: 15, swr: 45 })
 ---
 
