@@ -13,18 +13,23 @@ Personal landing page built with Astro 7 + Cloudflare Workers (SSR). Deployed vi
 
 ```
 src/
-  components/       # BaseHead, Header, Footer, CurrentlyPlaying, Logo, HeaderLink
+  components/       # BaseHead, Header, Footer, CurrentlyPlaying, Logo, HeaderLink, WebMCP
   layouts/          # Layout.astro, MDXLayout.astro
   lib/spotify.ts    # Spotify Web API wrapper for the currently-playing ticker
   pages/
     index.astro     # landing page: logo, socials, currently playing
     uses.mdx
+    llms.txt.ts     # /llms.txt, prerendered from constants
     api/auth/       # Spotify OAuth callback
   styles/global.css
   constants.ts      # SITE_TITLE, SITE_DESCRIPTION, socials, projects
 ```
 
-Socials render from `SITE_OWNER_SOCIALS` in `src/constants.ts`, on the landing page and in the footer. Each `name` lowercased must be a `simple-icons` icon name.
+Socials render from `SITE_OWNER_SOCIALS` in `src/constants.ts`, on the landing page and in the footer. Each `name` lowercased must be a `simple-icons` icon name. The same list feeds `/llms.txt` and the `get_socials` WebMCP tool.
+
+## WebMCP
+
+`src/components/WebMCP.astro`, included from `BaseHead`, registers tools on `document.modelContext` for agents in the browser ([spec](https://webmachinelearning.github.io/webmcp/)). TypeScript's DOM types lack the API, so `src/env.d.ts` declares the part the site uses. Browsers without WebMCP skip registration.
 
 There are no posts. The blog was removed; its content is in git history.
 
@@ -51,7 +56,7 @@ Defined via Astro env schema in `astro.config.mjs`, all server-secret, and valid
 - `SPOTIFY_CLIENT_SECRET`
 - `SPOTIFY_REFRESH_TOKEN`
 
-Locally they come from `.env.local`. CI builds with placeholders, since no page is prerendered and the build never calls Spotify.
+Locally they come from `.env.local`. CI builds with placeholders, since the only prerendered route, `/llms.txt`, never calls Spotify.
 
 ## Linting and formatting
 

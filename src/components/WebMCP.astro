@@ -1,0 +1,22 @@
+---
+/**
+ * Registers WebMCP tools, so an agent in the browser can read the site without scraping it.
+ * Bundled module scripts run once per document, and the client router keeps the document across
+ * navigations, so each tool registers once.
+ */
+---
+
+<script>
+  import { SITE_OWNER_SOCIALS } from "../constants"
+
+  document.modelContext
+    ?.registerTool({
+      name: "get_socials",
+      title: "Get socials",
+      description: "List josef's social profiles, each with the network's name and a profile URL.",
+      inputSchema: { type: "object", properties: {} },
+      annotations: { readOnlyHint: true },
+      execute: async () => SITE_OWNER_SOCIALS,
+    })
+    .catch((error) => console.error("WebMCP: could not register get_socials", error))
+</script>
