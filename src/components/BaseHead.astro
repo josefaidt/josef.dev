@@ -1,5 +1,6 @@
 ---
 import { ClientRouter } from "astro:transitions"
+import WebMCP from "./WebMCP.astro"
 import "../styles/global.css"
 
 interface Props {
@@ -59,3 +60,6 @@ const { title, description, image = "/og-image.png" } = Astro.props
 
 <!-- view transitions -->
 <ClientRouter />
+
+<!-- tools for in-browser agents -->
+<WebMCP />
